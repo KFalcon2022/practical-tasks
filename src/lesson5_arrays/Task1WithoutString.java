@@ -7,10 +7,5 @@ package lesson5_arrays;
  */
 public class Task1WithoutString {
     public static void main(String[] args) {
-        char[] nameArray = new char[]{'Е', 'г', 'о', 'р'};
-
-        for (char ch : nameArray) {
-            System.out.print(ch);
-        }
     }
 }
