@@ -1,9 +1,9 @@
-package lesson13.task2Animals;
+package com.walking.lesson13_inheritance.task2.model;
 
-public class Task2Dog extends Task2Animal {
+public class Dog extends Animal {
     public final String soundOfThis;
 
-    public Task2Dog(String name, String type) {
+    public Dog(String name, String type) {
         super(name, type);
         this.soundOfThis = "woof";
     }

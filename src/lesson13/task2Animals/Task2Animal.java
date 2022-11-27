@@ -1,10 +1,10 @@
-package lesson13.task2Animals;
+package com.walking.lesson13_inheritance.task2.model;
 
-public class Task2Animal {
+public class Animal {
     public final String name;
     public final String type;
 
-    public Task2Animal(String name, String type) {
+    public Animal(String name, String type) {
         this.name = name;
         this.type = type;
     }

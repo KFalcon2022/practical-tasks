@@ -1,9 +1,9 @@
-package lesson14.task2Animals;
+package com.walking.lesson14_polymorphism.task2.model;
 
-public class Task2Animal {
+public class Animal {
     public final String name;
 
-    public Task2Animal(String name) {
+    public Animal(String name) {
         this.name = name;
     }
 

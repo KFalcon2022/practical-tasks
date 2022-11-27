@@ -1,7 +1,7 @@
-package lesson14.task2Animals;
+package com.walking.lesson14_polymorphism.task2.model;
 
-public class Task2Dog extends Task2Animal {
-    public Task2Dog(String name) {
+public class Dog extends Animal {
+    public Dog(String name) {
         super(name);
     }
 

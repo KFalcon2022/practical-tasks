@@ -1,6 +1,6 @@
-package lesson14.task1RightFigure;
+package com.walking.lesson14_polymorphism.task1.model;
 
-public class Task1Triangle extends Task1RightFigure{
+public class Triangle extends RightFigure{
     //удваеваем символ для горизонтальной линии, чтобы выглядело нормально
     final String horizontalSymbol = "--";
     //альтернативный вариант
@@ -10,7 +10,7 @@ public class Task1Triangle extends Task1RightFigure{
     final String insideSpaceSymbol = " ";
     final String cornersSymbol = "*";
 
-    public Task1Triangle(int length) {
+    public Triangle(int length) {
         super(length, 3);
     }
 

@@ -1,10 +1,10 @@
-package lesson14.task1RightFigure;
+package com.walking.lesson14_polymorphism.task1.model;
 
-public class Task1RightFigure {
+public class RightFigure {
     public final int length;
     public final int sides;
 
-    Task1RightFigure(int length, int sides) {
+    RightFigure(int length, int sides) {
         this.length = length;
         this.sides = sides;
     }

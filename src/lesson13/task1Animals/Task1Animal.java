@@ -1,7 +1,7 @@
-package lesson13.task1Animals;
+package com.walking.lesson13_inheritance.task1.model;
 
-public class Task1Animal {
-    protected Task1Animal() {
+public class Animal {
+    protected Animal() {
         System.out.println("I'm an animal.");
     }
 }

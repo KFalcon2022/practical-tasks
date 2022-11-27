@@ -1,11 +1,11 @@
-package lesson14;
+package com.walking.lesson14_polymorphism.task1;
 
-import lesson14.task1RightFigure.Task1Triangle;
-import lesson14.task1RightFigure.Task1Square;
+import com.walking.lesson14_polymorphism.task1.model.Triangle;
+import com.walking.lesson14_polymorphism.task1.model.Square;
 
 import java.util.Scanner;
 
-public class Task1Main {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int figureChoice = 1;
@@ -29,11 +29,11 @@ public class Task1Main {
         }
 
         if (figureChoice == 1) {
-            Task1Triangle triangle = new Task1Triangle(length);
+            Triangle triangle = new Triangle(length);
             triangle.draw();
         }
         else if (figureChoice == 2) {
-            Task1Square square = new Task1Square(length);
+            Square square = new Square(length);
             square.draw();
         }
     }

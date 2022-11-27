@@ -1,6 +1,6 @@
-package lesson14.task1RightFigure;
+package com.walking.lesson14_polymorphism.task1.model;
 
-public class Task1Square extends Task1RightFigure{
+public class Square extends RightFigure{
     //удваеваем символ для горизонтальной линии, чтобы выглядело нормально
     final String horizontalSymbol = "--";
     final String verticalSymbol = "|";
@@ -8,7 +8,7 @@ public class Task1Square extends Task1RightFigure{
     final String insideSpaceSymbol = "  ";
     final String cornersSymbol = "*";
 
-    public Task1Square(int length) {
+    public Square(int length) {
         super(length, 4);
     }
 

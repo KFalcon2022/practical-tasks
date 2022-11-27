@@ -1,7 +1,7 @@
-package lesson13;
+package com.walking.lesson13_inheritance.task1;
 
-import lesson13.task1Animals.Task1Cat;
-import lesson13.task1Animals.Task1Dog;
+import com.walking.lesson13_inheritance.task1.model.Cat;
+import com.walking.lesson13_inheritance.task1.model.Dog;
 
 /**
  * Реализовать класс Animal, содержащий protected-конструктор без параметров,
@@ -18,9 +18,9 @@ import lesson13.task1Animals.Task1Dog;
  * Такой ли порядок сообщений вы ожидали увидеть?
  */
 
-public class Task1Main {
+public class Main {
     public static void main(String[] args) {
-        Task1Dog dog = new Task1Dog("grey");
-        Task1Cat cat = new Task1Cat("white");
+        Dog dog = new Dog("grey");
+        Cat cat = new Cat("white");
     }
 }
