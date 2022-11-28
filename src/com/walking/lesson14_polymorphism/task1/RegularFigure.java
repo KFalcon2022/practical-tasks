@@ -1,5 +1,5 @@
 package com.walking.lesson14_polymorphism.task1;
-public abstract class RegularFigure {
+    abstract class RegularFigure {
     protected static final int MINIMAL_DIMENSION = 2;
-    abstract protected void draw(int sideLength);
+    abstract protected String draw(int sideLength);
 }
