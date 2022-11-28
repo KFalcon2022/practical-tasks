@@ -11,9 +11,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         RegularFigure figure;
-        int choose = scanner.nextInt();
+        int figureType = scanner.nextInt();
 
-        switch (choose) {
+        switch (figureType) {
             case 3: {
                 figure = new RegularTriangle();
                 break;
