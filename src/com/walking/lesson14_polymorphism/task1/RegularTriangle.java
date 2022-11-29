@@ -1,6 +1,6 @@
 package com.walking.lesson14_polymorphism.task1;
 
-public class RegularTriangle extends RegularFigure {
+public class RegularTriangle  implements Drawable{
 
     // строки а не символы, чтобы рисовать чем угодно
     private static final String NODE_ELEMENT = "*";
@@ -9,7 +9,6 @@ public class RegularTriangle extends RegularFigure {
     private static final String BASE_LINE_ELEMENT = "__";
     private static final String SPACE_ELEMENT = " ";
 
-    @Override
     public String draw(int sideLength) {
         if (sideLength < MINIMAL_DIMENSION) {
             System.out.println("Too small dimension");

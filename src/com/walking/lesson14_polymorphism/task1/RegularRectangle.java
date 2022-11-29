@@ -1,14 +1,13 @@
 package com.walking.lesson14_polymorphism.task1;
 
-public class RegularRectangle extends RegularFigure {
+public class RegularRectangle implements Drawable {
     private static final String NODE_ELEMENT = "*";
     private static final String VERTICAL_LINE_ELEMENT = "|";
     private static final String SPACE_ELEMENT = "   ";
     private static final String HORIZONTAL_LINE_ELEMENT = "___";
 
-    @Override
     public String draw(int sideLength) {
-        if (sideLength < MINIMAL_DIMENSION) {
+        if (sideLength < RegularFigure.MINIMAL_DIMENSION) {
             System.out.println("Too small dimension");
             return null;
         }

@@ -10,7 +10,7 @@ public class Main {
         System.out.println("4 - rectangle");
 
         Scanner scanner = new Scanner(System.in);
-        RegularFigure figure;
+        Drawable figure;
         int figureType = scanner.nextInt();
 
         switch (figureType) {
