@@ -1,7 +1,5 @@
 package com.walking.lesson3;
 
-import com.walking.lesson3.task2SwitchCaseInterfaces.*;
-
 import java.util.Scanner;
 
 /**
@@ -15,21 +13,9 @@ import java.util.Scanner;
 public class Task2SwitchCase {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String line = scanner.nextLine();
+        String answer = Message.getEnum(scanner.nextLine());
         scanner.close();
 
-        Message message;
-
-        switch (line) {
-            case "Hi" : message = new Hello();
-            break;
-            case "Bye" : message = new Goodbye();
-            break;
-            case "How are you" : message = new HowAreYou();
-            break;
-            default: message = new Unknown();
-        }
-
-        System.out.println(message.getMessage());
+        System.out.println(answer);
     }
 }
