@@ -1,5 +1,7 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
+import com.walking.lesson16_abstract_class_interface.task2.model.*;
+
 import java.util.Scanner;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Scanner;
  * Если любая другая строка - вывести Unknown message.
  * Сделать через switch-case
  */
-public class Main implements output {
+public class Main {
     public static void main(String[] args) {
 //        Создаем сканер для чтения с клавиатуры
         Scanner scanner = new Scanner(System.in);
@@ -30,30 +32,23 @@ public class Main implements output {
         switch (s) {
             case "Hi":  // Если s равно "Hi"
 //                Выводим в консоль "Hello"
-                print("Hello");
+                Output.print("Hello");
 //                Вызываем оператор break, чтобы выйти из switch-case
                 break;
 
             case "Bye":
-                print("Good bye");
+                Output.print("Good bye");
                 break;
 
             case "How are you":
-                print("How are your doing");
+                Output.print("How are your doing");
                 break;
 
             default:  // Если значение s не совпадает ни с одним кейсом
-                print("Unknown message");
+                Output.print("Unknown message");
         }
-    }
-
-    public static void print(String string){
-        System.out.println(string);
+        Otvet n = new Otvet("парара");
+        n.print();
     }
 }
 
-interface output{
-    default void print(){
-        System.out.println("Unknown message!");
-    }
-}

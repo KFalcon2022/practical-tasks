@@ -1,7 +1,7 @@
-package com.walking.lesson16_abstract_class_interface.task3;
+package com.walking.lesson16_abstract_class_interface.task1_interface.model.task3;
 
 
-import com.walking.lesson16_abstract_class_interface.task3.model.*;
+import com.walking.lesson16_abstract_class_interface.task1_interface.model.task3.model.*;
 
 /**
  * Используя новые знания, упростите реализацию задачи 2 из предыдущего урока:
@@ -15,7 +15,7 @@ public class Main {
     public  void main(String[] args) {
         Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow()};
 
-        soundAll(animals);
+    //    soundAll(animals);
     }
 
 
