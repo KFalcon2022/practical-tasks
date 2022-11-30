@@ -1,15 +1,17 @@
-package com.walking.lesson16_abstract_and_interfaces.task1_abstract.model;
+package com.walking.lesson16_abstract_class_interface.task1_interface.model;
 
 
-public class EquilateralTriangle extends EquilateralShape {
+public class EquilateralTriangle implements EquilateralShape {
 	
 	//    За единицу у основания принято "--" для минимально удобоваримой визуализации
 	public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
 	public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
 	public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
+	private final int length;
+	
 	
 	public EquilateralTriangle(int length) {
-		super(length);
+		this.length = length;
 	}
 	
 	//    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
@@ -39,5 +41,10 @@ public class EquilateralTriangle extends EquilateralShape {
 		}
 		
 		return triangle;
+	}
+	
+	@Override
+	public int getLength() {
+		return length;
 	}
 }

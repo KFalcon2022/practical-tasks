@@ -1,13 +1,14 @@
-package com.walking.lesson16_abstract_and_interfaces.task1_abstract.model;
+package com.walking.lesson16_abstract_class_interface.task1_interface.model;
 
 
-public class Square extends EquilateralShape {
+public class Square implements EquilateralShape {
 	
 	public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
 	public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
+	private final int length;
 	
 	public Square(int length) {
-		super(length);
+		this.length = length;
 	}
 	
 	@Override
@@ -52,5 +53,10 @@ public class Square extends EquilateralShape {
 		verticalLinesUnit += RECTANGLE_VERTICAL_ELEMENT + NEW_LINE_SYMBOL;
 		
 		return verticalLinesUnit;
+	}
+	
+	@Override
+	public int getLength() {
+		return length;
 	}
 }

@@ -1,4 +1,4 @@
-package com.walking.lesson16_abstract_and_interfaces.task1_abstract.model;
+package com.walking.lesson16_abstract_class_interface.task1_abstract.model;
 
 public abstract class EquilateralShape {
 	

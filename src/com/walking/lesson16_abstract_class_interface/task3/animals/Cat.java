@@ -1,4 +1,4 @@
-package com.walking.lesson16_abstract_and_interfaces.task3.animals;
+package com.walking.lesson16_abstract_class_interface.task3.animals;
 
 public class Cat extends Animal {
 	
