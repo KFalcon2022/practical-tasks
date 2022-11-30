@@ -2,7 +2,7 @@ package com.walking.lesson17_enums.task3.equilateralshapes;
 
 public enum EquilateralShape {
 	
-	EquilateralTriangle(8){
+	EquilateralTriangle(8) {
 		public final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
 		public final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
 		public final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
