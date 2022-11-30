@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.walking.lesson17.task2;
 
 public class Main {
@@ -33,3 +34,11 @@ public class Main {
         }
     }
 } 
+=======
+package com.walking.lesson17_enum.task2;
+
+public class Main {
+    public static void main(String[] args) {
+    }
+}
+>>>>>>> 21fc74982e5c1ea3a875c9f41aa98d128aa881f1
