@@ -6,16 +6,7 @@ import src.com.walking.lesson16_abstract_class_interface.task1.EquilateralShape;
 
 import java.util.Scanner;
 
-/**
- * Реализуйте класс «Правильная фигура».
- * Для него создайте классы-наследники «Треугольник» и «Квадрат».
- * <p>
- * Пользователь должен иметь возможность ввести длину стороны и выбрать тип фигуры.
- * Программа должна нарисовать в консоли выбранную пользователем фигуру,
- * используя символы '-', '|', '/', '\'.
- * <p>
- * Обратите внимание, символ '\' в Java необходимо экранировать: '\\'.
- */
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
