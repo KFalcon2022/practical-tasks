@@ -1,4 +1,4 @@
-package com.walking.lesson3;
+package com.walking.lesson3_casts_conditional_constructions;
 
 import java.util.Scanner;
 

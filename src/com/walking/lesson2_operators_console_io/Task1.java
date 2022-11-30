@@ -1,4 +1,4 @@
-package com.walking.lesson2;
+package com.walking.lesson2_operators_console_io;
 
 import java.util.Scanner;
 

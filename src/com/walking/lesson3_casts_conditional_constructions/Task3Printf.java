@@ -1,4 +1,4 @@
-package com.walking.lesson3;
+package com.walking.lesson3_casts_conditional_constructions;
 
 import java.util.Scanner;
 
@@ -6,9 +6,9 @@ import java.util.Scanner;
  * Завести три переменные типа String.
  * С клавиатуры ввести в них вашу фамилию, имя и отчество.
  * Вывести в консоль в одну строку ваше ФИО.
- * Сделать, используя System.out.println
+ * Сделать, используя System.out.printf
  */
-public class Task3Println {
+public class Task3Printf {
     public static void main(String[] args) {
 //        Создаем сканер для чтения с клавиатуры
         Scanner scanner = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class Task3Println {
         scanner.close();
 
 //        Выводим в консоль ФИО, не забывая о пробелах
-        System.out.println(lastName + " " + firstName + " " + patronymic);
+        System.out.printf("%s %s %s", lastName, firstName, patronymic);
     }
 
     /*
