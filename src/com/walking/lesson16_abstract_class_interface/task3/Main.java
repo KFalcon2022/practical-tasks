@@ -15,7 +15,12 @@ public class Main {
     public  void main(String[] args) {
         Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow()};
 
-    //    soundAll(animals);
+        SoundAll p = new Cat();
+
+        animals[1].soundAll(animals);
+      //  Animal.soundAll(animals);
+        animals[1].sound();
+        p.sound();
     }
 
 
