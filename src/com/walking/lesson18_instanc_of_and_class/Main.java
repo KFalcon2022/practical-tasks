@@ -51,5 +51,16 @@ public class Main {
 			System.out.println("Unknown animal!");
 		}
 	}
+//	private static void sound(Animal animal) {
+//		if (animal instanceof Cat cat) {
+//			cat.meow();
+//		} else if (animal instanceof Dog dog) {
+//			dog.woof();
+//		} else if (animal instanceof Cow cow) {
+//			cow.moo();
+//		} else {
+//			System.out.println("Unknown animal!");
+//		}
+//	}
 }
 
