@@ -1,4 +1,4 @@
-package com.walking.lesson3;
+package com.walking.lesson3_casts_conditional_constructions;
 
 /**
  * Ввести с клавиатуры два целых числа. Если Число1 четное,
