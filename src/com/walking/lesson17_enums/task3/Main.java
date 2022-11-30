@@ -31,10 +31,10 @@ public class Main {
 		
 		switch (type) {
 			case 1:
-				shape = EquilateralShape.EquilateralShape;
+				shape = EquilateralShape.EQUILATERAL_SHAPE;
 				break;
 			case 2:
-				shape = EquilateralShape.EquilateralTriangle;
+				shape = EquilateralShape.EQUILATERAL_TRIANGLE;
 				break;
 			default:
 				return "Unknown shape";

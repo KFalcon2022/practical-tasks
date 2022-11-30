@@ -2,11 +2,12 @@ package com.walking.lesson17_enums.task3.equilateralshapes;
 
 public enum EquilateralShape {
 	
-	EquilateralTriangle(8) {
+	EQUILATERAL_TRIANGLE(8) {
 		public final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
 		public final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
 		public final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
 		
+		@Override
 		public String createShapeString() {
 			String triangle = EMPTY_STRING;
 			
@@ -34,7 +35,7 @@ public enum EquilateralShape {
 		}
 	},
 	
-	EquilateralShape(8) {
+	EQUILATERAL_SHAPE(8) {
 		public final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
 		public final String RECTANGLE_VERTICAL_ELEMENT = "|";
 		
@@ -97,7 +98,5 @@ public enum EquilateralShape {
 		return length;
 	}
 	
-	public String createShapeString() {
-		return "Unknown shape";
-	}
+	public abstract String createShapeString();
 }

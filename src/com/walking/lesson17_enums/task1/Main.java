@@ -1,8 +1,8 @@
 package com.walking.lesson17_enums.task1;
 
-import com.walking.lesson17_enums.task1.enums.AnswersV2;
-
 import java.util.Scanner;
+
+import static com.walking.lesson17_enums.task1.enums.AnswersV2.*;
 
 public class Main {
 	
@@ -15,6 +15,16 @@ public class Main {
 		scanner.close();
 
 //		Answers.getAnswer(s);
-		AnswersV2.getAnswer(s);
+		getAnswer(s);
+	}
+	
+	public static void getAnswer(String question) {
+		if (HELLO.getQuestion().equals(question)) {
+			System.out.println(HELLO.getAnswer());
+		} else if (GOOD_BY.getQuestion().equals(question)) {
+			System.out.println(GOOD_BY.getAnswer());
+		} else if (HOW_ARE_YOU_DOING.getQuestion().equals(question)) {
+			System.out.println(HOW_ARE_YOU_DOING.getAnswer());
+		}
 	}
 }

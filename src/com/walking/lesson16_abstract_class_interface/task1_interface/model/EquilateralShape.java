@@ -8,7 +8,5 @@ public interface EquilateralShape {
 	
 	int getLength();
 	
-	default String createShapeString() {
-		return "Unknown shape";
-	}
+	String createShapeString();
 }
