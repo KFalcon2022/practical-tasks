@@ -1,13 +1,11 @@
 package com.walking.lesson16_abstract_class_interface.task1.model;
 
-public class Square implements EquilateralShape {
+public class Square extends EquilateralShape {
     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
     public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
 
-    private int length;
-
     public Square(int length) {
-        this.length = length;
+        super(length);
     }
 
     @Override
