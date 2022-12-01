@@ -17,5 +17,5 @@ public abstract class EquilateralShape {
     }
 */
 
-    abstract String createShapeString();
+    public abstract String createShapeString();
 }
