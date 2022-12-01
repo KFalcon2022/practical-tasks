@@ -1,4 +1,4 @@
-package com.walking.lesson2;
+package com.walking.lesson2_operators_console_io;
 
 /**
  * Введите с клавиатуры вещественные числа a и b. Выведите на экран результат выражения
