@@ -1,5 +1,6 @@
-package com.walking.lesson16_abstract_class_interface.task2;
+package com.walking.lesson17_enum.Task1;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -12,7 +13,6 @@ public class Main {
  * Если любая другая строка - вывести Unknown message.
  * Сделать через switch-case
  */
-
 
 //        Создаем сканер для чтения с клавиатуры
                 Scanner scanner = new Scanner(System.in);
@@ -28,50 +28,36 @@ public class Main {
 //        Зачем - разберемся, когда будем изучать I/O Streams
                 scanner.close();
 
-
-
 //        Используем конструкцию switch-case для переменной s
                 switch (s) {
-
                     case "Hi":  // Если s равно "Hi"
 //                Выводим в консоль "Hello"
-                        Printable printable = new Message("Hello");
-                        printable.print();
+                        System.out.println(Message.HI.getMessage());
 //                Вызываем оператор break, чтобы выйти из switch-case
                         break;
 
                     case "Bye":
-                        printable = new Message("Good bye");
-                        printable.print();
+                       System.out.println(Message.BYE.getMessage());
                         break;
 
                     case "How are you":
-                        printable = new Message("How are your doing");
-                        printable.print();
+                        System.out.println(Message.HOW_ARE_YOU.getMessage());
                         break;
 
                     default:  // Если значение s не совпадает ни с одним кейсом
-                        printable = new Message("Unknown message");
-                        printable.print();
+                        System.out.println(Message.DEFAULT.getMessage());
                 }
             }
-    interface Printable{
+        }
 
-        void print();
-    }
-
-static class Message implements Printable {
-
-      private String message;
-      Message(String message){
-          this.message = message;
-      }
-
-    @Override
-    public void print() {
-        System.out.println(message);
-    }
-}
-
+        enum Message{
+            HI("Hello"), BYE("Good bye"), HOW_ARE_YOU("How are your doing"),DEFAULT("Unknown message");
+            private String message;
+            Message(String message){
+                this.message=message;
+            }
+            public String getMessage(){
+                return message;
+            }
         }
 
