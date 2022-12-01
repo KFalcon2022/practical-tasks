@@ -17,7 +17,5 @@ public abstract class EquilateralShape {
     }
 */
 
-    public String createShapeString() {
-        return "Unknown shape";
-    }
+    abstract String createShapeString();
 }

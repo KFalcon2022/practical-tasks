@@ -19,7 +19,5 @@ public interface EquilateralShape {
     }
 */
 
-    default String createShapeString() {
-        return "Unknown shape";
-    }
+    String createShapeString();
 }
