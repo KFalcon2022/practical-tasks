@@ -1,14 +1,12 @@
 package com.walking.lesson16_abstract_class_interface.task1.model;
 
-public class EquilateralTriangle implements EquilateralShape {
+public class EquilateralTriangle extends EquilateralShape {
     public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
     public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
     public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
 
-    private int length;
-
     public EquilateralTriangle(int length) {
-        this.length = length;
+        super(length);
     }
 
     @Override
