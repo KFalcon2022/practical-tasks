@@ -4,6 +4,13 @@ package com.walking.lesson17_enum.task1;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+/**
+ * Реализуйте задачу https://github.com/KFalcon2022/practical-tasks/blob/master/src/com/walking/lesson3/Task2SwitchCase.java
+ * <p>
+ * через enum. В т.ч. реализуйте в enum'е поиск значения по фразе, введенной пользователем. Напоминаю, что enum'ы могут содержать поля.
+ */
+
 /**
  * Написать программу, которая принимает строку с клавиатуры.
  * Если строка == "Hi" - вывести в консоль "Hello",
@@ -48,30 +55,54 @@ public class Main {
                 System.out.println(Answer.ERROR.getAnswer());
         }*/
 
+
+        // Пойски сравнением полей через иф
         if (Question.HI.getAnswer().equals(s)) {
-            System.out.println(Answer.HI.ANSWER);
+            System.out.println(Answer.HI.answer);  //вывод поля ответа наприямую
         } else if (Question.BYE.getAnswer().equals(s)) {
-            System.out.println(Answer.BYE.getAnswer());
+            System.out.println(Answer.BYE.getAnswer()); //вывод поля ответа через геттер
         } else if (Question.HOW_ARE_YOU.getAnswer().equals(s)) {
             System.out.println(Answer.HOW_ARE_YOU.getAnswer());
-        } else System.out.println(Answer.ERROR.ANSWER);
+        } else System.out.println(Answer.ERROR.answer);
 
+
+
+        // Поиск через свич
+        switch (s) {
+            case "Hi":  // Если s равно "Hi"
+//                Выводим в консоль "Hello"
+                System.out.println(Answer.HI.answer);//вывод поля ответа наприямую
+//                Вызываем оператор break, чтобы выйти из switch-case
+                break;
+
+            case "Bye":
+                System.out.println(Answer.BYE.getAnswer());//вывод поля ответа через геттер
+                break;
+
+            case "How are you":
+                System.out.println(Answer.HOW_ARE_YOU.answer);
+                break;
+
+            default:  // Если значение s не совпадает ни с одним кейсом
+                System.out.println(Answer.ERROR.answer);
+
+
+        }
     }
-}
 
-enum Answer {
-    HI("Hello"),
-    BYE("Good bye"),
-    HOW_ARE_YOU("How are your doing"),
-    ERROR("Unknown message");
-    final String ANSWER;
+    enum Answer {
+        HI("Hello"),
+        BYE("Good bye"),
+        HOW_ARE_YOU("How are your doing"),
+        ERROR("Unknown message");
+        private String answer;
 
-    Answer(String answer) {
-        this.ANSWER = answer;
-    }
-
-    public String getAnswer() {
-        return ANSWER;
+        Answer(String answer) {
+            this.answer = answer;
+        }
+        public String getAnswer() {
+            return answer;
+        }
     }
 }
 
