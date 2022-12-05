@@ -8,7 +8,7 @@ import com.walking.lesson16_abstract_class_interface.task3.model.Dog;
 public class Main {
     public static void main(String[] args) {
 
-        Animal[] animals = new Animal[]{new Dog("dog"), new Cat("cat"), new Cow("cow")};
+        Animal[] animals = new Animal[]{new Dog(), new Cat(), new Cow()};
         speak(animals);
     }
 
