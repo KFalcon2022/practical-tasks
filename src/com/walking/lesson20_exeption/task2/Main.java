@@ -1,8 +1,9 @@
-package com.walking.lesson16_abstract_class_interface.task1;
+package com.walking.lesson20_exeption.task2;
 
-import com.walking.lesson16_abstract_class_interface.task1.model.EquilateralShape;
-import com.walking.lesson16_abstract_class_interface.task1.model.EquilateralTriangle;
-import com.walking.lesson16_abstract_class_interface.task1.model.Square;
+import com.walking.lesson20_exeption.task2.model.InputValidationException;
+import com.walking.lesson20_exeption.task2.model.EquilateralShape;
+import com.walking.lesson20_exeption.task2.model.EquilateralTriangle;
+import com.walking.lesson20_exeption.task2.model.Square;
 
 import java.util.Scanner;
 
@@ -19,21 +20,47 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int length=0;
+        int shapeType=0;
 
-        System.out.print("Enter shape's length: ");
-        int length = scanner.nextInt();
 
-        System.out.print("Enter shape's type:\n 1: Square\n 2: Triangle\n");
-        int shapeType = scanner.nextInt();
+        do {
+            try {
+                System.out.print("Enter shape's length: ");
+                length = scanner.nextInt();
+                if (length < 1)
+                    throw new InputValidationException("Длинна не может быть меньше 1!! А Вы ввели:", length);
+            } catch (InputValidationException ex) {
+                System.out.print(ex.getMessage());
+                System.out.println(ex.getLength());
+            } catch (Exception e) {
+                System.out.println("Не пойму что случилось - вот такая вот ошибка:" + e);
+                scanner.next();
+            }
+        }
+        while (length < 1);
+
+        do {
+            try {
+                System.out.print("Enter shape's type:\n 1: Square\n 2: Triangle\n");
+                shapeType = scanner.nextInt();
+                if (shapeType < 1 ^ shapeType > 2)
+                    throw new InputValidationException("Надо выбрать (1) Квадрат или (2) Треугольник!! А Вы выбрали:", shapeType);
+            } catch (InputValidationException ex) {
+                System.out.print(ex.getMessage());
+                System.out.println(ex.getLength());
+            }
+        }
+        while (shapeType < 1 ^ shapeType > 2);
 
         scanner.close();
 
 //        Корректнее валидировать значение сразу после ввода. Здесь проверка вынесена после
 //        ради демонстрации ситуации, когда скобки в условном выражении действительно необходимы
-        if (length < 1 || (shapeType != 1 && shapeType != 2)) {
+/*        if (length < 1 || (shapeType != 1 && shapeType != 2)) {  //Потеряло смысл
             System.out.println("Incorrect input.");
             return;
-        }
+        }*/
 
         String shapeString = createShapeString(length, shapeType);
         System.out.println(shapeString);
