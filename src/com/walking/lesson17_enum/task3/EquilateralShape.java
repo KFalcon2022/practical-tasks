@@ -83,24 +83,18 @@ public enum EquilateralShape {
 
             return verticalLinesUnit;
         }
+    },
+    UnknownShape {
+        public String createShapeString(int length) {
+            return "Unknown shape";
+        }
     };
-
-
 
     public static final String EMPTY_ELEMENT = " ";
     public static final String EMPTY_STRING = "";
     public static final char NEW_LINE_SYMBOL = '\n';
-
-
-
     public static int length;
 
-    public String createShapeString(int length) {
-        return "Unknown shape";
-    }
-
-
-
-
+    public abstract String createShapeString(int length);
 
 }

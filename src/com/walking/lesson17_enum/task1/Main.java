@@ -12,22 +12,20 @@ public class Main {
         sayAnswer(s);
     }
     static void sayAnswer(String s) {
+        Answer answer;
         switch (s) {
-            case "Hi" :
-                Answer.HI.getAnswer();
+            case "Hi":
+                answer = Answer.HI;
                 break;
-
-            case "Bye" :
-                Answer.BYE.getAnswer();
+            case "Bye":
+                answer = Answer.BYE;
                 break;
-
-            case "How are you" :
-                Answer.HOW.getAnswer();
+            case "How are you":
+                answer = Answer.HOW;
                 break;
-
-            default:
-                Answer.UNKNOWN.getAnswer();
+            default: answer = Answer.UNKNOWN;
         }
-    }
 
+        System.out.println(answer.getAnswer());
+    }
 }

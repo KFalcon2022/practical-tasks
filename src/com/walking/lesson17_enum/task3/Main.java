@@ -17,17 +17,20 @@ public class Main {
         String shapeString = createShapeString(EquilateralShape.length, shapeType);
         System.out.println(shapeString);
     }
-    private static String createShapeString(int length, int type) {
 
+    private static String createShapeString(int length, int type) {
+        EquilateralShape equilateralShape;
         switch (type) {
             case 1:
-                return EquilateralShape.Square.createShapeString(length);
+                equilateralShape = EquilateralShape.Square;
+                break;
 
             case 2:
-                return EquilateralShape.EquilateralTriangle.createShapeString(length);
+                equilateralShape = EquilateralShape.EquilateralTriangle;
+                break;
+
+            default: equilateralShape = EquilateralShape.UnknownShape;
         }
-        return "Unknown shape";
+        return equilateralShape.createShapeString(length);
     }
-
-
 }
