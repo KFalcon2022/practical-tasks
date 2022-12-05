@@ -5,5 +5,4 @@ public class Cat extends Animal {
     public static void sound() {
         System.out.println("meow");
     }
-
 }

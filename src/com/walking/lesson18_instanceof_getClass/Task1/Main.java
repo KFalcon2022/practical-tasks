@@ -6,7 +6,6 @@ import com.walking.lesson18_instanceof_getClass.Task1.model.Cat;
 import com.walking.lesson18_instanceof_getClass.Task1.model.Cow;
 import com.walking.lesson18_instanceof_getClass.Task1.model.Dog;
 
-
 public class Main {
     public static void main(String[] args) {
         Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow()};
@@ -21,15 +20,14 @@ public class Main {
     }
 
     private static void sound(Animal animal) {
-        if (animal instanceof Cat) {
+        if (animal.getClass().equals(Cat.class)) {
             Cat.sound();
-        }
-        if (animal instanceof Dog) {
+        } else if (animal.getClass().equals(Dog.class)) {
             Dog.sound();
-        }
-        if (animal instanceof Cow) {
+        } else if (animal.getClass().equals(Cow.class)) {
             Cow.sound();
+        } else {
+            Animal.sound();
         }
-
     }
 }
