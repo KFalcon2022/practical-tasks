@@ -1,6 +1,6 @@
-package com.walking.lesson17_enum.task3;
+package com.walking.lesson16_abstract_class_interface.task1.var1;
 
-import com.walking.lesson17_enum.task3.model.*;
+import com.walking.lesson16_abstract_class_interface.task1.var1.model.*;
 
 import java.util.Scanner;
 
@@ -42,13 +42,13 @@ public class Main {
 
         switch (type) {
             case 1:
-                shape = EquilateralShape.SQUARE.createShape(length);
+                shape = new Square(length);
                 break;
             case 2:
-                shape = EquilateralShape.TRIANGLE.createShape(length);
+                shape = new EquilateralTriangle(length);
                 break;
             default:
-                return "Unknown shape";
+                return EquilateralShape.unknownShape();
         }
 
         return shape.createShapeString();
