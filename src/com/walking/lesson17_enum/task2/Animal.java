@@ -4,13 +4,14 @@ public enum Animal {
     CAT("meow"),
     COW("moo"),
     DOG("woof");
-    private String sound;
+
+    private final String sound;
 
     Animal(String sound) {
         this.sound = sound;
     }
 
-    public void sound() {
-        System.out.println(sound);
+    public String sound() {
+        return sound;
     }
 }

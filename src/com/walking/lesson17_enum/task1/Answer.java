@@ -6,13 +6,13 @@ public enum Answer {
     HOW("How are you doing"),
     UNKNOWN("Unknown message");
 
-    private String answer;
+    private final String answer;
 
     Answer(String answer) {
         this.answer = answer;
     }
 
-    public void getAnswer() {
-        System.out.println(answer);
+    public String getAnswer() {
+        return answer;
     }
 }
