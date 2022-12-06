@@ -21,13 +21,14 @@ public class Main {
 
     private static void sound(Animal animal) {
         if (animal.getClass().equals(Cat.class)) {
-            Cat.sound();
+            ((Cat) animal).sound();
         } else if (animal.getClass().equals(Dog.class)) {
-            Dog.sound();
+            ((Dog) animal).sound();
         } else if (animal.getClass().equals(Cow.class)) {
-            Cow.sound();
+            ((Cow) animal).sound();
         } else {
-            Animal.sound();
+            System.out.println("Unknown animal");
         }
+
     }
 }
