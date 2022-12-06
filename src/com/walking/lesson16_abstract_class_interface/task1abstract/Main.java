@@ -1,10 +1,8 @@
-package com.walking.lesson17_enum.task3;
+package com.walking.lesson16_abstract_class_interface.task1abstract;
 
 import java.util.Scanner;
 
 public class Main {
-    public Main() {
-    }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -18,14 +16,14 @@ public class Main {
                 case 1:
                     System.out.println("Введите длину");
                     length = in.nextInt();
-                    RegularShape s = RegularShape.Square;
-                    s.draw(length);
+                    Square s = new Square(length);
+                    s.draw();
                     break;
                 case 2:
                     System.out.println("Введите длину");
                     length = in.nextInt();
-                    RegularShape t = RegularShape.Triangle;
-                    t.draw(length);
+                    Triangle t = new Triangle(length);
+                    t.draw();
                     break;
                 case 3:
                     isExit = true;
