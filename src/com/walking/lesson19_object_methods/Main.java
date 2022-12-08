@@ -25,6 +25,19 @@ public class Main {
         scanner.close();
 
         Car car = new Car(brand, model, color, number);
-        System.out.println(car.compareCars(cars));
+        System.out.println(findCar(cars, car));
+    }
+
+    private static Car findCar(Car[] cars, Car car) {
+        for (Car c : cars) {
+            if (c.equals(car)) {
+                System.out.println("The car is in the database");
+
+                return c;
+            }
+        }
+        System.out.println("The car is not in the database");
+
+        return null;
     }
 }

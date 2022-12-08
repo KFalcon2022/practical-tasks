@@ -1,13 +1,13 @@
 package com.walking.lesson20_exceptions.task1_catchException;
 
-import com.walking.lesson20_exceptions.task1_catchException.files.FileClass;
-import com.walking.lesson20_exceptions.task1_catchException.files.FileTypes;
+import com.walking.lesson20_exceptions.task1_catchException.file.FileClass;
+import com.walking.lesson20_exceptions.task1_catchException.file.FileTypes;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         FileClass[] files = new FileClass[]{new FileClass("Movie", 7356, FileTypes.VIDEO),
                                             new FileClass("Song", 12, FileTypes.AUDIO),
                                             new FileClass("Document", 4, FileTypes.TEXT),
@@ -18,20 +18,16 @@ public class Main {
         String name = scanner.next();
         scanner.close();
 
-        System.out.println(findFile(files, name).toString());
-
+        System.out.println(findFile(files, name));
     }
 
-    private static FileClass findFile(FileClass[] files, String name) {
-        try {
-            for (FileClass file : files) {
-                if (name.equals(file.getName())) {
-                    return file;
-                } else throw new FileNotFoundException("File does not exist.");
+    private static FileClass findFile(FileClass[] files, String name) throws FileNotFoundException {
+        for (FileClass file : files) {
+            if (name.equals(file.getName())) {
+                return file;
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         }
-        return files[0];
+
+        throw new FileNotFoundException("File does not exist.");
     }
 }

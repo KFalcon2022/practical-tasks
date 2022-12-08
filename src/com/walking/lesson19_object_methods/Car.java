@@ -19,25 +19,16 @@ public class Car {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || !(getClass().equals(o.getClass()))) {
             return false;
         }
 
         Car car = (Car) o;
-        return brand.equals(((Car) o).brand) &&
-                model.equals(((Car) o).model) &&
-                color.equals(((Car) o).color) &&
-                number == ((Car) o).number;
-    }
 
-    public String compareCars(Car[] cars) {
-        for (Car c : cars) {
-            if (c.equals(this)) {
-                System.out.println("The car is in the database");
-                return c.toString();
-            }
-        }
-        return "The car is not in the database";
+        return brand.equals(car.brand) &&
+                model.equals(car.model) &&
+                color.equals(car.color) &&
+                number == car.number;
     }
 
     @Override

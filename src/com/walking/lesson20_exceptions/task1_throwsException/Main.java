@@ -1,7 +1,7 @@
 package com.walking.lesson20_exceptions.task1_throwsException;
 
-import com.walking.lesson20_exceptions.task1_throwsException.files.FileClass;
-import com.walking.lesson20_exceptions.task1_throwsException.files.FileTypes;
+import com.walking.lesson20_exceptions.task1_throwsException.file.FileClass;
+import com.walking.lesson20_exceptions.task1_throwsException.file.FileTypes;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class Main {
         String name = scanner.next();
         scanner.close();
 
-        System.out.println(findFile(files, name).toString());
+        System.out.println(findFile(files, name));
 
     }
 

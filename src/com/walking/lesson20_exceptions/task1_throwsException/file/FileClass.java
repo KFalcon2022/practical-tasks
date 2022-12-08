@@ -1,4 +1,4 @@
-package com.walking.lesson20_exceptions.task1_catchException.files;
+package com.walking.lesson20_exceptions.task1_throwsException.file;
 
 public class FileClass {
     private String name;

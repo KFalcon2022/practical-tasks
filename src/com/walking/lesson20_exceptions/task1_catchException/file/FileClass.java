@@ -1,4 +1,4 @@
-package com.walking.lesson20_exceptions.task1_throwsException.files;
+package com.walking.lesson20_exceptions.task1_catchException.file;
 
 public class FileClass {
     private String name;
@@ -11,12 +11,12 @@ public class FileClass {
         this.type = type;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "File name: " + name + type.getType() + ". File size: " + size + "Mb.";
-    }
-
-    public String getName() {
-        return name;
     }
 }
