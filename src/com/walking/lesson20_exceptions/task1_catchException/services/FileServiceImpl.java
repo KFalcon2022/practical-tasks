@@ -15,7 +15,6 @@ public class FileServiceImpl implements FileService {
 	
 	@Override
 	public File findFile(String name) throws FileNotFoundException {
-		
 		for (File file : dataSource.getFiles()) {
 			if (file !=null && name.equals(file.getName())) {
 				return file;

@@ -22,16 +22,17 @@ public class Main {
 		String brand = scanner.next();
 		System.out.println("Введите engineType");
 		String engineType = scanner.next();
-		findCar(cars, new Car(VIN, brand, engineType));
+		System.out.println(findCar(cars, new Car(VIN, brand, engineType)));
+		
+		scanner.close();
 	}
 	
-	private static void findCar(Car[] cars, Car needToFind) {
+	private static Car findCar(Car[] cars, Car needToFind) {
 		for (Car car : cars) {
 			if (car.equals(needToFind)) {
-				System.out.println(car);
-				return;
+				return car;
 			}
 		}
-		System.out.println("Машина не найденна");
+		return null;
 	}
 }

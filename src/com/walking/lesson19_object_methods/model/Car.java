@@ -1,50 +1,54 @@
 package com.walking.lesson19_object_methods.model;
 
-import java.util.Objects;
-
 public class Car {
 	
-	private final String VIN;
+	private final String vin;
 	private final String brand;
 	private final String engineType;
 	private String ownerName;
 	
-	public Car(String VIN, String brand, String engineType, String ownerName) {
-		this.VIN = VIN;
+	public Car(String vin, String brand, String engineType, String ownerName) {
+		this.vin = vin;
 		this.brand = brand;
 		this.engineType = engineType;
 		this.ownerName = ownerName;
 	}
 	
-	public Car(String VIN, String brand, String engineType) {
-		this(VIN, brand, engineType, "-");
+	public Car(String vin, String brand, String engineType) {
+		this(vin, brand, engineType, "");
 	}
 	
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		
 		Car car = (Car) o;
-		return VIN.equals(car.VIN) && brand.equals(car.brand) && engineType.equals(car.engineType);
+		
+		return vin.equals(car.vin) && brand.equals(car.brand) && engineType.equals(car.engineType);
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(VIN, brand, engineType);
+		int result = vin.hashCode();
+		result = 31 * result + brand.hashCode();
+		result = 31 * result + engineType.hashCode();
+		
+		return result;
 	}
 	
 	@Override
 	public String toString() {
-		return "Car{" +
-				"VIN='" + VIN + '\'' +
-				", brand='" + brand + '\'' +
-				", engineType='" + engineType + '\'' +
-				"}\n" +
-				"ownerName=" + ownerName;
+		return String.format("Car: VIN = %s, brand = %s, enginType = %s, ownerName = %s", vin, brand, engineType, ownerName);
 	}
 	
-	public String getVIN() {
-		return VIN;
+	public String getVin() {
+		return vin;
 	}
 	
 	public String getBrand() {

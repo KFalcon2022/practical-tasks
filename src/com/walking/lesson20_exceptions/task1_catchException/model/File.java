@@ -4,9 +4,9 @@ public class File {
 	
 	private String name;
 	private long size;
-	private Type fileType;
+	private FileType fileType;
 	
-	public File(String name, long size, Type fileType) {
+	public File(String name, long size, FileType fileType) {
 		this.name = name;
 		this.size = size;
 		this.fileType = fileType;
@@ -37,11 +37,11 @@ public class File {
 		this.size = size;
 	}
 	
-	public Type getFileType() {
+	public FileType getFileType() {
 		return fileType;
 	}
 	
-	public void setFileType(Type fileType) {
+	public void setFileType(FileType fileType) {
 		this.fileType = fileType;
 	}
 }
