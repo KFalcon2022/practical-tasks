@@ -16,7 +16,7 @@ public class Main {
 		};
 		
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Введите VIN");
+		System.out.println("Введите vin");
 		String VIN = scanner.next();
 		System.out.println("Введите brand");
 		String brand = scanner.next();

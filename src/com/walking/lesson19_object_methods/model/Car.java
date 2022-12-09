@@ -44,7 +44,7 @@ public class Car {
 	
 	@Override
 	public String toString() {
-		return String.format("Car: VIN = %s, brand = %s, enginType = %s, ownerName = %s", vin, brand, engineType, ownerName);
+		return String.format("Car: vin = %s, brand = %s, enginType = %s, ownerName = %s", vin, brand, engineType, ownerName);
 	}
 	
 	public String getVin() {

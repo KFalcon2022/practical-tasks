@@ -1,6 +1,16 @@
 package com.walking.lesson21_immutable_object.model;
 
-public record CarFeatures(String VIN, String brand, String engineType) {
+public class CarFeatures {
+	
+	private final String vin;
+	private final String brand;
+	private final String engineType;
+	
+	public CarFeatures(String vin, String brand, String engineType) {
+		this.vin = vin;
+		this.brand = brand;
+		this.engineType = engineType;
+	}
 	
 	@Override
 	public boolean equals(Object o) {
@@ -12,12 +22,12 @@ public record CarFeatures(String VIN, String brand, String engineType) {
 		}
 		CarFeatures that = (CarFeatures) o;
 		
-		return VIN.equals(that.VIN) && brand.equals(that.brand) && engineType.equals(that.engineType);
+		return vin.equals(that.vin) && brand.equals(that.brand) && engineType.equals(that.engineType);
 	}
 	
 	@Override
 	public int hashCode() {
-		int result = VIN.hashCode();
+		int result = vin.hashCode();
 		result = 31 * result + brand.hashCode();
 		result = 31 * result + engineType.hashCode();
 		
@@ -26,6 +36,18 @@ public record CarFeatures(String VIN, String brand, String engineType) {
 	
 	@Override
 	public String toString() {
-		return String.format("CarProperties: VIN = %s, brand = %s, enginType = %s", VIN, brand, engineType);
+		return String.format("CarProperties: vin = %s, brand = %s, enginType = %s", vin, brand, engineType);
+	}
+	
+	public String getVin() {
+		return vin;
+	}
+	
+	public String getBrand() {
+		return brand;
+	}
+	
+	public String getEngineType() {
+		return engineType;
 	}
 }
