@@ -5,19 +5,26 @@ package com.walking.lesson21.Task1.model;
 import java.util.StringJoiner;
 
 public final class Person {
-    private final String name;
-    private final String surname;
+    private final String fio;
 
     public Person(String owner){
-        String[] args = owner.split(" ");
-        this.name = args[0];
-        this.surname = args.length > 1 ? args[1] : "?";
+        fio = owner;
     }
 
     @Override
     public String toString(){
-        StringJoiner sj = new StringJoiner(" ", "\"", "\"");
-        sj.add(name).add(surname);
-        return sj.toString();
+        return fio;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) {return true;}
+        if (o == null) {return false;}
+        return hashCode() == o.hashCode();
+    }
+
+    @Override
+    public int hashCode(){
+        return fio.hashCode();
     }
 }

@@ -18,6 +18,4 @@ public enum CarModel {
     public String getName() {
         return this.modelName;
     }
-    
-    
 }

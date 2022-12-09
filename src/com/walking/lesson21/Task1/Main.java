@@ -12,8 +12,8 @@ public class Main
 	private static final String MSG_RESULT = "Результаты поиска:\n";
 	private static final String MSG_ERROR = "Неверный тип поиска:\n";
 	private static final String MSG_TYPE1 = "Введите номер в формате RR NNNNNN (10 C651AK): ";
-	private static final String MSG_TYPE2 = "Введите имя и фамилию владельца (или часть): ";
-	private static final String MSG_TYPE3 = "Введите модель машины (или часть): ";
+	private static final String MSG_TYPE2 = "Введите имя и фамилию владельца: ";
+	private static final String MSG_TYPE3 = "Введите модель машины: ";
 
 	public static void main(String[] args) {
 
@@ -29,8 +29,9 @@ public class Main
 				break;
 
 			case 2:
-				String searchOwner = Validator.requireString(MSG_TYPE2);
-				queryResult = db.queryByOwner(searchOwner);
+				String searchOwnerName = Validator.requireString(MSG_TYPE2); // например Вася Пупкин
+				String searchOwnerSurname = Validator.requireString(MSG_EMPTY);
+				queryResult = db.queryByOwner(searchOwnerName, searchOwnerSurname);
 				break;
 
 			case 3:
@@ -44,7 +45,6 @@ public class Main
 		}
 
 		System.out.println(MSG_RESULT);
-        System.out.println(queryResult);
+		System.out.println(queryResult);
 	}
-
 }
