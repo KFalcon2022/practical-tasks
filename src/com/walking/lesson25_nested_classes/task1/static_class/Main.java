@@ -17,7 +17,7 @@ public class Main {
         }
     }
 
-    public static abstract class Animal {
+    private static abstract class Animal {
         public abstract void sound();
     }
 

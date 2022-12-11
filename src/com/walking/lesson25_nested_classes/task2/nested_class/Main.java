@@ -1,5 +1,7 @@
 package com.walking.lesson25_nested_classes.task2.nested_class;
 
+import com.walking.lesson25_nested_classes.task2.exceptions.UnknownShapeException;
+
 import java.util.Scanner;
 
 /**
@@ -20,15 +22,18 @@ public class Main {
         scanner.close();
 
         if (length < 1 || (shapeType != 1 && shapeType != 2)) {
-            System.out.println("Incorrect input.");
-            return;
+            throw new IllegalArgumentException("Incorrect input.");
         }
 
-        String shapeString = createShapeString(length, shapeType);
-        System.out.println(shapeString);
+        try {
+            String shapeString = createShapeString(length, shapeType);
+            System.out.println(shapeString);
+        } catch (UnknownShapeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static String createShapeString(int length, int type) {
+    private static String createShapeString(int length, int type) throws UnknownShapeException{
         EquilateralShape shape;
 
         switch (type) {
@@ -39,7 +44,7 @@ public class Main {
                 shape = new Main().new EquilateralTriangle(length);
                 break;
             default:
-                return "Unknown shape";
+                throw new UnknownShapeException("Unknown shape");
         }
 
         return shape.createShapeString();

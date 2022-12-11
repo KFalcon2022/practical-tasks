@@ -1,5 +1,8 @@
 package com.walking.lesson25_nested_classes.task2.anonymous_class;
 
+import com.walking.lesson25_nested_classes.task2.exceptions.UnknownShapeException;
+
+import javax.lang.model.element.UnknownElementException;
 import java.util.Scanner;
 
 /**
@@ -20,17 +23,21 @@ public class Main {
         scanner.close();
 
         if (length < 1 || (shapeType != 1 && shapeType != 2)) {
-            System.out.println("Incorrect input.");
-            return;
+            throw new IllegalArgumentException("Incorrect input.");
         }
 
-        String shapeString = createShapeString(length, shapeType);
-        System.out.println(shapeString);
+        try {
+            String shapeString = createShapeString(length, shapeType);
+            System.out.println(shapeString);
+        } catch (UnknownShapeException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
-    private static String createShapeString(int length, int type) {
+    private static String createShapeString(int length, int type) throws UnknownShapeException {
 
-        final int final_length = length;
+        final int finalLength = length;
         EquilateralShape shape;
 
         switch (type) {
@@ -40,7 +47,7 @@ public class Main {
                     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
                     public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
 
-                    private final int length = final_length;
+                    private final int length = finalLength;
 
                     @Override
                     public int getLength() {
@@ -99,7 +106,7 @@ public class Main {
                     public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
                     public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
 
-                    private int length = final_length;
+                    private int length = finalLength;
 
                     @Override
                     public int getLength() {
@@ -135,7 +142,7 @@ public class Main {
                 };
                 break;
             default:
-                return "Unknown shape";
+                throw new UnknownShapeException("Unknown Shape");
         }
 
         return shape.createShapeString();

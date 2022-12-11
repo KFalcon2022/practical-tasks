@@ -22,25 +22,29 @@ public class Main {
 
         String someString = scanner.nextLine();
 
-        System.out.println(countUniqWords(someString));
+        System.out.println(countUniqueWords(someString));
     }
 
-    public static int countUniqWords(String s) {
+    public static int countUniqueWords(String s) {
 
-        String[] allWords = s.trim().toLowerCase().split(" ");
-        // Но мы не знаем что такое множество...мдэ.
-//        Set<String> set = new HashSet<>(List.of(allWords));
-//
-//        return set.size();
+        String[] allWords = s.trim()
+                .toLowerCase()
+                .split(" ");
+
         int count = 0;
         for (int i = 0; i < allWords.length; i++) {
-            if (allWords[i] != null && !allWords[i].equals("")) {
-                count++;
-                for (int j = i + 1; j < allWords.length; j++) {
-                    if (allWords[i] != null && allWords[i].equals(allWords[j])) {
-                        allWords[j] = null;
-                    }
+            int j = 0;
+            boolean isUnique = true;
+            while (j < i && isUnique) {
+                if (allWords[i].equals(allWords[j])) {
+                    isUnique = false;
+                } else {
+                    j++;
                 }
+            }
+
+            if (isUnique) {
+                count++;
             }
         }
 

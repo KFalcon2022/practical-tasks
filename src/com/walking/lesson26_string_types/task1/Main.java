@@ -16,8 +16,8 @@ public class Main {
 
         scanner.close();
 
-        String horizontalLine = createHorizontalLine(length);
-        String verticalLines = createVerticalLines(length, width);
+        StringBuilder horizontalLine = createHorizontalLine(length);
+        StringBuilder verticalLines = createVerticalLines(length, width);
 
         printRectangle(horizontalLine, verticalLines);
     }
@@ -28,11 +28,11 @@ public class Main {
         return scanner.nextInt();
     }
 
-    static void printRectangle(String horizontalLine, String verticalLines) {
-        System.out.print(horizontalLine + verticalLines + horizontalLine);
+    static void printRectangle(StringBuilder horizontalLine, StringBuilder verticalLines) {
+        System.out.print(horizontalLine.append(verticalLines).append(horizontalLine));
     }
 
-    static String createHorizontalLine(int length) {
+    static StringBuilder createHorizontalLine(int length) {
         StringBuilder horizontalLine = new StringBuilder(" ");
 
         for (int i = 0; i < length; i++) {
@@ -41,10 +41,10 @@ public class Main {
 
         horizontalLine.append(" \n");
 
-        return horizontalLine.toString();
+        return horizontalLine;
     }
 
-    static String createVerticalLines(int length, int width) {
+    static StringBuilder createVerticalLines(int length, int width) {
         String verticalLinesUnit = getVerticalLinesUnit(length);
 
         StringBuilder verticalLines = new StringBuilder();
@@ -53,7 +53,7 @@ public class Main {
             verticalLines.append(verticalLinesUnit);
         }
 
-        return verticalLines.toString();
+        return verticalLines;
     }
 
     static String getVerticalLinesUnit(int length) {
