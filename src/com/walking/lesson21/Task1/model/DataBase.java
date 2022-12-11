@@ -7,8 +7,9 @@ package com.walking.lesson21.Task1.model;
  * Поиск осуществляется по региону и номеру
  */
 public class DataBase {
-    private final Car[] data;
     private static final String MSG_NOTHING = "Ничего не найдено";
+
+    private final Car[] data;
 
     public DataBase(){
         this.data = new Car[]{
@@ -27,27 +28,22 @@ public class DataBase {
     }
 
     // Вот например может стоило сравнить equals(new Person(searchOwner)) ?
-    public boolean isCarOwner(Car car, String searchOwner) {
+    public boolean isCarOwner(Car car, String owner) {
         return car.getOwner()
-                .equals(searchOwner);
+                .equals(owner);
     }
 
-    public boolean isCarModel(Car car, String searchModel) {
+    public boolean isCarModel(Car car, String model) {
         return car.getModel()
                 .getName()
-                .equals(searchModel);
+                .equals(model);
     }
 
-    public String queryByNumber(int searchRegion, String searchNumber) {
-        Region region = Validator.validateRegion(searchRegion);
-        String search = region + "/" + searchNumber;
-        // Да, не особо нравится такое.
-        // Проверка по двум полям что-то не укладывается в голове в красивое решение
-        // Наверное стоило бы сделать регион+номер отдельным статик классом
-        // и сравнивать его с new объектом сделанным из searchRegion + searchNumber
+    public String queryByNumber(int region, String number) {
+        CarNumber tempNumber = new CarNumber(region, number);
 
         for (Car car : data) {
-            if (car.equals(search)){
+            if (car.getNumber().equals(tempNumber)){
                 return "Машина найдена по регистрационному номеру\n" + car;
             }
         }
@@ -55,28 +51,39 @@ public class DataBase {
         return MSG_NOTHING;
     }
 
-    public String queryByOwner(String searchOwnerName, String searchOwnerSurname) {
-        String searchOwner = searchOwnerName + " " + searchOwnerSurname;
+    public String queryByOwner(String ownerName, String ownerSurname) {
+        String owner = ownerName + " " + ownerSurname;
         StringBuilder sb = new StringBuilder();
         sb.append("Машины найдены по имени владельца\n");
 
         for (Car car : data) {
-            if (isCarOwner(car, searchOwner)){
+            if (isCarOwner(car, owner)){
                 sb.append(car).append("\n");
             }
         }
         return sb.toString();
     }
 
-    public String queryByModel(String searchModel) {
+    public String queryByBrandModel(String brand, String model) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Машины найдены по модели\n");
+        sb.append("Машины найдены по модели:\n");
+        String temp = formatCarModel(brand, model);
 
         for (Car car : data) {
-            if (isCarModel(car, searchModel)){
+            if (isCarModel(car, temp)){
                 sb.append(car).append("\n");
             }
         }
         return sb.toString();
+    }
+
+    private String formatCarModel(String brand, String model){
+        return new StringBuilder()
+                .append(brand.substring(0,1).toUpperCase())
+                .append(brand.substring(1).toLowerCase())
+                .append(" ")
+                .append(model.substring(0,1).toUpperCase())
+                .append(model.substring(1).toLowerCase())
+                .toString();
     }
 }

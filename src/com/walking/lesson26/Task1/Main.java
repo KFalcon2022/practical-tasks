@@ -16,9 +16,9 @@ public class Main {
         SC.close();
 
         if (width > 1 && height > 1){
-            System.out.println(new Rectangle(width, height));
+            System.out.println((new Rectangle(width, height)).asString());
         } else {
-            System.out.println("Не могу нарисовать такой маленький прямоугольник");
+            System.out.println("Рисовать прямоугольник с указанными сторонами будет некрасиво.\nОбычное сообщение об ошибке, смысла в исключении не вижу.");
         }
     }
 
@@ -26,12 +26,13 @@ public class Main {
     // Можно было и отдельно. В качестве сборки выбрал StringBuilder
     // Не знаю для чего может понадобиться построение прямоугольника несколькими потоками.
     public static class Rectangle{
-        private final int width;
-        private final int height;
         private static final String SYM_H = "-";
         private static final String SYM_V = "|";
         private static final String SYM_C = " ";
         private static final String SYM_NL = "\n";
+
+        private final int width;
+        private final int height;
         private String stringRepresentation;
 
         public Rectangle (int width, int height){
@@ -40,27 +41,26 @@ public class Main {
             stringRepresentation = "";
         }
 
-        private void concatTopBottom(StringBuilder sb) {
+        private void concatHorizontalLine(StringBuilder sb) {
             sb.append(SYM_C);
             for (int i=2; i<width; i++) {sb.append(SYM_H);}
             sb.append(SYM_C);
             sb.append(SYM_NL);
         }
 
-        private void concatMiddle(StringBuilder sb) {
+        private void concatMiddleLine(StringBuilder sb) {
             sb.append(SYM_V);
             for (int i=2; i<width; i++) {sb.append(SYM_C);}
             sb.append(SYM_V);
             sb.append(SYM_NL);
         }
 
-        @Override
-        public String toString(){
+        public String asString(){
             if (stringRepresentation.isEmpty()){
                 StringBuilder SB = new StringBuilder();
-                concatTopBottom(SB);
-                for (int i=2; i<height; i++) {concatMiddle(SB);}
-                concatTopBottom(SB);
+                concatHorizontalLine(SB);
+                for (int i=2; i<height; i++) {concatMiddleLine(SB);}
+                concatHorizontalLine(SB);
                 stringRepresentation = SB.toString();
             }
             return stringRepresentation;

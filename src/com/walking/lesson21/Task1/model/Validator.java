@@ -4,17 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Validator {
-    public static final Scanner SCANNER = new Scanner(System.in);
-    public static Region validateRegion(int value) {
-        for (Region region : Region.values()) {
-            if (region.getValue() == value){
-                return region;
-            }
-        }
-        return Region.NONE;
+    public final Scanner SCANNER;
+
+    public Validator(Scanner scanner){
+        SCANNER = scanner;
     }
 
-    public static int requireInt(String msg) {
+    public int requireInt(String msg) {
         if (msg != null) {
             System.out.print(msg);
         }
@@ -25,7 +21,7 @@ public class Validator {
         }
     }
 
-    public static String requireString(String msg) {
+    public String requireString(String msg) {
         if (msg != null) {
             System.out.print(msg);
         }
