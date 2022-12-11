@@ -1,5 +1,18 @@
 package com.walking.lesson20_exceptions.task1_catchException;
 
+/**
+ * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
+ * <p>
+ * Реализуйте класс «Файл» содержит название файла, его размер и тип информации
+ * (Текст, изображение, аудио, видео. Рекомендую задать типы информации через Enum).
+ * <p>
+ * Реализуйте механизм поиска по файлам.
+ * Метод, реализующий поиск должен выбрасывать FileNotFoundException, если файл не найден.
+ * Если файл с названием, введенным пользователем с клавиатуры,
+ * существует – вывести на экран информацию о нем
+ * (допустимо использовать переопределенный toString()).
+ * Если нет, то выведите сообщение «Искомый файл не существует».
+ */
 import com.walking.lesson20_exceptions.task1_catchException.data_source.DataSource;
 import com.walking.lesson20_exceptions.task1_catchException.model.File;
 import com.walking.lesson20_exceptions.task1_catchException.model.FileType;
@@ -10,20 +23,20 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
-		
+
 		DataSource dataSource = new DataSource();
 		FileService fileService = new FileServiceImpl(dataSource);
 		initData(fileService);
-		
+
 		Scanner scanner = new Scanner(System.in);
-		
+
 		System.out.println("Введите имя файла: ");
 		String fileName = scanner.nextLine();
-		
+
 		scanner.close();
-		
+
 		try {
 			File foundFile = fileService.findFile(fileName);
 			System.out.println(foundFile);
@@ -31,7 +44,7 @@ public class Main {
 			System.out.println("Искомый файл не существует");
 		}
 	}
-	
+
 	private static void initData(FileService fileService) {
 		File file1 = new File("file1", 15487, FileType.TEXT);
 		File file2 = new File("file2", 456874456, FileType.JPEG);

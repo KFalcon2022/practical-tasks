@@ -1,9 +1,9 @@
-package com.walking.lesson17_enum.task3;
+package com.walking.lesson16_abstract_class_interface.task1_abstract_class;
 
 /**
  * Реализуйте задачу
  * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson14_polymorphism/task1">...</a>
- * через enum. Пусть EquilateralTriangle и Square будут значениями enum'а EquilateralShape.
+ * используя абстрактный класс.
  */
 public class Main {
     public static void main(String[] args) {
