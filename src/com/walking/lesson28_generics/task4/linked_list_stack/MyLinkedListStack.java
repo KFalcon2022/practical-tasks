@@ -75,9 +75,9 @@ public class MyLinkedListStack<E> {
     private void recourseAppend(Node<E> node, StringBuilder result) {
         if (node.prev != null) {
             result.append("{")
-            .append(node.item)
-            .append("}");
-            if(node.prev.item != null) {
+                    .append(node.item)
+                    .append("}");
+            if (node.prev.item != null) {
                 result.append(", ");
             }
             recourseAppend(node.prev, result);

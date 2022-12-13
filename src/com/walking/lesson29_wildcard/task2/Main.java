@@ -2,11 +2,13 @@ package com.walking.lesson29_wildcard.task2;
 
 import com.walking.lesson29_wildcard.task2.model.GenericNumber;
 
+import java.util.Formatter;
+
 public class Main {
     public static void main(String[] args) {
 
         GenericNumber<Integer> integerGenericNumber = new GenericNumber<>(15);
-        GenericNumber<Double> doubleGenericNumber = new GenericNumber<>(15.);
+        GenericNumber<Double> doubleGenericNumber = new GenericNumber<>(15d);
         GenericNumber<Long> longGenericNumber = new GenericNumber<>(15L);
         GenericNumber<Float> floatGenericNumber = new GenericNumber<>(15f);
 

@@ -5,7 +5,7 @@ import com.walking.lesson28_generics.task1.model.GenericNumber;
 public class Main {
     public static void main(String[] args) {
         GenericNumber<Integer> integerGenericNumber = new GenericNumber<>(15);
-        GenericNumber<Double> doubleGenericNumber = new GenericNumber<>(15.);
+        GenericNumber<Double> doubleGenericNumber = new GenericNumber<>(15d);
         GenericNumber<Long> longGenericNumber = new GenericNumber<>(15L);
         GenericNumber<Float> floatGenericNumber = new GenericNumber<>(15f);
 
