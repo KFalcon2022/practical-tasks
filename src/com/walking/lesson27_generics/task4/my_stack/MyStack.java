@@ -21,13 +21,12 @@ public class MyStack<E> {
         }
         stack[top] = element;
         top++;
-
     }
 
     //Delete element from top of stack
     public void deleteElement() {
         if (top > 0) {
-            stack[top] = null;
+            stack[top-1] = null;
             top--;
         } else {
             throw new IndexOutOfBoundsException();
@@ -36,7 +35,7 @@ public class MyStack<E> {
 
     public void deleteElement(E element) {
         if (top > 0) {
-            for (int i = top; i >= 0; i--) {
+            for (int i = top-1; i >= 0; i--) {
                 if (stack[i].equals(element)) {
                     stack[i] = null;
                     reorderStack(i);
@@ -58,7 +57,7 @@ public class MyStack<E> {
     }
 
     private void reorderStack(int i) {
-        for (int j = i; j < top; j++) {
+        for (int j = i; j < top-1; j++) {
             stack[j] = stack[j + 1];
         }
         stack[top] = null;
@@ -72,14 +71,16 @@ public class MyStack<E> {
     @Override
     public String toString() {
         StringBuilder stackToString = new StringBuilder("[");
-        for (int i = 0; i < top - 1; i++) {
+        for (int i = 0; i < top-1; i++) {
             stackToString.append("{")
                     .append(stack[i])
                     .append("}")
                     .append(", ");
         }
-        stackToString.append(stack[top])
-                    .append("]");
+        stackToString.append("{")
+                .append(stack[top-1])
+                .append("}")
+                .append("]");
         return stackToString.toString();
     }
 }

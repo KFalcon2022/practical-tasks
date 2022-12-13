@@ -63,12 +63,25 @@ public class MyLinkedListStack<E> {
 
     @Override
     public String toString() {
+
         StringBuilder result = new StringBuilder();
-        result.append("[")
-                .append(topElement.toString())
-                .append("]");
+        result.append("[");
+        recourseAppend(topElement, result);
+        result.append("]");
 
         return result.toString();
+    }
+
+    private void recourseAppend(Node<E> node, StringBuilder result) {
+        if (node.prev != null) {
+            result.append("{")
+            .append(node.item)
+            .append("}");
+            if(node.prev.item != null) {
+                result.append(", ");
+            }
+            recourseAppend(node.prev, result);
+        }
     }
 
     private static class Node<E> {
@@ -85,19 +98,7 @@ public class MyLinkedListStack<E> {
 
         @Override
         public String toString() {
-            StringBuilder result = new StringBuilder();
-            if (item != null) {
-                result.append("{")
-                        .append(item)
-                        .append("}");
-                if (prev.item != null) {
-                    result.append(", ");
-                }
-                result.append(prev);
-
-            }
-
-            return result.toString();
+            return item.toString();
         }
     }
 }
