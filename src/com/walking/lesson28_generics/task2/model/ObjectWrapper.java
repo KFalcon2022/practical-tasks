@@ -1,4 +1,4 @@
-package com.walking.lesson27_generics.task2.model;
+package com.walking.lesson28_generics.task2.model;
 
 public class ObjectWrapper<T> {
 

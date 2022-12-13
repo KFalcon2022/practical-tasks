@@ -1,8 +1,8 @@
-package com.walking.lesson27_generics.task4;
+package com.walking.lesson28_generics.task4;
 
 import com.walking.lesson19_object_methods.model.Car;
-import com.walking.lesson27_generics.task4.linked_list_stack.MyLinkedListStack;
-import com.walking.lesson27_generics.task4.my_stack.MyStack;
+import com.walking.lesson28_generics.task4.linked_list_stack.MyLinkedListStack;
+import com.walking.lesson28_generics.task4.my_stack.MyStack;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,9 +1,10 @@
-package com.walking.lesson27_generics.task1;
+package com.walking.lesson29_wildcard.task2;
 
-import com.walking.lesson27_generics.task1.model.GenericNumber;
+import com.walking.lesson29_wildcard.task2.model.GenericNumber;
 
 public class Main {
     public static void main(String[] args) {
+
         GenericNumber<Integer> integerGenericNumber = new GenericNumber<>(15);
         GenericNumber<Double> doubleGenericNumber = new GenericNumber<>(15.);
         GenericNumber<Long> longGenericNumber = new GenericNumber<>(15L);
@@ -17,5 +18,11 @@ public class Main {
 
         System.out.println(floatGenericNumber.pow(4));
 
+        GenericNumber<? extends Number> wrap = wrap(45);
+        System.out.println(wrap);
+    }
+
+    public static GenericNumber<? extends Number> wrap(Number number) {
+       return new GenericNumber<>(number);
     }
 }

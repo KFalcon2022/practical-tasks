@@ -1,10 +1,8 @@
-package com.walking.lesson27_generics.task1.model;
-
-import com.walking.lesson27_generics.task1.Main;
+package com.walking.lesson29_wildcard.task2.model;
 
 public class GenericNumber<T extends Number> {
 
-    private final T number;
+    private T number;
 
     public GenericNumber(T number) {
         this.number = number;
@@ -13,4 +11,12 @@ public class GenericNumber<T extends Number> {
     public double pow(int power) {
         return Math.pow(number.doubleValue(), power);
     }
- }
+
+    public T getNumber() {
+        return number;
+    }
+
+    public void setNumber(T number) {
+        this.number = number;
+    }
+}

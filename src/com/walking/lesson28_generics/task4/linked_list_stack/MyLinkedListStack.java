@@ -1,6 +1,6 @@
-package com.walking.lesson27_generics.task4.linked_list_stack;
+package com.walking.lesson28_generics.task4.linked_list_stack;
 
-import com.walking.lesson27_generics.task4.exceptions.EmptyStackException;
+import com.walking.lesson28_generics.task4.exceptions.EmptyStackException;
 
 import java.util.NoSuchElementException;
 

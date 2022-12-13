@@ -1,6 +1,6 @@
-package com.walking.lesson27_generics.task2;
+package com.walking.lesson28_generics.task2;
 
-import com.walking.lesson27_generics.task2.model.ObjectWrapper;
+import com.walking.lesson28_generics.task2.model.ObjectWrapper;
 
 public class Main {
     public static void main(String[] args) {

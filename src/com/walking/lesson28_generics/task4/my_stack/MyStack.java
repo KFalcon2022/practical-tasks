@@ -1,4 +1,4 @@
-package com.walking.lesson27_generics.task4.my_stack;
+package com.walking.lesson28_generics.task4.my_stack;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;

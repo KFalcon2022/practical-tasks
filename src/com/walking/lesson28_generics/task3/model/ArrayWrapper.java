@@ -1,4 +1,4 @@
-package com.walking.lesson27_generics.task3.model;
+package com.walking.lesson28_generics.task3.model;
 
 import java.util.NoSuchElementException;
 
