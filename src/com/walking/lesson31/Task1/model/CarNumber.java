@@ -15,18 +15,8 @@ public final class CarNumber implements Serializable {
     }
 
     public CarNumber(int region, String number){
-        this.region = validateRegion(region);
+        this.region = Region.validate(region);
         this.number = number.toUpperCase();
-    }
-
-    private Region validateRegion(int value) {
-        for (Region region : Region.values()) {
-            if (region.getValue() == value){
-                return region;
-            }
-        }
-        LOG.warning("Unknown region number passed: " + value);
-        return Region.NONE;
     }
 
     public String getNumber() {

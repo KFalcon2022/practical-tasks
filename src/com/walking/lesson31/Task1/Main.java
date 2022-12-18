@@ -1,11 +1,7 @@
 package com.walking.lesson31.Task1;
-/*
-Опциональное усложнение: номер машины может быть не уникальным.
-*/
+
 import com.walking.lesson31.Task1.model.DataBase;
 import com.walking.lesson31.Task1.model.Validator;
-
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main
@@ -24,51 +20,52 @@ public class Main
 	public static void main(String[] args) {
 
 	    DataBase db = new DataBase(DB_FILE);
-		System.out.println("Загружена база данных. Машин - " + db.getSize());
+		System.out.println("Загружена база данных. Количество машин: " + db.getSize());
 
 		String queryResult = "";
-		System.out.println("Давайте поищем машину");
+		boolean searching = true;
 
-		switch (VALIDATOR.requireInt(MSG_SEARCH)) {
-			case 1: {
-				int region = VALIDATOR.requireInt(MSG_TYPE1); // например 10 C651AK
-				String number = VALIDATOR.requireString(MSG_EMPTY);
-				queryResult = db.queryByNumber(region, number);
-				break;
+		while (searching) {
+			switch (VALIDATOR.requireInt(MSG_SEARCH)) {
+				case 1: {
+					int region = VALIDATOR.requireInt(MSG_TYPE1); // например "10 C651AK"
+					String number = VALIDATOR.requireWord(MSG_EMPTY);
+					queryResult = db.queryByNumber(region, number);
+					break;
+				}
+
+				case 2: {
+					String owner = VALIDATOR.requireString(MSG_TYPE2); // например "Пупкин Василий Васильевич"
+					queryResult = db.queryByOwner(owner);
+					break;
+				}
+
+				case 3: {
+					String brand = VALIDATOR.requireWord(MSG_TYPE3);
+					String model = VALIDATOR.requireWord(MSG_EMPTY);
+					queryResult = db.queryByBrandModel(brand, model);
+					break;
+				}
+
+				case 9: {
+					int region = VALIDATOR.requireInt(MSG_TYPE1);
+					String number = VALIDATOR.requireWord(MSG_EMPTY);
+					String brand = VALIDATOR.requireWord(MSG_TYPE3);
+					String model = VALIDATOR.requireWord(MSG_EMPTY);
+					String owner = VALIDATOR.requireString(MSG_TYPE2);
+					db.add(region, number, brand, model, owner);
+					break;
+				}
+
+				default:
+					queryResult = MSG_ERROR;
+					searching = false;
 			}
 
-			case 2: {
-				String ownerName = VALIDATOR.requireString(MSG_TYPE2); // например Вася Пупкин
-				String ownerSurname = VALIDATOR.requireString(MSG_EMPTY);
-				queryResult = db.queryByOwner(ownerName, ownerSurname);
-				break;
-			}
-
-			case 3: {
-				String brand = VALIDATOR.requireString(MSG_TYPE3);
-				String model = VALIDATOR.requireString(MSG_EMPTY);
-				queryResult = db.queryByBrandModel(brand, model);
-				break;
-			}
-
-			case 9: {
-				int region = VALIDATOR.requireInt(MSG_TYPE1);
-				String number = VALIDATOR.requireString(MSG_EMPTY);
-				String brand = VALIDATOR.requireString(MSG_TYPE3);
-				String model = VALIDATOR.requireString(MSG_EMPTY);
-				String ownerName = VALIDATOR.requireString(MSG_TYPE2);
-				String ownerSurname = VALIDATOR.requireString(MSG_EMPTY);
-				db.add(region, number, brand, model, ownerName, ownerSurname);
-				break;
-			}
-
-			default:
-				queryResult = MSG_ERROR;
-
+			System.out.println(MSG_RESULT);
+			System.out.println(queryResult);
 		}
 
-		System.out.println(MSG_RESULT);
-		System.out.println(queryResult);
 		SCANNER.close();
 	}
 }

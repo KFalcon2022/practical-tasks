@@ -31,4 +31,13 @@ public enum Region implements Serializable {
     public String getTitle() {
         return this.title;
     }
+
+    public static Region validate(int number){
+        for (Region region : Region.values()) {
+            if (region.getValue() == number){
+                return region;
+            }
+        }
+        return Region.NONE;
+    }
 }

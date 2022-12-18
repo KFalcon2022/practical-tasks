@@ -21,7 +21,7 @@ public class Validator {
         }
     }
 
-    public String requireString(String msg) {
+    public String requireWord(String msg) {
         if (msg != null) {
             System.out.print(msg);
         }
@@ -30,5 +30,27 @@ public class Validator {
         } catch (InputMismatchException e) {
             return "";
         }
+    }
+
+    public String requireString(String msg) {
+        if (msg != null) {
+            System.out.print(msg);
+        }
+        try {
+            String result = "";
+            while (result.isEmpty()) {
+                result = SCANNER.nextLine();
+            }
+            return result;
+        } catch (InputMismatchException e) {
+            return "";
+        }
+    }
+
+    public String capitalize(String value){
+        return new StringBuilder()
+                .append(value.substring(0, 1).toUpperCase())
+                .append(value.substring(1).toLowerCase())
+                .toString();
     }
 }

@@ -16,7 +16,7 @@ public class Car implements Serializable {
     
     @Override
     public String toString() {
-        return String.format("%s. Owner: %s, %s", model.getName(), owner, number);
+        return String.format("Brand: %s, Model: %s, Owner: %s, %s", model.getBrandName(), model.getModelName(), owner, number);
     }
 
     public Person getOwner() {
@@ -29,6 +29,4 @@ public class Car implements Serializable {
 
     public CarNumber getNumber() {return number;}
 
-    // number и owner не финальные
-    // здесь могли бы быть методы setOwner, setNumber
 }

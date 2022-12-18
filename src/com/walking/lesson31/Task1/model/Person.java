@@ -1,20 +1,31 @@
 package com.walking.lesson31.Task1.model;
 
-// в учебных целях воспользовался StringJoiner и String.split
-
 import java.io.Serializable;
-import java.util.StringJoiner;
 
 public final class Person implements Serializable {
-    private final String fio;
+    private final String name;
+    private final String secondName;
+    private final String familyName;
 
     public Person(String owner){
-        fio = owner;
+        String[] data = owner.split(" ");
+        Validator validator = new Validator(null);
+        familyName = validator.capitalize(data[0]);
+        name = (data.length > 1) ? validator.capitalize(data[1]) : "";
+        secondName = (data.length > 2) ? validator.capitalize(data[2]) : "";
     }
 
     @Override
     public String toString(){
-        return fio;
+        return new StringBuilder()
+                .append(familyName)
+                .append(" ")
+                .append(name)
+                .append(" ")
+                .append(secondName)
+                .toString()
+                .strip()
+                .replace("  ", " ");
     }
 
     @Override
@@ -26,6 +37,6 @@ public final class Person implements Serializable {
 
     @Override
     public int hashCode(){
-        return fio.hashCode();
+        return name.hashCode() * 7 + secondName.hashCode() * 11 + familyName.hashCode() * 13;
     }
 }
