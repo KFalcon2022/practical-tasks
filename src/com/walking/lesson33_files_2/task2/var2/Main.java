@@ -1,16 +1,19 @@
-package com.walking.lesson32_files_1.task2;
+package com.walking.lesson33_files_2.task2.var2;
 
-import com.walking.lesson32_files_1.task2.model.Car;
+import com.walking.lesson33_files_2.model.Car;
 
+import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
- * реализовав сохранение данных в массив Car.
+ * Реализуйте Задачу 2 из урока
+ * <a href="https://telegra.ph/Rabota-s-fajlami-CHast-I-12-17">...</a>
+ * с помощью BufferedInputStream.
  */
 public class Main {
-    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson32/task2/carCatalog.txt";
+    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson33/task2/carCatalog.txt";
 
     public static void main(String[] args) {
         String carsStr = readCarCatalog();
@@ -30,13 +33,14 @@ public class Main {
     private static String readCarCatalog() {
         System.out.println("File reading started");
 
+        File carCatalogFile = new File(CAR_CATALOG_FILE_PATH);
         StringBuilder carsStr = new StringBuilder();
-        try (FileInputStream fileInputStream = new FileInputStream(CAR_CATALOG_FILE_PATH)) {
-//            Чтение можно обеспечить и проще через вызов readAllBytes()
-            boolean isInputFinished = false;
+        try (FileInputStream fileInputStream = new FileInputStream(carCatalogFile);
+             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream)) {
 
+            boolean isInputFinished = false;
             while (!isInputFinished) {
-                int symbol = fileInputStream.read();
+                int symbol = bufferedInputStream.read();
 
                 if (symbol == -1) {
                     isInputFinished = true;

@@ -1,27 +1,30 @@
-package com.walking.lesson32_files_1.task1;
+package com.walking.lesson33_files_2.task1.var3;
 
-import com.walking.lesson32_files_1.task1.model.Car;
+import com.walking.lesson33_files_2.model.Car;
 
-import java.io.FileOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Используя класс Car (или создав новый класс для сущности «машина», на ваше усмотрение) из задачи
- * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson19_object_methods/model">...</a>
- * Реализуйте сохранение массива машин в файл carCatalog.txt
+ * Реализуйте Задачу 1 из урока
+ * <a href="https://telegra.ph/Rabota-s-fajlami-CHast-I-12-17">...</a>
+ * с помощью BufferedWriter.
  */
 public class Main {
-    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson32/task1/carCatalog.txt";
+    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson33/task1/carCatalog.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
 
         System.out.println("File writing started");
 
-        try (FileOutputStream fileOutputStream = new FileOutputStream(CAR_CATALOG_FILE_PATH)) {
+        File carCatalogFile = new File(CAR_CATALOG_FILE_PATH);
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(carCatalogFile))) {
             for (Car car : cars) {
-                fileOutputStream.write(mapCarToFileView(car).getBytes());
-                fileOutputStream.write('\n');
+                bufferedWriter.write(mapCarToFileView(car));
             }
         } catch (IOException e) {
             throw new RuntimeException("Error of file writing", e);
@@ -46,7 +49,7 @@ public class Main {
     }
 
     private static String mapCarToFileView(Car car) {
-        return "%s;%d;%s;%s".formatted(
+        return "%s;%d;%s;%s\n".formatted(
                 car.getNumber(), car.getYear(), car.getColor(), car.isActualTechnicalInspection());
     }
 }

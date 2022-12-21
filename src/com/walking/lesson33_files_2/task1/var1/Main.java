@@ -1,27 +1,37 @@
-package com.walking.lesson32_files_1.task1;
+package com.walking.lesson33_files_2.task1.var1;
 
-import com.walking.lesson32_files_1.task1.model.Car;
+import com.walking.lesson33_files_2.model.Car;
 
-import java.io.FileOutputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Используя класс Car (или создав новый класс для сущности «машина», на ваше усмотрение) из задачи
- * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson19_object_methods/model">...</a>
- * Реализуйте сохранение массива машин в файл carCatalog.txt
+ * Реализуйте Задачу 1 из урока
+ * <a href="https://telegra.ph/Rabota-s-fajlami-CHast-I-12-17">...</a>
+ * с помощью FileWriter.
  */
 public class Main {
-    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson32/task1/carCatalog.txt";
+    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson33/task1/carCatalog.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
 
+//        Не то, чтобы в этой проверке была явная необходимость в этом задании,
+//        но для демонстрации возможностей File пойдет
+        File carCatalogFile = new File(CAR_CATALOG_FILE_PATH);
+        if (!carCatalogFile.exists() || !carCatalogFile.isFile() || !carCatalogFile.canWrite()) {
+            throw new RuntimeException("File %s is not available".formatted(CAR_CATALOG_FILE_PATH));
+        }
+
         System.out.println("File writing started");
 
-        try (FileOutputStream fileOutputStream = new FileOutputStream(CAR_CATALOG_FILE_PATH)) {
+        try (FileWriter fileWriter = new FileWriter(carCatalogFile)) {
             for (Car car : cars) {
-                fileOutputStream.write(mapCarToFileView(car).getBytes());
-                fileOutputStream.write('\n');
+                fileWriter.write(mapCarToFileView(car));
+                fileWriter.append('\n');
+
+                fileWriter.flush();
             }
         } catch (IOException e) {
             throw new RuntimeException("Error of file writing", e);

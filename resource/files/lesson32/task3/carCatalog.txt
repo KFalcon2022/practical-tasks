@@ -1,0 +1,10 @@
+RR-111-RR;2015;yellow;true
+RR-222-RR;2016;null;true
+RR-333-RR;2017;yellow;true
+RR-444-RR;2018;yellow;true
+RR-555-RR;2018;yellow;true
+RR-666-RR;2018;yellow;true
+RR-777-RR;2018;yellow;true
+RR-888-RR;2018;yellow;true
+RR-999-RR;2018;yellow;true
+RR-000-RR;2018;yellow;true
