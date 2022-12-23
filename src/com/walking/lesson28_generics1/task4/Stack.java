@@ -1,11 +1,15 @@
 package com.walking.lesson28_generics1.task4;
 
+import org.w3c.dom.Node;
+
 import java.lang.reflect.Array;
 
 public class Stack<T> {
     private int size;
     private T[] stackarray;
     private int top;
+
+
 
 
     public Stack(int size) {
