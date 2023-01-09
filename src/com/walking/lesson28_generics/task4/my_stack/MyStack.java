@@ -2,6 +2,7 @@ package com.walking.lesson28_generics.task4.my_stack;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
 public class MyStack<E> {
@@ -11,7 +12,10 @@ public class MyStack<E> {
     int capacity;
 
     public MyStack(Class<E> clazz, int capacity) {
-        stack = (E[]) Array.newInstance(clazz, capacity);
+        // Безопастное создание масива типа E на основании класса типа E
+        @SuppressWarnings("unchecked")
+        E[] localStack = (E[]) Array.newInstance(clazz, capacity);
+        this.stack = localStack;
         this.capacity = capacity;
     }
 
@@ -29,7 +33,7 @@ public class MyStack<E> {
             stack[top-1] = null;
             top--;
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new EmptyStackException();
         }
     }
 
