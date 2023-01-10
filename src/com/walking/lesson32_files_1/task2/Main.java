@@ -13,33 +13,29 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-        Car[] cars = readCarsFrom("./carCatalog.txt");
+        String carsString = readCars("./carCatalog.txt");
+
+        Car[] cars = CarParser.parseToCar(carsString);
 
         for (Car car : cars) {
-            if (car!=null) {
+            if (car != null) {
                 System.out.println(car);
             }
         }
     }
 
-    static Car[] readCarsFrom(String path) {
-        Car [] cars = new Car[10];
+    static String readCars(String path) {
+        StringBuilder cars = new StringBuilder();
+
         try (FileInputStream inputStream = new FileInputStream(path)) {
             int in;
-            int i = 0;
-            StringBuilder car = new StringBuilder();
             while ((in = inputStream.read()) != -1) {
-                if (in != '\n') {
-                    car.append((char)in);
-                } else {
-                    cars[i] = CarParser.parseToCar(car.toString());
-                    i++;
-                }
+                cars.append((char) in);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        return cars;
+        return cars.toString();
     }
 }
