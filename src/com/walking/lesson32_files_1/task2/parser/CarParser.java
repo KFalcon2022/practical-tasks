@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class CarParser {
     //TODO валидация данных, ну или таки нет=)
-    public static Car[] parseToCar(String parse) {
+    public Car[] parseToCar(String parse) {
         String[] cars = parse.split("\n");
         Car[] carsArray = new Car[cars.length];
 
@@ -19,6 +19,6 @@ public class CarParser {
     }
 
     private static String parse(String parse) {
-        return parse.split(" = ")[1];
+        return parse.split("=")[1].trim();
     }
 }

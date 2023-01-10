@@ -21,7 +21,8 @@ public class Main {
     public static void main(String[] args) {
 
         File carCatalog = new File("./", "carCatalog.txt");
-        Car[] cars = CarParser.parseToCar(readCars(carCatalog));
+        CarParser carParser = new CarParser();
+        Car[] cars = carParser.parseToCar(readCars(carCatalog));
 
         for (Car car : cars) {
             if (car != null) {
@@ -39,7 +40,7 @@ public class Main {
                 cars.append((char) in);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
 
         return cars.toString();

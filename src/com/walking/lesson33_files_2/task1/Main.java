@@ -36,7 +36,7 @@ public class Main {
             }
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
 
 //        BufferedOutputStream
@@ -48,7 +48,7 @@ public class Main {
                 bufferedOutputStream.flush();
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
 
 //        BufferedWriter
@@ -58,7 +58,7 @@ public class Main {
                 bf.flush();
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

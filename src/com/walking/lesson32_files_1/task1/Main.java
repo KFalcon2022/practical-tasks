@@ -21,14 +21,14 @@ public class Main {
                 new Car("ZFA21235685446546", "Cadillac", "petrol", "person4")
         };
 
-        try(FileOutputStream outputStream = new FileOutputStream("./carCatalog.txt")) {
-            for (Car car:cars) {
+        try (FileOutputStream outputStream = new FileOutputStream("./carCatalog.txt")) {
+            for (Car car : cars) {
                 byte[] bytes = car.toString().getBytes();
                 outputStream.write(bytes, 0, bytes.length);
                 outputStream.write('\n');
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }
