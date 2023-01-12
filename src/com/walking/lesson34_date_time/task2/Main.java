@@ -16,6 +16,7 @@ public class Main {
         System.out.println("Spell the date in format dd.MM.yyyy HH:mm:ss");
 
         String dateTime = scanner.nextLine();
+        scanner.close();
 
         LocalDateTime parsed = LocalDateTime.parse(dateTime, new DateTimeFormatterBuilder()
                 .appendPattern("dd.MM.yyyy HH:mm:ss")
@@ -26,10 +27,10 @@ public class Main {
 
         if (parsed.isAfter(now)) {
             System.out.println("Введенное время больше текущего");
-        } else {
+        } else if (parsed.isBefore(now)) {
             System.out.println("Введенное время меньше текущего");
+        } else {
+            System.out.println("Введенное время равно");
         }
-
-        scanner.close();
     }
 }
