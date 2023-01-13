@@ -6,21 +6,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 public class DataBase {
     private final String path;
-    private List<Car> data;
+    private List<Car> data  = new ArrayList<>();
 
     public DataBase(String path){
         this.path = path;
-        data = new ArrayList<Car>();
     }
 
-    public void fillWithRandomCars(int quantity){
-        data = CarFactory.stream()
-                .limit(quantity)
-                .collect(Collectors.toList());
+    public void randomFill(int quantity){
+        data = new CarFactory().generate(quantity);
     }
 
     public List<Car> items(){
@@ -30,7 +26,7 @@ public class DataBase {
     public boolean saveToFile(){
         try (FileOutputStream fos = new FileOutputStream(path)){
             for (Car car : data){
-                fos.write(car.asObject().getBytes());
+                fos.write(carToStr(car).getBytes());
                 fos.write(System.getProperty("line.separator").getBytes());
             }
             fos.flush();
@@ -49,19 +45,31 @@ public class DataBase {
             StringBuilder sb = new StringBuilder();
             while ((ch = fis.read()) != -1){
                 if ((char) ch == System.getProperty("line.separator").charAt(0)){
-                    data.add(new Car(sb.toString()));
+                    data.add(strToCar(sb.toString()));
                     sb = new StringBuilder();
                 }
                 sb.append((char) ch);
             }
 
             if (!sb.toString().strip().isEmpty()){
-                data.add(new Car(sb.toString()));
+                data.add(strToCar(sb.toString()));
             }
             return true;
 
         } catch (IOException e) {
             return false;
         }
+    }
+
+    private Car strToCar(String data){
+        String[] parts = data.strip().split(":");
+        String number = parts.length > 0 ? parts[0] : "";
+        String owner = parts.length > 1 ? parts[1] : "";
+        String model = parts.length > 2 ? parts[2] : "";
+        return new Car(number, owner, model);
+    }
+
+    private String carToStr(Car car){
+        return String.format("%s:%s:%s", car.getNumber(), car.getOwner(), car.getModel());
     }
 }

@@ -1,18 +1,22 @@
 package com.walking.lesson33.Task1;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.random.RandomGenerator;
+import java.util.List;
 
 public class CarFactory {
     private final static String[] NAMES = {"Вася", "Петя", "Валя", "Галя", "Сережа", "Леша", "Катя", "Света", "Саша"};
     private final static String[] MODELS = {"Lamborgini", "Kalina", "Peugeot", "Volga", "Alfa Romeo"};
     private final static String[] LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-    public static Stream<Car> stream(){
-        return Stream.generate(CarFactory::createRandomCar);
+    public List<Car> generate(int quantity) {
+        return Stream.generate(CarFactory::createRandomCar)
+                .limit(quantity)
+                .collect(Collectors.toList());
     }
 
-    public static Car createRandomCar(){
+    private static Car createRandomCar(){
         return new Car(
                 pickRandomCarNumber(LETTERS),
                 pickRandomElement(NAMES),

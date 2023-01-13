@@ -6,7 +6,7 @@ public class Main {
         DataBase DB = new DataBase(path);
 
         // Заполнить случайно сгенерированными машинами в количечстве n штук
-        DB.fillWithRandomCars(20);
+        DB.randomFill(20);
 
         // Вывод на экран
         for (Car car : DB.items()){System.out.println(car);}
