@@ -11,6 +11,5 @@ public class Main {
         System.out.println(Arrays.toString(integerStack.toStringArray()));
         integerStack.deleteElement();
         System.out.println(Arrays.toString(integerStack.toStringArray()));
-
     }
 }

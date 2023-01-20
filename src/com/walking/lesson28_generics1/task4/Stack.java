@@ -1,5 +1,7 @@
 package com.walking.lesson28_generics1.task4;
 
+import java.util.Arrays;
+
 public class Stack<T> {
     private T[] array;
 
@@ -9,30 +11,18 @@ public class Stack<T> {
 
     public T[] addElement(T element) {
         int length = array.length;
-        T[] newArray = (T[]) new Object[length + 1];
 
-        for (int i = 0; i < (length - 1); i++) {
-            newArray[i] = array[i];
-        }
+        array = Arrays.copyOf(array, length + 1);
 
-        newArray[length] = element;
+        array[length] = element;
 
-        return newArray;
+        return array;
     }
 
     public T[] deleteElement() {
-        int length = array.length;
-        T[] newArray =(T[]) new Object[length - 1];
+        array = Arrays.copyOf(array, array.length - 1);
 
-        for (int i = 0; i < (length - 1); i++) {
-                if (array[i] == null) {
-                    throw new NullPointerException();
-                } else {
-                    newArray[i] = array[i];
-                }
-            }
-
-        return newArray;
+        return array;
     }
 
     public int getSize() {
