@@ -2,7 +2,7 @@ package com.walking.lesson40.Task1;
 
 public class Main {
     public static void main(String[] args){
-        TaskQueue taskQueue = new TaskQueue();
+        TaskService taskQueue = new TaskService();
         taskQueue.add(new Task("First"));
         taskQueue.add(new Task("Second"));
         taskQueue.run();

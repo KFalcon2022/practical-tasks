@@ -1,28 +1,27 @@
 package com.walking.lesson40.Task1;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Queue;
 
-public class TaskQueue {
+public class TaskService {
     private final Queue<Task> queue;
 
-    public TaskQueue(){
+    public TaskService(){
         queue = new ArrayDeque();
     }
 
-    public boolean add(Task task){
-        boolean result = queue.offer(task);
-        if (result) {
+    public void add(Task task){
+        if (queue.offer(task)) {
             System.out.println(task.getName() + " added");
         }
-        return result;
     }
 
     public void run(){
         Task task = queue.poll();
         if (task != null) {
             System.out.println(task.getName() + " executed");
+        } else {
+            System.out.println("Nothing to execute");
         }
     }
 

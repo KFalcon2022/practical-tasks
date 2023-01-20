@@ -1,5 +1,5 @@
 package com.walking.lesson39.Test2;
-
+/*
 import com.walking.lesson39.Test1.Element;
 
 public class Main {
@@ -43,3 +43,4 @@ public class Main {
     }
 }
 
+*/

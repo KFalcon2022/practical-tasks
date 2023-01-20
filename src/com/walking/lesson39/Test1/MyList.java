@@ -1,62 +1,71 @@
 package com.walking.lesson39.Test1;
 
+import java.util.function.Predicate;
+
+/**
+ * Это реализация списка, безотносительно queue, stack или что-то еще.
+ * Поэтому принимает T, возвращает T
+ */
+
 public class MyList<T> {
-    protected Element<T> head; // Наверное было бы красивее использовать какой-то спец. нулевой Element в качестве головы
+    private Node<T> head;
 
     public MyList() {
         this.head = null;
     }
 
-    public void addLast(Element<T> element){
-        if (head == null){
-            head = element;
+    public void add(T data) {
+        Node<T> item = new Node(data);
+        Node<T> node = head;
+        while (node != null && node.next != null) {
+            node = node.next;
+        }
+        if (node == null) {
+            head = item;
         } else {
-            getLast().next = element;
+            node.next = item;
         }
     }
 
-    public Element<T> getFirst(){
+    public T get(Node<T> node) {
+        return node.data;
+    }
+
+    public Node<T> getFirstNode() {
         return head;
     }
 
-    protected Element<T> getLast(){
-        Element<T> e = head;
-        while (e != null && e.next != null){
-            e = e.next;
-        }
-        return e;
-    }
-
-    public void reverse(){
-        if (head == null){
+    public void reverse() {
+        if (head == null) {
             return;
         }
-        Element<T> prevElement = head;
-        Element<T> nextElement = prevElement.next;
-        prevElement.next = null; // сделать первый последним
-        while (nextElement != null){
-            Element<T> temp = nextElement.next;
+        Node<T> prevElement = head;
+        Node<T> nextElement = prevElement.next;
+        prevElement.next = null;
+        while (nextElement != null) {
+            Node<T> temp = nextElement.next;
             nextElement.next = prevElement;
             prevElement = nextElement;
             head = nextElement;
             nextElement = temp;
         }
+        // в разборе посмотрю, как реализовать проще
     }
 
-    public void removeEvenHashed(){
-        if (head == null){
+    public void filter(Predicate<Node<T>> predicate) {
+        if (head == null) {
             return;
         }
-        Element<T> element = head;
-        Element<T> prevElement = null;
+        Node<T> element = head;
+        Node<T> prevElement = null;
         while (element != null) {
-            if (element.hashCode() % 2 == 0){
+            if (predicate.test(element)) {
                 // первый
-                if (head == element){
+                if (head == element) {
                     head = element.next;
                 }
                 // последний
-                else if (element.next == null){
+                else if (element.next == null) {
                     if (prevElement != null) {
                         prevElement.next = null;
                     }
@@ -69,6 +78,32 @@ public class MyList<T> {
                 prevElement = element;
             }
             element = element.next;
+        }
+    }
+
+    public class Node<T> {
+        public Node<T> next;
+
+        public final T data;
+
+        public Node(T data) {
+            this.data = data;
+        }
+
+        @Override
+        public int hashCode() {
+            return data.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            if (this == o) {
+                return true;
+            }
+            return this.hashCode() == ((Node)o).hashCode();
         }
     }
 }

@@ -4,44 +4,34 @@ public class Main {
     public static void main(String[] args){
         MyList<String> myList = new MyList<>();
 
-        // Небезопасный метод. Первый элемент пустого списка null
-        //System.out.println(myList.getFirst().data);
-
-        myList.addLast(new Element("First"));
-        myList.addLast(new Element("Second"));
-        myList.addLast(new Element("Third"));
-
-        System.out.println("\nПервый элемент списка");
-        System.out.println(myList.getFirst().data);
-
+        myList.add("First");
+        myList.add("Second");
+        myList.add("Third");
         printList(myList, "\nУбедимся, что оно работает как список");
 
         myList.reverse();
+        printList(myList, "\nНу и просто проверим, что оно всё ещё работает как список");
 
-        System.out.println("\nПервый элемент развернутого списка");
-        System.out.println(myList.getFirst().data);
-
-        printList(myList, "\nНу и просто проверим, что оно работает как список");
-
-        myList.addLast(new Element("Fourth"));
-        myList.addLast(new Element("Fifth"));
-
+        myList.add("Fourth");
+        myList.add("Fifth");
         printList(myList, "\nБольше тестов");
 
         myList.reverse();
         printList(myList, "\nЕще больше тестов");
 
-        myList.removeEvenHashed();
-        printList(myList, "\nСписок с удаленныим четными хэшами");
+        myList.filter(e -> e.hashCode() % 2 == 0);
+        printList(myList, "\nСписок с удаленными четными хэшами");
+
+        // теоретически, можно было сделать, чтоб filter и reversed возвращали новый MyList
     }
 
     public static void printList(MyList<String> myList, String description){
         System.out.println(description);
-        Element<String> e = myList.getFirst();
+        MyList<String>.Node<String> node = myList.getFirstNode();
         int number = 0;
-        while (e != null){
-            System.out.println("%d - %s".formatted(number, e.data));
-            e = e.next;
+        while (node != null){
+            System.out.println("%d - %s".formatted(number, node.data));
+            node = node.next;
             number ++;
         }
     }

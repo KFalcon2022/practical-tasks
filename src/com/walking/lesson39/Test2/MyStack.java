@@ -1,4 +1,5 @@
 package com.walking.lesson39.Test2;
+/*
 import com.walking.lesson39.Test1.Element;
 import com.walking.lesson39.Test1.MyList;
 
@@ -31,3 +32,4 @@ public class MyStack<T> extends MyList<T> {
         return stack;
     }
 }
+*/
