@@ -1,9 +1,10 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
-import com.walking.lesson16_abstract_class_interface.task2.model.GoodByeMessage;
-import com.walking.lesson16_abstract_class_interface.task2.model.HelloMessage;
-import com.walking.lesson16_abstract_class_interface.task2.model.HowAreYouMessage;
-import com.walking.lesson16_abstract_class_interface.task2.model.Message;
+import com.walking.lesson16_abstract_class_interface.task2.answer.Answer;
+import com.walking.lesson16_abstract_class_interface.task2.answer.impl.ByeAnswer;
+import com.walking.lesson16_abstract_class_interface.task2.answer.impl.HiAnswer;
+import com.walking.lesson16_abstract_class_interface.task2.answer.impl.HowAreYouAnswer;
+import com.walking.lesson16_abstract_class_interface.task2.answer.impl.UnknownAnswer;
 
 import java.util.Scanner;
 
@@ -15,28 +16,31 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Enter string: ");
-        String s = scanner.nextLine();
+        String greeting = scanner.nextLine();
+
         scanner.close();
 
-        Message message = getAnswer(s);
-        if (message == null) {
-            System.out.println("I don't known.");
-            return;
-        }
-        System.out.println(message.answer());
-    }
+        Answer answer;
 
-    private static Message getAnswer(String s) {
-        switch (s) {
+        switch (greeting) {
             case "Hi":
-                return new HelloMessage();
+                answer = new HiAnswer();
+                break;
+
             case "Bye":
-                return new GoodByeMessage();
+                answer = new ByeAnswer();
+                break;
+
             case "How are you":
-                return new HowAreYouMessage();
+                answer = new HowAreYouAnswer();
+                break;
+
             default:
-                return null;
+                answer = new UnknownAnswer();
         }
+
+        System.out.println(answer.getAnswer());
     }
 }

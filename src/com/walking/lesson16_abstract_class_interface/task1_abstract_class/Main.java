@@ -1,8 +1,8 @@
 package com.walking.lesson16_abstract_class_interface.task1_abstract_class;
 
-import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.*;
-import com.walking.lesson16_abstract_class_interface.task1_abstract_class.validators.LengthValidator;
-import com.walking.lesson16_abstract_class_interface.task1_abstract_class.validators.ShapeTypeValidator;
+import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.EquilateralShape;
+import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.EquilateralTriangle;
+import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.Square;
 
 import java.util.Scanner;
 
@@ -14,43 +14,38 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter shape's length: ");
+
+        System.out.print("Enter shape's length: ");
         int length = scanner.nextInt();
-        LengthValidator lengthValidator = new LengthValidator(length);
 
-        boolean lengthIsValid = lengthValidator.validate();
-        if (!lengthIsValid) {
-            System.out.println("Error! Length has constraints [1, 10]");
-            return;
-        }
-
-        System.out.println("Enter shape's type:\n 1: Square\n 2: Triangle\n");
+        System.out.print("Enter shape's type:\n 1: Square\n 2: Triangle\n");
         int shapeType = scanner.nextInt();
-        scanner.close();
-        ShapeTypeValidator shapeTypeValidator = new ShapeTypeValidator(shapeType);
 
-        boolean shapeIsValid = shapeTypeValidator.validate();
-        if (!shapeIsValid) {
-            System.out.println("Error! Unknown shape.");
+        scanner.close();
+
+        if (length < 1 || (shapeType != 1 && shapeType != 2)) {
+            System.out.println("Incorrect input.");
             return;
         }
 
-        Shape shape = createShape(length, shapeType);
-        System.out.println(shape.render());
+        String shapeString = createShapeString(length, shapeType);
+        System.out.println(shapeString);
     }
 
-    private static Shape createShape(int length, int type){
-        Shape shape = null;
+    private static String createShapeString(int length, int type) {
+        EquilateralShape shape;
 
         switch (type) {
-            case Square.SHAPE_INDEX:
+            case 1:
                 shape = new Square(length);
                 break;
-            case EquilateralTriangle.SHAPE_INDEX:
+            case 2:
                 shape = new EquilateralTriangle(length);
                 break;
+            default:
+                return "Unknown shape";
         }
 
-        return shape;
+        return shape.createShapeString();
     }
 }

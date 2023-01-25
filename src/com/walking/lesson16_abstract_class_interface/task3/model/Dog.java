@@ -1,17 +1,8 @@
 package com.walking.lesson16_abstract_class_interface.task3.model;
 
-public class Dog extends Animal implements Guard {
-    public Dog(String color) {
-        super(color);
-    }
-
+public class Dog extends Animal {
     @Override
-    public String feed() {
-        return "Bones";
-    }
-
-    @Override
-    public String run() {
-        return "Woof woof";
+    public void sound() {
+        System.out.println("woof");
     }
 }

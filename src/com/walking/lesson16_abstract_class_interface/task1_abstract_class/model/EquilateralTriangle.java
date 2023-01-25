@@ -1,8 +1,6 @@
 package com.walking.lesson16_abstract_class_interface.task1_abstract_class.model;
 
-public class EquilateralTriangle extends Shape {
-    //    За единицу у основания принято "--" для минимально удобоваримой визуализации
-    public static final int SHAPE_INDEX = 2;
+public class EquilateralTriangle extends EquilateralShape {
     public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
     public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
     public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
@@ -11,10 +9,8 @@ public class EquilateralTriangle extends Shape {
         super(length);
     }
 
-    //    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
-    //    овладевание переопределением, а не псевдографикой
     @Override
-    public String render() {
+    public String createShapeString() {
         String triangle = EMPTY_STRING;
 
         for (int i = 0; i < length; i++) {

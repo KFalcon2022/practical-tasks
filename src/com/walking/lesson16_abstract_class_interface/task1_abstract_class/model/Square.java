@@ -1,7 +1,6 @@
 package com.walking.lesson16_abstract_class_interface.task1_abstract_class.model;
 
-public class Square extends Shape {
-    public static final int SHAPE_INDEX = 1;
+public class Square extends EquilateralShape {
     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
     public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
 
@@ -9,7 +8,8 @@ public class Square extends Shape {
         super(length);
     }
 
-    public String render() {
+    @Override
+    public String createShapeString() {
         String horizontalLine = createHorizontalLine(length);
         String verticalLines = createVerticalLines(length);
 
