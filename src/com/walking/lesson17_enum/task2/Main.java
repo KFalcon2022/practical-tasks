@@ -1,6 +1,6 @@
 package com.walking.lesson17_enum.task2;
 
-import com.walking.lesson17_enum.task2.animal.AnimalType;
+import com.walking.lesson17_enum.task2.model.Animal;
 
 /**
  * Реализуйте задачу
@@ -9,14 +9,10 @@ import com.walking.lesson17_enum.task2.animal.AnimalType;
  */
 public class Main {
     public static void main(String[] args) {
-        AnimalType[] animals = new AnimalType[]{AnimalType.DOG, AnimalType.CAT, AnimalType.COW, AnimalType.DOG};
+        Animal[] animals = new Animal[]{Animal.DOG, Animal.CAT, Animal.COW};
 
-        soundAll(animals);
-    }
-
-    private static void soundAll(AnimalType[] animals) {
-        for (AnimalType animal : animals) {
-            animal.sound();
+        for (Animal animal : animals) {
+            System.out.println(animal.sound());
         }
     }
 }

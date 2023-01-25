@@ -1,7 +1,6 @@
 package com.walking.lesson17_enum.task1;
 
-import com.walking.lesson17_enum.task1.answer.GreetingType;
-
+import com.walking.lesson17_enum.task1.model.Message;
 import java.util.Scanner;
 
 /**
@@ -13,13 +12,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Enter string: ");
-        String greeting = scanner.nextLine();
-
+        String s = scanner.nextLine();
         scanner.close();
 
-        GreetingType greetingType = GreetingType.findGreetingType(greeting);
-        System.out.println(greetingType.getAnswer());
+        if (s.equals(Message.HI.getMsg())) {
+            System.out.println(Message.HELLO.getMsg());
+        } else if (s.equals(Message.BYE.getMsg())) {
+            System.out.println(Message.GOOD_BYE.getMsg());
+        } else if (s.equals(Message.HOW_ARE_YOU.getMsg())) {
+            System.out.println(Message.HOW_ARE_YOU_DOING.getMsg());
+        }
     }
 }

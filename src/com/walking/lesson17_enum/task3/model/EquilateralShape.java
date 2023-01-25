@@ -1,17 +1,20 @@
-package com.walking.lesson17_enum.task3.shape;
+package com.walking.lesson17_enum.task3.model;
 
-//Напоминаю, что данная задача призвана лишь продемонстрировать возможности енама.
-//В Java-разработке не принято использовать эту функциональность перечисляемых типов.
-//Если у вас появилась необходимость использовать {} по отношению к элементу енама -
-//вы допустили ошибку в проектировании вашей системы
-public enum EquilateralShapeType {
-    EQUILATERAL_TRIANGLE {
-        private static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
-        private static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
-        private static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
+public enum EquilateralShape {
 
+    EQUILATERAL_TRIANGLE(){
+        public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
+        public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
+        public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
+
+        public int getType() {
+            return 2;
+        }
+
+        //    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
+        //    овладевание переопределением, а не псевдографикой
         @Override
-        public String createShapeString(int length) {
+        public String render() {
             String triangle = EMPTY_STRING;
 
             for (int i = 0; i < length; i++) {
@@ -37,16 +40,21 @@ public enum EquilateralShapeType {
             return triangle;
         }
     },
-    SQUARE {
-        private static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
-        private static final String RECTANGLE_VERTICAL_ELEMENT = "|";
+    SQUARE(){
+        public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
+        public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
 
         @Override
-        public String createShapeString(int length) {
+        public String render() {
             String horizontalLine = createHorizontalLine(length);
             String verticalLines = createVerticalLines(length);
 
             return horizontalLine + verticalLines + horizontalLine;
+        }
+
+        @Override
+        public int getType() {
+            return 1;
         }
 
         private String createHorizontalLine(int length) {
@@ -86,12 +94,19 @@ public enum EquilateralShapeType {
         }
     };
 
-    //    Объявлять константы уровня класса в енаме - тоже плохая практика.
-//    Это может запутать при использовании кода из-за схожего принципа именования.
-    private static final String EMPTY_ELEMENT = " ";
-    private static final String EMPTY_STRING = "";
-    private static final char NEW_LINE_SYMBOL = '\n';
+    public static final String EMPTY_ELEMENT = " ";
+    public static final String EMPTY_STRING = "";
+    public static final char NEW_LINE_SYMBOL = '\n';
 
-    //    Как видите, в енаме можно создать абстрактный метод. При условии, что его реализуют все элементы енама
-    public abstract String createShapeString(int length);
+    protected int length;
+
+    EquilateralShape() {
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public abstract String render();
+    public abstract int getType();
 }

@@ -1,6 +1,9 @@
 package com.walking.lesson17_enum.task3;
 
-import com.walking.lesson17_enum.task3.shape.EquilateralShapeType;
+
+import com.walking.lesson17_enum.task3.model.EquilateralShape;
+import com.walking.lesson17_enum.task3.validators.LengthValidator;
+import com.walking.lesson17_enum.task3.validators.ShapeTypeValidator;
 
 import java.util.Scanner;
 
@@ -12,38 +15,42 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter shape's length: ");
+        System.out.println("Enter shape's length: ");
         int length = scanner.nextInt();
+        LengthValidator lengthValidator = new LengthValidator(length);
 
-        System.out.print("Enter shape's type:\n 1: Square\n 2: Triangle\n");
-        int shapeType = scanner.nextInt();
-
-        scanner.close();
-
-        if (length < 1 || (shapeType != 1 && shapeType != 2)) {
-            System.out.println("Incorrect input.");
+        boolean lengthIsValid = lengthValidator.validate();
+        if (!lengthIsValid) {
+            System.out.println("Error! Length has constraints [1, 10]");
             return;
         }
 
-        String shapeString = createShapeString(length, shapeType);
-        System.out.println(shapeString);
-    }
+        System.out.println("Enter shape's type:\n 1: Square\n 2: Triangle\n");
+        int shapeType = scanner.nextInt();
+        scanner.close();
+        ShapeTypeValidator shapeTypeValidator = new ShapeTypeValidator(shapeType);
 
-    private static String createShapeString(int length, int type) {
-        EquilateralShapeType shapeType;
-
-        switch (type) {
-            case 1:
-                shapeType = EquilateralShapeType.SQUARE;
-                break;
-            case 2:
-                shapeType = EquilateralShapeType.EQUILATERAL_TRIANGLE;
-                break;
-            default:
-                return "Unknown shape";
+        boolean shapeIsValid = shapeTypeValidator.validate();
+        if (!shapeIsValid) {
+            System.out.println("Error! Unknown shape.");
+            return;
         }
 
-        return shapeType.createShapeString(length);
+        String shape = createShape(length, shapeType);
+        System.out.println(shape);
+    }
+
+    private static String createShape(int length, int type) {
+        String result = null;
+
+        if (type == EquilateralShape.EQUILATERAL_TRIANGLE.getType()) {
+            EquilateralShape.EQUILATERAL_TRIANGLE.setLength(length);
+            result  = EquilateralShape.EQUILATERAL_TRIANGLE.render();
+        } else if (type == EquilateralShape.SQUARE.getType()) {
+            EquilateralShape.SQUARE.setLength(length);
+            result  = EquilateralShape.SQUARE.render();
+        }
+
+        return result;
     }
 }
