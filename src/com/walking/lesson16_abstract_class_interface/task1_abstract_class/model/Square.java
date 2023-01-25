@@ -9,7 +9,7 @@ public class Square extends Shape {
         super(length);
     }
 
-    public String preRender() {
+    public String render() {
         String horizontalLine = createHorizontalLine(length);
         String verticalLines = createVerticalLines(length);
 

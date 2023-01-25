@@ -11,5 +11,5 @@ public abstract class Animal {
         return name;
     }
 
-    abstract public String whatEat();
+    abstract public String feed();
 }

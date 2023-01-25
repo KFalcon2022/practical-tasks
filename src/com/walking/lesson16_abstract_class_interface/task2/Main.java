@@ -1,8 +1,8 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
-import com.walking.lesson16_abstract_class_interface.task2.model.GoodBye;
-import com.walking.lesson16_abstract_class_interface.task2.model.Hello;
-import com.walking.lesson16_abstract_class_interface.task2.model.HowAU;
+import com.walking.lesson16_abstract_class_interface.task2.model.GoodByeMessage;
+import com.walking.lesson16_abstract_class_interface.task2.model.HelloMessage;
+import com.walking.lesson16_abstract_class_interface.task2.model.HowAreYouMessage;
 import com.walking.lesson16_abstract_class_interface.task2.model.Message;
 
 import java.util.Scanner;
@@ -15,29 +15,28 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        try {
+        System.out.print("Enter string: ");
+        String s = scanner.nextLine();
+        scanner.close();
 
-            System.out.print("Enter string: ");
-            String s = scanner.nextLine();
-            scanner.close();
-
-            Message message = getAnswer(s);
-            System.out.println(message.answer());
-        } catch (Throwable throwable) {
-            System.out.println(throwable.getMessage());
+        Message message = getAnswer(s);
+        if (message == null) {
+            System.out.println("I don't known.");
+            return;
         }
+        System.out.println(message.answer());
     }
 
-    private static Message getAnswer(String s) throws Exception {
+    private static Message getAnswer(String s) {
         switch (s) {
             case "Hi":
-                return new Hello();
+                return new HelloMessage();
             case "Bye":
-                return new GoodBye();
+                return new GoodByeMessage();
             case "How are you":
-                return new HowAU();
+                return new HowAreYouMessage();
             default:
-                throw new Exception("I don't answer");
+                return null;
         }
     }
 }

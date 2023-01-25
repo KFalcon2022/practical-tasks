@@ -12,22 +12,22 @@ import com.walking.lesson16_abstract_class_interface.task3.model.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Dog dog = new Dog("Fido");
-        Cat cat = new Cat("Tom");
-        Guardable bot = new Bot();
+        Animal dog = new Dog("Fido");
+        Animal cat = new Cat("Tom");
+        Guard bot = new Bot();
 
         feedAnimal(dog);
         feedAnimal(cat);
 
-        guardMe(dog);
+        guardMe((Dog)dog);
         guardMe(bot);
     }
 
-    private static void guardMe(Guardable guardable) {
-        System.out.println(guardable.getClass().getSimpleName() + ": " + guardable.run());
+    private static void guardMe(Guard guard) {
+        System.out.println(guard.getClass().getSimpleName() + ": " + guard.run());
     }
 
     private static void feedAnimal(Animal animal) {
-        System.out.println(animal.getClass().getSimpleName() + ": " + animal.getName() + " will eat " + animal.whatEat());
+        System.out.println(animal.getClass().getSimpleName() + ": " + animal.getName() + " will eat " + animal.feed());
     }
 }

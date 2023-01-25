@@ -1,12 +1,12 @@
 package com.walking.lesson16_abstract_class_interface.task1_interface.model;
 
-public class Square implements Shapeble {
+public class SquareShape implements Shape {
     public static final int SHAPE_INDEX = 1;
     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
     public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
     private final int length;
 
-    public Square(int length) {
+    public SquareShape(int length) {
         this.length = length;
     }
 
@@ -15,7 +15,7 @@ public class Square implements Shapeble {
         return length;
     }
 
-    public String preRender() {
+    public String render() {
         String horizontalLine = createHorizontalLine(length);
         String verticalLines = createVerticalLines(length);
 

@@ -12,8 +12,9 @@ public class EquilateralTriangle extends Shape {
     }
 
     //    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
-//    овладевание переопределением, а не псевдографикой
-    public String preRender() {
+    //    овладевание переопределением, а не псевдографикой
+    @Override
+    public String render() {
         String triangle = EMPTY_STRING;
 
         for (int i = 0; i < length; i++) {

@@ -15,5 +15,5 @@ public abstract class Shape {
         return length;
     }
 
-    abstract public String preRender();
+    abstract public String render();
 }

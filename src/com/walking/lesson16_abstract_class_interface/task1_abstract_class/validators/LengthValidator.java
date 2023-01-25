@@ -1,9 +1,13 @@
 package com.walking.lesson16_abstract_class_interface.task1_abstract_class.validators;
 
 public class LengthValidator {
-    public LengthValidator(int length) throws Exception {
-        if (length < 1 || length > 10) {
-            throw new Exception("Длинна слишком большая");
-        }
+    private int length;
+
+    public LengthValidator(int length) {
+        this.length = length;
+    }
+
+    public boolean validate() {
+        return 1 < this.length & this.length < 10;
     }
 }

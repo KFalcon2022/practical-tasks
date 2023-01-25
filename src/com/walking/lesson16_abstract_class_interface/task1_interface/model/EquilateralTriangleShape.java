@@ -1,6 +1,6 @@
 package com.walking.lesson16_abstract_class_interface.task1_interface.model;
 
-public class EquilateralTriangle implements Shapeble {
+public class EquilateralTriangleShape implements Shape {
     //    За единицу у основания принято "--" для минимально удобоваримой визуализации
     public static final int SHAPE_INDEX = 2;
     public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
@@ -8,7 +8,7 @@ public class EquilateralTriangle implements Shapeble {
     public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
     private final int length;
 
-    public EquilateralTriangle(int length) {
+    public EquilateralTriangleShape(int length) {
         this.length = length;
     }
 
@@ -17,9 +17,9 @@ public class EquilateralTriangle implements Shapeble {
         return length;
     }
 
-//    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
-//    овладевание переопределением, а не псевдографикой
-    public String preRender() {
+    //    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
+    //    овладевание переопределением, а не псевдографикой
+    public String render() {
         String triangle = EMPTY_STRING;
 
         for (int i = 0; i < length; i++) {

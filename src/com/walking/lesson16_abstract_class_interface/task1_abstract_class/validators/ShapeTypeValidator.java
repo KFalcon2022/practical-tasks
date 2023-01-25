@@ -4,9 +4,13 @@ import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.
 import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.Square;
 
 public class ShapeTypeValidator {
-    public ShapeTypeValidator(int type) throws Exception {
-        if (!(type == Square.SHAPE_INDEX || type == EquilateralTriangle.SHAPE_INDEX)) {
-            throw new Exception("Нет реализации такой фигуры");
-        }
+    private int type;
+
+    public ShapeTypeValidator(int type) {
+        this.type = type;
+    }
+
+    public boolean validate() {
+        return type == Square.SHAPE_INDEX || type == EquilateralTriangle.SHAPE_INDEX;
     }
 }

@@ -1,9 +1,8 @@
 package com.walking.lesson16_abstract_class_interface.task1_interface;
 
-import com.walking.lesson16_abstract_class_interface.task1_interface.helpers.View;
-import com.walking.lesson16_abstract_class_interface.task1_interface.model.EquilateralTriangle;
-import com.walking.lesson16_abstract_class_interface.task1_interface.model.Shapeble;
-import com.walking.lesson16_abstract_class_interface.task1_interface.model.Square;
+import com.walking.lesson16_abstract_class_interface.task1_interface.model.EquilateralTriangleShape;
+import com.walking.lesson16_abstract_class_interface.task1_interface.model.Shape;
+import com.walking.lesson16_abstract_class_interface.task1_interface.model.SquareShape;
 import com.walking.lesson16_abstract_class_interface.task1_interface.validators.LengthValidator;
 import com.walking.lesson16_abstract_class_interface.task1_interface.validators.ShapeTypeValidator;
 
@@ -17,35 +16,41 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        try {
-            View.show("Enter shape's length: ");
-            int length = scanner.nextInt();
-            LengthValidator lengthValidator = new LengthValidator(length);
+        System.out.println("Enter shape's length: ");
+        int length = scanner.nextInt();
+        LengthValidator lengthValidator = new LengthValidator(length);
 
-            View.show("Enter shape's type:\n 1: Square\n 2: Triangle\n");
-            int shapeType = scanner.nextInt();
-            scanner.close();
-            ShapeTypeValidator shapeTypeValidator = new ShapeTypeValidator(shapeType);
-
-            Shapeble shape = createShape(length, shapeType);
-            View.show(shape.preRender());
-        } catch (Throwable exThrowable) {
-            View.show(exThrowable.getMessage());
+        boolean lengthIsValid = lengthValidator.validate();
+        if (!lengthIsValid) {
+            System.out.println("Error! Length has constraints [1, 10]");
+            return;
         }
+
+        System.out.println("Enter shape's type:\n 1: Square\n 2: Triangle\n");
+        int shapeType = scanner.nextInt();
+        scanner.close();
+        ShapeTypeValidator shapeTypeValidator = new ShapeTypeValidator(shapeType);
+
+        boolean shapeIsValid = shapeTypeValidator.validate();
+        if (!shapeIsValid) {
+            System.out.println("Error! Unknown shape.");
+            return;
+        }
+
+        Shape shape = createShape(length, shapeType);
+        System.out.println(shape.render());
     }
 
-    private static Shapeble createShape(int length, int type) throws Exception {
-        Shapeble shape;
+    private static Shape createShape(int length, int type) {
+        Shape shape = null;
 
         switch (type) {
-            case Square.SHAPE_INDEX:
-                shape = new Square(length);
+            case SquareShape.SHAPE_INDEX:
+                shape = new SquareShape(length);
                 break;
-            case EquilateralTriangle.SHAPE_INDEX:
-                shape = new EquilateralTriangle(length);
+            case EquilateralTriangleShape.SHAPE_INDEX:
+                shape = new EquilateralTriangleShape(length);
                 break;
-            default:
-                throw new Exception("Unknown shape");
         }
 
         return shape;
