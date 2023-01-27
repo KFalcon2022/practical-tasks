@@ -17,9 +17,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter shape's length: ");
         int length = scanner.nextInt();
-        LengthValidator lengthValidator = new LengthValidator(length);
+        LengthValidator lengthValidator = new LengthValidator();
 
-        boolean lengthIsValid = lengthValidator.validate();
+        boolean lengthIsValid = lengthValidator.validate(length);
         if (!lengthIsValid) {
             System.out.println("Error! Length has constraints [1, 10]");
             return;
@@ -28,9 +28,9 @@ public class Main {
         System.out.println("Enter shape's type:\n 1: Square\n 2: Triangle\n");
         int shapeType = scanner.nextInt();
         scanner.close();
-        ShapeTypeValidator shapeTypeValidator = new ShapeTypeValidator(shapeType);
+        ShapeTypeValidator shapeTypeValidator = new ShapeTypeValidator();
 
-        boolean shapeIsValid = shapeTypeValidator.validate();
+        boolean shapeIsValid = shapeTypeValidator.validate(shapeType);
         if (!shapeIsValid) {
             System.out.println("Error! Unknown shape.");
             return;
