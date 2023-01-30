@@ -17,12 +17,7 @@ public class Main {
         String s = scanner.nextLine();
         scanner.close();
 
-        if (s.equals(Message.HI.getMsg())) {
-            System.out.println(Message.HELLO.getMsg());
-        } else if (s.equals(Message.BYE.getMsg())) {
-            System.out.println(Message.GOOD_BYE.getMsg());
-        } else if (s.equals(Message.HOW_ARE_YOU.getMsg())) {
-            System.out.println(Message.HOW_ARE_YOU_DOING.getMsg());
-        }
+        Message message = Message.findMessage(s);
+        System.out.println(message.getAnswer());
     }
 }
