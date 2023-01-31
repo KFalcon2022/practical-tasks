@@ -7,7 +7,7 @@ import java.util.*;
 
 public class TaskServiceImpl implements TaskService {
 
-    long orderId = 0L;
+    private long orderId = 0L;
     //  Варіант поки що фігня, тому що дає можливість зберігати однакові завдання в Set'і.
     //  Порівняння елементів відбуваеться за допомогою метода compareTo, а не equals.
     NavigableSet<TaskWrapper> taskSet = new TreeSet<>(Comparator.comparingLong(TaskWrapper::getOrderId));

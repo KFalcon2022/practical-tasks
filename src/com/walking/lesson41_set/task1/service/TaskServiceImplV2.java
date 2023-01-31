@@ -3,6 +3,7 @@ package com.walking.lesson41_set.task1.service;
 import com.walking.lesson41_set.task1.model.Task;
 
 import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 
 public class TaskServiceImplV2 implements TaskService {
 
@@ -15,7 +16,7 @@ public class TaskServiceImplV2 implements TaskService {
 
     @Override
     public Task executeTask() {
-        Task task = linkedHashSet.stream().findFirst().get();
+        Task task = linkedHashSet.stream().findFirst().orElseThrow(() -> new NoSuchElementException("There aren't tasks to complete"));
         linkedHashSet.remove(task);
         return task;
     }
