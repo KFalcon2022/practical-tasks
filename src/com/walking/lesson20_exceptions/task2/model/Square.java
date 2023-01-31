@@ -1,20 +1,14 @@
-package com.walking.lesson16_abstract_class_interface.task1_interface.model;
+package com.walking.lesson20_exceptions.task2.model;
 
-public class SquareShape implements Shape {
-    public static final int SHAPE_INDEX = 1;
+public class Square extends Shape {
     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
     public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
-    private final int length;
 
-    public SquareShape(int length) {
-        this.length = length;
+    public Square(int length) {
+        super(length);
     }
 
     @Override
-    public int getLength() {
-        return length;
-    }
-
     public String render() {
         String horizontalLine = createHorizontalLine(length);
         String verticalLines = createVerticalLines(length);

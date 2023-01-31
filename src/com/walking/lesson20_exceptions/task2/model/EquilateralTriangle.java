@@ -1,24 +1,18 @@
-package com.walking.lesson16_abstract_class_interface.task1_interface.model;
+package com.walking.lesson20_exceptions.task2.model;
 
-public class EquilateralTriangleShape implements Shape {
+public class EquilateralTriangle extends Shape {
     //    За единицу у основания принято "--" для минимально удобоваримой визуализации
-    public static final int SHAPE_INDEX = 2;
     public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
     public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
     public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
-    private final int length;
 
-    public EquilateralTriangleShape(int length) {
-        this.length = length;
-    }
-
-    @Override
-    public int getLength() {
-        return length;
+    public EquilateralTriangle(int length) {
+        super(length);
     }
 
     //    Предлагаю особо не углубляться в способ отрисовки, он не критичен - задача направлена на
     //    овладевание переопределением, а не псевдографикой
+    @Override
     public String render() {
         String triangle = EMPTY_STRING;
 
@@ -45,3 +39,4 @@ public class EquilateralTriangleShape implements Shape {
         return triangle;
     }
 }
+

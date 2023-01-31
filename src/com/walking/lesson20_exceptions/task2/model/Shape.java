@@ -1,4 +1,4 @@
-package com.walking.lesson16_abstract_class_interface.task1_abstract_class.model;
+package com.walking.lesson20_exceptions.task2.model;
 
 public abstract class Shape {
     protected static final String EMPTY_ELEMENT = " ";
