@@ -199,11 +199,11 @@ public class DoublyLinkedList<E> implements Collection<E> {
     public boolean containsAll(Collection<?> c) {
         for (Object e : c) {
             if (!contains(e)) {
-                return true;
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     @Override
