@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.Deque;
 
-public class MyTree<E extends Comparable<E>> {
+public class MyTree<E extends Comparable<? super E>> {
 
     private Node<E> root = null;
     private Comparator<? super E> comparator = null;
@@ -53,87 +53,70 @@ public class MyTree<E extends Comparable<E>> {
     }
 
     public boolean remove(E element) {
-        return remove(element, root);
+        return remove(element, root, null);
     }
 
-    private boolean remove(E element, Node<E> root) {
+    private boolean remove(E element, Node<E> root, Node<E> parent) {
         if (root == null) {
             return false;
         }
 
         if (compare(element, root.getElement()) > 0) {
-            return removeRight(element, root);
+            return remove(element, root.getRight(), root);
+        } else if (compare(element, root.getElement()) < 0) {
+            return remove(element, root.getLeft(), root);
         } else {
-            return removeLeft(element, root);
+            removeNode(root, parent);
+
+            return true;
         }
     }
 
-    private boolean removeLeft(E element, Node<E> currentNode) {
-        Node<E> left = currentNode.getLeft();
-        if (left == null || compare(element, left.getElement()) != 0) {
-            return remove(element, left);
-        } else {
-            return removeLeftNode(left, currentNode);
-        }
-    }
-
-    private boolean removeRight(E element, Node<E> currentNode) {
-        Node<E> right = currentNode.getRight();
-        if (right == null || compare(element, right.getElement()) != 0) {
-            return remove(element, right);
-        } else {
-            return removeRightNode(right, currentNode);
-        }
-    }
-
-    private boolean removeRightNode(Node<E> node, Node<E> parent) {
+    private void removeNode(Node<E> node, Node<E> parent) {
         boolean left = node.getLeft() == null;
         boolean right = node.getRight() == null;
+
         if (left && right) {
-            parent.setRight(null);
+            if (parent == null) {
+                root = null;
+            } else {
+                replace(parent, node, null);
+            }
         } else if (left) {
-            parent.setRight(node.getRight());
+            if (parent == null) {
+                root = root.getRight();
+            } else {
+                replace(parent, node, node.getRight());
+            }
         } else if (right) {
-            parent.setRight(node.getLeft());
+            if (parent == null) {
+                root = root.getLeft();
+            } else {
+                replace(parent, node, node.getLeft());
+            }
         } else {
-            Node<E> max = getMax(node.getLeft(), null);
-            parent.setRight(max);
-            if (!node.getLeft().equals(max)) {
-                max.setLeft(node.getLeft());
+            Node<E> max = removeMax(node.getLeft(), null);
+            if (parent == null) {
+                root = max;
             }
             max.setRight(node.getRight());
+            max.setLeft(node.getLeft());
         }
-
-        return true;
     }
 
-    private boolean removeLeftNode(Node<E> node, Node<E> parent) {
-        boolean left = node.getLeft() == null;
-        boolean right = node.getRight() == null;
-        if (left && right) {
-            parent.setLeft(null);
-        } else if (left) {
-            parent.setLeft(node.getRight());
-        } else if (right) {
-            parent.setLeft(node.getLeft());
+    private void replace(Node<E> node, Node<E> oldValue, Node<E> newValue) {
+        if (oldValue == node.getLeft()) {
+            node.setLeft(newValue);
         } else {
-            Node<E> max = getMax(node.getLeft(), null);
-            parent.setLeft(max);
-            if (!node.getLeft().equals(max)) {
-                max.setLeft(node.getLeft());
-            }
-            max.setRight(node.getRight());
+            node.setRight(newValue);
         }
-
-        return true;
     }
 
-    private Node<E> getMax(Node<E> root, Node<E> parent) {
+    private Node<E> removeMax(Node<E> root, Node<E> parent) {
 
         if (root.getRight() != null) {
-            return getMax(root.getRight(), root);
+            return removeMax(root.getRight(), root);
         }
-
         if (parent != null) {
             parent.setRight(root.getLeft());
         }
@@ -153,19 +136,18 @@ public class MyTree<E extends Comparable<E>> {
         if (root == null) {
             System.out.println("No elements in tree");
         } else {
-            StringBuilder result = new StringBuilder();
-            printNodes(root, result);
-            System.out.println(result);
+            printNodes(root);
         }
+        System.out.println("\n");
     }
 
-    private void printNodes(Node<E> root, StringBuilder result) {
-        result.append(root.getElement()).append(" ");
+    private void printNodes(Node<E> root) {
+        System.out.print(root.getElement() + " ");
         if (root.getLeft() != null) {
-            printNodes(root.getLeft(), result);
+            printNodes(root.getLeft());
         }
         if (root.getRight() != null) {
-            printNodes(root.getRight(), result);
+            printNodes(root.getRight());
         }
     }
 
@@ -175,15 +157,14 @@ public class MyTree<E extends Comparable<E>> {
         } else {
             Deque<Node<E>> deque = new ArrayDeque<>();
             deque.add(root);
-            StringBuilder result = new StringBuilder();
-            printNodesV2(result, deque);
-            System.out.println(result);
+            printNodesV2(deque);
         }
+        System.out.println("\n");
     }
 
-    private void printNodesV2(StringBuilder result, Deque<Node<E>> deque) {
+    private void printNodesV2(Deque<Node<E>> deque) {
         Node<E> currentNode = deque.pop();
-        result.append(currentNode.getElement()).append(" ");
+        System.out.print(currentNode.getElement() + " ");
         if (currentNode.getLeft() != null) {
             deque.add(currentNode.getLeft());
         }
@@ -191,14 +172,14 @@ public class MyTree<E extends Comparable<E>> {
             deque.add(currentNode.getRight());
         }
         if (!deque.isEmpty()) {
-            printNodesV2(result, deque);
+            printNodesV2(deque);
         }
     }
 
     private static class Node<E> {
         private Node<E> left;
         private Node<E> right;
-        private final E element;
+        private E element;
 
         Node(E element) {
             this.element = element;
@@ -222,6 +203,10 @@ public class MyTree<E extends Comparable<E>> {
 
         public E getElement() {
             return element;
+        }
+
+        public void setElement(E element) {
+            this.element = element;
         }
     }
 }

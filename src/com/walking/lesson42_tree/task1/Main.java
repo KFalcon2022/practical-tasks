@@ -2,9 +2,7 @@ package com.walking.lesson42_tree.task1;
 
 import com.walking.lesson42_tree.task1.tree.MyTree;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,11 +13,18 @@ public class Main {
         initNotListTree(myIntegerTree);
         initNotListTree(myTree);
 
+        myTree.remove(20);
+        myTree.remove(45);
+        myTree.remove(40);
+        myTree.remove(60);
+        myTree.remove(50);
+        myTree.remove(30);
+
         myTree.printNodes();
-        myIntegerTree.printNodes();
+//        myIntegerTree.printNodes();
 
         myTree.printNodesV2();
-        myIntegerTree.printNodesV2();
+//        myIntegerTree.printNodesV2();
     }
 
     public static void initNotListTree(MyTree<? super Integer> tree) {
