@@ -2,6 +2,7 @@ package com.walking.lesson21_immutable_object;
 
 
 import com.walking.lesson21_immutable_object.model.Car;
+import com.walking.lesson21_immutable_object.service.CarService;
 
 import java.util.Scanner;
 
@@ -41,24 +42,8 @@ public class Main {
 
         Car searchedCar = new Car(registrationPlate, brand, model, year);
 
-        findCar(searchedCar);
-    }
-
-    private static void findCar(Car searchedCar) {
-        int numSearchedCar = 0;
-        for (Car car : CARS) {
-            if (car.equals(searchedCar)) {
-                System.out.printf("Searched car's hash: %d%n", searchedCar.hashCode());
-                System.out.printf("Car's hash: %d%n", car.hashCode());
-                System.out.printf("Found car: %s%n", car);
-                numSearchedCar++;
-            }
-        }
-
-        if (numSearchedCar > 0) {
-            System.out.printf("Searched %d cars%n", numSearchedCar);
-        } else {
-            System.out.println("Searched nothing");
-        }
+        CarService carService = new CarService(CARS);
+        Car car = carService.findCar(searchedCar);
+        System.out.println(car);
     }
 }
