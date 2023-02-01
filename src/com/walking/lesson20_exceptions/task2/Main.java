@@ -38,33 +38,25 @@ public class Main {
     }
 
     private static void validateLength(int length) {
-        if (!(Main.LENGTH_MIN < length & length < Main.LENGTH_MAX)) {
-            throw new InputValidationException(String.format("Length has constraints [%d, %d]", Main.LENGTH_MIN, Main.LENGTH_MAX));
+        if (!(LENGTH_MIN < length && length < LENGTH_MAX)) {
+            throw new InputValidationException(String.format("Length has constraints [%d, %d]", LENGTH_MIN, LENGTH_MAX));
         }
     }
 
     private static void validateShape(int type) {
-        if (!(type == Main.SHAPE_SQUARE || type == Main.SHAPE_EQUILATERAL_TRIANGLE)) {
+        if (!(type == SHAPE_SQUARE || type == SHAPE_EQUILATERAL_TRIANGLE)) {
             throw new InputValidationException("Unsupported shape type");
         }
     }
 
     private static Shape createShape(int length, int type) {
-        Shape shape;
-
         switch (type) {
             case SHAPE_SQUARE:
-                shape = new Square(length);
-                break;
+                return new  Square(length);
             case SHAPE_EQUILATERAL_TRIANGLE:
-                shape = new EquilateralTriangle(length);
-                break;
+                return new EquilateralTriangle(length);
             default:
                 throw new InputValidationException("Unsupported shape type");
         }
-
-        return shape;
     }
-
-
 }

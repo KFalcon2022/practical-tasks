@@ -18,24 +18,20 @@ import com.walking.lesson20_exceptions.task3.model.Dog;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow(), null};
+        Animal[] animals = new Animal[]{new Cat(), new Dog(),  null};
         soundAll(animals);
     }
 
     private static void soundAll(Animal[] animals) {
         for (Animal animal : animals) {
-            try {
-                if (animal == null) {
-                    throw new ArrayValidationException("Invalid value in array");
-                }
-                sound(animal);
-            } catch (UnknownAnimalException | ArrayValidationException unknownAnimalException) {
-                System.out.println(unknownAnimalException.getMessage());
+            if (animal == null) {
+                throw new ArrayValidationException("Invalid value in array");
             }
+            sound(animal);
         }
     }
 
-    private static void sound(Animal animal) throws UnknownAnimalException {
+    private static void sound(Animal animal) {
         if (animal instanceof Cat) {
             Cat cat = (Cat) animal;
             cat.meow();

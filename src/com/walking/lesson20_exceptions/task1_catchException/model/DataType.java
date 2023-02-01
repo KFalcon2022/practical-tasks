@@ -6,13 +6,13 @@ public enum DataType {
     AUDIO("Audio"),
     VIDEO("Video");
 
-    private final String type;
+    private final String name;
 
-    DataType(String type) {
-        this.type = type;
+    DataType(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 }

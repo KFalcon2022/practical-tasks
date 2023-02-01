@@ -26,6 +26,6 @@ public class File {
 
     @Override
     public String toString() {
-        return String.format("File: %s, size: %d, type: %s", name, size, type.getType());
+        return String.format("File: %s, size: %d, type: %s", name, size, type.getName());
     }
 }
