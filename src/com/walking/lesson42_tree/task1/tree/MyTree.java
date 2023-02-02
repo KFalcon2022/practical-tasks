@@ -98,9 +98,13 @@ public class MyTree<E extends Comparable<? super E>> {
             Node<E> max = removeMax(node.getLeft(), null);
             if (parent == null) {
                 root = max;
+            } else {
+                replace(parent, node, max);
             }
             max.setRight(node.getRight());
-            max.setLeft(node.getLeft());
+            if (node.getLeft() != max) {
+                max.setLeft(node.getLeft());
+            }
         }
     }
 
