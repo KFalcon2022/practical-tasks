@@ -1,70 +1,21 @@
-package com.walking.lesson25_nested_classes.task1.static_class;
+package com.walking.lesson25_nested_classes.task1.nested_class.model;
 
+public class Shape {
 
-import com.walking.lesson25_nested_classes.task1.static_class.model.EquilateralShape;
+    private static final String EMPTY_ELEMENT = " ";
+    private static final String EMPTY_STRING = "";
+    private static final char NEW_LINE_SYMBOL = '\n';
 
-import java.util.Scanner;
+    private int length;
 
-/**
- * Реализуйте задачу
- * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson16_abstract_class_interface/task1_interface">...</a>
- * используя статические вложенные классы.
- */
-public class Main {
-    public static final int LENGTH_MIN = 1;
-    public static final int LENGTH_MAX = 10;
-    public static final int SHAPE_SQUARE = 1;
-    public static final int SHAPE_EQUILATERAL_TRIANGLE = 2;
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter shape's length: ");
-        int length = scanner.nextInt();
-        validateLength(length);
-
-        System.out.printf("Enter shape's type:\n %d: Square\n %d: Triangle\n%n", SHAPE_SQUARE, SHAPE_EQUILATERAL_TRIANGLE);
-        int shapeType = scanner.nextInt();
-        scanner.close();
-        validateShape(shapeType);
-
-        EquilateralShape shape = createShape(length, shapeType);
-        System.out.println(shape.createShapeString());
+    public Shape(int length) {
+        this.length = length;
     }
 
-    private static void validateLength(int length) {
-        if (length < LENGTH_MIN || length > LENGTH_MAX) {
-            throw new IllegalArgumentException(String.format("Length has constraints [%d, %d]", LENGTH_MIN, LENGTH_MAX));
-        }
-    }
-
-    private static void validateShape(int type) {
-        if (type != SHAPE_SQUARE && type != SHAPE_EQUILATERAL_TRIANGLE) {
-            throw new IllegalArgumentException("Unsupported shape type");
-        }
-    }
-
-    private static EquilateralShape createShape(int length, int type) {
-
-        switch (type) {
-            case SHAPE_SQUARE:
-                return new Square(length);
-            case SHAPE_EQUILATERAL_TRIANGLE:
-                return new EquilateralTriangle(length);
-            default:
-                throw new IllegalArgumentException("Unsupported shape type");
-        }
-    }
-
-    private static class EquilateralTriangle implements EquilateralShape {
+    public class EquilateralTriangle implements EquilateralShape {
         private static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
         private static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
         private static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
-        private int length;
-
-        EquilateralTriangle(int length) {
-            this.length = length;
-        }
 
         @Override
         public String createShapeString() {
@@ -94,15 +45,9 @@ public class Main {
         }
     }
 
-    private static class Square implements EquilateralShape {
+    public class Square implements EquilateralShape {
         private static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
         private static final String RECTANGLE_VERTICAL_ELEMENT = "|";
-
-        private int length;
-
-        Square(int length) {
-            this.length = length;
-        }
 
         @Override
         public String createShapeString() {

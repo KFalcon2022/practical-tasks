@@ -1,8 +1,6 @@
 package com.walking.lesson16_abstract_class_interface.task3;
 
 
-import com.walking.lesson16_abstract_class_interface.task3.model.*;
-
 /**
  * Реализуйте любую задачу из уроков о наследовании или полиморфизме с использованием новых знаний.
  * Выбирайте инструмент с умом.
@@ -12,22 +10,5 @@ import com.walking.lesson16_abstract_class_interface.task3.model.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal dog = new Dog("Fido");
-        Animal cat = new Cat("Tom");
-        Guard bot = new Bot();
-
-        feedAnimal(dog);
-        feedAnimal(cat);
-
-        guardMe((Dog)dog);
-        guardMe(bot);
-    }
-
-    private static void guardMe(Guard guard) {
-        System.out.println(guard.getClass().getSimpleName() + ": " + guard.run());
-    }
-
-    private static void feedAnimal(Animal animal) {
-        System.out.println(animal.getClass().getSimpleName() + ": " + animal.getName() + " will eat " + animal.feed());
     }
 }
