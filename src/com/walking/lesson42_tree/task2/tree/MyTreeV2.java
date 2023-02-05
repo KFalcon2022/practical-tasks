@@ -6,7 +6,7 @@ import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.Deque;
 
-public class MyTreeV2<E extends Comparable<? super E>> {
+public class MyTreeV2<E> {
 
     private final int DEPTH_DIFFERENCE_TO_BALANCE = 2;
 
@@ -110,12 +110,10 @@ public class MyTreeV2<E extends Comparable<? super E>> {
         return root;
     }
 
+    @SuppressWarnings("unchecked")
     private int compare(E element1, E element2) {
-        if (comparator == null) {
-            return element1.compareTo(element2);
-        } else {
-            return comparator.compare(element1, element2);
-        }
+        return comparator == null ?
+                ((Comparable<? super E>) element1).compareTo(element2) : comparator.compare(element1, element2);
     }
 
     public void printNodes() {
