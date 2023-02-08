@@ -15,5 +15,6 @@ public class Task2 {
         int b = scanner.nextInt();
         boolean c = (a * a * a) > (b * b);
         System.out.println(c);
+        scanner.close();
     }
 }
