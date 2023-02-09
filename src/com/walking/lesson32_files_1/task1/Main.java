@@ -8,19 +8,19 @@ import java.nio.charset.StandardCharsets;
 public class Main {
     public static void main(String[] args)  {
         Car[] cars = new Car[]{
-                new Car("Mazda", "857", 2003, "white", true),
-                new Car("BMW", "123", 2017, "black", true),
-                new Car("Mercedes", "777", 2022, "red", true),
-                new Car("Lada", "693", 1997, "yellow", false)
+                new Car("Mazda", "å857êõ", 2003, "white", true),
+                new Car("BMW", "ê123êê", 2017, "black", true),
+                new Car("Mercedes", "ñ777ññ", 2022, "red", true),
+                new Car("Lada", "ì693ðà", 1997, "yellow", false)
         };
-        try (FileOutputStream CarOutputStream = new FileOutputStream("./resource/carCatalog.txt", true)) {
-            String line = "_______________";
+        try (FileOutputStream carOutputStream = new FileOutputStream("./resource/carCatalog.txt", true)) {
+            String line = "_______________\n";
 
             for (Car car : cars) {
                 byte[] buffer = car.toString().getBytes();
 
-                CarOutputStream.write(buffer);
-                CarOutputStream.write(line.getBytes());
+                carOutputStream.write(buffer);
+                carOutputStream.write(line.getBytes());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

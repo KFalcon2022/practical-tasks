@@ -1,4 +1,4 @@
-package com.walking.lesson32_files_1.task1;
+package com.walking.lesson32_files_1.task2;
 
 import java.util.Objects;
 

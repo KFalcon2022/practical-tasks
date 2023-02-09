@@ -1,4 +1,4 @@
-package com.walking.lesson32_files_1.task1;
+package com.walking.lesson32_files_1.task3;
 
 import java.util.Objects;
 
@@ -47,6 +47,10 @@ public class Car {
 
     public void setActualTechnicalInspection(boolean actualTechnicalInspection) {
         this.actualTechnicalInspection = actualTechnicalInspection;
+    }
+
+    public String prepareCarToWriteToFile() {
+        return "%s;%s;%d;%s;%s".formatted(getBrand(),getNumber(),getYear(),getColor(),actualTechnicalInspection);
     }
 
     @Override
