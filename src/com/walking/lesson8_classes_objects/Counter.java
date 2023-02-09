@@ -1,35 +1,42 @@
-package com.walking.lesson8_classes_objects;
+import java.util.Scanner;
 
-public class Counter {
-    public String name;
-    public int counter;
+public class Counter { // создаем класс Счетчик
+    String name; // поле Имя
+    int counter; // поле счетчик
 
-    public Counter(String name) {
-        this(name, 0);
+    public Counter(String name, int counter) { //создаем конструктор
+        this.name = name; // с полем Имя
+        this.counter = counter; // и полем Счетчик
     }
 
-    public Counter(String name, int counter) {
-        this.counter = counter;
-        this.name = name;
+
+    public void incrimentOne(){ //метод увеличение на 1
+        counter = counter + 1; //к значению счетчика прибавляем 1
+        System.out.println("Новое значение счетчика " + counter); //на экран выводим новое значение
     }
 
-    public int increase(int value) {
-        counter += value;
-
-        return counter;
+    public void decrimentOne () {//метод уменьшение на 1
+        counter = counter - 1;//от значения счетчика убавляем 1
+        System.out.println("Новое значение счетчика " + counter);//на экран выводим новое значение
     }
 
-    public int decrease(int value) {
-        counter -= value;
+    public void incrimentAny(){//метод увеличение на любое число
+        Scanner sc = new Scanner(System.in); //подключаем сканер
+        System.out.println("Введите число, на которое будет увеличено значение счетчика: ");
+        int a = sc.nextInt(); //введенному числу присваиваем как переменная а
+        sc.close(); //закрываем сканер
 
-        return counter;
+        counter = counter + a; //прибавляем к значению счетчика введенное число
+        System.out.println("Новое значение счетчника " + counter);
     }
 
-    public int increment() {
-        return ++counter;
-    }
+    public void decrimentAny(){//метод уменьшение на любое число
+        Scanner sc = new Scanner(System.in);//подключаем сканер
+        System.out.println("Введите любое число, на которое будет уменьшено значение счетчика:  ");
+        int a = sc.nextInt();//введенному числу присваиваем как переменная а
+        sc.close();//закрываем сканер
 
-    public int decrement() {
-        return --counter;
+        counter = counter - a;//убавляем от значения счетчика введенное число
+        System.out.println("Новое значение счетчника " + counter);
     }
 }
