@@ -7,5 +7,9 @@ package com.walking.lesson5_arrays;
  */
 public class Task1WithoutString {
     public static void main(String[] args) {
+        char[] array = {'G', 'a', 'l', 'i', 'n', 'a'};
+        for (char element: array){
+            System.out.print(element);
+        }
     }
 }

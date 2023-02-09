@@ -1,5 +1,7 @@
 package com.walking.lesson5_arrays;
 
+import java.util.Scanner;
+
 /**
  * Создать массив int’ов из 5 элементов.
  * Заполнить его значениями, введенными с клавиатуры.
@@ -8,5 +10,21 @@ package com.walking.lesson5_arrays;
  */
 public class Task2 {
     public static void main(String[] args) {
+        int[] array = new int[5];
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Введите по порядку значения массива из %d целых чисел\n", array.length);
+        for (int i = 0; i < array.length; i++) {
+            array[i] = scanner.nextInt();
+        }
+        scanner.close();
+        int sum;
+        for (int i = 0; i < array.length; i++) {
+            if (i == 0) {
+                sum = array[i] + array[array.length - 1];
+            } else {
+                sum = array[i] + array[i - 1];
+            }
+            System.out.println(sum);
+        }
     }
 }
