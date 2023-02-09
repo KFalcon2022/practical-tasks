@@ -22,7 +22,7 @@ public class Main {
         List<Car> cars = initCars();
         printList(cars);
 
-        Comparator<Car> numberComparator = new Comparator<Car>() {
+        Comparator<Car> numberComparator = new Comparator<>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getIdentifier().getNumber().compareTo(o2.getIdentifier().getNumber());
@@ -31,7 +31,7 @@ public class Main {
         cars.sort(numberComparator);
         printList(cars);
 
-        cars.sort(new Comparator<Car>() {
+        cars.sort(new Comparator<>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getColor().compareTo(o2.getColor());
@@ -39,7 +39,7 @@ public class Main {
         });
         printList(cars);
 
-        Comparator<Car> yearComparator = new Comparator<Car>() {
+        Comparator<Car> yearComparator = new Comparator<>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getIdentifier().getYear() - o2.getIdentifier().getYear();
