@@ -10,15 +10,13 @@ import java.util.Scanner;
 public class Task5Var2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n;
         System.out.println("Введите целое загаданное число: ");
-        do {
+        int n = scanner.nextInt();
+        while (n != 1) {
+            System.out.println("Не угадал");
+            System.out.println("Вводи еще раз: ");
             n = scanner.nextInt();
-            if (n != 1) {
-                System.out.println("Не угадал");
-                System.out.println("Вводи еще раз: ");
-            }
-        } while (n != 1);
+        }
         scanner.close();
     }
 }
