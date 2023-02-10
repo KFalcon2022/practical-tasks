@@ -15,9 +15,9 @@ public class Main {
 
         CarRepository carRepository = new CarRepository(carCatalogPath);
 
-        carRepository.writeToFile(cars);
+        carRepository.write(cars);
 
-        Car[] newCars = carRepository.createCarArray();
+        Car[] newCars = carRepository.get();
 
         for (Car car : newCars) {
             System.out.println(car);
@@ -25,10 +25,10 @@ public class Main {
 
         Car audi = new Car("Audi", "y543ce", 2015, "black", true);
 
-        carRepository.addCarToFile(audi);
+        carRepository.add(audi);
 
-        carRepository.deleteCarFromFile(bmw);
+        carRepository.delete(bmw);
 
-        carRepository.changeCarData(mazda, "blue", false);
+        carRepository.update(mazda, "blue", false);
     }
 }

@@ -1,4 +1,4 @@
-Mazda;e857kx;2003;blue;false
+Mazda;e857kx;2003;white;true
+BMW;k123kk;2017;black;true
 Mercedes;c777cc;2022;red;true
 Lada;m693pa;1997;yellow;false
-Audi;y543ce;2015;black;true
