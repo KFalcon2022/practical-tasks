@@ -16,9 +16,14 @@ public class Task1 {
         int factorial = 1;
         if (n > 0) {
             for (int i = 1; i <= n; i++) {
-                factorial = factorial * i;
+                factorial *= i;
             }
+        }
+
+        if (n >= 0) {
             System.out.printf("Факториал числа %d равен %d", n, factorial);
-        } else System.out.println("Число должно быть больше нуля");
+        } else {
+            System.out.println("Число не должно быть отрицательным");
+        }
     }
 }

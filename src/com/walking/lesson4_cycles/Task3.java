@@ -20,6 +20,7 @@ public class Task3 {
 
         String firstLastString = " " + "-".repeat(len) + " ";
         String middleString = "|" + " ".repeat(wid) + "|";
+
         System.out.println(firstLastString);
         for (int i = 0; i < wid; i++) {
             System.out.println(middleString);

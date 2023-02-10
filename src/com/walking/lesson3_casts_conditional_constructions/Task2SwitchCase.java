@@ -17,7 +17,7 @@ public class Task2SwitchCase {
         String str = scanner.nextLine();
         scanner.close();
 
-        switch (str){
+        switch (str) {
             case "Hi":
                 str = "Hello";
                 break;

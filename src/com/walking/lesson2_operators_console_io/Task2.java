@@ -13,8 +13,11 @@ public class Task2 {
         System.out.println("Введите два целых числа по порядку: ");
         int a = scanner.nextInt();
         int b = scanner.nextInt();
-        boolean c = (a * a * a) > (b * b);
-        System.out.println(c);
         scanner.close();
+
+        boolean c = (a * a * a) > (b * b);
+
+        System.out.println(c);
+
     }
 }

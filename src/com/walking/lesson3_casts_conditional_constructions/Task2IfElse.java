@@ -17,17 +17,18 @@ public class Task2IfElse {
         String str = scanner.nextLine();
         scanner.close();
 
-        if (str.equals("Hi")){
-            str = "Hello";
-        } else if (str.equals("Bye")){
-            str = "Good bye";
-        } else if (str.equals("How are you")){
-            str = "How are your doing";
+        String result;
+        if ("Hi".equals(str)) {
+            result = "Hello";
+        } else if ("Bye".equals(str)) {
+            result = "Good bye";
+        } else if ("How are you".equals(str)) {
+            result = "How are your doing";
         } else {
-            str = "Unknown message";
+            result = "Unknown message";
         }
 
-        System.out.println(str);
+        System.out.println(result);
 
     }
 }

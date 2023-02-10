@@ -24,16 +24,18 @@ public class Task1 {
         int a = scanner.nextInt();
         int b = scanner.nextInt();
         scanner.close();
+
         int result;
-        if (a % 2 == 0){
+        if (a % 2 == 0) {
             result = a * b;
             System.out.println("Произведение чисел = " + result);
-            if (a == b){
-                System.out.println("Числа равны");
-            }
+
         } else {
             result = a / b;
             System.out.println("Частное чисел = " + result);
+        }
+        if (a == b) {
+            System.out.println("Числа равны");
         }
     }
 }

@@ -19,11 +19,7 @@ public class Task2 {
         scanner.close();
         int sum;
         for (int i = 0; i < array.length; i++) {
-            if (i == 0) {
-                sum = array[i] + array[array.length - 1];
-            } else {
-                sum = array[i] + array[i - 1];
-            }
+            sum = (i==0)?array[i] + array[array.length - 1]:array[i] + array[i - 1];
             System.out.println(sum);
         }
     }

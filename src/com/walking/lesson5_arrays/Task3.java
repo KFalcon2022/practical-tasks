@@ -13,26 +13,28 @@ public class Task3 {
     public static void main(String[] args) {
         int[] array = new int[10];
         int number = 2;
-        for (int i = 0; i < array.length; i++) {
-            boolean isEasy = true;
+        int i = 0;
+        while (array[array.length - 1] == 0) {
+            boolean isPrimeNumber = true;
 
             for (int j = 2; j < number; j++) {
                 if (number % j == 0) {
-                    isEasy = false;
+                    isPrimeNumber = false;
+                    break;
                 }
             }
-            if (isEasy && array[i] == 0) {
+
+            if (isPrimeNumber && array[i] == 0) {
                 array[i] = number;
-                number++;
-            } else {
-                i-=1;
-                number++;
+                i++;
             }
+            number++;
         }
         int sum = 0;
-        for (int element : array){
-            sum = sum + element;
+        for (int element : array) {
+            sum += element;
         }
+
         System.out.println("Сумма элементов массива равна " + sum);
     }
 }

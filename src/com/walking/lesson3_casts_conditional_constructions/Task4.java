@@ -38,10 +38,12 @@ public class Task4 {
         }
 
         if (a % 2 == 0 && a % 3 == 0) {
-            double result = Math.pow(a,b);
-            if (result < Integer.MIN_VALUE || result > Integer.MAX_VALUE){
+            double result = Math.pow(a, b);
+            if (result < Integer.MIN_VALUE || result > Integer.MAX_VALUE) {
                 System.out.println("Результат выражения слишком большой!");
-            } else System.out.println("a в степени b равно " + result);
+            } else {
+                System.out.println("a в степени b равно " + result);
+            }
         }
     }
 }

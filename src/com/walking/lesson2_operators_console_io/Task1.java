@@ -14,14 +14,18 @@ public class Task1 {
         System.out.println("Введите два вещественных числа по порядку: ");
         double a = scanner.nextDouble();
         double b = scanner.nextDouble();
+
         double c =  b*a*(a + b)/(a*a);
+
         System.out.printf("Результат вычисления равен %f \n", c);
 
         System.out.println("Введите два целых числа по порядку: ");
         int aa = scanner.nextInt();
         int bb = scanner.nextInt();
-        int cc =  bb*aa*(aa + bb)/(aa*aa);
-        System.out.printf("Результат вычисления равен %d", cc);
         scanner.close();
+
+        int cc =  bb*aa*(aa + bb)/(aa*aa);
+
+        System.out.printf("Результат вычисления равен %d", cc);
     }
 }

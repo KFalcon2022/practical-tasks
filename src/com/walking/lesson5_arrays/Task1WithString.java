@@ -10,7 +10,7 @@ public class Task1WithString {
         char[] array = {'G', 'a', 'l', 'i', 'n', 'a'};
         String name = "";
         for (char element: array){
-            name = name + element;
+            name += element;
         }
         System.out.println(name);
     }
