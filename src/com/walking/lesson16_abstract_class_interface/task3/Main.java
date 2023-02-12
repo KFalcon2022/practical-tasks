@@ -1,10 +1,13 @@
 package com.walking.lesson16_abstract_class_interface.task3;
 
 import com.walking.lesson16_abstract_class_interface.task3.*;
+import com.walking.lesson16_abstract_class_interface.task3.model.Animal;
 import com.walking.lesson16_abstract_class_interface.task3.model.Cat;
 import com.walking.lesson16_abstract_class_interface.task3.model.Cow;
 import com.walking.lesson16_abstract_class_interface.task3.model.Dog;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -16,24 +19,15 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.print("Enter animal name: ");
-        Scanner sc = new Scanner(System.in);
-        String questionType = sc.nextLine().toLowerCase();
-        System.out.println(question(questionType));
 
-    }
+        Animal[] animalSound = new Animal[3];
+        animalSound[0] = new Cat();
+        animalSound[1] = new Dog();
+        animalSound[2] = new Cow();
 
-    private static String question(String questionType){
-        switch (questionType){
-            case "dog":
-                return new Dog().sound();
-            case "cat":
-                return new Cat().sound();
-            case "Cow":
-                return new Cow().sound();
-            default:
-                return "I dont know this animal!";
-
+        for (int i = 0; i < animalSound.length; i++){
+            System.out.println(animalSound[i].sound());
         }
+
     }
 }
