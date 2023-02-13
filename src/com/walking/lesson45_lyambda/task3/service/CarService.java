@@ -1,6 +1,7 @@
 package com.walking.lesson45_lyambda.task3.service;
 
 import com.walking.lesson45_lyambda.task3.model.Car;
+import com.walking.lesson45_lyambda.task3.model.MyFunctionalInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,18 @@ public class CarService {
                                 result = result.and(o -> o.getIdentifier().getYear() == Integer.parseInt(params[2]));
                         case ">" -> result = result.and(o -> o.getIdentifier().getYear() < Integer.parseInt(params[2]));
                         case "<" -> result = result.and(o -> o.getIdentifier().getYear() > Integer.parseInt(params[2]));
+                        case "between" -> {
+                            String[] years = params[2].split("-");
+                            int begin = Integer.parseInt(years[0]);
+                            int end = Integer.parseInt(years[1]);
+                            if (begin > end || begin == end) {
+                                throw new IllegalArgumentException("Wrong query");
+                            }
+                            result = result.and(o -> {
+                                int year = o.getIdentifier().getYear();
+                                return year > begin && year < end;
+                            });
+                        }
                         default -> throw new IllegalArgumentException("Wrong query");
                     }
                 }
@@ -71,6 +84,52 @@ public class CarService {
         }
 
         return result;
+    }
+
+    //Ну что-то такое...
+    public List<Car> findCarsV2(String query) {
+        List<Car> result = new ArrayList<>();
+        String[] params = query.trim().split(" ");
+
+        if (params.length != 3) {
+            throw new IllegalArgumentException("Wrong query");
+        }
+
+        String filter = params[2];
+
+        for (Car car : cars) {
+            if (parseQueryV2(params).test(car, filter)) {
+                result.add(car);
+            }
+        }
+
+        return result;
+    }
+
+    private MyFunctionalInterface<Car, String> parseQueryV2(String[] params) {
+
+        switch (params[0]) {
+            case "number" -> {
+                switch (params[1]) {
+                    case "contains" -> {
+                        return this::numberContains;
+                    }
+                    case "=" -> {
+                        return this::numberIsEqual;
+                    }
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("Wrong query");
+    }
+
+    private Boolean numberContains(Car car, String filter) {
+        return car.getIdentifier().getNumber().contains(filter);
+    }
+
+    private Boolean numberIsEqual(Car car, String filter) {
+        return car.getIdentifier().getNumber().equals(filter);
     }
 }
 
