@@ -18,15 +18,17 @@ public class Main {
         int sideLength = sc.nextInt();
         sc.close();
 
+		String result = "";
         switch (figureType) {
             case 1:
-                System.out.println(EquilateralShape.EQUILATERAL_TRIANGLE.createShape(sideLength));
+				result = (EquilateralShape.EQUILATERAL_TRIANGLE.createShape(sideLength));
                 break;
             case 2:
-                System.out.println(EquilateralShape.SQUARE.createShape(sideLength));
+                result = EquilateralShape.SQUARE.createShape(sideLength);
                 break;
             default:
-                System.err.println("Unknown figure!");
+				result = "Unknown figure!";
         }
+		System.out.println(result);
     }
 }

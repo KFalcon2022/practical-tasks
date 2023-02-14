@@ -12,10 +12,10 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Animals[] animals = new Animals[]{Animals.CAT,Animals.DOG,Animals.CAT,Animals.COW,Animals.DOG};
-        System.out.println(PrintSounds(animals));
+        System.out.println(printSounds(animals));
 
     }
-    private static String PrintSounds(Animals[] animals){
+    private static String printSounds(Animals[] animals){
         String sounds = "";
         for (int i = 0; i < animals.length; i++){
             sounds += animals[i].getSound() + "\n";
