@@ -1,7 +1,5 @@
 package com.walking.lesson5_arrays;
 
-import java.lang.reflect.Array;
-
 /**
  * Вычислить из записать в массив первые 10 простых чисел.
  * Простое число – положительное целое число,
@@ -14,14 +12,15 @@ public class Task3 {
         int[] array = new int[10];
         int number = 2;
         int i = 0;
-        while (array[array.length - 1] == 0) {
+        while (i < array.length) {
             boolean isPrimeNumber = true;
 
-            for (int j = 2; j < number; j++) {
+            int j = 2;
+            while (isPrimeNumber && j < number){
                 if (number % j == 0) {
                     isPrimeNumber = false;
-                    break;
-                }
+                    }
+                j++;
             }
 
             if (isPrimeNumber && array[i] == 0) {
