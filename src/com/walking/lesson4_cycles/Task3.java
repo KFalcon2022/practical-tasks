@@ -18,8 +18,11 @@ public class Task3 {
         int wid = scanner.nextInt();
         scanner.close();
 
-        String firstLastString = " " + "-".repeat(len) + " ";
-        String middleString = "|" + " ".repeat(wid) + "|";
+        String g = "-";
+        String v = "|";
+        String s = " ";
+        String firstLastString = String.format("%s%s%s", s, g.repeat(len), s);
+        String middleString = String.format("%s%s%s",v, s.repeat(wid), v);
 
         System.out.println(firstLastString);
         for (int i = 0; i < wid; i++) {
