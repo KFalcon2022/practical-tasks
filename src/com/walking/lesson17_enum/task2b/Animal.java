@@ -1,4 +1,4 @@
-package com.walking.lesson18.task2b;
+package com.walking.lesson17_enum.task2b;
 
 enum Animal{
     
