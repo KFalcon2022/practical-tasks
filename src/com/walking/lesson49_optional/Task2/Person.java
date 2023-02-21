@@ -39,7 +39,11 @@ public class Person {
     }
 
     public Person getFirstChild() {
-        return children.isEmpty() ? null : children.get(0);
+        return children.get(0);
+    }
+
+    public Car getCar() {
+        return car;
     }
 
     public void setMother(Person mother) {

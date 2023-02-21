@@ -18,8 +18,8 @@ public class CarService {
         return cars.keySet();
     }
 
-    public Optional<Car> findCar(String number) {
-        return Optional.ofNullable(cars.get(number));
+    public Car findCar(String number) {
+        return cars.get(number);
     }
     // Прошу заметить, что метод тот же что и в первой задаче. Один в один
     // Просто чтоб первую не переписывать

@@ -15,11 +15,7 @@ public class Main {
         CarService carService = new CarService(setup());
 
         for (String number : carService.getRegisteredNumbers()) {
-            System.out.println(
-                    findCarWithRequirements(
-                            carService.findCar(number)
-                    )
-            );
+            findCarWithRequirements(carService.findCar(number));
         }
 
         /* Examples
@@ -32,12 +28,16 @@ public class Main {
         */
     }
 
-    public static Optional<Car> findCarWithRequirements(Optional<Car> number) {
-        return number
+    public static void findCarWithRequirements(Car car) {
+        Optional.of(car)
                 .filter(c -> c.getYear() < 2021)
                 .filter(c -> c.getOwner().getPosition() != Profession.POLICEMAN)
                 .filter(c -> !c.getOwner().getAddress().contains("Рублевское шоссе"))
-                .filter(c -> c.getOwner().getFirstChild().getPosition() != Profession.POLICEMAN);
+                .map(Car::getOwner)
+                .map(Person::getFirstChild)
+                .filter(c -> c.getPosition() != Profession.POLICEMAN)
+                .map(Person::getCar)
+                .ifPresent(System.out::println);
     }
 
     public static Car[] setup() {
