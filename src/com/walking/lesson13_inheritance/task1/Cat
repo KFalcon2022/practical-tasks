@@ -1,0 +1,14 @@
+package com.walking.lesson14;
+
+public class Cat extends Animal {
+
+    void printCat(){
+        System.out.println("I'm a cat");
+    }
+
+    public void color(String color){
+        this.color = color;
+        System.out.println("I'm a "+color+" cat");
+    }
+
+}
