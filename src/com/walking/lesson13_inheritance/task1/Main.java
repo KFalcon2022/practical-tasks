@@ -18,5 +18,13 @@ package com.walking.lesson13_inheritance.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+
+        cat.color("white");
+        dog.color("black");
+
+        cat.printCat();
+        dog.printDog();
     }
 }
