@@ -1,0 +1,12 @@
+package com.walking.lesson14;
+
+public class Dog extends Animal {
+    void printDog(){
+        System.out.println("I'm a dog");
+    }
+
+    public void color(String color) {
+        this.color = color;
+        System.out.println("I'm a "+color+" dog");
+    }
+}
