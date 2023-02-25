@@ -1,0 +1,8 @@
+package com.walking.lesson14;
+
+public class Animal {
+    String color;
+    protected Animal(){
+        System.out.println("I'm an animal");
+    }
+}
