@@ -2,6 +2,8 @@ package com.walking.lesson19_object_methods;
 
 import com.walking.lesson19_object_methods.model.Car;
 
+import javax.sound.midi.Soundbank;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -27,24 +29,23 @@ public class Main {
             new Car("Toyota", "Crown", "2020", "Black", "X777XX777","S220N11-9043234"),
         };
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter car Vendor: ");
-        String vendor = sc.nextLine().toLowerCase().replace(" ", "_");
-        System.out.print("Enter car Model: ");
-        String model = sc.nextLine().toLowerCase().replace(" ", "_");
+
         System.out.print("Enter government registration number: ");
-        String regNum = sc.nextLine().toLowerCase().replace(" ", "");
-        int hashCode = (vendor + model + regNum).hashCode() * 31;
+        String regNum = sc.nextLine().toLowerCase().replace(" ", "").trim();
+        System.out.print("Enter body/frame number or vin: ");
+        String vin = sc.nextLine().toLowerCase().replace(" ", "").trim();
+        Car desired = new Car("", "", "", "", regNum, vin);
 
-        System.out.println(findCar(cars, hashCode));
-
+        System.out.println(findCar(cars, desired));
 
 
         }
 
-        public static String findCar(Car[] cars, int hashCode){
+
+        public static String findCar(Car[] cars, Car obj){
             String result = "Car not found in base!";
             for (int i = 0; i < cars.length; i++) {
-                if (cars[i].hashCode() == hashCode) {
+                if (cars[i].equals(obj)) {
                     result = "\nCar is found!" + "\n" +
                             "Vendor: " + (cars[i].getVendor()) + "\n" +
                             "Model: " + cars[i].getModel() + "\n" +

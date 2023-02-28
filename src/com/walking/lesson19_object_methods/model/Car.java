@@ -15,12 +15,12 @@ public class Car {
 	private String regNumber;
 
 	public Car(String vendor, String model, String issueYear, String color, String regNumber, String vin) {
-		this.vendor = vendor.toLowerCase(Locale.ROOT).replace(" ", "_");
-		this.model = model.toLowerCase(Locale.ROOT).replace(" ", "_");
-		this.issueYear = issueYear;
-		this.color = color.toLowerCase(Locale.ROOT).replace(" ", "_");
-		this.vin = vin.toLowerCase().replace(" ", "").replace("-", "");
-		this.regNumber = regNumber.toLowerCase(Locale.ROOT);
+		this.vendor = vendor.toLowerCase(Locale.ROOT).replace(" ", "_").trim();
+		this.model = model.toLowerCase(Locale.ROOT).replace(" ", "_").trim();
+		this.issueYear = issueYear.trim();
+		this.color = color.toLowerCase(Locale.ROOT).replace(" ", "_").trim();
+		this.vin = vin.toLowerCase().replace(" ", "").replace("-", "").trim();
+		this.regNumber = regNumber.toLowerCase(Locale.ROOT).trim();
 	}
 
 	public String getVendor() {
@@ -49,9 +49,24 @@ public class Car {
 
 	@Override
 	public int hashCode(){
-		int result = ((vendor !=null) && (model != null) && (regNumber != null)) ?
-											(vendor + model + regNumber).hashCode() : 0;
+		int result = (vin != null) && (regNumber != null) ?
+											(regNumber + vin).hashCode() : 0;
 		return result * 31;
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == this) {
+			return true;
+		}
+
+		if (o == null || o.getClass() != getClass()) {
+			return false;
+		}
+
+		return this.regNumber.equals(((Car) o).getRegNumber())
+							&& this.vin.equals(((Car) o).getVin());
 	}
 
 
