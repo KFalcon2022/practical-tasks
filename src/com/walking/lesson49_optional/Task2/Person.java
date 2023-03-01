@@ -38,8 +38,8 @@ public class Person {
         children.add(child);
     }
 
-    public Person getFirstChild() {
-        return children.get(0);
+    public List<Person> getChildren() {
+        return children;
     }
 
     public Car getCar() {

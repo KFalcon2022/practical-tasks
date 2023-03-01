@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public class Main {
 
+    private static Object List;
+
     public static void main(String[] args) {
         CarService carService = new CarService(setup());
 
@@ -29,13 +31,38 @@ public class Main {
     }
 
     public static void findCarWithRequirements(Car car) {
+        /*
         Optional.of(car)
                 .filter(c -> c.getYear() < 2021)
-                .filter(c -> c.getOwner().getPosition() != Profession.POLICEMAN)
-                .filter(c -> !c.getOwner().getAddress().contains("Рублевское шоссе"))
+                .filter(c -> Optional.ofNullable(c)
+                        .map(Car::getOwner)
+                        .map(Person::getPosition)
+                        .filter(p -> p == Profession.POLICEMAN )
+                        .isEmpty())
+                .filter(c -> Optional.ofNullable(c)
+                        .map(Car::getOwner)
+                        .map(Person::getAddress)
+                        .filter(a -> a.contains("Рублевское шоссе"))
+                        .isEmpty())
                 .map(Car::getOwner)
-                .map(Person::getFirstChild)
-                .filter(c -> c.getPosition() != Profession.POLICEMAN)
+                .filter(o -> Optional.ofNullable(o.getChildren())
+                        .flatMap(l -> l.stream().findFirst())
+                        .map(Person::getPosition)
+                        .filter(p -> p == Profession.POLICEMAN )
+                        .isEmpty())
+                .map(Person::getCar)
+                .ifPresent(System.out::println);
+         */
+        Optional.of(car)
+                .filter(c -> c.getYear() < 2021)
+                .map(Car::getOwner)
+                .filter(p -> p.getPosition() != Profession.POLICEMAN)
+                .filter(p -> ! p.getAddress().contains("Рублевское шоссе"))
+                .filter(o -> Optional.ofNullable(o.getChildren())
+                        .flatMap(l -> l.stream().findFirst())
+                        .map(Person::getPosition)
+                        .filter(p -> p == Profession.POLICEMAN )
+                        .isEmpty())
                 .map(Person::getCar)
                 .ifPresent(System.out::println);
     }
