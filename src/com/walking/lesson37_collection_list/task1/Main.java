@@ -1,15 +1,55 @@
 package com.walking.lesson37_collection_list.task1;
 
+import com.walking.lesson37_collection_list.task1.model.Counter;
+import com.walking.lesson37_collection_list.task1.service.CounterService;
+
+import java.util.ArrayList;
+
 /**
- * Р РµР°Р»РёР·СѓР№С‚Рµ Р·Р°РґР°С‡Сѓ
- * <a href="https://github.com/KFalcon2022/CounterAggregation">...</a>, РёСЃРїРѕР»СЊР·СѓСЏ ArrayList.
- * Р РµРєРѕРјРµРЅРґСѓСЋ РјР°РєСЃРёРјР°Р»СЊРЅРѕ СЂР°СЃС€РёСЂРёС‚СЊ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚СЊ СЃРµСЂРІРёСЃР° (РЅРµ РІ СѓС‰РµСЂР± Р·РґСЂР°РІРѕРјСѓ СЃРјС‹СЃР»Сѓ),
- * С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ РІ СЂР°Р±РѕС‚Рµ РєР°Рє РјРѕР¶РЅРѕ Р±РѕР»СЊС€РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РјРµС‚РѕРґРѕРІ СЃРїРёСЃРєР°.
+ * Реализуйте задачу
+ * <a href="https://github.com/KFalcon2022/CounterAggregation">...</a>, используя ArrayList.
+ * Рекомендую максимально расширить функциональность сервиса (не в ущерб здравому смыслу),
+ * чтобы посмотреть в работе как можно большее количество методов списка.
  * <p>
- * РћРїС†РёРѕРЅР°Р»СЊРЅРѕРµ СѓСЃР»РѕРІРёРµ: Р·Р°РјРµРЅРёС‚Рµ ArrayList РЅР° Vector.
- * РР·РјРµРЅРёР»РѕСЃСЊ Р»Рё С‡С‚Рѕ-С‚Рѕ РІ РєРѕРґРѕРІРѕР№ Р±Р°Р·Рµ РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё СЃРїРёСЃРєР° РґСЂСѓРіРѕР№ СЂРµР°Р»РёР·Р°С†РёРё?
+ * Опциональное условие: замените ArrayList на Vector.
+ * Изменилось ли что-то в кодовой базе при использовании списка другой реализации?
  */
 public class Main {
+    public static final String GAS_COUNTER_NAME = "Gas";
+    public static final String COLD_WATER_COUNTER_NAME = "Cold water";
+    public static final String HOT_WATER_COUNTER_NAME = "Hot water";
+    public static final String ELECTRIC_COUNTER_NAME = "Electricity";
+
+    public static final String M_3_UNIT = "m3";
+    public static final String KW_H_UNIT = "kilowatt per hour";
+
     public static void main(String[] args) {
+        Counter gasCounter = new Counter(GAS_COUNTER_NAME, M_3_UNIT);
+        Counter coldWaterCounter = new Counter(COLD_WATER_COUNTER_NAME, M_3_UNIT);
+        Counter hotWaterCounter = new Counter(HOT_WATER_COUNTER_NAME, M_3_UNIT);
+
+        Counter electricCounter = new Counter(ELECTRIC_COUNTER_NAME, KW_H_UNIT);
+        electricCounter.setValue(15);
+
+        CounterService counterService = new CounterService(gasCounter, coldWaterCounter);
+        counterService.addCounter(hotWaterCounter);
+        counterService.addCounter(electricCounter);
+
+        counterService.increaseCounter(GAS_COUNTER_NAME, 100);
+        counterService.increaseCounter(coldWaterCounter, 10);
+
+        printCounterValues(counterService.getAllCounters());
+
+        counterService.reset(gasCounter);
+        counterService.decrementCounter(COLD_WATER_COUNTER_NAME);
+        counterService.deleteCounter(hotWaterCounter);
+
+        printCounterValues(counterService.getAllCounters());
+    }
+
+    private static void printCounterValues(ArrayList<Counter> counters) {
+        for (Counter counter : counters) {
+            System.out.printf("%s: %s\n", counter.getName(), counter.getValue());
+        }
     }
 }
