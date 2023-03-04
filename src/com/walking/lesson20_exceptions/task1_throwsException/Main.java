@@ -1,5 +1,11 @@
 package com.walking.lesson20_exceptions.task1_throwsException;
 
+import com.walking.lesson20_exceptions.task1_throwsException.model.File;
+import com.walking.lesson20_exceptions.task1_throwsException.model.InfoType;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
  * <p>
@@ -11,11 +17,31 @@ package com.walking.lesson20_exceptions.task1_throwsException;
  * Если файл с названием, введенным пользователем с клавиатуры,
  * существует – вывести на экран информацию о нем
  * (допустимо использовать переопределенный toString()).
- * Если нет, то выбросьте исключение FileNotFoundException.
- * <p>
- * Подсказка: throws можно использовать в том числе в main().
+ * Если нет, то выведите сообщение «Искомый файл не существует».
  */
 public class Main {
     public static void main(String[] args) {
+        File[] files = new File[]{
+                new File("pizda", 6, InfoType.PICTURE),
+                new File("polovaya_eblya", 132, InfoType.VIDEO),
+                new File("instruction", 2, InfoType.TEXT),
+                new File("tractor_driver", 300, InfoType.VIDEO),
+                new File("weekends", 40, InfoType.PICTURE)
+        };
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter find file name: ");
+        String name;
+        name = sc.nextLine();
+
+        try {
+            File findedFile = FindFile.findFile(files, name);
+            System.out.println(findedFile);
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+
+
     }
+
 }
