@@ -31,7 +31,11 @@ public class Main {
         Counter electricCounter = new Counter(ELECTRIC_COUNTER_NAME, KW_H_UNIT);
         electricCounter.setValue(15);
 
-        CounterService counterService = new CounterService(gasCounter, coldWaterCounter);
+        ArrayList<Counter> counters = new ArrayList<>();
+
+        CounterService counterService = new CounterService(counters);
+        counterService.addCounter(gasCounter);
+        counterService.addCounter(coldWaterCounter);
         counterService.addCounter(hotWaterCounter);
         counterService.addCounter(electricCounter);
 

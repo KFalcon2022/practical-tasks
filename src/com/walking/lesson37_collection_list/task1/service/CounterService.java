@@ -8,9 +8,8 @@ import java.util.List;
 public class CounterService {
     private ArrayList<Counter> counters;
 
-    public CounterService(Counter... counter) {
-       counters = new ArrayList<>();
-       counters.addAll(List.of(counter));
+    public CounterService(ArrayList<Counter> counters) {
+       this.counters = counters;
     }
 
     public ArrayList<Counter> getAllCounters() {
