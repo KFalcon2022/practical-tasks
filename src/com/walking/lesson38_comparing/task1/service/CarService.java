@@ -33,14 +33,14 @@ public class CarService {
 
     public ArrayList<Car> sortByNumber() {
         Comparator numberComparator = new NumberComparator();
-        Collections.sort(carList, numberComparator);
+        carList.sort(numberComparator);
 
         return carList;
     }
 
     public ArrayList<Car> sortByColor() {
         Comparator colorComparator = new ColorComparator();
-        Collections.sort(carList, colorComparator);
+        carList.sort(colorComparator);
 
         return carList;
     }
@@ -54,7 +54,7 @@ public class CarService {
 
     public ArrayList<Car> sortByNumberYear() {
         Comparator numberYearComparator = new NumberComparator().thenComparing(new YearComparator());
-        Collections.sort(carList, numberYearComparator);
+        carList.sort(numberYearComparator);
 
         return carList;
     }
