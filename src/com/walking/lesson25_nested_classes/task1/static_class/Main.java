@@ -1,4 +1,5 @@
 package com.walking.lesson25_nested_classes.task1.static_class;
+import com.walking.lesson25_nested_classes.task1.static_class.model.EquilateralShape;
 
 import java.util.Scanner;
 
@@ -24,135 +25,119 @@ public class Main {
             return;
         }
 
-        EquilateralShape shape = new EquilateralShape(shapeType, length);
-        System.out.println(shape.CreateShape());
-
+        switch (shapeType){
+            case 1:
+                Square square = new Square(length);
+                System.out.println(square.createShapeString());
+            case 2:
+                EquilateralTriangle triangle = new EquilateralTriangle(length);
+                System.out.println(triangle.createShapeString());
+        }
     }
 
 
-    private static class EquilateralShape {
-        String EMPTY_ELEMENT = " ";
-        String EMPTY_STRING = "";
-        char NEW_LINE_SYMBOL = '\n';
-        private final int type;
+    public static class Square implements EquilateralShape {
+        public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
+        public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
+
         private final int length;
 
-        public EquilateralShape(int type, int length) {
-            this.type = type;
+        public Square(int length) {
             this.length = length;
         }
 
-        public String CreateShape() {
-            String shape = "";
-            switch (type) {
-                case 1:
-                    Square square = new Square(length);
-                    shape = square.createSquare();
-                    break;
-                case 2:
-                    EquilateralTriangle triangle = new EquilateralTriangle(length);
-                    shape = triangle.createTriangle();
-                    break;
-            }
-            return shape;
+        @Override
+        public int getLength() {
+            return length;
         }
 
-        private class Square {
-            public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
-            public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
+        @Override
+        public String createShapeString() {
+            String horizontalLine = createHorizontalLine(length);
+            String verticalLines = createVerticalLines(length);
 
-            private final int length;
-
-            public Square(int length) {
-                this.length = length;
-            }
-
-            public String createSquare() {
-                String horizontalLine = createHorizontalLine(length);
-                String verticalLines = createVerticalLines(length);
-
-                return horizontalLine + verticalLines + horizontalLine;
-            }
-
-            private String createHorizontalLine(int length) {
-                String horizontalLine = EMPTY_ELEMENT;
-
-                for (int i = 0; i < length; i++) {
-                    horizontalLine += RECTANGLE_HORIZONTAL_ELEMENT;
-                }
-
-                horizontalLine += EMPTY_ELEMENT + NEW_LINE_SYMBOL;
-
-                return horizontalLine;
-            }
-
-            private String createVerticalLines(int length) {
-                String verticalLinesUnit = getVerticalLinesUnit(length);
-
-                String verticalLines = EMPTY_STRING;
-
-                for (int i = 0; i < length; i++) {
-                    verticalLines += verticalLinesUnit;
-                }
-
-                return verticalLines;
-            }
-
-            private String getVerticalLinesUnit(int length) {
-                String verticalLinesUnit = RECTANGLE_VERTICAL_ELEMENT;
-
-                for (int i = 0; i < length; i++) {
-                    verticalLinesUnit += EMPTY_ELEMENT;
-                }
-
-                verticalLinesUnit += RECTANGLE_VERTICAL_ELEMENT + NEW_LINE_SYMBOL;
-
-                return verticalLinesUnit;
-            }
+            return horizontalLine + verticalLines + horizontalLine;
         }
 
-        private class EquilateralTriangle {
+        private String createHorizontalLine(int length) {
+            String horizontalLine = EMPTY_ELEMENT;
 
-            public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
-            public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
-            public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
-
-
-            private final int length;
-
-            public EquilateralTriangle(int length) {
-                this.length = length;
+            for (int i = 0; i < length; i++) {
+                horizontalLine += RECTANGLE_HORIZONTAL_ELEMENT;
             }
 
-            public int getLength() {
-                return length;
+            horizontalLine += EMPTY_ELEMENT + NEW_LINE_SYMBOL;
+
+            return horizontalLine;
+        }
+
+        private String createVerticalLines(int length) {
+            String verticalLinesUnit = getVerticalLinesUnit(length);
+
+            String verticalLines = EMPTY_STRING;
+
+            for (int i = 0; i < length; i++) {
+                verticalLines += verticalLinesUnit;
             }
 
-            public String createTriangle() {
-                String triangle = EMPTY_STRING;
+            return verticalLines;
+        }
 
-                for (int i = 0; i < length; i++) {
-                    for (int j = 0; j < length - i; j++) {
-                        triangle += EMPTY_ELEMENT;
-                    }
+        private String getVerticalLinesUnit(int length) {
+            String verticalLinesUnit = RECTANGLE_VERTICAL_ELEMENT;
 
-                    triangle += TRIANGLE_LEFT_SIDE_ELEMENT;
+            for (int i = 0; i < length; i++) {
+                verticalLinesUnit += EMPTY_ELEMENT;
+            }
 
-                    for (int j = 0; j < i * 2; j++) {
-                        triangle += EMPTY_ELEMENT;
-                    }
+            verticalLinesUnit += RECTANGLE_VERTICAL_ELEMENT + NEW_LINE_SYMBOL;
 
-                    triangle += TRIANGLE_RIGHT_SIDE_ELEMENT + NEW_LINE_SYMBOL;
+            return verticalLinesUnit;
+        }
+    }
+
+    public static class EquilateralTriangle implements EquilateralShape {
+        public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
+        public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
+        public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
+
+
+        private final int length;
+
+        public EquilateralTriangle(int length) {
+            this.length = length;
+        }
+
+        @Override
+        public int getLength() {
+            return length;
+        }
+
+        @Override
+        public String createShapeString() {
+            String triangle = EMPTY_STRING;
+
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < length - i; j++) {
+                    triangle += EMPTY_ELEMENT;
                 }
 
-                triangle += " ";
+                triangle += TRIANGLE_LEFT_SIDE_ELEMENT;
 
-                for (int i = 0; i < length; i++) {
-                    triangle += TRIANGLE_HORIZONTAL_SIDE_ELEMENT;
+                for (int j = 0; j < i * 2; j++) {
+                    triangle += EMPTY_ELEMENT;
                 }
 
-                return triangle;
+                triangle += TRIANGLE_RIGHT_SIDE_ELEMENT + NEW_LINE_SYMBOL;
             }
+
+            triangle += " ";
+
+            for (int i = 0; i < length; i++) {
+                triangle += TRIANGLE_HORIZONTAL_SIDE_ELEMENT;
+            }
+
+            return triangle;
         }
     }
 }
