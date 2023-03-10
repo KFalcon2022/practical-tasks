@@ -1,9 +1,6 @@
 package com.walking.lesson25_nested_classes.task2.nested_class;
 
 import com.walking.lesson25_nested_classes.task2.nested_class.model.Animal;
-import com.walking.lesson25_nested_classes.task2.nested_class.model.Cat;
-import com.walking.lesson25_nested_classes.task2.nested_class.model.Cow;
-import com.walking.lesson25_nested_classes.task2.nested_class.model.Dog;
 
 /**
  * Реализуйте задачу
@@ -12,7 +9,12 @@ import com.walking.lesson25_nested_classes.task2.nested_class.model.Dog;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[]{new Animal(), new Animal(), new Animal()};
+        Main main = new Main();
+        Animal cat = main.new Cat();
+        Animal cow = main.new Cow();
+        Animal dog = main.new Dog();
+
+        Animal[] animals = new Animal[]{cat, cow, dog};
 
         soundAll(animals);
     }
@@ -22,4 +24,26 @@ public class Main {
             animal.sound();
         }
     }
+
+    public class Cat extends Animal{
+        @Override
+        public void sound() {
+            System.out.println("meow");
+        }
+    }
+
+    public class Cow extends Animal{
+        @Override
+        public void sound() {
+            System.out.println("moo");
+        }
+    }
+
+    public class Dog extends Animal{
+        @Override
+        public void sound() {
+            System.out.println("woof");
+        }
+    }
+
 }
