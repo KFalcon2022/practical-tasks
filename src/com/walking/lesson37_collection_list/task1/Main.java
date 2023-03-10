@@ -4,6 +4,7 @@ import com.walking.lesson37_collection_list.task1.model.Counter;
 import com.walking.lesson37_collection_list.task1.service.CounterService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Реализуйте задачу
@@ -31,7 +32,7 @@ public class Main {
         Counter electricCounter = new Counter(ELECTRIC_COUNTER_NAME, KW_H_UNIT);
         electricCounter.setValue(15);
 
-        ArrayList<Counter> counters = new ArrayList<>();
+        List<Counter> counters = new ArrayList<>();
 
         CounterService counterService = new CounterService(counters);
         counterService.addCounter(gasCounter);
@@ -51,7 +52,7 @@ public class Main {
         printCounterValues(counterService.getAllCounters());
     }
 
-    private static void printCounterValues(ArrayList<Counter> counters) {
+    private static void printCounterValues(List<Counter> counters) {
         for (Counter counter : counters) {
             System.out.printf("%s: %s\n", counter.getName(), counter.getValue());
         }

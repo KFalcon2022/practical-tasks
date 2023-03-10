@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CounterService {
-    private ArrayList<Counter> counters;
+    private final List<Counter> counters;
 
-    public CounterService(ArrayList<Counter> counters) {
-       this.counters = counters;
+    public CounterService(List<Counter> counters) {
+       this.counters = new ArrayList<>(counters);
     }
 
-    public ArrayList<Counter> getAllCounters() {
+    public List<Counter> getAllCounters() {
         return counters;
     }
 
@@ -32,11 +32,8 @@ public class CounterService {
         return counters.get(counters.size() - 1);
     }
 
-    public Counter deleteCounter(Counter counter) {
+    public void deleteCounter(Counter counter) {
         counters.remove(counter);
-        counters.trimToSize();
-
-        return counters.get(counters.size() - 1);
     }
 
     public Counter increaseCounter(String name, int value) {

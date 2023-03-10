@@ -1,9 +1,10 @@
 package com.walking.lesson38_comparing.task2;
 
 import com.walking.lesson38_comparing.task2.model.Car;
-import com.walking.lesson38_comparing.task2.service.CarService;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Используя классы-сущности из задачи
@@ -16,13 +17,13 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        CarService carService = new CarService(initCars());
+        List<Car> cars = initCars();
 
-        carService.sort();
-        System.out.println(carService.getCarList());
+        cars.sort(Comparator.naturalOrder());
+        System.out.println(cars);
 
-        carService.sortInReverseOrder();
-        System.out.println(carService.getCarList());
+        cars.sort(Comparator.reverseOrder());
+        System.out.println(cars);
     }
 
     private static ArrayList<Car> initCars() {

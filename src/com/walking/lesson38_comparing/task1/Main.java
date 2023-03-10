@@ -1,10 +1,11 @@
 package com.walking.lesson38_comparing.task1;
 
+import com.walking.lesson38_comparing.task1.exception.IncorrectNumberException;
 import com.walking.lesson38_comparing.task1.model.Car;
-import com.walking.lesson38_comparing.task1.model.CarIdentifier;
-import com.walking.lesson38_comparing.task1.service.CarService;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -20,45 +21,56 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        CarService carService = new CarService(initCars());
+        List<Car> cars = initCars();
 
-        sortCars(carService);
+        Comparator<Car> colorComparator = new Comparator<>() {
+            @Override
+            public int compare(Car firstCar, Car secondCar) {
+                return firstCar.getColor().compareTo(secondCar.getColor());
+            }
+        };
 
-        System.out.println(carService.getCarList());
-    }
+        Comparator<Car> numberComparator = new Comparator<>() {
+            @Override
+            public int compare(Car firstCar, Car secondCar) {
+                return firstCar.getIdentifier().getNumber().compareTo(secondCar.getIdentifier().getNumber());
+            }
+        };
 
-    public static ArrayList<Car> sortCars(CarService carService) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter sort number:\n" +
-                "1. Sort cars by color\n" +
-                "2. Sort cars by number\n" +
-                "3. Sort cars by year\n" +
-                "4. Sort cars by number and year");
+        Comparator<Car> yearComparator = new Comparator<>() {
+            @Override
+            public int compare(Car firstCar, Car secondCar) {
+                return  firstCar.getIdentifier().getYear() - secondCar.getIdentifier().getYear();
+            }
+        };
 
-        int number = scanner.nextInt();
-        scanner.close();
+        int number = getSortType();
 
         switch (number) {
             case (1):
-                return carService.sortByColor();
+                cars.sort(colorComparator);
+                break;
 
             case (2):
-                return carService.sortByNumber();
+                cars.sort(numberComparator);
+                break;
 
             case (3):
-                return carService.sortByYear();
+                cars.sort(yearComparator);
+                break;
 
             case (4):
-                return carService.sortByNumberYear();
+                cars.sort(numberComparator.thenComparing(yearComparator));
+                break;
 
             default:
-                System.out.println("Number entered incorrectly");
+                throw new IncorrectNumberException("Number entered incorrectly");
         }
 
-        return null;
+        System.out.println(cars);
     }
 
-    private static ArrayList<Car> initCars() {
+    private static List<Car> initCars() {
         Car car1 = new Car("RR-111-RR", 2015, "black", true);
         Car car2 = new Car("RR-222-RR", 2016, "white", true);
         Car car3 = new Car("RR-000-RR", 2017, "yellow", true);
@@ -70,7 +82,7 @@ public class Main {
         Car car9 = new Car("RR-999-RR", 2019, "black", true);
         Car car10 = new Car("RR-000-RR", 2019, "red", true);
 
-        ArrayList<Car> cars = new ArrayList<>(){{
+        List<Car> cars = new ArrayList<>(){{
             add(car1);
             add(car2);
             add(car3);
@@ -84,5 +96,19 @@ public class Main {
         }};
 
         return cars;
+    }
+
+    private static int getSortType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter sort number:\n" +
+                "1. Sort cars by color\n" +
+                "2. Sort cars by number\n" +
+                "3. Sort cars by year\n" +
+                "4. Sort cars by number and year");
+
+        int number = scanner.nextInt();
+        scanner.close();
+
+        return number;
     }
 }
