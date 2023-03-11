@@ -13,7 +13,7 @@ public class Main {
         LocalDate startDate = LocalDate.now().withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        Stream.iterate(startDate.withDayOfMonth(1),
+        Stream.iterate(startDate,
                         date -> date.isBefore(startDate.plusMonths(1)),
                         date -> date.plusDays(1))
                 .map(date -> date.format(formatter))
