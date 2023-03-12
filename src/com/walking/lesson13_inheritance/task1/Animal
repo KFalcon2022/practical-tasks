@@ -1,8 +1,9 @@
 package com.walking.lesson14;
 
-public class Animal {
-    String color;
-    protected Animal(){
+public class Animal { // создаем класс Животное
+    String color; // параметр цвет
+    
+    protected Animal(){ // создаем конструктор Животное, который выводит в консоль сообщение
         System.out.println("I'm an animal");
     }
 }
