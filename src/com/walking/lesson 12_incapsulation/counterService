@@ -29,5 +29,4 @@ public class CounterService {
         counter = 0;
         return counter;
     }
-
 }
