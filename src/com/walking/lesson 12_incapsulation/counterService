@@ -1,4 +1,4 @@
-public class counterService {
+public class CounterService {
     private final String name; // поле Имя
     final String unitName; //поле единица измерения
     int counter; // поле счетчик
