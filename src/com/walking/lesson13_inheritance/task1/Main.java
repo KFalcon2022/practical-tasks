@@ -16,15 +16,14 @@ package com.walking.lesson13_inheritance.task1;
  * Обратите внимание на консоль.
  * Такой ли порядок сообщений вы ожидали увидеть?
  */
+package com.walking.lesson14;
+
+import com.walking.lesson14.Dog;
+import com.walking.lesson14.Cat;
+
 public class Main {
     public static void main(String[] args) {
-        Cat cat = new Cat();
-        Dog dog = new Dog();
-
-        cat.color("white");
-        dog.color("black");
-
-        cat.printCat();
-        dog.printDog();
+       new Dog("white");
+       new Cat("black");
     }
 }
