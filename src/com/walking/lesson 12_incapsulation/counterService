@@ -1,32 +1,32 @@
 public class counterService {
     private final String name; // поле Имя
-    int counter; // поле счетчик
     final String unitName; //поле единица измерения
-
-    public counterService(String name, int counter, String unitName) { //создаем конструктор
+    int counter; // поле счетчик
+    
+    public CounterService(String name, int counter, String unitName) { //создаем конструктор
         this.name = name; // с полем Имя
         this.counter = counter; // и полем Счетчик
         this.unitName = unitName; // и полем Единица измерения
     }
 
-    public void setCounter(int counter) { //сеттер счетчика на любое число
+    public void SetCounter(int counter) { //сеттер счетчика на любое число
         this.counter = counter;
     }
 
-    public int getCounter() { //геттер значения счетчика
+    public int GetCounter() { //геттер значения счетчика
         return counter;
     }
 
-    public String getName() { //геттер имени счетчика
+    public String GetName() { //геттер имени счетчика
         return name;
     }
-    public int incrimentOne(){ //увеличение на 1
-        counter ++;
+    public int IncrimentOne(){ //увеличение на 1
+        counter++;
         return counter;
     }
 
-    public int setZero() { //присваивание 0 счетчику
-        counter =0;
+    public int reset() { //присваивание 0 счетчику
+        counter = 0;
         return counter;
     }
 
