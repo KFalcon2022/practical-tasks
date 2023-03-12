@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        counterService gas = new CounterService("Gas", 0, "m3");
-        counterService coldwater = new CounterService("Cold water", 10, "m3");
-        counterService hotwater = new CounterService("Hot water", 20, "m3");
-        counterService electro = new CounterService("Electricity", 30, "kWh");
+        CounterService gas = new CounterService("Gas", 0, "m3");
+        CounterService coldwater = new CounterService("Cold water", 10, "m3");
+        CounterService hotwater = new CounterService("Hot water", 20, "m3");
+        CounterService electro = new CounterService("Electricity", 30, "kWh");
 
 
         gas.SetCounter(70);
