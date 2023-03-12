@@ -1,14 +1,12 @@
 package com.walking.lesson14;
 
-public class Cat extends Animal {
-
-    void printCat(){
+public class Cat extends Animal { //класс Cat наследует класс Animal
+    private Cat(){ // создаем приватный конструктор Cat, выводящий сообщение в консоль 
         System.out.println("I'm a cat");
     }
-
-    public void color(String color){
-        this.color = color;
+    
+    public Cat(String color){ //создаем публичный конструктор Cat, запускающий приватный конструктор и выводящий сообщение в консоль
+        this();
         System.out.println("I'm a "+color+" cat");
     }
-
 }
