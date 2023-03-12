@@ -1,5 +1,6 @@
 package com.walking.lesson28_generics1.task3;
 
+import com.walking.lesson28_generics1.task3.exceptions.ValueNotFoundException;
 import com.walking.lesson28_generics1.task3.model.FindingValueInArray;
 
 import java.io.FileNotFoundException;
@@ -20,13 +21,13 @@ public class Main {
 
         try {
             System.out.println("Value is found!: " + genIntArr.findVal(genIntArr.getArr(), genIntArr.getSearchVal()));
-        }catch (FileNotFoundException e){
+        }catch (ValueNotFoundException e){
             System.out.println(e.getMessage());
         }
 
         try {
             System.out.println("Value is found!: " + genStrArr.findVal(genStrArr.getArr(), genStrArr.getSearchVal()));
-        }catch (FileNotFoundException e){
+        }catch (ValueNotFoundException e){
             System.out.println(e.getMessage());
         }
     }

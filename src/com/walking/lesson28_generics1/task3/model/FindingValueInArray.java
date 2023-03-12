@@ -1,5 +1,7 @@
 package com.walking.lesson28_generics1.task3.model;
 
+import com.walking.lesson28_generics1.task3.exceptions.ValueNotFoundException;
+
 import java.io.FileNotFoundException;
 
 public class FindingValueInArray<T>{
@@ -19,14 +21,14 @@ public class FindingValueInArray<T>{
 		return searchVal;
 	}
 
-	public T findVal (T[] arr, T val) throws FileNotFoundException {
+	public T findVal (T[] arr, T val) throws ValueNotFoundException {
 		for (T value : arr) {
 			if (value == val) {
 				return value;
 			}
 
 		}
-		throw new FileNotFoundException("Value not found!");
+		throw new ValueNotFoundException("Value not found!");
 	}
 
 }
