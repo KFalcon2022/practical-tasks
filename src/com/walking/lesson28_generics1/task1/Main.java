@@ -7,5 +7,21 @@ package com.walking.lesson28_generics1.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        ToExp<Double> exp = new ToExp<>();
+        System.out.println(exp.exponentiation(3.0,3 ));
+
+    }
+
+    public static class ToExp<T extends Number> {
+
+        public T exponentiation(T num, Integer exp) {
+            Double result = num.doubleValue();
+
+            for (int i = 1; i < exp; i++) {
+                result *= (double) exp;
+            }
+            return (T)result;
+
+        }
     }
 }
