@@ -29,4 +29,13 @@ public class CarService {
         return false;
 
     }
+
+    public boolean checkCar(Car car){
+        for (Car c: cars) {
+            if (c.equals(car)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

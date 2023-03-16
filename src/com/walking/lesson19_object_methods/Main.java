@@ -31,6 +31,8 @@ public class Main {
         in.close();
 
         CarService cs = new CarService();
-        cs.checkCar(govNumber, mark, color);
+        System.out.println(cs.checkCar(govNumber, mark, color));
+        System.out.println(cs.checkCar(new Car(govNumber, color, mark)));
+
     }
 }
