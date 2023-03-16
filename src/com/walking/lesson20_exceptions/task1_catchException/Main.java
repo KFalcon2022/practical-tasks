@@ -1,5 +1,8 @@
 package com.walking.lesson20_exceptions.task1_catchException;
 
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
  * <p>
@@ -14,6 +17,25 @@ package com.walking.lesson20_exceptions.task1_catchException;
  * Если нет, то выведите сообщение «Искомый файл не существует».
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        FileService fs = new FileService(
+                new File("text", FileType.text, 123),
+                new File("image",FileType.image,100222),
+                new File("audio",FileType.audio, 3567788),
+                new File("video",FileType.video,700999999)
+        );
+        Scanner in = new Scanner(System.in);
+        System.out.println("File name:");
+        String name = in.next();
+        System.out.println("File type:");
+        String type = in.next();
+        FileType ft;
+        try {
+            ft = FileType.valueOf(type);
+        } catch (Exception e){
+            throw new FileNotFoundException("File type is incorrect!");
+        }
+        System.out.println(fs.findFile(name, ft));
+        System.out.println(fs.findFileWithException(name, ft));
     }
 }
