@@ -49,6 +49,8 @@ public class Main {
 
         Map<String, String> ratio = ratio(departmentList);
 
+        Map<String, Boolean> stringBooleanMap = mByDepartment(departmentList);
+
         System.out.println();
     }
 
@@ -263,7 +265,7 @@ public class Main {
 
     //Задача 15. Предоставьте соотношение женщин и мужчин по каждому департаменту.
     public static Map<String, String> ratio(List<Department> departmentList) {
-       return departmentList.stream()
+        return departmentList.stream()
                 .collect(Collectors.toMap(Department::getName, Main::ratio));
     }
 
@@ -273,5 +275,70 @@ public class Main {
 
         Map<Boolean, List<Employee>> collect = department.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale));
         return "%d/%d".formatted(collect.get(false).size(), collect.get(true).size());
+    }
+
+    //Задача 16. По каждой должности (position) предоставьте список сотрудников, ее занимающих (допустимо ограничиться обозначением сотрудника по имени).
+    public static Map<String, List<Employee>> getEmployeeByPosition(List<Department> departmentList) {
+        return departmentList.stream().flatMap(dep -> dep.getEmployees().stream()).collect(Collectors.groupingBy(Employee::getPosition));
+    }
+
+    //Задача 17. Предоставьте информацию по максимальному возрасту сотрудников в каждом из департаментов.
+    public static Map<String, OptionalInt> getMaxAgeByDepartment(List<Department> departmentList) {
+        return departmentList.stream().collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().mapToInt(Employee::getAge).max()));
+    }
+
+    //Задача 18. Предоставьте список сотрудников женского пола и сотрудников мужского пола в компании.
+    public Map<Boolean, List<Employee>> getEmployeesByGender(List<Department> departmentList) {
+        return departmentList.stream().flatMap(dep -> dep.getEmployees().stream()).collect(Collectors.partitioningBy(Employee::isMale));
+    }
+
+    //Задача 19. Предоставьте список сотрудников женского пола и сотрудников мужского пола и по каждому департаменту.
+    public Map<String, Map<Boolean, List<Employee>>> getEmployeesByGenderByDepartment(List<Department> departmentList) {
+        return departmentList.stream().collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale))));
+    }
+
+    //Задача 20. Предоставьте информацию по разнице в возрасте между самым молодым и самым старым сотрудником по каждому департаменту.
+    public static Map<String, Integer> getAgeRange(List<Department> departmentList) {
+        return departmentList.stream().collect(Collectors.toMap(Department::getName, Main::getAgeRange, (v1, v2) -> v1));
+    }
+
+    public static Integer getAgeRange(Department department) {
+        IntSummaryStatistics intSummaryStatistics = department.getEmployees().stream().mapToInt(Employee::getAge).summaryStatistics();
+
+        return intSummaryStatistics.getMax() - intSummaryStatistics.getMin();
+    }
+
+    //Задача 21. Предоставьте информацию по минимальному, максимальному и среднего возрасту сотрудников на каждой должности.
+    public static Map<String, IntSummaryStatistics> getEmployeeAgeInfoByPosition(List<Department> departmentList) {
+        return departmentList.stream().flatMap(dep -> dep.getEmployees().stream()).collect(Collectors.groupingBy(Employee::getPosition, Collectors.summarizingInt(Employee::getAge)));
+    }
+
+    //Задача 22. Предоставьте список всех сотрудников женского пола, если их больше 30, в противном случае – предоставьте список всех сотрудников мужского пола.
+    public static List<Employee> getEmployeeConditional(List<Department> departmentList) {
+        Map<Boolean, List<Employee>> employeesByGender = departmentList.stream().flatMap(dep -> dep.getEmployees().stream()).collect(Collectors.partitioningBy(Employee::isMale));
+        return employeesByGender.get(false).size() < 30 ? employeesByGender.get(false) : employeesByGender.get(true);
+    }
+
+    //Задача 23. Предоставьте информацию, превышает ли численность мужчин в компании численность женщин.
+    public static boolean m(List<Department> departmentList) {
+        Map<Boolean, List<Employee>> employees = departmentList
+                .stream()
+                .flatMap(dep -> dep.getEmployees().stream())
+                .collect(Collectors.partitioningBy(Employee::isMale));
+
+        return employees.get(true).size() > employees.get(false).size();
+    }
+
+    //Задача 24. Предоставьте информацию, превышает ли численность мужчин численность женщин по каждому департаменту.
+    public static Map<String, Boolean> mByDepartment(List<Department> departmentList) {
+        return departmentList
+                .stream()
+                .collect(Collectors.toMap(Department::getName, Main::m));
+    }
+
+    public static boolean m(Department department) {
+        Map<Boolean, List<Employee>> collect = department.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale));
+
+        return collect.get(true).size() > collect.get(false).size();
     }
 }
