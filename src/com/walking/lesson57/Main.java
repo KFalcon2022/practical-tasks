@@ -316,7 +316,7 @@ public class Main {
     //Задача 22. Предоставьте список всех сотрудников женского пола, если их больше 30, в противном случае – предоставьте список всех сотрудников мужского пола.
     public static List<Employee> getEmployeeConditional(List<Department> departmentList) {
         Map<Boolean, List<Employee>> employeesByGender = departmentList.stream().flatMap(dep -> dep.getEmployees().stream()).collect(Collectors.partitioningBy(Employee::isMale));
-        return employeesByGender.get(false).size() < 30 ? employeesByGender.get(false) : employeesByGender.get(true);
+        return employeesByGender.get(false).size() > 30 ? employeesByGender.get(false) : employeesByGender.get(true);
     }
 
     //Задача 23. Предоставьте информацию, превышает ли численность мужчин в компании численность женщин.
