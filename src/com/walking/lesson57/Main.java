@@ -5,7 +5,6 @@ import com.walking.lesson57.model.Employee;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -33,6 +32,7 @@ public class Main {
         String departmentNames = getDepartmentNames(departmentList);
 
         Map<String, Integer> womanCount = getWomanCount(departmentList);
+        Map<String, Long> womanCountV2 = getWomanCountV2(departmentList);
 
         Map<String, List<Employee>> employeesByName = getEmployeesByName(departmentList);
         Map<String, List<Employee>> employeesByNameV2 = getEmployeesByNameV2(departmentList);
@@ -40,19 +40,32 @@ public class Main {
         Map<String, List<Employee>> employeesByNameSorted = getEmployeesByNameSorted(departmentList);
 
         Map<String, Integer> employeesOlderThan50ByDepartment = getEmployeesOlderThan50ByDepartment(departmentList);
+        Map<String, Long> employeesOlderThan50ByDepartmentV2 = getEmployeesOlderThan50ByDepartmentV2(departmentList);
 
         OptionalDouble averageAge = getAverageAge(departmentList);
+
+        Map<String, Double> averageAgeByDepartment = getAverageAgeByDepartment(departmentList);
+        Map<String, Double> averageAgeByDepartmentV2 = getAverageAgeByDepartmentV2(departmentList);
 
         System.out.println();
     }
 
-    public static void init(List<Department> departmentList){
+    public static void init(List<Department> departmentList) {
         Department department1 = new Department();
-        department1.setVacancyAmount(50);
+        department1.setVacancyAmount(900);
         department1.setName("lastDep1");
+
         Department department2 = new Department();
         department2.setVacancyAmount(43);
         department2.setName("dep2");
+
+
+        Department department3 = new Department();
+        department3.setVacancyAmount(900);
+        department3.setName("lastDep1");
+        departmentList.add(department3);
+        addEmployeeToDepV2(department3);
+
         departmentList.add(department1);
         departmentList.add(department2);
 
@@ -61,9 +74,9 @@ public class Main {
     }
 
     public static void addEmployeeToDep(Department department) {
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             Employee employee = new Employee();
-            employee.setAge(i+18);
+            employee.setAge(i + 18);
             employee.setMale(true);
             employee.setName("Employee %d".formatted(i));
             employee.setPosition("Position %d".formatted(i));
@@ -71,11 +84,22 @@ public class Main {
         }
 
         Employee employee = new Employee();
-        employee.setAge(1+50);
+        employee.setAge(1 + 50);
         employee.setMale(false);
         employee.setName("Employee %d".formatted(1));
         employee.setPosition("Position %d".formatted(1));
         department.addEmployee(employee);
+    }
+
+    public static void addEmployeeToDepV2(Department department) {
+        for (int i = 0; i < 100; i++) {
+            Employee employee = new Employee();
+            employee.setAge(50);
+            employee.setMale(true);
+            employee.setName("Employee %d".formatted(i));
+            employee.setPosition("Position %d".formatted(i));
+            department.addEmployee(employee);
+        }
     }
 
     // Задача 1. Предоставьте список всех сотрудников компании.
@@ -85,20 +109,23 @@ public class Main {
                 .flatMap(dep -> dep.getEmployees().stream())
                 .toList();
     }
+
     //Задача 2. Предоставьте полный перечень оригинальных имен сотрудников компании.
     public static Set<String> getUniqueNames(List<Department> department) {
         return department
                 .stream()
-                .flatMap(dep-> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .map(Employee::getName)
                 .collect(Collectors.toSet());
     }
+
     //Задача 3. Предоставьте полный перечень оригинальных имен сотрудников по каждому департаменту.
     public static Map<String, Set<String>> getUniqueNamesInDepartment(List<Department> departmentList) {
-       return departmentList
-               .stream()
-               .collect(Collectors.groupingBy(Department::getName, Collectors.flatMapping(department -> department.getEmployees().stream().map(Employee::getName), Collectors.toSet())));
+        return departmentList
+                .stream()
+                .collect(Collectors.groupingBy(Department::getName, Collectors.flatMapping(department -> department.getEmployees().stream().map(Employee::getName), Collectors.toSet())));
     }
+
     //Задача 4. Предоставьте список всех департаментов в алфавитном порядке в виде LinkedList.
     public static LinkedList<Department> getDepsInNamesOrder(List<Department> departmentList) {
         return departmentList
@@ -106,20 +133,23 @@ public class Main {
                 .sorted(Comparator.comparing(Department::getName))
                 .collect(LinkedList::new, List::add, List::addAll);
     }
+
     //Задача 5. Предоставьте самого старшего обладателя каждого из имен. Попробуйте сделать это без использования downstream.
     public static Map<String, Optional<Employee>> getOldestNameHolderV1(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .flatMap(dep-> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .collect(Collectors.groupingBy(Employee::getName, Collectors.maxBy(Comparator.comparing(Employee::getAge))));
     }
+
     //Задача 5. Предоставьте самого старшего обладателя каждого из имен. Попробуйте сделать это без использования downstream. V2
     public static Map<String, Employee> getOldestNameHolderV2(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .flatMap(dep-> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .collect(Collectors.toMap(Employee::getName, Function.identity(), Main::getOldest));
     }
+
     // до метода getOldestNameHolderV2
     public static Employee getOldest(Employee employee1, Employee employee2) {
         return employee1.getAge() > employee2.getAge() ? employee1 : employee2;
@@ -128,9 +158,9 @@ public class Main {
     //Задача 6. Предоставьте информацию о проценте открытых вакансий относительно текущего числа сотрудников по каждому департаменту.
     public static Map<String, Double> getFreeVacancyPercent(List<Department> departmentList) {
 
-       return departmentList
-               .stream()
-               .collect(Collectors.toMap(Department::getName, Main::getPercent));
+        return departmentList
+                .stream()
+                .collect(Collectors.toMap(Department::getName, Main::getPercent, (v1, v2) -> v1));
     }
 
     public static double getPercent(Department department) {
@@ -166,18 +196,24 @@ public class Main {
                 .collect(Collectors.groupingBy(Department::getName, Collectors.summingInt(dep -> Math.toIntExact(dep.getEmployees().stream().filter(emp -> !emp.isMale()).count()))));
     }
 
+    public static Map<String, Long> getWomanCountV2(List<Department> departmentList) {
+        return departmentList.stream()
+                .collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().filter(emp -> !emp.isMale()).count(), Long::sum));
+    }
+
     //Задача 10. Предоставьте список сотрудников по каждому имени.
     public static Map<String, List<Employee>> getEmployeesByName(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .flatMap(dep-> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .collect(Collectors.groupingBy(Employee::getName));
     }
-    // звращение, но ведь работает)
+
+    // Ивращение, но ведь работает)
     public static Map<String, List<Employee>> getEmployeesByNameV2(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .flatMap(dep-> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .collect(Collectors.toMap(Employee::getName, Arrays::asList, (v1, v2) -> {
                     ArrayList<Employee> newList = new ArrayList<>();
                     newList.addAll(v1);
@@ -190,7 +226,7 @@ public class Main {
     public static Map<String, List<Employee>> getEmployeesByNameSorted(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .flatMap(dep-> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .sorted(Comparator.comparing(Employee::getName))
                 .collect(Collectors.groupingBy(Employee::getName, LinkedHashMap::new, Collectors.toList()));
     }
@@ -198,17 +234,36 @@ public class Main {
     //Задача 12. Предоставьте количество сотрудников старше 50 по каждому департаменту.
     // Da,da никаких цифр в названии методов...
     public static Map<String, Integer> getEmployeesOlderThan50ByDepartment(List<Department> departmentList) {
-       return departmentList
-               .stream()
-               .collect(Collectors.groupingBy(Department::getName, Collectors.summingInt(dep-> Math.toIntExact(dep.getEmployees().stream().filter(emp -> emp.getAge() > 50).count()))));
+        return departmentList
+                .stream()
+                .collect(Collectors.groupingBy(Department::getName, Collectors.summingInt(dep -> Math.toIntExact(dep.getEmployees().stream().filter(emp -> emp.getAge() > 50).count()))));
+    }
+
+    public static Map<String, Long> getEmployeesOlderThan50ByDepartmentV2(List<Department> departmentList) {
+        return departmentList
+                .stream()
+                .collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().filter(emp -> emp.getAge() > 50).count(), Long::sum));
     }
 
     //Задача 13. Предоставьте информацию о среднем возрасте сотрудников компании.
     public static OptionalDouble getAverageAge(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .flatMap(dep->dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream())
                 .mapToInt(Employee::getAge)
                 .average();
     }
+
+    //Задача 14. Предоставьте информацию о среднем возрасте сотрудников по каждому департаменту.
+    public static Map<String, Double> getAverageAgeByDepartment(List<Department> departmentList) {
+        return departmentList
+                .stream()
+                .collect(Collectors.groupingBy(Department::getName, Collectors.averagingDouble(dep -> dep.getEmployees().stream().mapToDouble(Employee::getAge).average().orElse(0))));
+    }
+
+    public static Map<String, Double> getAverageAgeByDepartmentV2(List<Department> departmentList) {
+        return departmentList.stream()
+                .collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().mapToDouble(Employee::getAge).average().orElse(0), (v1, v2) -> v1));
+    }
+
 }
