@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Department {
     private String name;
-    private List<Employee> employees = new ArrayList<>();
+    private final List<Employee> employees = new ArrayList<>();
     private int vacancyAmount;
 
     public String getName() {
