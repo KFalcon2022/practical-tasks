@@ -47,6 +47,8 @@ public class Main {
         Map<String, Double> averageAgeByDepartment = getAverageAgeByDepartment(departmentList);
         Map<String, Double> averageAgeByDepartmentV2 = getAverageAgeByDepartmentV2(departmentList);
 
+        Map<String, String> ratio = ratio(departmentList);
+
         System.out.println();
     }
 
@@ -58,13 +60,6 @@ public class Main {
         Department department2 = new Department();
         department2.setVacancyAmount(43);
         department2.setName("dep2");
-
-
-        Department department3 = new Department();
-        department3.setVacancyAmount(900);
-        department3.setName("lastDep1");
-        departmentList.add(department3);
-        addEmployeeToDepV2(department3);
 
         departmentList.add(department1);
         departmentList.add(department2);
@@ -160,7 +155,7 @@ public class Main {
 
         return departmentList
                 .stream()
-                .collect(Collectors.toMap(Department::getName, Main::getPercent, (v1, v2) -> v1));
+                .collect(Collectors.toMap(Department::getName, Main::getPercent));
     }
 
     public static double getPercent(Department department) {
@@ -263,7 +258,20 @@ public class Main {
 
     public static Map<String, Double> getAverageAgeByDepartmentV2(List<Department> departmentList) {
         return departmentList.stream()
-                .collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().mapToDouble(Employee::getAge).average().orElse(0), (v1, v2) -> v1));
+                .collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().mapToDouble(Employee::getAge).average().orElse(0)));
     }
 
+    //Задача 15. Предоставьте соотношение женщин и мужчин по каждому департаменту.
+    public static Map<String, String> ratio(List<Department> departmentList) {
+       return departmentList.stream()
+                .collect(Collectors.toMap(Department::getName, Main::ratio));
+    }
+
+    public static String ratio(Department department) {
+//        long count = department.getEmployees().stream().filter(Employee::isMale).count();
+//        return "%d/%d".formatted(department.getEmployees().size() - count, count);
+
+        Map<Boolean, List<Employee>> collect = department.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale));
+        return "%d/%d".formatted(collect.get(false).size(), collect.get(true).size());
+    }
 }
