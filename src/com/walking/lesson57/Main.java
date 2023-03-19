@@ -103,7 +103,7 @@ public class Main {
     public static List<Employee> getAllEmployees(List<Department> department) {
         return department
                 .stream()
-                .flatMap(dep -> dep.getEmployees().stream())
+                .flatMap(dep -> dep.getEmployees().stream()) //map(Department::getEmployees).flatMap(Collection::stream)
                 .toList();
     }
 
@@ -128,7 +128,7 @@ public class Main {
         return departmentList
                 .stream()
                 .sorted(Comparator.comparing(Department::getName))
-                .collect(LinkedList::new, List::add, List::addAll);
+                .collect(LinkedList::new, List::add, List::addAll);//collect(Collectors.toCollection(LinkedList::new))
     }
 
     //Задача 5. Предоставьте самого старшего обладателя каждого из имен. Попробуйте сделать это без использования downstream.
@@ -175,7 +175,7 @@ public class Main {
     public static int getFreeVacancyCount(List<Department> departmentList) {
         return departmentList
                 .stream()
-                .mapToInt(dep -> dep.getVacancyAmount() - dep.getEmployees().size())
+                .mapToInt(dep -> dep.getVacancyAmount() - dep.getEmployees().size())//алось на увазі всіх вакансій, тому mapToInt()
                 .sum();
     }
 
@@ -188,6 +188,13 @@ public class Main {
     }
 
     //Задача 9. Предоставьте информацию по числу женщин в каждом департаменте.
+    //.collect(Collectors.groupingBy(
+    //                        Department::getName,
+    //                        Collectors.flatMapping(
+    //                                department -> department.getEmployees()
+    //                                        .stream()
+    //                                        .filter(Predicate.not(Employee::isMale)),
+    //                                Collectors.counting())));
     public static Map<String, Integer> getWomanCount(List<Department> departmentList) {
         return departmentList.stream()
                 .collect(Collectors.groupingBy(Department::getName, Collectors.summingInt(dep -> Math.toIntExact(dep.getEmployees().stream().filter(emp -> !emp.isMale()).count()))));
@@ -224,12 +231,14 @@ public class Main {
         return departmentList
                 .stream()
                 .flatMap(dep -> dep.getEmployees().stream())
-                .sorted(Comparator.comparing(Employee::getName))
-                .collect(Collectors.groupingBy(Employee::getName, LinkedHashMap::new, Collectors.toList()));
+                .sorted(Comparator.comparing(Employee::getName)) //можливо пропустити
+                .collect(Collectors.groupingBy(Employee::getName, LinkedHashMap::new, Collectors.toList())); //.collect(Collectors.groupingBy(Employee::getName, TreeMap::new, Collectors.toList()));
     }
 
     //Задача 12. Предоставьте количество сотрудников старше 50 по каждому департаменту.
     // Da,da никаких цифр в названии методов...
+
+    //Collectors.flatMapping
     public static Map<String, Integer> getEmployeesOlderThan50ByDepartment(List<Department> departmentList) {
         return departmentList
                 .stream()
@@ -252,6 +261,7 @@ public class Main {
     }
 
     //Задача 14. Предоставьте информацию о среднем возрасте сотрудников по каждому департаменту.
+    //Collectors.flatMapping
     public static Map<String, Double> getAverageAgeByDepartment(List<Department> departmentList) {
         return departmentList
                 .stream()
@@ -264,6 +274,13 @@ public class Main {
     }
 
     //Задача 15. Предоставьте соотношение женщин и мужчин по каждому департаменту.
+//    .collect(Collectors.groupingBy(
+//                        Department::getName,
+//                        Collectors.flatMapping(
+//                                department -> department.getEmployees().stream(),
+//                                Collectors.collectingAndThen(
+//                                        Collectors.partitioningBy(Employee::isMale, Collectors.counting()),
+//                                        map -> (double) map.get(true) / map.get(false)))));
     public static Map<String, String> ratio(List<Department> departmentList) {
         return departmentList.stream()
                 .collect(Collectors.toMap(Department::getName, Main::ratio));
@@ -273,7 +290,7 @@ public class Main {
 //        long count = department.getEmployees().stream().filter(Employee::isMale).count();
 //        return "%d/%d".formatted(department.getEmployees().size() - count, count);
 
-        Map<Boolean, List<Employee>> collect = department.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale));
+        Map<Boolean, List<Employee>> collect = department.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale)); //Collectors.partitioningBy(Employee::isMale, Collectors.counting())
         return "%d/%d".formatted(collect.get(false).size(), collect.get(true).size());
     }
 
@@ -286,6 +303,13 @@ public class Main {
     public static Map<String, OptionalInt> getMaxAgeByDepartment(List<Department> departmentList) {
         return departmentList.stream().collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().mapToInt(Employee::getAge).max()));
     }
+//    .collect(Collectors.groupingBy(
+//            Department::getName,
+//             Collectors.flatMapping(
+//                     department -> department.getEmployees().stream().map(Employee::getAge),
+//                                Collectors.collectingAndThen(
+//                                        Collectors.maxBy(Comparator.naturalOrder()),
+//                                        averageAgeOptional -> averageAgeOptional.orElse(0)))));
 
     //Задача 18. Предоставьте список сотрудников женского пола и сотрудников мужского пола в компании.
     public Map<Boolean, List<Employee>> getEmployeesByGender(List<Department> departmentList) {
@@ -293,11 +317,22 @@ public class Main {
     }
 
     //Задача 19. Предоставьте список сотрудников женского пола и сотрудников мужского пола и по каждому департаменту.
+    //Collectors.flatMapping
     public Map<String, Map<Boolean, List<Employee>>> getEmployeesByGenderByDepartment(List<Department> departmentList) {
         return departmentList.stream().collect(Collectors.toMap(Department::getName, dep -> dep.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale))));
     }
 
     //Задача 20. Предоставьте информацию по разнице в возрасте между самым молодым и самым старым сотрудником по каждому департаменту.
+//        return departments.stream()
+//                .collect(Collectors.toMap(
+//                        Department::getName,
+//                        department -> {
+//                            var sortedAges = department.getEmployees()
+//                                    .stream()
+//                                    .map(Employee::getAge)
+//                                    .collect(Collectors.toCollection(TreeSet::new));
+//                            return sortedAges.isEmpty() ? 0 : sortedAges.last() - sortedAges.first();
+//                        }));
     public static Map<String, Integer> getAgeRange(List<Department> departmentList) {
         return departmentList.stream().collect(Collectors.toMap(Department::getName, Main::getAgeRange, (v1, v2) -> v1));
     }
@@ -314,6 +349,12 @@ public class Main {
     }
 
     //Задача 22. Предоставьте список всех сотрудников женского пола, если их больше 30, в противном случае – предоставьте список всех сотрудников мужского пола.
+//        return departments.stream()
+//                .map(Department::getEmployees)
+//                .flatMap(Collection::stream)
+//                .collect(Collectors.collectingAndThen(Collectors.partitioningBy(Employee::isMale), Optional::of))
+//                .map(map -> map.get(false).size() > 30 ? map.get(false) : map.get(true))
+//                .orElse(List.of());
     public static List<Employee> getEmployeeConditional(List<Department> departmentList) {
         Map<Boolean, List<Employee>> employeesByGender = departmentList.stream().flatMap(dep -> dep.getEmployees().stream()).collect(Collectors.partitioningBy(Employee::isMale));
         return employeesByGender.get(false).size() > 30 ? employeesByGender.get(false) : employeesByGender.get(true);
@@ -325,6 +366,9 @@ public class Main {
                 .stream()
                 .flatMap(dep -> dep.getEmployees().stream())
                 .collect(Collectors.partitioningBy(Employee::isMale));
+//                .collect(Collectors.collectingAndThen(Collectors.partitioningBy(Employee::isMale), Optional::of))
+//                .map(map -> map.get(true).size() > map.get(false).size())
+//                .orElse(false);
 
         return employees.get(true).size() > employees.get(false).size();
     }
@@ -337,6 +381,14 @@ public class Main {
     }
 
     public static boolean m(Department department) {
+//        return departments.stream()
+//                .collect(Collectors.toMap(
+//                        Department::getName,
+//                        department -> department.getEmployees()
+//                                .stream()
+//                                .collect(Collectors.collectingAndThen(
+//                                        Collectors.partitioningBy(Employee::isMale, Collectors.counting()),
+//                                        map -> map.get(true) > map.get(false)))));
         Map<Boolean, List<Employee>> collect = department.getEmployees().stream().collect(Collectors.partitioningBy(Employee::isMale));
 
         return collect.get(true).size() > collect.get(false).size();
