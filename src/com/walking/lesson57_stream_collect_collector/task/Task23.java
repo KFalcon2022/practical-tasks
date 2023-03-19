@@ -18,7 +18,6 @@ public class Task23 implements StatisticTask<Boolean> {
         return departments.stream()
                 .map(Department::getEmployees)
                 .flatMap(Collection::stream)
-                .filter(Predicate.not(Employee::isMale))
                 .collect(Collectors.collectingAndThen(Collectors.partitioningBy(Employee::isMale), Optional::of))
                 .map(map -> map.get(true).size() > map.get(false).size())
                 .orElse(false);

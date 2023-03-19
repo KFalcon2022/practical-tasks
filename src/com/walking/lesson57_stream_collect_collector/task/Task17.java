@@ -23,6 +23,16 @@ public class Task17 implements StatisticTask<Map<String, Integer>> {
                                         .map(Employee::getAge),
                                 Collectors.collectingAndThen(
                                         Collectors.maxBy(Comparator.naturalOrder()),
-                                        averageAgeOptional -> averageAgeOptional.orElse(0)))));
+                                        maxAgeOptional -> maxAgeOptional.orElse(0)))));
+
+//        Альтернативное решение с помощью merge-функции в toMap()
+//        return departments.stream()
+//                .collect(Collectors.toMap(
+//                        Department::getName,
+//                        department -> department.getEmployees()
+//                                .stream()
+//                                .map(Employee::getAge)
+//                                .max(Comparator.naturalOrder())
+//                                .orElse(0)));
     }
 }

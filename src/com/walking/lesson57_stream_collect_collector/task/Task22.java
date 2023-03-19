@@ -32,7 +32,6 @@ public class Task22 implements StatisticTask<List<Employee>> {
 //        return departments.stream()
 //                .map(Department::getEmployees)
 //                .flatMap(Collection::stream)
-//                .filter(Predicate.not(Employee::isMale))
 //                .collect(Collectors.collectingAndThen(Collectors.partitioningBy(Employee::isMale), Optional::of))
 //                .map(map -> map.get(false).size() > 30 ? map.get(false) : map.get(true))
 //                .orElse(List.of());
