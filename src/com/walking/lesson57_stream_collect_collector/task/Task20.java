@@ -23,12 +23,12 @@ public class Task20 implements StatisticTask<Map<String, Integer>> {
                                         department -> department.getEmployees()
                                                 .stream()
                                                 .map(Employee::getAge),
-                                        Collectors.maxBy(Comparator.naturalOrder())),
+                                        Collectors.maxBy(Integer::compareTo)),
                                 Collectors.flatMapping(
                                         department -> department.getEmployees()
                                                 .stream()
                                                 .map(Employee::getAge),
-                                        Collectors.minBy(Comparator.naturalOrder())),
+                                        Collectors.minBy(Integer::compareTo)),
                                 (oldestOptional, youngestOptional) ->
                                         oldestOptional.map(oldest -> oldest - youngestOptional.orElse(0))
                                                 .orElse(0))));
