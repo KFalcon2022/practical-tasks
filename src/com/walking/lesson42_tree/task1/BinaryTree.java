@@ -144,14 +144,9 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     class Node {
-        private int height;
         private T value;
         private Node left;
         private Node right;
-
-        public int getHeight() {
-            return height;
-        }
 
         public Node(T value) {
             this.value = value;
