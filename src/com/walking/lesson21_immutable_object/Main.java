@@ -28,5 +28,11 @@ public class Main {
         CarService cs = new CarService();
         System.out.println(cs.checkCar(govNumber, mark));
         System.out.println(cs.checkCar(new Car(govNumber, "color", mark)));
+
+        Integer i1 = 10;
+        Integer i2 = 50;
+        System.out.println(i1 + i2);
+
+        System.out.println(i1.compareTo(i2));
     }
 }
