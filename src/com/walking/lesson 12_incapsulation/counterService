@@ -9,18 +9,18 @@ public class CounterService {
         this.unitName = unitName; // и полем Единица измерения
     }
 
-    public void SetCounter(int counter) { //сеттер счетчика на любое число
+    public void setCounter(int counter) { //сеттер счетчика на любое число
         this.counter = counter;
     }
 
-    public int GetCounter() { //геттер значения счетчика
+    public int getCounter() { //геттер значения счетчика
         return counter;
     }
 
-    public String GetName() { //геттер имени счетчика
+    public String getName() { //геттер имени счетчика
         return name;
     }
-    public int IncrimentOne(){ //увеличение на 1
+    public int incrimentOne(){ //увеличение на 1
         counter++;
         return counter;
     }
