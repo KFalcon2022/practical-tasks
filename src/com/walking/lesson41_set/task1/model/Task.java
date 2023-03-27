@@ -10,8 +10,4 @@ public class Task {
     public Task(String name) {
         this.name = name;
     }
-
-    public void perform() {
-        System.out.printf("Task \"%s\" in progress\n", getName());
-    }
 }

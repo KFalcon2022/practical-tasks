@@ -3,6 +3,7 @@ package com.walking.lesson41_set.task2;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Реализуйте задачу
@@ -14,7 +15,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter words: ");
-        HashSet<String> words = new HashSet<>(List.of(scanner.nextLine()
+        Set<String> words = new HashSet<>(List.of(scanner.nextLine()
                 .trim()
                 .toLowerCase()
                 .split(" ")));

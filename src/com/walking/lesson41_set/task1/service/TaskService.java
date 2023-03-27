@@ -4,11 +4,12 @@ import com.walking.lesson41_set.task1.model.Task;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class TaskService {
-    private LinkedHashSet<Task> tasks = new LinkedHashSet<>();
+    private Set<Task> tasks = new LinkedHashSet<>();
 
-    public LinkedHashSet<Task> getTasks() {
+    public Set<Task> getTasks() {
         return tasks;
     }
 
@@ -21,11 +22,14 @@ public class TaskService {
     public void perform() {
         Iterator<Task> iterator = tasks.iterator();
 
-        Task task = iterator.next();
-        task.perform();
+        Task task;
 
-        tasks.remove(task);
+        if (iterator.hasNext()) {
+            task = iterator.next();
 
-        System.out.printf("Task \"%s\" completed\n", task.getName());
+            tasks.remove(task);
+
+            System.out.printf("Task \"%s\" completed\n", task.getName());
+        }
     }
 }

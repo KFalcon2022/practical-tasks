@@ -33,11 +33,11 @@ public class BinaryTree<T extends Comparable<T>> {
          root = delete(root, value);
     }
 
-    public void traverseInOrder(Node node) {
+    public void traverseInDirectOrder(Node node) {
         if (node != null) {
-            traverseInOrder(node.left);
+            traverseInDirectOrder(node.left);
             System.out.print(node.value + " ");
-            traverseInOrder(node.right);
+            traverseInDirectOrder(node.right);
         }
     }
 
@@ -68,23 +68,20 @@ public class BinaryTree<T extends Comparable<T>> {
             return new Node(value);
         }
 
-        int result;
-
-        if (comparator != null) {
-            result = comparator.compare(value, node.value);
-        } else {
-            result = value.compareTo(node.value);
-        }
+        int result = compare(value, node.value);
 
         if (result <= 0) {
             node.left = add(node.left, value);
-        }
-
-        if (result > 0) {
+        } else {
             node.right = add(node.right, value);
         }
 
         return node;
+    }
+
+    private int compare(T o1, T o2) {
+        return comparator != null ?
+            comparator.compare(o1, o2) : o1.compareTo(o2);
     }
 
     private boolean containsNode(Node node, T value) {
@@ -118,7 +115,6 @@ public class BinaryTree<T extends Comparable<T>> {
             if (node.right == null) {
                 return node.left;
             }
-
             if (node.left == null) {
                 return node.right;
             }

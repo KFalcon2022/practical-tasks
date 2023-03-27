@@ -31,7 +31,7 @@ public class Main {
 
         System.out.println(integerBinaryTree.containsNode(9));
 
-        integerBinaryTree.traverseInOrder(integerBinaryTree.getRoot());
+        integerBinaryTree.traverseInDirectOrder(integerBinaryTree.getRoot());
         System.out.println("\n");
 
         integerBinaryTree.traverseLevelOrder();
@@ -39,7 +39,7 @@ public class Main {
 
         integerBinaryTree.delete(7);
 
-        integerBinaryTree.traverseInOrder(integerBinaryTree.getRoot());
+        integerBinaryTree.traverseInDirectOrder(integerBinaryTree.getRoot());
         System.out.println("\n");
 
         integerBinaryTree.traverseLevelOrder();
@@ -62,7 +62,7 @@ public class Main {
         stringBinaryTree.add("Tuesday");
         stringBinaryTree.add("Sunday");
 
-        stringBinaryTree.traverseInOrder(stringBinaryTree.getRoot());
+        stringBinaryTree.traverseInDirectOrder(stringBinaryTree.getRoot());
         System.out.println("\n");
 
         stringBinaryTree.traverseLevelOrder();

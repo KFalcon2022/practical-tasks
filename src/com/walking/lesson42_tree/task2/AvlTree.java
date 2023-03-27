@@ -198,7 +198,7 @@ public class AvlTree<T extends Comparable<T>> {
             }
         }
 
-        if (balance < -1) {
+        else if (balance < -1) {
             if (getHeight(node.left.left) > getHeight(node.left.right)) {
                 node = rotateRight(node);
             } else {

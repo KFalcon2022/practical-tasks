@@ -3,11 +3,12 @@ package com.walking.lesson40_queue2.service;
 import com.walking.lesson40_queue2.model.Task;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class TaskService {
-    private ArrayDeque<Task> tasks = new ArrayDeque<>();
+    private Deque<Task> tasks = new ArrayDeque<>();
 
-    public ArrayDeque<Task> getTasks() {
+    public Deque<Task> getTasks() {
         return tasks;
     }
 
@@ -18,9 +19,7 @@ public class TaskService {
     }
 
     public void perform() {
-        Task task = tasks.pollFirst();
-
-        task.perform();
+        Task task = tasks.poll();
 
         System.out.printf("Task \"%s\" completed\n", task.getName());
     }
