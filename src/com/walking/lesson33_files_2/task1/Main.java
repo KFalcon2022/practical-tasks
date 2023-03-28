@@ -11,5 +11,9 @@ package com.walking.lesson33_files_2.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Car car = new Car("c111cc","green","kamaz");
+        CarService cs = new CarService(true);
+        cs.addCar(car, true);
+        System.out.println(cs);
     }
 }
