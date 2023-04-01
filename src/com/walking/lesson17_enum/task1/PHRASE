@@ -1,0 +1,11 @@
+package com.walking.lesson17.task1;
+
+enum PHRASE { //создаем перечисление
+    Hi ("Hello"),Bye ("Good Bye"),Howareyou("How are you doing"); //Создаем наполнение элементами
+        
+        private final String s; //создаем поле у элементов перечисления
+        
+        PHRASE (String s) { //создаем конструктор для создания объекта
+            this.s = s;
+        }
+}
