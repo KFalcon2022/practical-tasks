@@ -14,13 +14,8 @@ public class Main {
             catch (InterruptedException e) {
                 System.out.println("Thread has been interrupted");
             }
-        }, "Sub");
+        });
+
         timer.start();
-        try {
-            timer.join();
-        }
-        catch (InterruptedException e){
-            System.out.println("Thread error");
-        }
     }
 }

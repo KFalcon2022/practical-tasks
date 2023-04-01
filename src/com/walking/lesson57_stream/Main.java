@@ -8,7 +8,7 @@ public class Main {
         //task01(departments); // Full employees list
         //task02(departments); // List of unique names
         //task03(departments); // Unique names by department
-        //LinkedList<String> depNames = task04(departments); // Linked list
+        //LinkedList<Department> depNames = task04(departments); // Linked list
         //task05(departments); // Oldest in department
         //task06(departments); // Vacancy percentage
         //long vacancies = task07(departments); // Total vacancy number
@@ -31,46 +31,42 @@ public class Main {
         //task21(departments); // Position stats
         //task22(departments); //
         //task23(departments); //
-        task24(departments); //
+        //task24(departments); //
     }
 
     // 01 - Full employees list
-    public static void task01(List<Department> departments){
-        departments.stream()
+    public static List<Employee> task01(List<Department> departments){
+        return departments.stream()
                 .map(Department::getEmployees)
                 .flatMap(List::stream)
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
     }
 
     // 02 - List of unique names
-    public static void task02(List<Department> departments){
-        departments.stream()
+    public static Set<String> task02(List<Department> departments){
+        return departments.stream()
                 .map(Department::getEmployees)
                 .flatMap(List::stream)
                 .map(Employee::getName)
-                .distinct().sorted()
-                .forEach(System.out::println);
+                .collect(Collectors.toSet());
     }
 
     // 03 - Unique names by department
-    public static void task03(List<Department> departments) {
-        departments.stream()
+    public static Map<String,Set<String>> task03(List<Department> departments) {
+        return departments.stream()
                 .collect(Collectors.toMap(
                         Department::getName,
                         d -> d.getEmployees()
-                                .stream().map(Employee::getName)
+                                .stream()
+                                .map(Employee::getName)
                                 .collect(Collectors.toSet())
-
-                ))
-                .entrySet()
-                .forEach(System.out::println);
+                ));
     }
 
     // 04 - Linked list
-    public static LinkedList<String> task04(List<Department> departments) {
+    public static LinkedList<Department> task04(List<Department> departments) {
         return departments.stream()
-                .map(Department::getName)
-                .sorted()
+                .sorted(Comparator.comparing(Department::getName))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
