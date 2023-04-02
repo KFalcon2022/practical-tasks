@@ -2,7 +2,6 @@ package com.walking.lesson16.task3;
 
 public class Animal implements Soundable { // имплиментируем интерфейс Soundable
 
-
     protected Animal() {
     }
 
