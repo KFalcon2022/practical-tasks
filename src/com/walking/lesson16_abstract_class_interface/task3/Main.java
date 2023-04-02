@@ -6,9 +6,8 @@ public class Main {
         Animal[] animals = new Animal[]{new Dog(), new Cow(), new Cat()};
 
         soundAll(animals);
-
+        
     }
-
     public static void soundAll(Animal[] animals) {
         for (Animal animal : animals) {
             animal.sound();
