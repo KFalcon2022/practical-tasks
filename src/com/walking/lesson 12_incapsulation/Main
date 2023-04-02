@@ -1,15 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        CounterService gas = new CounterService("Gas", 0, "m3");
-        CounterService coldwater = new CounterService("Cold water", 10, "m3");
-        CounterService hotwater = new CounterService("Hot water", 20, "m3");
-        CounterService electro = new CounterService("Electricity", 30, "kWh");
+        counterService gas = new counterService("Gas", 0, "m3");
+        counterService coldwater = new counterService("Cold water", 10, "m3");
+        counterService hotwater = new counterService("Hot water", 20, "m3");
+        counterService electro = new counterService("Electricity", 30, "kWh");
 
 
-        gas.SetCounter(70);
-        electro.IncrimentOne();
-        coldWater.GetName();
-        gas.GetCounter();
+        gas.setCounter(70);
+        electro.incrimentOne();
+        coldWater.getName();
+        gas.getCounter();
         hotwater.reset();
 
         }
