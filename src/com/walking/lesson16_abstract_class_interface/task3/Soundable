@@ -1,0 +1,5 @@
+package com.walking.lesson16.task3;
+
+public interface Soundable { // Создаем интерфейс с методом Sound
+    void sound();
+}
