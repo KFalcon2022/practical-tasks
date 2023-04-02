@@ -47,4 +47,9 @@ public class Employee {
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "name=%s, isMale=%s, position=%s, age=%d".formatted(name, isMale, position, age);
+    }
 }
