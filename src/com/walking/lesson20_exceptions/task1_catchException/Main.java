@@ -15,5 +15,15 @@ package com.walking.lesson20_exceptions.task1_catchException;
  */
 public class Main {
     public static void main(String[] args) {
+        List<Files> list = new ArrayList<>();
+        list.add(new Files("File1", FileTypes.VIDEO, ".mp4"));
+        list.add(new Files("File2"));
+        list.add(new Files("File3", FileTypes.AUDIO, ".wav"));
+        list.add(new Files("File4", FileTypes.PICTURE, ".png"));
+        try {
+            System.out.println(new fileFinder((ArrayList<Files>) list).findFile("File3"));
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
