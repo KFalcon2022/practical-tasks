@@ -10,5 +10,9 @@ package com.walking.lesson21_immutable_object;
  */
 public class Main {
     public static void main(String[] args) {
+        Car car = new Car("Tyson Mike", "DD1132F1");
+        Car car2 = new Car("Tyson Mike", "DD1132F1");
+        System.out.println(car);
+        System.out.println(car2.hashCode());
     }
 }
