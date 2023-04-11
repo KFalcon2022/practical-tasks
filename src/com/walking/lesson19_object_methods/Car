@@ -1,0 +1,36 @@
+package com.walking.lesson19;
+
+public class Car {
+
+    final String carnumber;
+    final String carmark;
+
+    public Car (String carmark, String carnumber) {
+        this.carmark = carmark;
+        this.carnumber = carnumber;
+    }
+    
+    @Override
+    public boolean equals (Object obj) { // переопределяем метод equals
+        if (this == obj) { //Гарантируем рефлексивность
+            return true;
+        }
+        if (obj == null) { //сравнение с NULL
+            return false;
+        }
+        if (!getClass().equals(obj.getClass())) {
+            return false;
+        }
+
+        Car car = (Car) obj; //даункаст объекта
+
+        return this.carnumber == ((Car) obj).carnumber; //сравниваем по полю номера
+    }
+
+    @Override
+    public int hashCode (){ //переопределяем метод hashCode
+        int result = carnumber != null ? carnumber.hashCode() : 0; //используем то же поле, по которому проводим сравнение
+        result = 31 * result;
+        return result;
+    }
+}
