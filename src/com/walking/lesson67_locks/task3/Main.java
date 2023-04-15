@@ -10,5 +10,6 @@ package com.walking.lesson67_locks.task3;
  */
 public class Main {
     public static void main(String[] args) {
+        //       Будет дополнено
     }
 }

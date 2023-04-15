@@ -11,5 +11,23 @@ package com.walking.lesson64_thread_methods.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Runnable runnable = () -> {
+            var threadName = Thread.currentThread().getName();
+
+            System.out.printf("%s запущен и не спешит\n", threadName);
+            Thread.yield();
+            System.out.printf("%s завершен\n", threadName);
+        };
+
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
     }
 }

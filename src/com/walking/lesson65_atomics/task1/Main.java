@@ -10,5 +10,6 @@ package com.walking.lesson65_atomics.task1;
  */
 public class Main {
     public static void main(String[] args) {
+//        Место для ваших тестов
     }
 }
