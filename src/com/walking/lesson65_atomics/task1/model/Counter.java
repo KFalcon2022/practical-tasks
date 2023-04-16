@@ -7,8 +7,7 @@ public class Counter {
     //    В рамках данной задачи будем считать имя счетчика уникальным
     private final String name;
     private final String unit;
-
-    private AtomicInteger value;
+    private final AtomicInteger value;
 
     public Counter(String name, String unit) {
         this(name, unit, new AtomicInteger());
@@ -30,10 +29,6 @@ public class Counter {
 
     public AtomicInteger getValue() {
         return value;
-    }
-
-    public void setValue(AtomicInteger value) {
-        this.value = value;
     }
 
     @Override
