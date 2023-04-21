@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MassageService {
 
-    private final String FINISH = "Finish";
+    private static final String FINISH = "Finish";
     private boolean run = true;
     private boolean read = true;
     private String massage;
@@ -32,8 +32,6 @@ public class MassageService {
 
         if (massage.equals(FINISH)) {
             run = false;
-            notifyAll();
-            Thread.currentThread().interrupt();
         }
 
         read = false;
