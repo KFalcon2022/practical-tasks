@@ -1,16 +1,14 @@
-package com.walking.lesson26_string_types.task2;
+package Lesson26.Task2;
 
-/**
- * Реализуйте программу, принимающую с клавиатуры строку,
- * содержащую слова, разделенные пробелом.
- * Выведите в консоль количество уникальных слов в строке.
- * Учтите, что строка может начинаться с пробела.
- * <p>
- * Для упрощения допустим, что в строке не могут использоваться символы,
- * отличные от пробела или русских/английский букв.
- * Помните, что слово может быть введено в разных регистрах.
- */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter your line: ");
+        String answer = reader.readLine();
+        System.out.println(new StringSplitter(answer));
     }
 }
