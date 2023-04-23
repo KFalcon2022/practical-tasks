@@ -1,12 +1,15 @@
-package com.walking.lesson29_generics2.task2;
+package Lesson29.Task2;
 
-/**
- * Используя Задачу 1 из урока Generics.
- * Часть I, реализуйте в Main метод, принимающий аргументом объект подходящего
- * для дженерика типа и возвращающий объект дженерика.
- * Допустима параметризация только с использованием wildcard.
- */
+import Lesson29.Task1.WildcardGenericExample;
+
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        PowGen<?> powGen = getPowGen(6, 3);
+        System.out.println(powGen.pow());
+    }
+    public static PowGen<? extends Number> getPowGen(Number a, Number b) {
+        return new PowGen<>(a, b);
     }
 }
