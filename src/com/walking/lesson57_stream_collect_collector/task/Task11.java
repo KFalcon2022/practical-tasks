@@ -4,7 +4,10 @@ import com.walking.lesson57_stream_collect_collector.model.Department;
 import com.walking.lesson57_stream_collect_collector.model.Employee;
 
 import java.util.List;
+import java.util.NavigableMap;
 import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте список сотрудников по каждому имени.
@@ -13,6 +16,10 @@ import java.util.SortedMap;
 public class Task11 implements StatisticTask<SortedMap<String, List<Employee>>> {
     @Override
     public SortedMap<String, List<Employee>> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .flatMap(department -> department.getEmployees().stream())
+                .collect(Collectors.groupingBy(Employee::getName,
+                        TreeMap::new,
+                        Collectors.toList()));
     }
 }

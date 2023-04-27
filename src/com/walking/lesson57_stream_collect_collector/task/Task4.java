@@ -4,6 +4,7 @@ import com.walking.lesson57_stream_collect_collector.model.Department;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте список всех департаментов в алфавитном порядке в виде LinkedList.
@@ -11,6 +12,8 @@ import java.util.List;
 public class Task4 implements StatisticTask<LinkedList<Department>> {
     @Override
     public LinkedList<Department> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .sorted((object1, object2) -> object1.getName().compareTo(object2.getName()))
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 }

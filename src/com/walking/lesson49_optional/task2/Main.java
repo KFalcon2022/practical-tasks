@@ -1,5 +1,4 @@
 package com.walking.lesson49_optional.task2;
-
 /**
  * Реализуйте рад классов:
  * 1. Жилье, должен иметь поле «адрес»;
@@ -17,5 +16,6 @@ package com.walking.lesson49_optional.task2;
  */
 public class Main {
     public static void main(String[] args) {
+
     }
 }

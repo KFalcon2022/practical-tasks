@@ -1,9 +1,13 @@
 package com.walking.lesson57_stream_collect_collector.task;
 
 import com.walking.lesson57_stream_collect_collector.model.Department;
+import com.walking.lesson57_stream_collect_collector.model.Employee;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте информацию, превышает ли численность мужчин численность женщин по каждому департаменту.
@@ -11,6 +15,14 @@ import java.util.Map;
 public class Task24 implements StatisticTask<Map<String, Boolean>> {
     @Override
     public Map<String, Boolean> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .collect(Collectors.toMap(
+                        Department::getName,
+                        department -> department.getEmployees()
+                                .stream()
+                                .collect(Collectors.teeing(
+                                        Collectors.filtering(Employee::isMale, Collectors.counting()),
+                                        Collectors.filtering(Predicate.not(Employee::isMale), Collectors.counting()),
+                                        (maleAmount, femaleAmount) -> maleAmount > femaleAmount))));
     }
 }
