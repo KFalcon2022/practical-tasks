@@ -1,17 +1,17 @@
-package com.walking.lesson61_synchronized;
+package com.walking.lesson71_thread_safe_collections.task1;
 
-import com.walking.lesson61_synchronized.model.Car;
-import com.walking.lesson61_synchronized.model.CarIdentifier;
-import com.walking.lesson61_synchronized.service.CarService;
+import com.walking.lesson71_thread_safe_collections.task1.model.Car;
+import com.walking.lesson71_thread_safe_collections.task1.model.CarIdentifier;
+import com.walking.lesson71_thread_safe_collections.task1.service.CarService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Реализуйте сервис для работы с машинами.
- * Предусмотрите возможность добавления, удаления машин,
- * изменения информации о существующей машине, а также поиск по доступным машинам.
- * Обеспечьте потокобезопасность разработанного сервиса.
+ * Реализуйте Задачу из Урока 61,
+ * используя потокобезопасные коллекции вместо механизма synchronized.
+ *
+ * @see com.walking.lesson61_synchronized.Main
  */
 public class Main {
     public static void main(String[] args) {
