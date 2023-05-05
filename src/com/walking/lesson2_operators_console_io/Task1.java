@@ -8,5 +8,28 @@ package com.walking.lesson2_operators_console_io;
  */
 public class Task1 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите a: ");
+        double a = scanner.nextDouble();
+
+        System.out.print("Введите b: ");
+        double b = scanner.nextDouble();
+
+        scanner.close();
+
+        double c = b * a * (a + b) / (a * a);
+        System.out.println("с: " + c);
+
+        int aInt = (int) a;
+        int bInt = (int) b;
+        int cInt = bInt * aInt * (aInt + bInt) / (aInt * aInt);
+        System.out.println("cInt: " + cInt);
+
+        if (c == cInt) {
+            System.out.println("Результат совпадает");
+        } else {
+            System.out.println("Результат различается");
+        }
     }
 }
