@@ -17,5 +17,31 @@ package com.walking.lesson3_casts_conditional_constructions;
  */
 public class Task4 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите a: ");
+        int a = scanner.nextInt();
+
+        System.out.print("Введите b: ");
+        int b = scanner.nextInt();
+
+        scanner.close();
+
+        if (a % 2 == 0 || b % 3 == 0) {
+            if (a == b) {
+                System.out.println("a = b");
+            } else {
+                System.out.println("a != b");
+            }
+        }
+        if (a % 6 == 0) {
+            System.out.print("a ^ b = ");
+            double result = Math.pow(a, b);
+            if (result < Integer.MIN_VALUE || result > Integer.MAX_VALUE) {
+                System.out.println("Результат выражения слишком большой!");
+            } else {
+                System.out.println((int) result);
+            }
+        }
     }
 }
