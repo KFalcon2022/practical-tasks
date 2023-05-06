@@ -11,32 +11,33 @@ import java.util.Scanner;
 public class Task2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter first number: ");
-        int a = scanner.nextInt();
-        System.out.println("Enter second number: ");
-        int b = scanner.nextInt();
+        int a = readUserInput(scanner, "Enter first number: ");
+        int b = readUserInput(scanner, "Enter second number: ");
         scanner.close();
 
-        checkIfMultipleTwoOrThree(a, b);
-        checkIfMultipleTwoAndThree(a, b);
-    }
-
-    public static void checkIfMultipleTwoOrThree(int a, int b){
         if (a % 2 == 0 || b % 3 == 0) {
             System.out.println(a == b);
         }
+
+        if (a % 2 == 0 && a % 3 == 0) {
+            multipleTwoAndThree(a, b);
+        }
     }
 
-    public static void checkIfMultipleTwoAndThree(int a, int b) {
-        if (a % 2 == 0 && a % 3 == 0) {
-            double result = Math.pow(a, b);
+    public static int readUserInput(Scanner scanner, String messageForUser){
+        System.out.println(messageForUser);
+        return scanner.nextInt();
+    }
 
-            if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
-                System.out.println("Результат выражения слишком большой!");
-            } else {
-                System.out.println((int) result);
-            }
+    public static void multipleTwoAndThree(int a, int b) {
+        double result = Math.pow(a, b);
+
+        if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+            System.out.println("Результат выражения слишком большой!");
+        } else {
+            System.out.println((int) result);
         }
     }
 }
+
 

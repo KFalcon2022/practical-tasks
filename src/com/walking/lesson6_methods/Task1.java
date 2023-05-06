@@ -1,5 +1,6 @@
 package com.walking.lesson6_methods;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -10,35 +11,33 @@ import java.util.Scanner;
  */
 public class Task1 {
     public static void main(String[] args) {
-        String message = enterString();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter string: ");
+        String message = scanner.nextLine();
+        scanner.close();
+
         printAnotherMessage(message);
     }
 
-    public static void printAnotherMessage(String s) {
-        switch (s) {
+    public static void printAnotherMessage(String phrase) {
+        String message;
+        switch (phrase) {
             case "Hi":
-                System.out.println("Hello");
+                message = "Hello";
                 break;
 
             case "Bye":
-                System.out.println("Good bye");
+                message = "Good bye";
                 break;
 
             case "How are you":
-                System.out.println("How are your doing");
+                message = "How are your doing";
                 break;
 
             default:
-                System.out.println("Unknown message");
+                message = "Unknown message";
         }
-    }
-
-    public static String enterString() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter string: ");
-        String s = scanner.nextLine();
-        scanner.close();
-        return s;
+        System.out.println(message);
     }
 }
 
