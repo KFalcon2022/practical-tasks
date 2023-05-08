@@ -1,11 +1,38 @@
 package com.walking.lesson17.task1;
+package com.walking.lesson17.task1;
 
 enum PHRASE { //создаем перечисление
-    Hi ("Hello"),Bye ("Good Bye"),Howareyou("How are you doing"); //Создаем наполнение элементами
-        
-        private final String s; //создаем поле у элементов перечисления
-        
-        PHRASE (String s) { //создаем конструктор для создания объекта
-            this.s = s;
+    HI ("Hi", "Hello"),BYE ("Bye", "Goodbye"),
+    HOWAREYOU("How are you", "How are you doing"),
+    UNKNOWN (null, "Unknown message"); //Создаем наполнение элементами
+
+    private final String question; //создаем поле вопроса у элементов перечисления
+    private final String answer; //создаем поле ответа у элементов перечисления
+
+        PHRASE (String question, String answer) { //создаем конструктор для создания объекта
+            this.answer = answer;
+            this.question = question;
         }
+        public static PHRASE findQuestion (String question) { //взял метод поиска из твоего решения
+
+            if (question == null){ // проверяем вопрос на его наличие
+                return UNKNOWN; //если нет, то возвращаем неизвестное сообщение
+            }
+
+            for (PHRASE phrase : PHRASE.values()){ // создаем массив и вызываем функцию для возвращения массива
+                if (question.equals(phrase.question)){ // если вопрос будет равен полю вопроса элемента массива phrase
+                    return phrase; //вернуть сам элемент
+                }
+            }
+
+        return UNKNOWN; // вернуть "неизвестное сообщение", если не найден соответствующий элемент
+        }
+
+    public String getAnswer() { //создаем метод получить ответ, возвращающий поле элемента
+        return answer;
+    }
+
+    public String getQuestion() { //метод получить получить вопрос, возвращающий поле элемента
+        return question;
+    }
 }
