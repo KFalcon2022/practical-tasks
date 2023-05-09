@@ -1,5 +1,4 @@
 package com.walking.lesson17.task1;
-package com.walking.lesson17.task1;
 
 enum PHRASE { //создаем перечисление
     HI ("Hi", "Hello"),BYE ("Bye", "Goodbye"),
