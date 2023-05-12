@@ -28,6 +28,7 @@ public class TaskService {
 		}else if (elem.getOPER() == '-'){
 			val = val - elem.getVALUE();
 		}
+
 		System.out.println("Задание " + elem.getNAME() + " выполнено!");
 	}
 
