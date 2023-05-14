@@ -13,7 +13,6 @@ import java.util.Scanner;
  * Выполнение программы должно завершиться при вводе пользователем «Finish».
  */
 public class Main {
-
     public static final String FINISH_MESSAGE = "Finish";
 
     public static void main(String[] args) throws InterruptedException {
