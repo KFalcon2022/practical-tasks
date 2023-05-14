@@ -25,7 +25,7 @@ import java.util.stream.Stream;
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        var randomGenerator = new IntRandomGenerator(1, 5);
+        var randomGenerator = new IntRandomGenerator(1, 2);
         var barrier = new CyclicBarrier(10, () -> System.out.println("Gather is successful!"));
 
         Stream.generate(() -> tryGather(randomGenerator, barrier))
@@ -58,7 +58,7 @@ public class Main {
         try {
             thread.join();
         } catch (InterruptedException e) {
-            return false;
+            throw new RuntimeException(e);
         }
 
         return !thread.isInterrupted();
