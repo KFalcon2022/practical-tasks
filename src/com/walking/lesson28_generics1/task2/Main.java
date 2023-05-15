@@ -1,17 +1,16 @@
 package com.walking.lesson28_generics1.task2;
 
-import com.walking.lesson28_generics1.task2.model.NotNullObject;
+import com.walking.lesson28_generics1.task2.Obertka.Obertka;
 
-/**
- * Создать класс-обертку над объектом любого типа.
- * Предусмотреть boolean-метод, проверяющий значение объекта на null.
- */
 public class Main {
     public static void main(String[] args) {
-        NotNullObject<Object> notNullObject = new NotNullObject<>(new Object());
-        System.out.println(notNullObject.isNull());
+    Obertka<Object> ob = new Obertka<>(new Object());
+    System.out.println(ob.isNull());
 
-        NotNullObject<Object> nullObject = new NotNullObject<>(null);
-        System.out.println(nullObject.isNull());
+    Obertka <Object> ob1 = new Obertka<>(null);
+    System.out.println(ob1.isNull());
+
+
     }
+
 }
