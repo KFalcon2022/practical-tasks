@@ -14,7 +14,7 @@ public class Main {
         System.out.println(integerExponentiater.getNumber());
     }
 
-    private static NumberExponentiater<? extends Number> createNumberExponentiater(Number number) {
-        return new NumberExponentiater<>(number);
+    public static <T extends Number> NumberExponentiater<T> createNumberExponentiater(T number) {
+    return new NumberExponentiater<T>(number);
     }
 }
