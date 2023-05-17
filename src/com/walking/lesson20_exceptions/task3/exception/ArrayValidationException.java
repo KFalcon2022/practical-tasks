@@ -4,7 +4,7 @@ public class ArrayValidationException extends Exception{
     private int index;
 
     public ArrayValidationException(int index) {
-        super("Wrong array index");
+        super("Array index of Null-element: ");
         this.index = index;
     }
 
