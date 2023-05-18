@@ -44,8 +44,9 @@ public class Car implements Comparable<Car> {
                 actualTechnicalInspection ? "actual" : "not actual");
     }
 
+
     @Override
     public int compareTo(Car o) {
-        return identifier.compareTo(o.identifier);
+        return this.identifier.compareTo(o.identifier);
     }
 }
