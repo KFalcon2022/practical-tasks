@@ -1,5 +1,7 @@
 package com.walking.lesson10_static_constants.task3;
 
+import java.util.Scanner;
+
 /**
  * Используя задачу
  * <a href="https://github.com/KFalcon2022/practical-tasks/blob/master/src/lesson7_varargs_overloading/Task5.java">...</a>
@@ -18,5 +20,14 @@ package com.walking.lesson10_static_constants.task3;
  */
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите количество простых чисел: ");
+
+        int amount = scanner.nextInt();
+
+        PrimeNumberSearcher primeNumberSearcher = new PrimeNumberSearcher();
+        int[] primeNumbers = primeNumberSearcher.findPrimeNumbers(amount);
+
+        System.out.println("Сумма простых чисел: " + primeNumberSearcher.sum(primeNumbers));
     }
 }
