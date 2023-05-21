@@ -10,19 +10,12 @@ import com.walking.lesson28_generics1.task3.model.ArraySearch;
 
 public class Main {
     public static void main(String[] args) {
-        Integer intArr[] = new Integer[]{
-                new Integer(1),
-                new Integer(2),
-                new Integer(3),
-        };
+
+        Integer intArr[] = new Integer[]{1,2,3,4};
 
         ArraySearch<Integer> arraySearchInt = new ArraySearch<>(intArr);
 
-        Integer searchedInt = arraySearchInt.search(new Integer(5));
-        if ( searchedInt == null ) {
-            System.out.println("not found");
-        } else {
-            System.out.println(searchedInt.toString());
-        }
+        System.out.println( arraySearchInt.search(1) );
+        System.out.println( arraySearchInt.search(5) );
     }
 }

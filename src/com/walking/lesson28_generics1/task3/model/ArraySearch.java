@@ -1,5 +1,7 @@
 package com.walking.lesson28_generics1.task3.model;
 
+import com.walking.lesson28_generics1.task3.exception.ElemNotFoundException;
+
 public class ArraySearch<T> {
     private final T array[];
 
@@ -13,6 +15,7 @@ public class ArraySearch<T> {
                 return array[i];
             }
         }
-        return null;
+
+        throw new ElemNotFoundException();
     }
 }
