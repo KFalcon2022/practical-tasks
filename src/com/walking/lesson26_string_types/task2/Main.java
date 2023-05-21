@@ -27,26 +27,19 @@ public class Main {
             if (strings[i].isBlank()){
                 continue;
             }
-            int count = 0;
-            int lastIdx = 0;
+            int count = 1;
 
-            while (lastIdx != -1){
-                lastIdx = input.indexOf(strings[i],lastIdx);
-                if (lastIdx != -1){
-                    count++;
-                    lastIdx += lastIdx + strings[i].length();
+            for (int j = i + 1; j < strings.length; j++){
+                if (strings[i].toLowerCase().equals(strings[j].toLowerCase())){
+                  strings[j] = "";
+                  count++;
                 }
             }
 
             System.out.printf("%s = %d\n", strings[i], count);
 
-            for (int j = i + 1; j < strings.length; j++){
-                if (strings[i].equals(strings[j])){
-                  strings[j] = "";
-                }
-            }
         }
-//            System.out.println(string);
+
     }
 
 }
