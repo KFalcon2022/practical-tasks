@@ -11,26 +11,16 @@ import java.util.Scanner;
 public class Task2 {
     public static void main(String[] args) {
         int[] array = new int[5];
-
         Scanner scanner = new Scanner(System.in);
-
         for (int i = 0; i < array.length; i++) {
             array[i] = scanner.nextInt();
         }
-
         scanner.close();
-
-        for (int i = 0; i < array.length; i++) {
-            int result;
-
-            if (i == 0) {
-//                Складываем 0й элемент с последним
-                result = array[i] + array[array.length - 1];
-            } else {
-//                Складываем текущий элемент с предыдущим
-                result = array[i] + array[i - 1];
-            }
-
+        int result;
+        result = array[0] + array[array.length - 1];
+        System.out.println(result);
+        for (int i = 1; i < array.length; i++) {
+            result = array[i] + array[i - 1];
             System.out.println(result);
         }
     }

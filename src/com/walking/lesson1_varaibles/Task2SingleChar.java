@@ -5,20 +5,17 @@ package com.walking.lesson1_varaibles;
  */
 public class Task2SingleChar {
     public static void main(String[] args) {
-//        Объявляем переменную типа char и инициализируем ее первой буквой имени
-        char ch = 'Е';
-//        Выводим значение переменной ch в консоль
+        char ch = 'М';
         System.out.print(ch);
-
-//        Присваиваем переменной ch следующую букву имени
-//        Повторяем действия до тех пор, пока буквы в имени не кончатся
-        ch = 'г';
+        ch = 'а';
         System.out.print(ch);
-
-        ch = 'о';
+        ch = 'к';
         System.out.print(ch);
-
-        ch = 'р';
+        ch = 'с';
+        System.out.print(ch);
+        ch = 'и';
+        System.out.print(ch);
+        ch = 'м';
         System.out.print(ch);
     }
 }

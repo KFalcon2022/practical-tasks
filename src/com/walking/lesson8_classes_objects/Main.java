@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args) {
         Counter evenCounter = new Counter("Четные числа");
         Counter oddCounter = new Counter("Нечетные числа");
-
         for (int i = 1; i <= 100; i++) {
             if (i % 2 == 0) {
                 evenCounter.increment();
@@ -25,7 +24,6 @@ public class Main {
                 oddCounter.increment();
             }
         }
-
         printCounterValue(evenCounter);
         printCounterValue(oddCounter);
     }

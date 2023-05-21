@@ -12,50 +12,23 @@ import java.util.Scanner;
 public class Task3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter rectangle's length: ");
+        System.out.print("Введите длину прямоугольника: ");
         int length = scanner.nextInt();
-
-        System.out.print("Enter rectangle's width: ");
+        System.out.print("Введите ширину прямоугольника: ");
         int width = scanner.nextInt();
-
-        scanner.close();
-//        Формируем строку, обозначающую верхнюю и нижнюю грани
-//        Примерный вид: " ----- "
-        String horizontalLine = " ";
-
+        String horizontal = " ";
         for (int i = 0; i < length; i++) {
-            horizontalLine += "-";
+            horizontal += "-";
         }
-
-        horizontalLine += " \n";
-
-//        Формируем строку, обозначающую часть левой и правой граней.
-//        Примерный вид: "|     |"
-        String verticalLinesUnit = "|";
-
-        for (int i = 0; i < length; i++) {
-            verticalLinesUnit += " ";
-        }
-
-        verticalLinesUnit += "|\n";
-
-
-//        Формируем строку, обозначающую левую и правую грани целиком
-//        Примерный вид: "|     |\n|     |\n|     |\n"
-
-        String verticalLines = "";
-
+        String vertical = "\n";
         for (int i = 0; i < width; i++) {
-            verticalLines += verticalLinesUnit;
+            vertical += "|";
+            for (int j = 0; j < length; j++) {
+                vertical += " ";
+            }
+            vertical += "|\n";
         }
-
-        System.out.println(horizontalLine + verticalLines + horizontalLine);
+        scanner.close();
+        System.out.println(horizontal + vertical + horizontal);
     }
-    /*
-     * Примечание: многие предложили другие решения. Какие-то из них содержали переменные,
-     * какие-то - выводили фигуру посимвольно.
-     * Эти решения также имеют право на жизнь, они тоже хороши.
-     * Данное решение - лично мое видение
-     * */
 }

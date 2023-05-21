@@ -15,13 +15,11 @@ public class Counter {
 
     public int increase(int value) {
         counter += value;
-
         return counter;
     }
 
     public int decrease(int value) {
         counter -= value;
-
         return counter;
     }
 

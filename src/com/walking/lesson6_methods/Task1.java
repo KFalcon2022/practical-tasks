@@ -11,35 +11,27 @@ import java.util.Scanner;
 public class Task1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter string: ");
+        System.out.print("Введите строку: ");
         String greeting = scanner.nextLine();
-
         scanner.close();
-
         printAnswer(greeting);
     }
 
     static void printAnswer(String greeting) {
         String answer;
-
         switch (greeting) {
             case "Hi":
                 answer = "Hello";
                 break;
-
             case "Bye":
                 answer = "Good bye";
                 break;
-
             case "How are you":
                 answer = "How are your doing";
                 break;
-
             default:
                 answer = "Unknown message";
         }
-
         log(answer);
     }
 

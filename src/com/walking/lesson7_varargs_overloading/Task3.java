@@ -8,17 +8,13 @@ import java.util.Scanner;
 public class Task3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter number: ");
+        System.out.print("Введите число: ");
         int number = scanner.nextInt();
-
         scanner.close();
-
         if (number < 0) {
-            System.out.println("The number must be at least 0");
+            System.out.println("Число должно быть больше либо равное 0");
             return;
         }
-
         System.out.println(calculateFactorial(number));
     }
 
@@ -26,11 +22,9 @@ public class Task3 {
         if (number == 0) {
             return 1;
         }
-
         if (number == 1) {
             return 1;
         }
-
         return number * calculateFactorial(number - 1);
     }
 }

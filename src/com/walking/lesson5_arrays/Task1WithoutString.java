@@ -7,8 +7,7 @@ package com.walking.lesson5_arrays;
  */
 public class Task1WithoutString {
     public static void main(String[] args) {
-        char[] nameArray = new char[]{'Е', 'г', 'о', 'р'};
-
+        char[] nameArray = new char[] {'М', 'а', 'к', 'с', 'и', 'м'};
         for (char ch : nameArray) {
             System.out.print(ch);
         }
