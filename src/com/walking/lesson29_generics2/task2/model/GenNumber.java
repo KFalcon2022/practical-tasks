@@ -1,4 +1,4 @@
-package com.walking.lesson28_generics1.task1.model;
+package com.walking.lesson29_generics2.task2.model;
 
 public class GenNumber<T extends Number> {
 
