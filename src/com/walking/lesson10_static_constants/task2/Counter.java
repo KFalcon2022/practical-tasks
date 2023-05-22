@@ -1,7 +1,7 @@
 package com.walking.lesson10_static_constants.task2;
 
 public class Counter {
-    public final String NAME;
+    public final String name;
     public int counter;
 
     public Counter(String name) {
@@ -10,7 +10,7 @@ public class Counter {
 
     public Counter(String name, int counter) {
         this.counter = counter;
-        this.NAME = name;
+        this.name = name;
     }
 
     public int increase(int value) {

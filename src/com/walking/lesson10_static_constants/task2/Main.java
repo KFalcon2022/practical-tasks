@@ -25,7 +25,7 @@ public class Main {
     }
 
     static void printCounterValue(Counter counter) {
-        System.out.printf("%s: %d\n", counter.NAME, counter.counter);
+        System.out.printf("%s: %d\n", counter.name, counter.counter);
     }
 
 }
