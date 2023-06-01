@@ -1,5 +1,8 @@
 package com.walking.lesson13_inheritance.task1;
 
+import com.walking.lesson13_inheritance.task1.model.Cat;
+import com.walking.lesson13_inheritance.task1.model.Dog;
+
 /**
  * Реализовать класс Animal, содержащий protected-конструктор без параметров,
  * который выводит в консоль сообщение «I’m an animal».
@@ -18,5 +21,7 @@ package com.walking.lesson13_inheritance.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Dog dog = new Dog("black");
+        Cat cat = new Cat("white");
     }
 }

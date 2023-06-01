@@ -1,5 +1,10 @@
 package com.walking.lesson13_inheritance.task2;
 
+import com.walking.lesson13_inheritance.task2.model.Animal;
+import com.walking.lesson13_inheritance.task2.model.Cat;
+import com.walking.lesson13_inheritance.task2.model.Cow;
+import com.walking.lesson13_inheritance.task2.model.Dog;
+
 /**
  * Реализуйте класс Animal. Реализуйте его наследников: Dog, Cat, Cow.
  * Каждый из наследников должен содержать свой метод: woof(), meow() и moo() соответственно.
@@ -22,5 +27,23 @@ package com.walking.lesson13_inheritance.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Cat cat = new Cat("Cat");
+        Dog dog = new Dog("Dog");
+        Cow cow = new Cow("Cow");
+
+        Animal[] animals = new Animal[]{cat, dog, cow};
+
+        makeSound(animals);
+    }
+
+    public static void makeSound(Animal[] animals) {
+        for (Animal member : animals) {
+            switch (member.getClassName()) {
+                case "Cat" -> ((Cat) member).meow();
+                case "Dog" -> ((Dog) member).woof();
+                case "Cow" -> ((Cow) member).moo();
+                default -> System.out.println("Unknown animal");
+            }
+        }
     }
 }
