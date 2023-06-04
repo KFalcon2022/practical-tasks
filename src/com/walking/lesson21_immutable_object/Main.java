@@ -1,5 +1,10 @@
 package com.walking.lesson21_immutable_object;
 
+import com.walking.lesson21_immutable_object.model.Car;
+import com.walking.lesson21_immutable_object.services.CarService;
+
+import java.util.Scanner;
+
 /**
  * Реализуйте задачу из урока 19.
  * <p>
@@ -10,5 +15,24 @@ package com.walking.lesson21_immutable_object;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println("lesson21_immutable_object");
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("enter govNumber:");
+        String govNumber = in.nextLine();
+        System.out.println("enter mark:");
+        String mark = in.nextLine();
+
+        in.close();
+
+        CarService cs = new CarService();
+        System.out.println(cs.checkCar(govNumber, mark));
+        System.out.println(cs.checkCar(new Car(govNumber, "color", mark)));
+
+        Integer i1 = 10;
+        Integer i2 = 50;
+        System.out.println(i1 + i2);
+
+        System.out.println(i1.compareTo(i2));
     }
 }

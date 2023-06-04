@@ -10,5 +10,17 @@ package com.walking.lesson29_generics2.task1;
  */
 public class Main {
     public static void main(String[] args) {
+
+        Generic <?> g = new Generic<String>("2ss");
+        System.out.println(genericNvl(g,1));
     }
+
+    static <T> T genericNvl(Generic<?> gen, T val){
+        if (gen.getValue()!=null){
+            return (T) gen.getValue();
+        }
+        return val;
+    }
+
+
 }

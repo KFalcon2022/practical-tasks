@@ -16,5 +16,32 @@ package com.walking.lesson30_regex.task4;
  */
 public class Main {
     public static void main(String[] args) {
+        String text = "Java is one of the most popular: programming languages, often used for building web and enterprise scale applications." +
+                    " This collection of tutorials will help you get started with the basic concepts in Java?!\n"+
+                    "Next, let's dive into the world - of object-oriented programming, with practical Java examples?\n"+
+                    "Strings are a common data type in Java, representing text. Let's have a look at how to create and use String objects!"
+                    ;
+        System.out.println(text);
+        System.out.println("--------");
+        Document doc = new Document(text);
+        System.out.println(doc.toString());
+/*
+
+        String[] paragraph = text.split("\n");
+        for (String curP: paragraph) {
+            System.out.println(curP.trim());
+            System.out.println("------");
+            String[] predl = curP.split("(\\.|!|\\?)");
+            for (String curPr: predl){
+                System.out.println(curPr.trim());
+                System.out.println("----");
+                String[] words = curPr.trim().split("(,|\\s|:)+");
+                for (String word : words) {
+                    System.out.println(word);
+                }
+            }
+        }
+
+ */
     }
 }

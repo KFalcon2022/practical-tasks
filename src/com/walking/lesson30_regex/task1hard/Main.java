@@ -16,5 +16,11 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println(phoneValidator("+71111111111"));
+    }
+
+    static boolean phoneValidator(String str){
+        final String mask = "\\+7(\\s*)(\\(*)\\d{3}(\\)*)(\\s*)\\d{3}(\\s|-*)\\d{2}(\\s|-*)\\d{2}";
+        return str.matches(mask);
     }
 }
