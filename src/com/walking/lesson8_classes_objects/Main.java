@@ -16,13 +16,16 @@ package com.walking.lesson8_classes_objects;
 public class Main {
     public static void main(String[] args) {
         Counter evenNumbers = new Counter("Четные числа");
-        for(int i = 1; i<= 100; i++)
-        {
-            if (i % 2 == 1)
-            {
+        Counter oddNumbers = new Counter("Нечетные числа");
+        for (int i = 1; i <= 100; i++) {
+            if (i % 2 == 1) {
                 evenNumbers.increace();
+            }
+            else {
+                oddNumbers.increace();
             }
         }
         evenNumbers.info();
+        oddNumbers.info();
     }
 }
