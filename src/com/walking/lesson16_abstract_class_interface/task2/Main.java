@@ -1,5 +1,7 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
+import com.walking.lesson16_abstract_class_interface.task2.model.*;
+
 import java.util.Scanner;
 
 /**
@@ -14,7 +16,20 @@ public class Main {
         String str = scanner.nextLine();
         scanner.close();
 
-        Message message = new Message();
-        message.print(str);
+        switch (str) {
+            case "Hi":
+                str = new HelloMessage().getMessage();
+                break;
+            case "Bye":
+                str = new ByeMessage().getMessage();
+                break;
+            case "How are you":
+                str = new AskMessage().getMessage();
+                break;
+            default:
+                str = new UnknownMessage().getMessage();
+        }
+        System.out.println(str);
     }
 }
+
