@@ -31,20 +31,21 @@ public class Main {
 
         scanner.close();
 
-        chooseFigure(type, sideLength);
+        if ((type != 1 && type != 2) || sideLength <= 0) {
+            System.out.println("Unknown figure or incorrect side length");
+            return;
+        }
+
+        printPolygon(type, sideLength);
     }
 
-    public static void chooseFigure(int type, int sideLength) {
-        if (type == 1 && sideLength > 0) {
+    public static void printPolygon(int type, int sideLength) {
+        if (type == 1) {
             Square square = new Square(sideLength);
-            printFigure(square);
-        } else if (type == 2 && sideLength > 0) {
+            System.out.println(square.draw());
+        } else {
             RegularTriangle triangle = new RegularTriangle(sideLength);
-            printFigure(triangle);
-        } else System.out.println("Unknown figure or incorrect side length");
-    }
-
-    public static void printFigure(RegularPolygon polygon) {
-        System.out.println(polygon.draw());
+            System.out.println(triangle.draw());
+        }
     }
 }

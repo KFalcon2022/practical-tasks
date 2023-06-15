@@ -16,20 +16,22 @@ public class Main {
         String str = scanner.nextLine();
         scanner.close();
 
+        Message message;
+
         switch (str) {
             case "Hi":
-                str = new HelloMessage().getMessage();
+                message = new HelloMessage();
                 break;
             case "Bye":
-                str = new ByeMessage().getMessage();
+                message = new ByeMessage();
                 break;
             case "How are you":
-                str = new AskMessage().getMessage();
+                message = new AskMessage();
                 break;
             default:
-                str = new UnknownMessage().getMessage();
+                message = new UnknownMessage();
         }
-        System.out.println(str);
+        System.out.println(message.getMessage());
     }
 }
 

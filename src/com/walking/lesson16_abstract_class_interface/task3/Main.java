@@ -12,10 +12,10 @@ import com.walking.lesson16_abstract_class_interface.task3.model.*;
 public class Main {
     public static void main(String[] args) {
 
-        Soundable[] animals = new Animal[]{new Cat(), new Cow(), new Dog()};
+        Animal[] animals = {new Cat(), new Cow(), new Dog()};
 
-        for (Soundable animal : animals) {
-            animal.makeSound();
+        for (Animal animal : animals) {
+            animal.sound();
         }
     }
 }

@@ -16,16 +16,13 @@ import com.walking.lesson14_polymorphism.task2.model.Dog;
  */
 public class Main {
     public static void main(String[] args) {
-        Cat cat = new Cat();
-        Dog dog = new Dog();
-        Cow cow = new Cow();
 
-        Animal[] animals = new Animal[]{cat, dog, cow};
+        Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow()};
 
-        makeSound(animals);
+        getSound(animals);
     }
 
-    public static void makeSound(Animal[] animals) {
+    public static void getSound(Animal[] animals) {
         for (Animal member : animals) {
             member.sound();
         }

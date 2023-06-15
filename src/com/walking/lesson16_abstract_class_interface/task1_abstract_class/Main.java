@@ -37,14 +37,11 @@ public class Main {
         EquilateralShape shape;
 
         switch (type) {
-            case 1:
-                shape = new Square(length);
-                break;
-            case 2:
-                shape = new EquilateralTriangle(length);
-                break;
-            default:
+            case 1 -> shape = new Square(length);
+            case 2 -> shape = new EquilateralTriangle(length);
+            default -> {
                 return "Unknown shape";
+            }
         }
 
         return shape.createShapeString();
