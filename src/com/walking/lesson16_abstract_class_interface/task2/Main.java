@@ -11,9 +11,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter string: ");
-
         String s = scanner.nextLine();
-
         scanner.close();
         Message message;
         switch (s) {
@@ -29,6 +27,6 @@ public class Main {
             default:
                 message = new UnknownMessage();
         }
-        System.out.println(message.message());
+        System.out.println(message.getMessage());
     }
 }
