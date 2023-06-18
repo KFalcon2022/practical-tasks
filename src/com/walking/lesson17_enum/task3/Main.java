@@ -21,6 +21,10 @@ public class Main {
 
         scanner.close();
 
+        if (length < 1 || (shapeType != 1 && shapeType != 2)) {
+            System.out.println("Incorrect input.");
+            return;
+        }
 
         EquilateralShape shape = selectShapeType(shapeType);
         System.out.println(shape.createShapeString(length));
