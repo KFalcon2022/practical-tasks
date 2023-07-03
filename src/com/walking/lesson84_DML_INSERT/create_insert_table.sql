@@ -19,7 +19,7 @@ values ('Jack', 'Daniels', '01-10-1966', null, null),
        ('Shon', 'Jameson', '09-09-1991', null, null),
        ('John', 'Rambo', '11-22-1951', null, null),
        ('James', 'Bond', '12-31-1962', null, null),
-       ('John', 'Reed', '04-21-1974', null, null)
+       ('John', 'Reed', '04-21-1974', null, null);
 
     insert into passenger (first_name, last_name, birth_date, male, last_purchase, favorite_airports)
 values ('Дмитрий', 'Панамарёв', '03-17-1969', true, now(), '{"Ростов"}'),
