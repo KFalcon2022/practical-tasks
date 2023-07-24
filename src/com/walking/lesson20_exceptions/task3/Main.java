@@ -19,9 +19,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow(), null};
-        for(Animal member : animals){
-            if (member==null){
-                throw new ArrayValidationException(String.format("Null in array index: %d", Arrays.asList(animals).indexOf(member)));
+        for (Animal member : animals) {
+            if (member == null) {
+                throw new ArrayValidationException("Null in array index: %d".formatted(Arrays.asList(animals).indexOf(member)));
             }
         }
 
@@ -40,7 +40,9 @@ public class Main {
                 ((Dog) member).woof();
             } else if (member instanceof Cow) {
                 ((Cow) member).moo();
-            } else throw new UnknownAnimalException("Unknown animal");
+            } else {
+                throw new UnknownAnimalException("Unknown animal");
+            }
         }
     }
 }

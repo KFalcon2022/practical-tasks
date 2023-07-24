@@ -3,7 +3,7 @@ package com.walking.lesson20_exceptions.task1_catchException.model;
 import static java.lang.String.format;
 
 public class File {
-    private  String name;
+    private String name;
     private int size;
     private Type type;
 
