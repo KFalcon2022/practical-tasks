@@ -24,17 +24,17 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (this == other) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (other == null) {
+        if (o == null) {
             return false;
         }
-        if (!(other instanceof Car)) {
+        if (!(o instanceof Car)) {
             return false;
         }
-        Car car = (Car) other;
+        Car car = (Car) o;
         if (car.brand.equals(this.brand) && car.model.equals(this.model)
                 && car.color.equals(this.color) && car.licensePlate.equals(this.licensePlate)) {
             return true;
