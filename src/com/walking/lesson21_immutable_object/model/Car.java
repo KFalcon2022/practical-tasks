@@ -32,10 +32,7 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        if (car.carSpecification.equals(this.carSpecification)) {
-            return true;
-        }
-        return false;
+        return car.carSpecification.equals(this.carSpecification);
     }
 
     @Override

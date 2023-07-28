@@ -24,6 +24,17 @@ public class Main {
                 new Car("CHEVROLET", "NIVA", "GREY", "H123AA51")};
 
         Scanner scanner = new Scanner(System.in);
+        Car foundCar = foundCarInput(scanner);
+        scanner.close();
+
+        if (findCar(foundCar, cars)) {
+            System.out.println("Car was found in the database " + foundCar);
+        } else {
+            System.out.println("Car was not found in the database.");
+        }
+    }
+
+    public static Car foundCarInput(Scanner scanner) {
         System.out.println("Enter car parameters for the database search:");
         System.out.print("Brand: ");
         String brand = scanner.nextLine();
@@ -33,26 +44,16 @@ public class Main {
         String color = scanner.nextLine();
         System.out.print("License plate: ");
         String licensePlate = scanner.nextLine();
-
-        scanner.close();
-
-        Car foundCar = new Car(brand, model, color, licensePlate);
-
-        findCar(foundCar, cars);
+        return new Car(brand, model, color, licensePlate);
     }
 
-    static void findCar(Car foundCar, Car[] cars) {
-        boolean found = false;
+    public static boolean findCar(Car foundCar, Car[] cars) {
         for (Car car : cars) {
             if (car.equals(foundCar)) {
-                System.out.println("Car was found in the database " + foundCar);
-                found = true;
-                break;
+                return true;
             }
         }
-        if (!found) {
-            System.out.println("Car was not found in the database.");
-        }
+        return false;
     }
 }
 

@@ -35,11 +35,8 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        if (car.brand.equals(this.brand) && car.model.equals(this.model)
-                && car.color.equals(this.color) && car.licensePlate.equals(this.licensePlate)) {
-            return true;
-        }
-        return false;
+        return (car.brand.equals(this.brand) && car.model.equals(this.model)
+                && car.color.equals(this.color) && car.licensePlate.equals(this.licensePlate));
     }
 
     @Override

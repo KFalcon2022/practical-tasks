@@ -41,12 +41,9 @@ public final class CarSpecification {
             return false;
         }
         CarSpecification carSpecification = (CarSpecification) o;
-        if (carSpecification.brand.equals(this.brand)
+        return carSpecification.brand.equals(this.brand)
                 && carSpecification.model.equals(this.model)
-                && carSpecification.color.equals(this.color)) {
-            return true;
-        }
-        return false;
+                && carSpecification.color.equals(this.color);
     }
 
     @Override
