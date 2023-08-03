@@ -1,5 +1,7 @@
 package com.walking.lesson30_regex.task1hard;
 
+import java.util.regex.Pattern;
+
 /**
  * Реализуйте boolean-метод, валидирующий входящую строку.
  * Метод должен возвращать true,
@@ -16,5 +18,17 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+
+        System.out.println(isCorrectNumberPhone("+7 (XXX) XXX-XX-XX"));
+        System.out.println(isCorrectNumberPhone("+7123123321"));
+        System.out.println(isCorrectNumberPhone("+7 (999) 999-99-99"));
+
+        System.out.println(isCorrectNumberPhone("+7 999 9999999"));
+
+    }
+
+    public static boolean isCorrectNumberPhone (String strNumber) {
+        String regex = "\\+\\d \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}|\\+\\d \\d{3} \\d{3}\\d{2}\\d{2}";
+        return Pattern.matches(regex,strNumber);
     }
 }

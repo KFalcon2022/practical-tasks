@@ -1,6 +1,4 @@
-package com.walking.lesson19_object_methods.model;
-
-import java.util.Objects;
+package com.walking.lesson32_files_1.task1.model;
 
 public class Car {
     private String registrationNumber;
@@ -15,6 +13,14 @@ public class Car {
         this.model = model;
         this.yearCar = yearCar;
         this.vin = vin;
+    }
+
+    public Car (String [] stringsCar) {
+        this.registrationNumber = stringsCar[0];
+        this.brand = stringsCar[1];
+        this.model = stringsCar[2];
+        this.yearCar =  Integer.parseInt(stringsCar[3]);
+        this.vin = stringsCar[4];
     }
 
     @Override
@@ -58,5 +64,25 @@ public class Car {
                 "\nМодель автомобиля: " + model +
                 "\nГод выпуска автомобиля: " + yearCar +
                 "\nVIN: " + vin + "\n";
+    }
+
+    public int getYearCar() {
+        return yearCar;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public String getVin() {
+        return vin;
     }
 }

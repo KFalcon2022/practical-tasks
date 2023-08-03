@@ -1,5 +1,7 @@
 package com.walking.lesson28_generics1.task4;
 
+import com.walking.lesson28_generics1.task4.model.Stack;
+
 /**
  * Реализовать параметризованный класс, хранящий и обрабатывающий стек.
  * Стек — структура данных, в котором каждый элемент хранит ссылку на следующий.
@@ -16,5 +18,20 @@ package com.walking.lesson28_generics1.task4;
  */
 public class Main {
     public static void main(String[] args) {
+        Stack<Integer> integerStack = new Stack<>(2);
+
+        integerStack.push(5);
+        integerStack.push(2);
+        integerStack.push(6);
+        integerStack.push(-2);
+        integerStack.push(77);
+
+        System.out.println(integerStack);
+        System.out.println(integerStack.searchElement(5));
+
+        integerStack.deleteElement(6);
+
+        System.out.println(integerStack);
+
     }
 }
