@@ -39,6 +39,7 @@ public class Main {
     }
 
     private static void sound(Animal animal) {
+
         switch (animal.getClasName()) {
             case Cow.COW_CLASS_NAME:
                 ((Cow) animal).moo();
