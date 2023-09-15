@@ -4,7 +4,7 @@ public class Car {
     private final String mark;
     private final int yearOfManufacture;
     private final String color;
-    private final String stateNumber;
+    private final int stateNumber;
 
 
     public Car() {
@@ -14,7 +14,7 @@ public class Car {
         this.stateNumber = new StateNumber().setStateNumber();
     }
 
-    public Car(String mark, int yearOfManufacture, String color, String stateNumber) {
+    public Car(String mark, int yearOfManufacture, String color, int stateNumber) {
         this.mark = mark;
         this.yearOfManufacture = yearOfManufacture;
         this.color = color;
@@ -26,7 +26,7 @@ public class Car {
         int result = mark != null ? mark.hashCode() : 0;
         result = 22 * (yearOfManufacture + result);
         result = 5 * (color != null ? color.hashCode() : 0);
-        result = stateNumber != null ? stateNumber.hashCode() : 0;
+        result = 22 * (stateNumber + result);
         return result;
     }
 
@@ -34,11 +34,11 @@ public class Car {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
-        if (!this.getClass().equals(obj)) return false;
+        if (!this.getClass().equals(obj.getClass())) return false;
 
         Car car = (Car) obj;
 
-        if (mark.equals(car.mark) && color.equals(car.color) && stateNumber.equals(car.stateNumber) && yearOfManufacture == car.yearOfManufacture) {
+        if (mark.equals(car.mark) && color.equals(car.color) && stateNumber == car.stateNumber && yearOfManufacture == car.yearOfManufacture) {
             return true;
         } else {
             return false;

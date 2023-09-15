@@ -18,18 +18,21 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        String mark = null, color = null, stateNumber = null;
-        int yearOfManufacture = 0;
 
-        Car[] cars = new Car[20];
+        Car[] cars = new Car[5];
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             cars[i] = new Car();
         }
 
         for (Car car : cars) {
             System.out.println(car);
         }
+
+        String mark = null;
+        String color = null;
+        int yearOfManufacture = 0;
+        int stateNumber = 0;
 
         System.out.println("Введите данные машины:");
         System.out.println("Марка:");
@@ -41,26 +44,28 @@ public class Main {
         if (scanner.hasNextLine()) {
             color = scanner.nextLine();
         }
+        System.out.println("Номер:");
+        if (scanner.hasNextInt()) {
+            stateNumber = scanner.nextInt();
+        }
         System.out.println("Год выпуска:");
         if (scanner.hasNextInt()) {
             yearOfManufacture = scanner.nextInt();
         }
-        System.out.println("Номер:");
-        if (scanner.hasNextLine()) {
-            stateNumber = scanner.nextLine();
-        }
+
         scanner.close();
         System.out.println("************************");
 
-        System.out.println(searchCar(mark, color, yearOfManufacture, stateNumber, cars));
+        Car searchingCar = new Car(mark, yearOfManufacture, color, stateNumber);
+
+        System.out.println(searchCar(searchingCar, cars));
     }
 
-    private static String searchCar(String mark, String color, int yearOfManufacture, String stateNumber, Car[] cars) {
-        Car newCar = new Car(mark, yearOfManufacture, color,  stateNumber);
+    private static String searchCar(Car searchingCar, Car[] cars) {
 
         for (Car car : cars) {
-            if (car.equals(newCar)) {
-                return "Искомая машина: " + newCar.toString();
+            if (car.equals(searchingCar)) {
+                return "Искомая машина: " + searchingCar.toString();
             }
         }
         return "Совпадений не найдено.";

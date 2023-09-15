@@ -1,7 +1,7 @@
 package com.walking.lesson19_object_methods.model;
 
 public class StateNumber {
-    public String setStateNumber() {
+    public int setStateNumber() {
 
         String stateNumber = "";
 
@@ -9,6 +9,6 @@ public class StateNumber {
             stateNumber += (int) ((Math.random() * 10));
         }
 
-        return stateNumber;
+        return Integer.parseInt(stateNumber);
     }
 }
