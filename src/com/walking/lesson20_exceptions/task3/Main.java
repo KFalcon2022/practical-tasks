@@ -4,8 +4,8 @@ import com.walking.lesson13_inheritance.task2.model.Animal;
 import com.walking.lesson13_inheritance.task2.model.Cat;
 import com.walking.lesson13_inheritance.task2.model.Cow;
 import com.walking.lesson13_inheritance.task2.model.Dog;
-import com.walking.lesson20_exceptions.task3.model.ArrayValidationException;
-import com.walking.lesson20_exceptions.task3.model.UnknownAnimalException;
+import com.walking.lesson20_exceptions.task3.exception.ArrayValidationException;
+import com.walking.lesson20_exceptions.task3.exception.UnknownAnimalException;
 
 /**
  * Реализуйте любой из вариантов задачи в уроке 18.
@@ -23,7 +23,7 @@ public class Main {
         soundAll(animals);
     }
 
-    private static void soundAll(Animal[] animals) throws UnknownAnimalException, ArrayValidationException {
+    private static void soundAll(Animal[] animals) throws UnknownAnimalException {
         int i = 0;
         for (Animal animal : animals) {
             if (animal == null) {
@@ -51,11 +51,9 @@ public class Main {
 
         if (animal instanceof Cat) {
             ((Cat) animal).meow();
-        }
-        if (animal instanceof Dog) {
+        } else if (animal instanceof Dog) {
             ((Dog) animal).woof();
-        }
-        if (animal instanceof Cow) {
+        } else if (animal instanceof Cow) {
             ((Cow) animal).moo();
         }
 

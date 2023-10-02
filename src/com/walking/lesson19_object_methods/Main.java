@@ -1,6 +1,9 @@
 package com.walking.lesson19_object_methods;
 
 import com.walking.lesson19_object_methods.model.Car;
+import com.walking.lesson19_object_methods.model.ColorList;
+import com.walking.lesson19_object_methods.model.MarkList;
+import com.walking.lesson19_object_methods.service.SearchCarService;
 
 import java.util.Scanner;
 
@@ -19,23 +22,24 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Car[] cars = new Car[5];
+        SearchCarService searchCarService = new SearchCarService();
 
-        for (int i = 0; i < 5; i++) {
-            cars[i] = new Car();
-        }
+        Car[] cars = initCars();
 
-        for (Car car : cars) {
-            System.out.println(car);
-        }
+        Car searchingCar = searchCarService.searchCar(createCar(), cars);
 
+        System.out.println(searchingCar);
+    }
+
+    private static Car createCar() {
         String mark = null;
         String color = null;
-        int yearOfManufacture = 0;
+        int yearManufacture = 0;
         int stateNumber = 0;
 
         System.out.println("Введите данные машины:");
         System.out.println("Марка:");
+
         Scanner scanner = new Scanner(System.in);
         if (scanner.hasNextLine()) {
             mark = scanner.nextLine();
@@ -50,24 +54,27 @@ public class Main {
         }
         System.out.println("Год выпуска:");
         if (scanner.hasNextInt()) {
-            yearOfManufacture = scanner.nextInt();
+            yearManufacture = scanner.nextInt();
         }
 
         scanner.close();
-        System.out.println("************************");
 
-        Car searchingCar = new Car(mark, yearOfManufacture, color, stateNumber);
+        Car searchingCar = new Car(MarkList.setMark(mark), ColorList.setColor(color), yearManufacture, stateNumber);
 
-        System.out.println(searchCar(searchingCar, cars));
+        return searchingCar;
     }
 
-    private static String searchCar(Car searchingCar, Car[] cars) {
-
-        for (Car car : cars) {
-            if (car.equals(searchingCar)) {
-                return "Искомая машина: " + searchingCar.toString();
-            }
-        }
-        return "Совпадений не найдено.";
+    private static Car[] initCars() {
+        return new Car[] {
+                new Car(MarkList.AUDI, ColorList.BLACK, 2001, 674921),
+                new Car(MarkList.BMW, ColorList.BLUE, 2002, 674922),
+                new Car(MarkList.RENAULT, ColorList.GREEN, 2003, 674923),
+                new Car(MarkList.LADA, ColorList.RED, 2004, 674924),
+                new Car(MarkList.VOLVO, ColorList.GREY, 2005, 674925),
+                new Car(MarkList.KIA, ColorList.WHITE, 2006, 674926),
+                new Car(MarkList.MAZDA, ColorList.YELOW, 2007, 674927),
+                new Car(MarkList.SUZUKI, ColorList.RED, 2008, 674928),
+                new Car(MarkList.LADA, ColorList.BLUE, 2009, 674929),
+        };
     }
 }

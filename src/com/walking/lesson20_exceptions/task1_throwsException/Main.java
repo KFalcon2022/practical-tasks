@@ -2,6 +2,7 @@ package com.walking.lesson20_exceptions.task1_throwsException;
 
 import com.walking.lesson20_exceptions.task1_catchException.model.File;
 import com.walking.lesson20_exceptions.task1_catchException.model.FileType;
+import com.walking.lesson20_exceptions.task1_throwsException.service.FileService;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
+        FileService fileService = new FileService();
         File[] files = {
                 new File("История", 256, FileType.TEXT),
                 new File("Рассказ", 287, FileType.TEXT),
@@ -34,17 +36,12 @@ public class Main {
                 new File("Мультфильм", 56756, FileType.VIDEO),
         };
 
-        String searchingFile;
         System.out.println("Введите название файла:");
         Scanner scanner = new Scanner(System.in);
-        searchingFile = scanner.nextLine();
-
+        String searchingFile = scanner.nextLine();
         scanner.close();
 
-
-        System.out.println(searchFile(files, searchingFile));
-
-
+        System.out.println(fileService.searchFile(files, searchingFile));
 
     }
 

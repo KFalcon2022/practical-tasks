@@ -25,19 +25,27 @@ public class File {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!this.getClass().equals(obj.getClass())) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!this.getClass().equals(obj.getClass())) {
+            return false;
+        }
 
         File searchingFile = (File) obj;
 
-        if (name.equals(searchingFile.name)) return true;
+        if (name.equals(searchingFile.name)) {
+            return true;
+        }
 
         return false;
     }
 
     @Override
     public String toString() {
-        return "Файл - " + name + ", тип файла - " + fileType.toString() + ", размер - " + size;
+        return "Файл - " + name + ", тип файла - " + fileType.getName() + ", размер - " + size;
     }
 }

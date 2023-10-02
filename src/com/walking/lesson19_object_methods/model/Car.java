@@ -1,32 +1,24 @@
 package com.walking.lesson19_object_methods.model;
 
 public class Car {
-    private final String mark;
-    private final int yearOfManufacture;
-    private final String color;
+    private final MarkList mark;
+    private final ColorList color;
+    private final int yearManufacture;
     private final int stateNumber;
 
 
-    public Car() {
-        this.mark = new Mark().setMark();
-        this.yearOfManufacture = new YearOfManufacture().setYearOfManufacture();
-        this.color = new Color().setColor();
-        this.stateNumber = new StateNumber().setStateNumber();
-    }
-
-    public Car(String mark, int yearOfManufacture, String color, int stateNumber) {
+    public Car(MarkList mark, ColorList color, int yearManufacture, int stateNumber) {
         this.mark = mark;
-        this.yearOfManufacture = yearOfManufacture;
         this.color = color;
+        this.yearManufacture = yearManufacture;
         this.stateNumber = stateNumber;
     }
 
     @Override
     public int hashCode() {
         int result = mark != null ? mark.hashCode() : 0;
-        result = 22 * (yearOfManufacture + result);
-        result = 5 * (color != null ? color.hashCode() : 0);
-        result = 22 * (stateNumber + result);
+        result = 31 * (yearManufacture + result);
+        result += 31 * (stateNumber + result);
         return result;
     }
 
@@ -38,15 +30,12 @@ public class Car {
 
         Car car = (Car) obj;
 
-        if (mark.equals(car.mark) && color.equals(car.color) && stateNumber == car.stateNumber && yearOfManufacture == car.yearOfManufacture) {
-            return true;
-        } else {
-            return false;
-        }
+        return mark.equals(car.mark) && stateNumber == car.stateNumber && yearManufacture == car.yearManufacture;
+
     }
 
     @Override
     public String toString() {
-        return mark + " цвета " + color + ", " + yearOfManufacture + " года выпуска, гос.номер " + stateNumber;
+        return mark + " цвета " + color + ", " + yearManufacture + " года выпуска, гос.номер " + stateNumber;
     }
 }

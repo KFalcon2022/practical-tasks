@@ -1,8 +1,8 @@
-package com.walking.lesson20_exceptions.task2.model;
+package com.walking.lesson20_exceptions.task2.exception;
 
 import java.io.IOException;
 
-public class InputValidationException extends IOException {
+public class InputValidationException extends RuntimeException {
     private int number;
 
     public int getNumber() {

@@ -1,4 +1,6 @@
-package com.walking.lesson20_exceptions.task3.model;
+package com.walking.lesson20_exceptions.task3.exception;
+
+import java.lang.NullPointerException;
 
 public class ArrayValidationException extends NullPointerException {
     private int i;
