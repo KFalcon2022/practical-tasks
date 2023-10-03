@@ -26,8 +26,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         String nameForSearch = getInputFile();
-        FileService fileService = new FileService(createFileSystem(10));
-        fileService.findFile(nameForSearch);
+        FileService fileService = null;
+        fileService = new FileService(createFileSystem(10));
+        try {
+            fileService.findFile(nameForSearch);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
     private static String getInputFile(){
         Scanner scannerIn = new Scanner(System.in);
@@ -52,6 +57,6 @@ public class Main {
         Random rnd = new Random();
         int length=FileType.values().length;
         int rndResult=rnd.nextInt(FileType.values().length-1);
-        return FileType.getOrdinalType(rndResult);
+            return FileType.getOrdinalType(rndResult);
     }
 }
