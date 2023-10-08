@@ -8,5 +8,5 @@ order by first_name;
 -- Получите только вторую и третью записи из предыдущего запроса.
 select * from passenger
 where birth_date <= now() - make_interval(18)
-order by first_name
+order by first_name, id
 offset 1 limit 2;

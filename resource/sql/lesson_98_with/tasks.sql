@@ -1,3 +1,13 @@
+create table ticket (
+  id                     bigserial,
+  departure_airport      varchar(100),
+  arrival_airport        varchar(100),
+  departure_date         timestamp,
+  arrival_date           timestamp,
+  purchase_date          timestamp,
+  passenger_id           bigint
+);
+
 -- Задача 1
 -- Найдите наиболее популярный аэропорт прибытия для каждой из фамилий пассажиров.
 -- Необходимые атрибуты пассажиров предварительно вынесите  в CTE.
