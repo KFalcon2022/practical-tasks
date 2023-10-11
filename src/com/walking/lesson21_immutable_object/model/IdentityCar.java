@@ -1,18 +1,18 @@
 package com.walking.lesson21_immutable_object.model;
 
 public final class IdentityCar {
-    private final MarkList mark;
+    private final MarkType mark;
     private final int year;
     private final int stateNumber;
 
 
-    public IdentityCar(MarkList mark, int year, int stateNumber) {
+    public IdentityCar(MarkType mark, int year, int stateNumber) {
         this.mark = mark;
         this.year = year;
         this.stateNumber = stateNumber;
     }
 
-    public MarkList getMark() {
+    public MarkType getMark() {
         return mark;
     }
 

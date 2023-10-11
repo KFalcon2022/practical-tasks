@@ -2,14 +2,14 @@ package com.walking.lesson21_immutable_object.model;
 
 public class Car {
     private final IdentityCar identityCar;
-    private ColorList color;
+    private ColorType color;
 
-    public Car(IdentityCar identityCar, ColorList color) {
+    public Car(IdentityCar identityCar, ColorType color) {
         this.identityCar = identityCar;
         this.color = color;
     }
 
-    public Car(MarkList mark, ColorList color, int year, int stateNumber) {
+    public Car(MarkType mark, ColorType color, int year, int stateNumber) {
         this.identityCar = new IdentityCar(mark, year, stateNumber);
         this.color = color;
     }
@@ -18,11 +18,11 @@ public class Car {
         return identityCar;
     }
 
-    public ColorList getColor() {
+    public ColorType getColor() {
         return color;
     }
 
-    public void setColor(ColorList color) {
+    public void setColor(ColorType color) {
         this.color = color;
     }
 

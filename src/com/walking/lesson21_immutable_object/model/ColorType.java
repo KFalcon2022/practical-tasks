@@ -1,6 +1,6 @@
 package com.walking.lesson21_immutable_object.model;
 
-public enum ColorList {
+public enum ColorType {
     WHITE("Белый"),
     BLACK("Черный"),
     BLUE("Синий"),
@@ -11,11 +11,11 @@ public enum ColorList {
 
     private final String name;
 
-    ColorList(String name) {
+    ColorType(String name) {
         this.name = name;
     }
 
-    public static ColorList setColor(String color) {
+    public static ColorType setColor(String color) {
         for (var i : values()) {
             if (i.name.equals(color)) {
                 return i;
