@@ -29,7 +29,7 @@ public class TriangleShapeInterface implements RightShapeInterface {
             for (int i=0;i<sideSize;i++){
                 resultLine+=horizontalLine;
             }
-            return resultLine+="/n";
+            return resultLine+"\n";
     }
 
     private String createShape(){
@@ -38,7 +38,7 @@ public class TriangleShapeInterface implements RightShapeInterface {
             returnLine+=drawLine(i);
         }
         returnLine+=drawHorizontalLine(SIDE_SIZE,HORIZONTAL_LINE);
-        return returnLine+="\n";
+        return returnLine+"\n";
     }
     private String drawLine(int index){
         String returnLine="";
@@ -50,7 +50,7 @@ public class TriangleShapeInterface implements RightShapeInterface {
         for (int i=index;i<=SIDE_SIZE;i++){
             returnLine+=EMPTY_CHAR;
         }
-        return returnLine+="\n";
+        return returnLine+"\n";
     }
 }
 

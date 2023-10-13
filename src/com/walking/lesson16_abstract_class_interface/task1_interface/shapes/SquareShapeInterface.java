@@ -28,7 +28,7 @@ public class SquareShapeInterface implements RightShapeInterface {
             for (int i=0;i<sideSize;i++){
                 resultLine+=horizontalLine;
             }
-            return resultLine+="/n";
+            return resultLine+="\n";
         }
 
     private String createShape(){
