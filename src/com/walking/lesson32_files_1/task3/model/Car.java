@@ -1,9 +1,8 @@
-package com.walking.lesson32_files_1.task1.model;
-
+package com.walking.lesson32_files_1.task3.model;
 
 public class Car {
     private final String mark;
-    private final String color;
+    private String color;
     private final int yearManufacture;
     private final int stateNumber;
 
@@ -29,6 +28,10 @@ public class Car {
 
     public int getStateNumber() {
         return stateNumber;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @Override

@@ -1,8 +1,6 @@
 package com.walking.lesson32_files_1.task1;
 
 import com.walking.lesson32_files_1.task1.model.Car;
-import com.walking.lesson32_files_1.task1.model.ColorType;
-import com.walking.lesson32_files_1.task1.model.MarkType;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +12,7 @@ import java.io.IOException;
  */
 public class Main {
     private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog.txt";
+
     public static void main(String[] args) {
         Car[] cars = initCars();
         writeCatalog(cars);
@@ -24,7 +23,8 @@ public class Main {
         try (FileOutputStream fos = new FileOutputStream(CATALOG_PATH, true)) {
 
             for (Car car : cars) {
-                fos.write(car.toString().getBytes());
+                fos.write(writeFormat(car).getBytes());
+                fos.write('\n');
             }
 
         } catch (IOException e) {
@@ -32,17 +32,21 @@ public class Main {
         }
     }
 
+    private static String writeFormat(Car car) {
+        return "%s;%s;%d;%d".formatted(car.getMark(), car.getColor(), car.getYearManufacture(), car.getStateNumber());
+    }
+
     private static Car[] initCars() {
         return new Car[] {
-                new Car(MarkType.AUDI, ColorType.BLACK, 2001, 674921),
-                new Car(MarkType.BMW, ColorType.BLUE, 2002, 674922),
-                new Car(MarkType.RENAULT, ColorType.GREEN, 2003, 674923),
-                new Car(MarkType.LADA, ColorType.RED, 2004, 674924),
-                new Car(MarkType.VOLVO, ColorType.GREY, 2005, 674925),
-                new Car(MarkType.KIA, ColorType.WHITE, 2006, 674926),
-                new Car(MarkType.MAZDA, ColorType.YELOW, 2007, 674927),
-                new Car(MarkType.SUZUKI, ColorType.RED, 2008, 674928),
-                new Car(MarkType.LADA, ColorType.BLUE, 2009, 674929),
+                new Car("Audi", "Черный", 2001, 674921),
+                new Car("BMW", "Синий", 2002, 674922),
+                new Car("Renault", "Зеленый", 2003, 674923),
+                new Car("Lada", "Крвсный", 2004, 674924),
+                new Car("Volvo", "Серый", 2005, 674925),
+                new Car("Ria", "Белый", 2006, 674926),
+                new Car("Mazda", "Желтый", 2007, 674927),
+                new Car("Suzuki", "Крвсный", 2008, 674928),
+                new Car("Lada", "Синий", 2009, 674929),
         };
     }
 }

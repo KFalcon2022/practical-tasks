@@ -1,25 +1,18 @@
-package com.walking.lesson32_files_1.task2;
+package com.walking.lesson32_files_1.task3.repository;
 
-import com.walking.lesson32_files_1.task2.model.Car;
+import com.walking.lesson32_files_1.task3.model.Car;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
- * реализовав сохранение данных в массив Car.
- */
-public class Main {
-    private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog.txt";
+public class CarRepository {
+    private final String CATALOG_PATH = "./resource/files/lesson32/carCatalog_3_lesson.txt";
 
-    public static void main(String[] args) throws IOException {
-        Car[] cars = getCars();
-        for (Car car : cars) {
-            System.out.println(car);
-        }
-    }
-
-    private static Car[] getCars() {
+    /*
+    Читает файл и возвращает массив машин
+     */
+    private Car[] getCars() {
         try (FileInputStream fis = new FileInputStream(CATALOG_PATH)) {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -44,12 +37,29 @@ public class Main {
         return null;
     }
 
-    private static String[] getCarsStringArray(String cars) {
+    /*
+    Записывает в файл массив машин
+     */
+    public Car[] saveCars(Car[] cars) {
+        try (FileOutputStream fos = new FileOutputStream(CATALOG_PATH)) {
+
+            for (Car car : cars) {
+                fos.write(writeCarFormatToFile(car).getBytes());
+                fos.write('\n');
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private String[] getCarsStringArray(String cars) {
         String[] carsStringArray = cars.split("\n");
         return carsStringArray;
     }
 
-    private static Car parseCar(String stringCar) {
+    private Car parseCar(String stringCar) {
         String[] car = stringCar.split(";");
 
         String mark = car[0];
@@ -58,5 +68,9 @@ public class Main {
         int stateNumber = Integer.parseInt(car[3]);
 
         return new Car(mark, color, yearManufacture, stateNumber);
+    }
+
+    private String writeCarFormatToFile(Car car) {
+        return "%s;%s;%d;%d".formatted(car.getMark(), car.getColor(), car.getYearManufacture(), car.getStateNumber());
     }
 }

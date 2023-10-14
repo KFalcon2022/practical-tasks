@@ -1,5 +1,4 @@
-package com.walking.lesson32_files_1.task1.model;
-
+package com.walking.lesson32_files_1.task2.model;
 
 public class Car {
     private final String mark;
