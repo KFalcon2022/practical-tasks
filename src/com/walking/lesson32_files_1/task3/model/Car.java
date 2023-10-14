@@ -38,7 +38,7 @@ public class Car {
     public int hashCode() {
         int result = mark != null ? mark.hashCode() : 0;
         result = 31 * (yearManufacture + result);
-        result += 31 * (stateNumber + result);
+        result += stateNumber + result;
         return result;
     }
 

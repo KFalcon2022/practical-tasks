@@ -1,17 +1,14 @@
-package com.walking.lesson32_files_1.task1;
+package com.walking.lesson33_files_2.task1.v1;
 
-import com.walking.lesson32_files_1.task1.model.Car;
+import com.walking.lesson33_files_2.model.Car;
 
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Используя класс Car (или создав новый класс для сущности «машина», на ваше усмотрение) из задачи
- * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson19_object_methods/model">...</a>
- * Реализуйте сохранение массива машин в файл carCatalog.txt
- */
+//FileWriter
+
 public class Main {
-    private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog.txt";
+    private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog_33_lesson.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
@@ -19,13 +16,11 @@ public class Main {
     }
 
     private static void writeCatalog(Car[] cars) {
-        try (FileOutputStream fos = new FileOutputStream(CATALOG_PATH, true)) {
-
+        try (FileWriter fw = new FileWriter(CATALOG_PATH)) {
             for (Car car : cars) {
-                fos.write(writeFormat(car).getBytes());
-                fos.write('\n');
+                fw.write(writeFormat(car));
+                fw.write('\n');
             }
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

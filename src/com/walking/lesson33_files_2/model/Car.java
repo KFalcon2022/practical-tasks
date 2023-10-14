@@ -1,5 +1,4 @@
-package com.walking.lesson32_files_1.task1.model;
-
+package com.walking.lesson33_files_2.model;
 
 public class Car {
     private final String mark;
@@ -34,8 +33,8 @@ public class Car {
     @Override
     public int hashCode() {
         int result = mark != null ? mark.hashCode() : 0;
-        result += 31 * (yearManufacture + result);
-        result += stateNumber + result;
+        result += 31 * yearManufacture;
+        result += stateNumber;
         return result;
     }
 

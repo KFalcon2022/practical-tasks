@@ -31,10 +31,8 @@ public class CarRepository {
             return cars;
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException("Ошибка чтения файла.");
         }
-
-        return null;
     }
 
     /*

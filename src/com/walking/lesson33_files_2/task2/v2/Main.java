@@ -1,16 +1,14 @@
-package com.walking.lesson32_files_1.task2;
+package com.walking.lesson33_files_2.task2.v2;
 
-import com.walking.lesson32_files_1.task2.model.Car;
+import com.walking.lesson33_files_2.model.Car;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 
-/**
- * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
- * реализовав сохранение данных в массив Car.
- */
 public class Main {
-    private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog.txt";
+    private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog_33_lesson.txt";
 
     public static void main(String[] args) throws IOException {
         Car[] cars = getCars();
@@ -20,11 +18,11 @@ public class Main {
     }
 
     private static Car[] getCars() {
-        try (FileInputStream fis = new FileInputStream(CATALOG_PATH)) {
+        try (BufferedInputStream reader = new BufferedInputStream(new FileInputStream(CATALOG_PATH))) {
             StringBuilder stringBuilder = new StringBuilder();
 
             int i;
-            while((i = fis.read()) != -1) {
+            while((i = reader.read()) != -1) {
                 stringBuilder.append((char) i);
             }
 

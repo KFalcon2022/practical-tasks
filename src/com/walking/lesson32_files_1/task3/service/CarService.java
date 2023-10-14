@@ -79,7 +79,7 @@ public class CarService {
         return null;
     }
 
-    private int findIndexCar(Car searchCar) {
+    private Integer findIndexCar(Car searchCar) {
 
         for (int i = 0; i < cars.length; i++) {
             if (searchCar.equals(cars[i])) {
@@ -87,6 +87,6 @@ public class CarService {
             }
         }
 
-        return 0;
+        return null;
     }
 }
