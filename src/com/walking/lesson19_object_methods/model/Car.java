@@ -1,4 +1,4 @@
-package com.walking.lesson19_object_methods.models;
+package com.walking.lesson19_object_methods.model;
 
 public class Car {
     private final String brandName;
