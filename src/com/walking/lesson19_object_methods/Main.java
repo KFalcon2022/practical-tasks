@@ -1,6 +1,6 @@
 package com.walking.lesson19_object_methods;
 
-import com.walking.lesson19_object_methods.models.Car;
+import com.walking.lesson19_object_methods.model.Car;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -26,7 +26,6 @@ public class Main {
         cars[1]= new Car("Rollce Royce","Phantom",randomVin(),"H726KT799");
         cars[2]= new Car("Hyndai","Santa Fe",randomVin(),"C111KK77");
         cars[3]= new Car("Tesla","X",randomVin(),"X117EN799");
-
         findCar(cars);
     }
     private static String randomVin(){
