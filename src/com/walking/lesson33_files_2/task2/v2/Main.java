@@ -2,23 +2,24 @@ package com.walking.lesson33_files_2.task2.v2;
 
 import com.walking.lesson33_files_2.model.Car;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
     private final static String CATALOG_PATH = "./resource/files/lesson32/carCatalog_33_lesson.txt";
 
     public static void main(String[] args) throws IOException {
-        Car[] cars = getCars();
+        File carCatalog = new File(CATALOG_PATH);
+
+        Car[] cars = getCars(carCatalog);
         for (Car car : cars) {
             System.out.println(car);
         }
     }
 
-    private static Car[] getCars() {
-        try (BufferedInputStream reader = new BufferedInputStream(new FileInputStream(CATALOG_PATH))) {
+    private static Car[] getCars(File carCatalog) {
+        try (FileInputStream fis = new FileInputStream(carCatalog);
+             BufferedInputStream reader = new BufferedInputStream(fis)) {
+
             StringBuilder stringBuilder = new StringBuilder();
 
             int i;

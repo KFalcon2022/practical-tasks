@@ -10,11 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
         Car[] cars = initCars();
-        writeCatalog(cars);
+        File carCatalog = new File(CATALOG_PATH);
+        writeCatalog(cars, carCatalog);
     }
 
-    private static void writeCatalog(Car[] cars) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CATALOG_PATH))) {
+    private static void writeCatalog(Car[] cars, File carCatalog) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(carCatalog))) {
             for (Car car : cars) {
                 bw.write(writeFormat(car));
                 bw.write('\n');

@@ -2,6 +2,7 @@ package com.walking.lesson33_files_2.task1.v1;
 
 import com.walking.lesson33_files_2.model.Car;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,11 +13,12 @@ public class Main {
 
     public static void main(String[] args) {
         Car[] cars = initCars();
-        writeCatalog(cars);
+        File carCatalog = new File(CATALOG_PATH);
+        writeCatalog(cars, carCatalog);
     }
 
-    private static void writeCatalog(Car[] cars) {
-        try (FileWriter fw = new FileWriter(CATALOG_PATH)) {
+    private static void writeCatalog(Car[] cars, File carCatalog) {
+        try (FileWriter fw = new FileWriter(carCatalog)) {
             for (Car car : cars) {
                 fw.write(writeFormat(car));
                 fw.write('\n');

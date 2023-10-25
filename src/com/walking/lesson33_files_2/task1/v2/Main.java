@@ -2,10 +2,7 @@ package com.walking.lesson33_files_2.task1.v2;
 
 import com.walking.lesson33_files_2.model.Car;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 //BufferedOutputStream
 
@@ -14,11 +11,12 @@ public class Main {
 
     public static void main(String[] args) {
         Car[] cars = initCars();
-        writeCatalog(cars);
+        File carCatalog = new File(CATALOG_PATH);
+        writeCatalog(cars, carCatalog);
     }
 
-    private static void writeCatalog(Car[] cars) {
-        try (FileOutputStream fos = new FileOutputStream(CATALOG_PATH);
+    private static void writeCatalog(Car[] cars, File carCatalog) {
+        try (FileOutputStream fos = new FileOutputStream(carCatalog);
                 BufferedOutputStream bos = new BufferedOutputStream(fos)) {
 
             for (Car car : cars) {
