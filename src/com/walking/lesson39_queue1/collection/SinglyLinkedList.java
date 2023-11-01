@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class SinglyLinkedList<T> implements Collection<T> {
-    private SinglyLinkedList.Node<T> top;
+    private Node<T> top;
     private int size;
 
     public SinglyLinkedList() {
@@ -15,6 +15,10 @@ public class SinglyLinkedList<T> implements Collection<T> {
     public SinglyLinkedList(T elem) {
         this.top = new SinglyLinkedList.Node<>(elem);
         size++;
+    }
+
+    public T getTop() {
+        return top.value;
     }
 
     @Override
