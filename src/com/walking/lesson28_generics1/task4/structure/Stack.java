@@ -7,7 +7,6 @@ public class Stack<T> {
     private int size;
 
     public Stack() {
-
     }
     public Stack(T elem) {
         this.top = new Node<>(elem);

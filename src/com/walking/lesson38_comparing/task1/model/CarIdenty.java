@@ -1,13 +1,13 @@
 package com.walking.lesson38_comparing.task1.model;
 
 
-public final class IdentyCar {
+public final class CarIdenty {
     private final MarkType mark;
     private final int year;
     private final String stateNumber;
 
 
-    public IdentyCar(MarkType mark, int year, String stateNumber) {
+    public CarIdenty(MarkType mark, int year, String stateNumber) {
         this.mark = mark;
         this.year = year;
         this.stateNumber = stateNumber;
@@ -45,7 +45,7 @@ public final class IdentyCar {
             return false;
         }
 
-        IdentyCar car = (IdentyCar) o;
+        CarIdenty car = (CarIdenty) o;
 
         return year == car.year && stateNumber.equals(car.stateNumber);
     }

@@ -1,5 +1,6 @@
 package com.walking.lesson37_collection_list.task2.collection;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Spliterator;
@@ -12,7 +13,6 @@ public class MyLinkedCollection<T> implements Collection<T> {
     private int size;
 
     public MyLinkedCollection() {
-
     }
 
     public MyLinkedCollection(T elem) {
@@ -85,6 +85,7 @@ public class MyLinkedCollection<T> implements Collection<T> {
         int i = 0;
         while (temp != null) {
             array[i] = temp.value;
+            temp = temp.next;
             i++;
         }
         return array;
@@ -92,7 +93,7 @@ public class MyLinkedCollection<T> implements Collection<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        return (T1[]) Arrays.copyOf(toArray(), size, a.getClass());
     }
 
     @Override
@@ -160,12 +161,27 @@ public class MyLinkedCollection<T> implements Collection<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        while (c.contains(top.value)) {
+            top = top.next;
+            size--;
+        }
+
+        Node<T> temp = top;
+        while (temp.next != null) {
+            if (c.contains(temp.next)) {
+                temp.next = temp.next.next;
+                size--;
+            }
+            temp = top.next;
+        }
+
+        return size > 0;
     }
 
     @Override
     public void clear() {
-
+        top = null;
+        size = 0;
     }
 
     private static class Node<T> {
@@ -176,9 +192,9 @@ public class MyLinkedCollection<T> implements Collection<T> {
             this.value = value;
         }
 
-        private Node(T value, Node<T> elem) {
+        private Node(T value, Node<T> node) {
             this.value = value;
-            this.next = elem;
+            this.next = node;
         }
     }
 }

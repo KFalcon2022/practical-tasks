@@ -27,7 +27,9 @@ public class Main {
         Comparator<Car> numberComp = new Comparator<>() {
             @Override
             public int compare(Car o1, Car o2) {
-                return o1.getIdentityCar().getStateNumber().compareTo(o2.getIdentityCar().getStateNumber());
+                return o1.getIdentityCar()
+                        .getStateNumber()
+                        .compareTo(o2.getIdentityCar().getStateNumber());
             }
         };
         cars.sort(numberComp);

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CounterService {
-    private List<Counter> countersList;
+    private final List<Counter> countersList;
 
     public CounterService(List<Counter> counters) {
         this.countersList = new ArrayList<>(counters);

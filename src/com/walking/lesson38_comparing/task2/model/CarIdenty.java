@@ -1,13 +1,13 @@
 package com.walking.lesson38_comparing.task2.model;
 
 
-public final class IdentyCar {
+public final class CarIdenty implements Comparable<CarIdenty> {
     private final MarkType mark;
     private final int year;
     private final String stateNumber;
 
 
-    public IdentyCar(MarkType mark, int year, String stateNumber) {
+    public CarIdenty(MarkType mark, int year, String stateNumber) {
         this.mark = mark;
         this.year = year;
         this.stateNumber = stateNumber;
@@ -45,12 +45,12 @@ public final class IdentyCar {
             return false;
         }
 
-        IdentyCar car = (IdentyCar) o;
+        CarIdenty car = (CarIdenty) o;
 
         return year == car.year && stateNumber.equals(car.stateNumber);
     }
 
-    public int compareTo(IdentyCar identyCar) {
+    public int compareTo(CarIdenty identyCar) {
         if (stateNumber.compareTo(identyCar.getStateNumber()) > 0) {
             return 1;
         } else if (stateNumber.compareTo(identyCar.getStateNumber()) < 0) {

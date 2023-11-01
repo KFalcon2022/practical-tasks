@@ -1,20 +1,20 @@
 package com.walking.lesson38_comparing.task1.model;
 
 public class Car {
-    private final IdentyCar identyCar;
+    private final CarIdenty identyCar;
     private ColorType color;
 
-    public Car(IdentyCar identityCar, ColorType color) {
+    public Car(CarIdenty identityCar, ColorType color) {
         this.identyCar = identityCar;
         this.color = color;
     }
 
     public Car(MarkType mark, ColorType color, int year, String stateNumber) {
-        this.identyCar = new IdentyCar(mark, year, stateNumber);
+        this.identyCar = new CarIdenty(mark, year, stateNumber);
         this.color = color;
     }
 
-    public IdentyCar getIdentityCar() {
+    public CarIdenty getIdentityCar() {
         return identyCar;
     }
 
