@@ -1,24 +1,49 @@
 package com.walking.lesson39_queue1.collection;
 
-import com.walking.lesson39_queue1.exception.NoElementException;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class SinglyLinkedList<T> implements Collection<T> {
+public class DoubleLinkedList<T> implements Collection<T> {
     private Node<T> top;
+    private Node<T> last;
     private int size;
 
-    public SinglyLinkedList() {
-    }
-    public SinglyLinkedList(T elem) {
-        this.top = new Node<>(elem);
-        size++;
+    public DoubleLinkedList() {
     }
 
-    public T getTop() {
-        return top.value;
+    public DoubleLinkedList(T elem) {
+        this.top = new Node<>(elem);
+        this.last = this.top;
+        this.size++;
+    }
+
+    public Node<T> getTop() {
+        return top;
+    }
+
+    public Node<T> getLast() {
+        return last;
+    }
+
+    //я это не осилил. колдовство какое-то
+    public void reverseList() {
+        if (size <= 1) {
+            return;
+        }
+
+        last = top;
+
+        Node<T> current = top;
+        Node<T> temp = null;
+        while (current != null) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            current = current.prev;
+        }
+
+        top = temp.prev;
     }
 
     @Override
@@ -38,6 +63,7 @@ public class SinglyLinkedList<T> implements Collection<T> {
             if (o.equals(temp.value)) {
                 return true;
             }
+
             temp = temp.next;
         }
 
@@ -51,8 +77,8 @@ public class SinglyLinkedList<T> implements Collection<T> {
 
     @Override
     public Object[] toArray() {
-        Object[] array = new Object[size];
         Node<T> temp = top;
+        Object[] array = new Object[size];
 
         int i = 0;
         while (temp != null) {
@@ -69,17 +95,51 @@ public class SinglyLinkedList<T> implements Collection<T> {
         return (T1[]) Arrays.copyOf(toArray(), size, a.getClass());
     }
 
-    public boolean add(T elem) {
-        top = new Node<>(elem, top);
+    @Override
+    public boolean add(T t) {
+        return addLast(t);
+    }
+
+    public boolean addLast(T elem) {
+        Node<T> l = last;
+        Node<T> node = new Node<>(l, elem, null);
+        last = node;
+
+        if (l == null) {
+            top = node;
+        } else {
+            l.next = node;
+        }
+
         size++;
-        return false;
+
+        return true;
+    }
+
+    public boolean addTop(T elem) {
+        Node<T> t = top;
+        Node<T> node = new Node<>(null ,elem, t);
+        top = node;
+
+        if (t == null) {
+            last = node;
+        } else {
+            t.prev = node;
+        }
+
+        size++;
+
+        return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        Node<T> temp = top;
+        if (size ==0) {
+            return false;
+        }
 
-        if (top.value.equals(o)) {
+        Node<T> temp = top;
+        if (o.equals(temp.value)) {
             top = top.next;
             size--;
 
@@ -87,27 +147,53 @@ public class SinglyLinkedList<T> implements Collection<T> {
         }
 
         while (temp.next != null) {
-            if (temp.next.value.equals(o)) {
+            if (o.equals(temp.next.value)) {
                 temp.next = temp.next.next;
                 size--;
-
                 return true;
             }
-            temp = temp.next;
+
+            temp.next = temp.next.next;
         }
 
         return false;
     }
 
+    public boolean removeTop() {
+        if (size == 0) {
+            return false;
+        }
+
+        Node<T> temp = top.next;
+        top = temp;
+        size--;
+
+        return true;
+    }
+
+    public boolean removeLast() {
+        if (size == 0) {
+            return false;
+        }
+
+        Node<T> temp = last;
+        last = temp.prev;
+        size--;
+
+        return true;
+    }
+
     @Override
     public boolean containsAll(Collection<?> c) {
+        boolean result = true;
+
         for (Object elem : c) {
             if (!contains(elem)) {
-                return false;
+                result = false;
             }
         }
 
-        return true;
+        return result;
     }
 
     @Override
@@ -115,7 +201,6 @@ public class SinglyLinkedList<T> implements Collection<T> {
         for (T elem : c) {
             add(elem);
         }
-
         return true;
     }
 
@@ -141,7 +226,8 @@ public class SinglyLinkedList<T> implements Collection<T> {
                 temp.next = temp.next.next;
                 size--;
             }
-            temp = top.next;
+
+            temp = temp.next;
         }
 
         return size > 0;
@@ -150,87 +236,21 @@ public class SinglyLinkedList<T> implements Collection<T> {
     @Override
     public void clear() {
         top = null;
+        last = null;
         size = 0;
     }
 
-    public T find(T elem) {
-        SinglyLinkedList.Node<T> temp = top;
-
-        while (temp != null) {
-            if (elem.equals(temp.value)) {
-                return elem;
-            }
-            temp = temp.next;
-        }
-
-        throw new NoElementException();
-    }
-
-    public void delete(T elem) {
-        Node<T> temp = top;
-
-        if (elem.equals(top.value)) {
-            top = top.next;
-            size--;
-
-            return;
-        }
-
-        while (temp.next != null) {
-            if (elem.equals(temp.next.value)) {
-                temp.next = temp.next.next;
-                size--;
-
-                return;
-            }
-
-            temp = temp.next;
-        }
-
-        throw new NoElementException();
-    }
-
-    //тут мой мозг сломался, я подсмотрел, и даже после этого я с трудом туда это запихнул
-    public void reverseList() {
-        SinglyLinkedList.Node<T> prev = null;
-        while (top != null) {
-            Node<T> next = top.next;
-            top.next = prev;
-            prev = top;
-            top = next;
-        }
-
-        top = prev;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        SinglyLinkedList.Node<T> temp = top;
-
-        while (temp != null) {
-            sb.append(temp.value);
-
-            if (temp.next != null) {
-                sb.append(", ");
-            }
-
-            temp = temp.next;
-        }
-
-        sb.append("]");
-        return sb.toString();
-    }
-
     private static class Node<T> {
-        private final T value;
+        private T value;
         private Node<T> next;
+        private Node<T> prev;
 
         private Node(T value) {
             this.value = value;
         }
 
-        private Node(T value, Node<T> next) {
+        private Node(Node<T> prev, T value, Node<T> next) {
+            this.prev = prev;
             this.value = value;
             this.next = next;
         }
