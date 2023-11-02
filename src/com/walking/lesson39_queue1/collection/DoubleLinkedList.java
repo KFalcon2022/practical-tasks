@@ -18,12 +18,12 @@ public class DoubleLinkedList<T> implements Collection<T> {
         this.size++;
     }
 
-    public Node<T> getTop() {
-        return top;
+    public T getTop() {
+        return top.value;
     }
 
-    public Node<T> getLast() {
-        return last;
+    public T getLast() {
+        return last.value;
     }
 
     //я это не осилил. колдовство какое-то
