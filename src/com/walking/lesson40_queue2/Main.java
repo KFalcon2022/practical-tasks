@@ -22,24 +22,15 @@ import java.util.Collection;
 public class Main {
     public static void main(String[] args) {
         TaskService service = new TaskService();
-        service.addAll(initTaskArray());
+        service.taskAdded("Task 1");
+        service.taskAdded("Task 2");
+        service.taskAdded("Task 3");
+
+        service.taskCompleted();
 
         service.taskAdded("Task 6");
         service.taskAdded("Task 7");
 
         service.taskCompleted();
-        service.taskCompleted();
-    }
-
-    public static Collection<? extends Task> initTaskArray() {
-        Task[] tasks = new Task[]{
-                new Task("Task 1"),
-                new Task("Task 2"),
-                new Task("Task 3"),
-                new Task("Task 4"),
-                new Task("Task 5")
-        };
-
-        return Arrays.asList(tasks.clone());
     }
 }
