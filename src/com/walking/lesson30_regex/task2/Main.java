@@ -1,5 +1,8 @@
 package com.walking.lesson30_regex.task2;
 
+import com.walking.lesson30_regex.task2.model.FullName;
+import com.walking.lesson30_regex.task2.model.InputValidationException;
+
 /**
  * Реализуйте метод для работы с ФИО.
  * Входным параметром должна являться строка,
@@ -14,5 +17,22 @@ package com.walking.lesson30_regex.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        FullName fullName = createCorrectFullName("Антонов Вадим Вадимыч");
+        FullName fullName1 = createCorrectFullName("Антонов-Антонов Вадим Вадимыч");
+
+        FullName invalidFullName = createCorrectFullName("АнтоноАнтонов Вадим Вадимыч");
+
+    }
+
+    public static FullName createCorrectFullName(String fullName) {
+        if (isCorrectFullName(fullName)) {
+            String [] splitFullName = fullName.split(" ");
+            return  new FullName(splitFullName);
+        }
+        throw new InputValidationException();
+    }
+    public static boolean isCorrectFullName(String fullName) {
+        String regex = "^[А-Я][а-я]*(-[А-Я][а-я]*)? [А-Я][а-я]* [А-Я][а-я]*$";
+        return  fullName.matches(regex);
     }
 }
