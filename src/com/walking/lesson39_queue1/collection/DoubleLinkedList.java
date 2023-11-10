@@ -26,6 +26,19 @@ public class DoubleLinkedList<T> implements Collection<T> {
         return last.value;
     }
 
+    public void deleteEvenHash() {
+        if (size < 1) {
+            return;
+        }
+
+        Node<T> temp = top;
+        while (temp != null) {
+            if (temp.hashCode() % 2 == 0) {
+                remove(temp);
+            }
+        }
+    }
+
     //я это не осилил. колдовство какое-то
     public void reverseList() {
         if (size <= 1) {
@@ -118,7 +131,7 @@ public class DoubleLinkedList<T> implements Collection<T> {
 
     public boolean addTop(T elem) {
         Node<T> t = top;
-        Node<T> node = new Node<>(null ,elem, t);
+        Node<T> node = new Node<>(null, elem, t);
         top = node;
 
         if (t == null) {
@@ -134,7 +147,7 @@ public class DoubleLinkedList<T> implements Collection<T> {
 
     @Override
     public boolean remove(Object o) {
-        if (size ==0) {
+        if (size == 0) {
             return false;
         }
 
