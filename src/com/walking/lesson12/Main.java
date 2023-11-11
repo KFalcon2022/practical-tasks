@@ -1,24 +1,25 @@
+
 public class Main {
     public static void main(String[] args) {
-        Counter electricity = new Counter("Р­Р»РµРєС‚СЂРёС‡РµСЃС‚РІРѕ", "kw/h");
-        Counter hotWater = new Counter("Р“РѕСЂСЏС‡Р°СЏ РІРѕРґР°", "Р».");
-        Counter coldWater = new Counter("РҐРѕР»РѕРґРЅР°СЏ РІРѕРґР°", "Р».");
-        Counter gas = new Counter("Р“Р°Р·", "Рј?/С‡");
+        Counter gasCounter = new Counter("Газ", "м.куб.");
+        Counter coldWater = new Counter("Холодная вода", "л.куб.");
+        Counter warmWater = new Counter("Горячая вода", "л.куб.");
+        Counter electycity = new Counter("Электричество", "кв.ч.");
 
-        CounterService.writeDownObjectIntoArray(electricity);
-        CounterService.writeDownObjectIntoArray(hotWater);
-        CounterService.writeDownObjectIntoArray(coldWater);
-        CounterService.writeDownObjectIntoArray(gas);
+        CounterService array = new CounterService();
+        array.addCounter(gasCounter, coldWater, warmWater, electycity);
 
-        print("Р­Р»РµРєС‚СЂРёС‡РµСЃС‚РІРѕ");
-        print("Р“РѕСЂСЏС‡Р°СЏ РІРѕРґР°");
-        print("РҐРѕР»РѕРґРЅР°СЏ РІРѕРґР°");
-        print("Р“Р°Р·");
+        array.increment(array.getCounter("Газ"));
+        System.out.println(gasCounter.getCounter());
+
+        array.reset(gasCounter);
+
+        print(coldWater);
+        print(warmWater);
+        print(gasCounter);
+        print(electycity);
     }
-    private static void print(String name) {
-        String nameCounter = CounterService.getArray(name).name;
-        int counter = CounterService.getArray(name).counter;
-
-        System.out.println(nameCounter + " : " + counter);
+    private static void print(Counter counter){
+        System.out.printf("%s: %d\n", counter.getNAME(), counter.getCounter());
     }
 }
