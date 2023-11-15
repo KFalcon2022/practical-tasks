@@ -1,9 +1,6 @@
 package com.walking.lesson41_set.task2;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Реализуйте задачу
@@ -14,13 +11,15 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Введи слова через пробел: ");
         Scanner scanner = new Scanner(System.in);
-        String str = scanner.nextLine();
+        String str = scanner.nextLine()
+                .trim()
+                .toLowerCase();
+
         scanner.close();
 
-        str.trim();
         String[] strArr = str.split(" ");
 
-        Set uniqueWords = new HashSet(Arrays.asList(strArr));
+        Set<String> uniqueWords = new HashSet<>(List.of(strArr));
 
         System.out.println(uniqueWords.size());
 

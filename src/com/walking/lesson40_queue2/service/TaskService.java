@@ -9,16 +9,18 @@ import java.util.Queue;
 public class TaskService {
     Queue<Task> list = new ArrayDeque<>();
 
-    public Task taskAdded(String task) {
-        Task addedTask = new Task(task);
-        list.offer(addedTask);
+    public Task added(Task task) {;
+        list.offer(task);
         System.out.printf("Задача %s добавлена.\n", task);
 
-        return addedTask;
+        return task;
     }
 
-    public Task taskCompleted() {
-        System.out.printf("Задача %s выполнена.\n", list.peek().getName());
-        return list.remove();
+    public Task completed() {
+        Task deletedTask = list.remove();
+
+        System.out.printf("Задача %s выполнена.\n", deletedTask.getName());
+
+        return deletedTask;
     }
 }

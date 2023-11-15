@@ -1,6 +1,8 @@
 package com.walking.lesson41_set.task1;
 
-import com.walking.lesson40_queue2.service.TaskService;
+
+import com.walking.lesson41_set.task1.model.Task;
+import com.walking.lesson41_set.task1.service.TaskService;
 
 /**
  * Реализуйте задачу
@@ -13,14 +15,14 @@ public class Main {
     public static void main(String[] args) {
         TaskService service = new TaskService();
 
-        service.taskAdded("Task 1");
-        service.taskAdded("Task 2");
-        service.taskAdded("Task 3");
-        service.taskAdded("Task 4");
+        service.added(new Task("Task 1"));
+        service.added(new Task("Task 2"));
+        service.added(new Task("Task 3"));
+        service.added(new Task("Task 4"));
 
-        service.taskCompleted();
-        service.taskCompleted();
+        service.completed();
+        service.completed();
 
-        service.taskAdded("Task 5");
+        service.added(new Task("Task 5"));
     }
 }

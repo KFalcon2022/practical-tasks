@@ -11,29 +11,26 @@ public class TaskService {
 
     private final Set<Task> tasks = new HashSet<>();
 
-    public boolean taskAdded(String task) {
-        Task addedTask = new Task(task);
+    public boolean added(Task task) {
 
-        boolean result = tasks.add(addedTask);
+        boolean result = tasks.add(task);
 
         if (result) {
             System.out.printf("Задача %s добавлена.\n", task);
 
-            Node<Task> node = new Node<>(last, addedTask, null);
+            Node<Task> node = new Node<>(last, task, null);
 
             if (last == null) {
                 first = node;
             } else {
                 first.next = node;
             }
-
-            return result;
         }
 
         return result;
     }
 
-    public boolean taskCompleted() {
+    public boolean completed() {
         System.out.printf("Задача %s выполнена.\n", first.value.getName());
         return tasks.remove(first);
     }

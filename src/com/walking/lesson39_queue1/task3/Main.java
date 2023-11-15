@@ -11,8 +11,6 @@ public class Main {
     public static void main(String[] args) {
         DoubleLinkedList<Integer> list = initList();
 
-
-
         System.out.printf("First: %d, Last: %d\n", list.getTop(), list.getLast());
 
         list.reverseList();

@@ -22,15 +22,15 @@ import java.util.Collection;
 public class Main {
     public static void main(String[] args) {
         TaskService service = new TaskService();
-        service.taskAdded("Task 1");
-        service.taskAdded("Task 2");
-        service.taskAdded("Task 3");
 
-        service.taskCompleted();
+        service.added(new Task("Task 1"));
+        service.added(new Task("Task 2"));
+        service.added(new Task("Task 3"));
 
-        service.taskAdded("Task 6");
-        service.taskAdded("Task 7");
+        service.completed();
 
-        service.taskCompleted();
+        service.added(new Task("Task 4"));
+
+        service.completed();
     }
 }
