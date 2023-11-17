@@ -1,6 +1,7 @@
 package com.walking.lesson16_abstract_class_interface.task1_abstract_class;
 
 
+import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.Figure;
 import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.Square;
 import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.Triangle;
 
@@ -30,14 +31,16 @@ public class Main {
         }
         System.out.println("Entry is VALID. Drawing your figure...\n");
 
+        Figure aa;
+
         if (selectedFigure == 1){
-            Triangle a = new Triangle(selectedLength);
-            System.out.println(a.builtFigure());
+            aa = new Triangle(selectedLength);
         }
         else {
-            Square a = new Square(selectedLength);
-            System.out.println(a.builtFigure());
+            aa = new Square(selectedLength);
         }
+
+        System.out.println(aa.builtFigure());
 
 
 
