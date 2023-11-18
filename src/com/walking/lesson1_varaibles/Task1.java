@@ -1,4 +1,4 @@
-package com.walking.lesson1_varaibles;
+package src.com.walking.lesson1_varaibles;
 
 /**
  * На месте комментария написать код, который присвоит переменной a значение переменной b и наоборот.

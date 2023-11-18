@@ -1,4 +1,4 @@
-package com.walking.lesson4_cycles;
+package src.com.walking.lesson4_cycles;
 
 /**
  * Выводить на экран "Не угадал!" до тех пор,

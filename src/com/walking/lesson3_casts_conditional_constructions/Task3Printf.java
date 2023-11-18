@@ -1,4 +1,4 @@
-package com.walking.lesson3_casts_conditional_constructions;
+package src.com.walking.lesson3_casts_conditional_constructions;
 
 /**
  * Завести три переменные типа String.

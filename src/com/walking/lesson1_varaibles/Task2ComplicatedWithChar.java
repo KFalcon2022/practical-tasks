@@ -1,4 +1,4 @@
-package com.walking.lesson1_varaibles;
+package src.com.walking.lesson1_varaibles;
 
 /**
  * Усложнение для внимательных: вывести ваше имя посимвольно,

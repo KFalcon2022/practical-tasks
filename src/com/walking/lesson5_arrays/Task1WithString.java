@@ -1,4 +1,4 @@
-package com.walking.lesson5_arrays;
+package src.com.walking.lesson5_arrays;
 
 /**
  * Создать массив char, заполненный буквами своего имени в верном порядке.

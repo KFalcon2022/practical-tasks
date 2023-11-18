@@ -1,4 +1,4 @@
-package com.walking.lesson2_operators_console_io;
+package src.com.walking.lesson2_operators_console_io;
 
 /**
  * Введите с клавиатуры целые числа a и b.

@@ -1,4 +1,4 @@
-package com.walking.lesson5_arrays;
+package src.com.walking.lesson5_arrays;
 
 /**
  * Вычислить из записать в массив первые 10 простых чисел.
