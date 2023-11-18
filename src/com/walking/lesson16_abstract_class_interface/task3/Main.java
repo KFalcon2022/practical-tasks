@@ -1,5 +1,6 @@
 package com.walking.lesson16_abstract_class_interface.task3;
 
+import com.walking.lesson16_abstract_class_interface.task3.model.*;
 
 /**
  * Реализуйте любую задачу из уроков о наследовании или полиморфизме с использованием новых знаний.
@@ -10,5 +11,11 @@ package com.walking.lesson16_abstract_class_interface.task3;
  */
 public class Main {
     public static void main(String[] args) {
+
+        Animal[] animals = {new Cat(), new Cow(), new Dog()};
+
+        for (Animal animal : animals) {
+            animal.sound();
+        }
     }
 }

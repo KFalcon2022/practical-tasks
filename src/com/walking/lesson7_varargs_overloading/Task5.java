@@ -13,5 +13,6 @@ package com.walking.lesson7_varargs_overloading;
  */
 public class Task5 {
     public static void main(String[] args) {
+        // надо вернуться к этому позже
     }
 }

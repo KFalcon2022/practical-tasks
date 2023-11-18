@@ -15,5 +15,23 @@ package com.walking.lesson8_classes_objects;
  */
 public class Main {
     public static void main(String[] args) {
+        Counter evenCounter = new Counter("Even numbers");
+        Counter oddCounter = new Counter("Odd numbers");
+
+        for (int i = 1; i <= 100; i++) {
+            if (i % 2 == 0) {
+                evenCounter.incrementCounter();
+            } else {
+                oddCounter.incrementCounter();
+            }
+        }
+
+        printCounter(evenCounter);
+        printCounter(oddCounter);
+
+    }
+
+    public static void printCounter(Counter counter) {
+        System.out.println(counter.name + ": " + counter.counter);
     }
 }
