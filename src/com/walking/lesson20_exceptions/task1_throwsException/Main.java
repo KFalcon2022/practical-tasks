@@ -15,7 +15,27 @@ package com.walking.lesson20_exceptions.task1_throwsException;
  * <p>
  * Подсказка: throws можно использовать в том числе в main().
  */
+
+import com.walking.lesson20_exceptions.task1_catchException.model.*;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+
+        File[] files = new File[]{
+                new File("a", 10, FileType.TEXT),
+                new File("b", 15, FileType.TEXT)};
+
+        System.out.print("Enter file name:");
+
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.next();
+        scanner.close();
+
+        FileService fileService = new FileService();
+        File file = fileService.searchFileByName(files, name);
+        System.out.println(file.toString());
     }
 }

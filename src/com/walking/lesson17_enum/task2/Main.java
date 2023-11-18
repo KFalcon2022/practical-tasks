@@ -7,5 +7,26 @@ package com.walking.lesson17_enum.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Animal[] animal = new Animal[]{Animal.CAT, Animal.COW, Animal.DOG, Animal.CAT};
+
+        soundAll(animal);
+    }
+
+    private static void soundAll(Animal[] animals) {
+        for (Animal animal : animals) {
+            System.out.println(animal.sound());
+        }
+    }
+
+    enum Animal{
+        COW("moo"),CAT("meow"),DOG("woof");
+        String voice;
+        Animal(String voice){
+            this.voice = voice;
+        };
+
+        public String sound(){
+            return this.voice;
+        }
     }
 }

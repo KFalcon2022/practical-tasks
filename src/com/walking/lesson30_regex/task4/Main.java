@@ -14,7 +14,23 @@ package com.walking.lesson30_regex.task4;
  * <p>
  * Подумайте, как наиболее корректно декомпозировать ваше решение.
  */
+import com.walking.lesson30_regex.task4.Text.Text;
 public class Main {
     public static void main(String[] args) {
+        String srcText = """
+                Java is one of the most popular: programming languages, often used for building web and enterprise scale applications. This collection of tutorials will help you get started with the basic concepts in Java?!
+                Next, let's dive into the world - of object-oriented programming, with practical Java examples?
+                Strings are a common data type in Java, representing text. Let's have a look at how to create and use String objects!
+                """;
+        Text text = new Text(srcText);
+
+        text.parseText();
+
+        System.out.println("Source text");
+        System.out.println(srcText);
+
+        System.out.println("Processed text");
+        System.out.println(text.getProcessedText( ));
+
     }
 }

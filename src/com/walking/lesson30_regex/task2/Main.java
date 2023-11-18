@@ -12,7 +12,19 @@ package com.walking.lesson30_regex.task2;
  * содержащий фамилию, имя и отчество.
  * Если невалидна – бросьте из метода исключение, указывающее на ошибку валидации.
  */
+
+import com.walking.lesson30_regex.task2.model.FullName;
+
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter full name:");
+        String inputString = scanner.nextLine();
+        scanner.close();
+
+        FullName fullName = new FullName(inputString);
+
+        System.out.print(fullName.toString());
     }
 }
