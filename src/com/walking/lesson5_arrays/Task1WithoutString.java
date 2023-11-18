@@ -7,5 +7,10 @@ package com.walking.lesson5_arrays;
  */
 public class Task1WithoutString {
     public static void main(String[] args) {
+        char[] nameChars = {'Н', 'и', 'к', 'и', 'т', 'а'};
+
+        for (char nameChar : nameChars) {
+            System.out.print(nameChar);
+        }
     }
 }
