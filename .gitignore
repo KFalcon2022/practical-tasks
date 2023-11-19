@@ -1,2 +1,5 @@
 # Project exclude paths
 /out/
+practical-tasks.iml
+.gitignore
+.idea
