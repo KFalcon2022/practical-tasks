@@ -1,11 +1,32 @@
 package com.walking.lesson7_varargs_overloading;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
- * РќР°РїРёСЃР°С‚СЊ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ РѕР±СЉРµРґРёРЅСЏРµС‚ Р»СЋР±РѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє,
- * РѕР±СЉРµРґРёРЅСЏСЏ РёС… С‡РµСЂРµР· РїСЂРѕР±РµР».
- * Р РµР°Р»РёР·Р°С†РёСЋ РєРѕРЅРєР°С‚РµРЅР°С†РёРё СЃС‚СЂРѕРє РІС‹РЅРµСЃС‚Рё РІ РѕС‚РґРµР»СЊРЅС‹Р№ РјРµС‚РѕРґ.
+ * Написать программу, которая объединяет любое количество строк,
+ * объединяя их через пробел.
+ * Реализацию конкатенации строк вынести в отдельный метод.
  */
 public class Task1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        System.out.println("Введите несколько слов\n" +
+                "(для выхода из программы введите \"exit\"): ");
+
+        System.out.println(concatinatingString());
+    }
+
+    static String concatinatingString() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        StringBuilder result = new StringBuilder();
+        String word;
+        do {
+            word = reader.readLine();
+            result.append(word).append(" ");
+        } while (!word.equals("exit"));
+        reader.close();
+        return result.toString();
     }
 }
