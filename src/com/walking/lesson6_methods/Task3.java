@@ -3,48 +3,54 @@ package com.walking.lesson6_methods;
 import java.util.Scanner;
 
 /**
- * РќР°РїРёСЃР°С‚СЊ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ РїСЂРёРЅРёРјР°РµС‚ РґР»РёРЅСѓ Рё С€РёСЂРёРЅСѓ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° (2 С†РµР»С‹С… С‡РёСЃР»Р°).
- * РќР°СЂРёСЃРѕРІР°С‚СЊ РІ РєРѕРЅСЃРѕР»Рё Р·Р°РґР°РЅРЅС‹Р№ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє, РёСЃРїРѕР»СЊР·СѓСЏ вЂњ-вЂњ Рё вЂњ|вЂќ.
- * РЈРіР»С‹ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° РѕР±РѕР·РЅР°С‡РёС‚СЊ СЃРёРјРІРѕР»РѕРј вЂњ вЂњ.
- * РљР°Р¶РґР°СЏ РµРґРёРЅРёС†Р° РґР»РёРЅС‹ РґРѕР»Р¶РЅР° РѕР±РѕР·РЅР°С‡Р°С‚СЊСЃСЏ РѕРґРЅРёРј СЃРёРјРІРѕР»РѕРј вЂњ-вЂњ,
- * РєР°Р¶РґР°СЏ РµРґРёРЅРёС†Р° С€РёСЂРёРЅС‹ вЂ“ СЃРёРјРІРѕР»РѕРј вЂњ|вЂњ.
+ * Написать программу, которая принимает длину и ширину прямоугольника (2 целых числа).
+ * Нарисовать в консоли заданный прямоугольник, используя “-“ и “|”.
+ * Углы прямоугольника обозначить символом “ “.
+ * Каждая единица длины должна обозначаться одним символом “-“,
+ * каждая единица ширины – символом “|“.
  * <p>
- * РџСЂРѕРёР·РІРµСЃС‚Рё РґРµРєРѕРјРїРѕР·РёС†РёСЋ РїРѕ СЃРІРѕРµРјСѓ СѓСЃРјРѕС‚СЂРµРЅРёСЋ. Р РµРєРѕРјРµРЅРґСѓСЋ СЃРєРёРЅСѓС‚СЊ РЅР° РїСЂРѕРІРµСЂРєСѓ. РљРѕРЅС‚Р°РєС‚ РЅРёР¶Рµ.
+ * Произвести декомпозицию по своему усмотрению. Рекомендую скинуть на проверку. Контакт ниже.
  */
 public class Task3 {
     public static final String CORNER = " ";
-    public static final String HORIZONTAL_LINE = "вЂ”";
+    public static final String HORIZONTAL_LINE = "—";
     public static final String VERTICAL_LINE = "|";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter x: ");
-        int x = scanner.nextInt();
-        System.out.print("Enter y: ");
-        int y = scanner.nextInt();
+
+        System.out.print("Enter length: ");
+        int length = scanner.nextInt();
+
+        System.out.print("Enter height: ");
+        int height = scanner.nextInt();
+
         scanner.close();
 
-        draw(x, y);
+        draw(length, height);
     }
 
     static void draw(int x, int y) {
-        topAndDown(x);
+        drawTopAndDown(x);
         for (int i = 0; i < y; i++) {
-            leftAndRight(x);
+            drawLeftAndRight(x);
         }
-        topAndDown(x);
+        drawTopAndDown(x);
     }
 
-    private static void topAndDown(int x) {
-        String topAndDown = CORNER +
-                HORIZONTAL_LINE.repeat(Math.max(0, x)) +
-                CORNER;
-        System.out.println(topAndDown);
+    private static void drawTopAndDown(int x) {
+    System.out.print(CORNER);
+        for (int i = 0; i < x; i++) {
+            System.out.print(HORIZONTAL_LINE);
+        }
+        System.out.println(CORNER);
     }
 
-    private static void leftAndRight(int x) {
-        String leftAndRight = VERTICAL_LINE + " ".repeat(Math.max(0, x)) +
-                VERTICAL_LINE;
-        System.out.println(leftAndRight);
+    private static void drawLeftAndRight(int x) {
+        System.out.print(VERTICAL_LINE);
+        for (int i = 0; i < x; i++) {
+            System.out.print(" ");
+        }
+        System.out.println(VERTICAL_LINE);
     }
 }

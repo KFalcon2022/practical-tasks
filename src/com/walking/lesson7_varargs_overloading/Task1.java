@@ -1,8 +1,6 @@
 package com.walking.lesson7_varargs_overloading;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Написать программу, которая объединяет любое количество строк,
@@ -11,22 +9,18 @@ import java.io.InputStreamReader;
  */
 public class Task1 {
     public static void main(String[] args) throws IOException {
-        System.out.println("Введите несколько слов\n" +
-                "(для выхода из программы введите \"exit\"): ");
 
-        System.out.println(concatinatingString());
+        String[] words = {"Если", "б", "мишки", "были", "пчёлами", "то", "они", "бы", "нипочём"};
+
+        System.out.println(concatinateString(words));
     }
 
-    static String concatinatingString() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    static String concatinateString(String[] words) {
 
         StringBuilder result = new StringBuilder();
-        String word;
-        do {
-            word = reader.readLine();
+        for (String word : words) {
             result.append(word).append(" ");
-        } while (!word.equals("exit"));
-        reader.close();
+        }
         return result.toString();
     }
 }
