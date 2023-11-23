@@ -9,6 +9,9 @@ package com.walking.lesson33_files_2.task2;
  * Вариант 2: BufferedInputStream;
  * Вариант 3: BufferedReader.
  */
+
+//Сделано в задании 1
+
 public class Main {
     public static void main(String[] args) {
     }

@@ -1,18 +1,18 @@
-package com.walking.lesson32_files_1.task1.service;
+package com.walking.lesson33_files_2.task1.service;
 
-import com.walking.lesson32_files_1.task1.models.Car;
+import com.walking.lesson33_files_2.task1.models.Car;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 public class CarService {
+    private String filePath="./resource/lesson_33_files_2/carCatalog.txt";
+    //FileWriter
+    /**
     public void addToFile(Car[] carsArray){
-        try (FileOutputStream carFos=new FileOutputStream("./resource/lesson_32_files_1/carCatalog.txt")){
+        try (FileWriter carWriter=new FileWriter(filePath)){
             for (Car car : carsArray){
-                byte[] buffer=car.toString().getBytes();
-                carFos.write(buffer);
+                carWriter.write(car.toString());
             }
         }
         catch (IOException ex){
@@ -20,25 +20,83 @@ public class CarService {
         }
     }
     public void addToFile(Car car){
-        try (FileOutputStream carFos=new FileOutputStream("./resource/lesson_32_files_1/carCatalog.txt",true)){
-                byte[] buffer=car.toString().getBytes();
-                carFos.write(buffer);
+        try (FileWriter carWriter=new FileWriter(filePath,true)){
+            carWriter.write(car.toString());
             System.out.println("Car is added to the file!");
         }
         catch (IOException ex){
             System.out.println(ex.getMessage());
         }
     }
-    public String readCarCatalog() throws IOException {
+    **/
+    public void addToFile(Car[] carsArray){
+        try (FileOutputStream carOutput=new FileOutputStream(filePath);
+        BufferedOutputStream carBufferedOutput = new BufferedOutputStream(carOutput)){
+            for (Car car : carsArray){
+                byte[] bufferData=car.toString().getBytes();
+                carBufferedOutput.write(bufferData);
+            }
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public void addToFile(Car car){
+        try (BufferedWriter carBuffWriter = new BufferedWriter(new FileWriter(filePath,true))){
+            carBuffWriter.write(car.toString());
+            //System.out.println("Car is added to the file!");
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    //FileReader
+    /**
+    public String readCarCatalog() {
         StringBuilder carString = new StringBuilder();
-        try (FileInputStream carFis=new FileInputStream("./resource/lesson_32_files_1/carCatalog.txt")){
-            carString.append(new String (carFis.readAllBytes()));
+        try (FileReader carReader=new FileReader(filePath)){
+            int tempChar;
+            while ((tempChar=carReader.read())!=-1){
+                carString.append((char) tempChar);
+            }
         }
         catch (IOException ex){
             System.out.println(ex.getMessage());
         }
         return carString.toString();
     }
+     **/
+     //BufferedInputStream
+    public String readCarCatalog() {
+        StringBuilder carString = new StringBuilder();
+        try (FileInputStream carInput = new FileInputStream(filePath);
+        BufferedInputStream carBuffInput = new BufferedInputStream(carInput)){
+            int tempChar;
+            while ((tempChar=carBuffInput.read())!=-1){
+                carString.append((char) tempChar);
+            }
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        return carString.toString();
+    }
+    //BufferedReader
+    /**
+    public String readCarCatalog() {
+        StringBuilder carString = new StringBuilder();
+        try (BufferedReader carBuffReader = new BufferedReader(new FileReader(filePath))){
+            String tempString;
+            while ((tempString=carBuffReader.readLine())!=null){
+                carString.append(tempString).append("\n");
+            }
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        return carString.toString();
+    }
+    **/
     private Car createCarFromString(String carString){
         String[] carData= carString.split(";|\\n");
         return new Car(carData[0],carData[1],carData[2],carData[3]);
