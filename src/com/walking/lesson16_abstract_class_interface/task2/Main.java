@@ -1,11 +1,7 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
-import com.walking.lesson16_abstract_class_interface.task2.model.Bye;
-import com.walking.lesson16_abstract_class_interface.task2.model.Greeting;
-import com.walking.lesson16_abstract_class_interface.task2.model.Hi;
-import com.walking.lesson16_abstract_class_interface.task2.model.UnknownGreeting;
+import com.walking.lesson16_abstract_class_interface.task2.model.*;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -15,8 +11,9 @@ import java.util.Scanner;
  */
 public class Main {
 
-    static final String REQUEST_HI = "hi";
-    static final String REQUEST_BYE = "bye";
+    static final String REQUEST_HI = "Hi";
+    static final String REQUEST_BYE = "Bye";
+    static final String REQUEST_HOW_ARE_YOU = "How are you";
     public static void main(String[] args) {
         System.out.println("Enter your greeting");
 
@@ -26,9 +23,10 @@ public class Main {
 
         Greeting reply;
 
-        switch (userEntry.toLowerCase(Locale.ROOT)){
+        switch (userEntry){
             case REQUEST_HI -> reply = new Hi();
             case REQUEST_BYE -> reply = new Bye();
+            case REQUEST_HOW_ARE_YOU -> reply = new HowAreYou();
             default -> reply = new UnknownGreeting();
         }
         System.out.println(reply.printReply());
