@@ -24,7 +24,6 @@ public class Task4 {
 
         System.out.print("Введите первое число: ");
         int a = scanner.nextInt();
-
         System.out.print("Введите второе чилсло: ");
         int b = scanner.nextInt();
 

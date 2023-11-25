@@ -5,6 +5,7 @@ package src.com.walking.lesson2_operators_console_io;
  * Выведите на экран результат сравнения:
  * a3 > b2,       где a3 - a в кубе, b2 - b  в квадрате
  */
+
 import java.util.Scanner;
 
 public class Task2 {

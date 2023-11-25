@@ -31,7 +31,6 @@ public class Task3 {
 
         for (int simpleInteger : simpleIntegers) {
             System.out.println(simpleInteger + " ");
-
         }
     }
 }

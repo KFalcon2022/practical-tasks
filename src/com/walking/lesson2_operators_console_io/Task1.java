@@ -6,6 +6,7 @@ package src.com.walking.lesson2_operators_console_io;
  * Совпадает ли результат выражения, если a и b — переменные типа int
  * (для проверки не забудьте также использовать подходящий метод Scanner)?
  */
+
 import java.util.Scanner;
 
 public class Task1 {
@@ -21,6 +22,5 @@ public class Task1 {
         scanner.close();
 
         System.out.println("Результат c = b*a*(a + b)/(a^2): " + b * a * (a + b) / Math.pow(2, 2));
-
     }
 }

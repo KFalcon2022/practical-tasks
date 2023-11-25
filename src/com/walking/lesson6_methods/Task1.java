@@ -1,4 +1,6 @@
-package com.walking.lesson6_methods;
+package src.com.walking.lesson6_methods;
+
+import java.util.Scanner;
 
 /**
  * Декомпозировать задачу
@@ -8,17 +10,33 @@ package com.walking.lesson6_methods;
  */
 public class Task1 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        int a = 5;
-        int b = 10;
+        System.out.print("Enter string: ");
+        String s = scanner.nextLine();
 
-        int c = a;
-        a = b;
-        b = c;
+        scanner.close();
 
-        System.out.println("Значение а: " + a + ". Значение b: " + b);
+        doGreetings(s);
+    }
 
+    static void doGreetings(String s) {
+        switch (s) {
+            case "Hi":
+                say("Hello");
+                break;
+            case "Bye":
+                say("Good bye");
+                break;
+            case "How are you":
+                say("How are your doing");
+                break;
+            default:
+                say("Unknown message");
+        }
+    }
 
-
+    static void say(String message) {
+        System.out.println(message);
     }
 }

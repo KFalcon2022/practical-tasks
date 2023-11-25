@@ -1,4 +1,4 @@
-package com.walking.lesson1_varaibles;
+package src.com.walking.lesson1_varaibles;
 
 /**
  * На месте комментария написать код, который присвоит переменной a значение переменной b и наоборот.
@@ -6,7 +6,6 @@ package com.walking.lesson1_varaibles;
  */
 public class Task1WithoutAdditionalVar {
     public static void main(String[] args) {
-
         int a = 5;
         int b = 10;
 

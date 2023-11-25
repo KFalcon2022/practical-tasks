@@ -12,6 +12,5 @@ public class Task2ComplicatedWithString {
         for (int i = 0; i < stringName.toCharArray().length; i++) {
             System.out.print(stringName.toCharArray()[i] + "\n");
         }
-
     }
 }
