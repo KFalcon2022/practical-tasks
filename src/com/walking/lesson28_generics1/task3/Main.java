@@ -1,12 +1,15 @@
-package com.walking.lesson28_generics1.task3;
+package Lesson28.Task3;
 
-/**
- * Реализовать класс для работы с массивом.
- * Разработать метод, производящий поиск значения в массиве.
- * Если значение не найдено — выбрасывать исключение.
- * Если найдено — возвращать его.
- */
+import Lesson25.Task2.Anonymous.Animal;
+import Lesson28.Task2.NotNullGeneric;
+
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        int[] i = {5,3,6,7,2,1,8};
+        String[] s = {"haha", "mama", "baba", "lala"};
+        ArrayGen<String> arrayGen = new ArrayGen<>(s);
+        System.out.println(arrayGen.find("baba"));
     }
 }

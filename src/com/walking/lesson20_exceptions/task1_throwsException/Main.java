@@ -16,6 +16,12 @@ package com.walking.lesson20_exceptions.task1_throwsException;
  * Подсказка: throws можно использовать в том числе в main().
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        List<Files> list = new ArrayList<>();
+        list.add(new Files("File1", FileTypes.VIDEO, ".mp4"));
+        list.add(new Files("File2"));
+        list.add(new Files("File3", FileTypes.AUDIO, ".wav"));
+        list.add(new Files("File4", FileTypes.PICTURE, ".png"));
+        System.out.println(new fileFinder((ArrayList<Files>) list).findFile("File3"));
     }
 }
