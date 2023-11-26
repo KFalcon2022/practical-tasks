@@ -1,5 +1,7 @@
 package com.walking.lesson40_queue2;
 
+import com.walking.lesson40_queue2.model.TaskService;
+
 /**
  * Реализуйте класс Задание. Он должен содержать поле Название,
  * состав остальных полей - на ваше усмотрение.
@@ -15,5 +17,17 @@ package com.walking.lesson40_queue2;
  */
 public class Main {
     public static void main(String[] args) {
+        int value = 10;
+
+        TaskService tasks = new TaskService(value);
+        tasks.add("Отнять", 8, '+');
+        tasks.addFirst("Прибавить", 4, '-');
+        tasks.add("Отнять", 2, '-' );
+
+        tasks.executeTasks();
+
+        System.out.println(tasks.getResult());
+
     }
+
 }
