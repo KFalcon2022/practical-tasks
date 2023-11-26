@@ -6,5 +6,14 @@ package com.walking.lesson28_generics1.task2;
  */
 public class Main {
     public static void main(String[] args) {
+
+        ExistObject<Object> m1 = new ExistObject<>(new Object());
+        System.out.println(m1.checkThis());
+
+        ExistObject<Object> m2 = new ExistObject<>(null);
+        System.out.println(m2.checkThis());
+
+
+
     }
 }

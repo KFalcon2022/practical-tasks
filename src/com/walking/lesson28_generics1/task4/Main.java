@@ -16,5 +16,33 @@ package com.walking.lesson28_generics1.task4;
  */
 public class Main {
     public static void main(String[] args) {
+
+        //создаем хранилище, проверял также на <String> все ок
+        Stack<Integer> m1 = new Stack<>(2);
+
+        //запрашиваем количество элементов в стеке
+        System.out.println(m1.getTop() + " Элементов в вашем стеке;");  //0 Элементов в вашем стеке;
+        m1.addElement(5);                                            //Добавлен обьект 5
+        System.out.println(m1.getTop() + " Элементов в вашем стеке;");  //1 Элементов в вашем стеке;
+        m1.addElement(8);                                            //Добавлен обьект 8
+        System.out.println(m1.show());                                  //([5,8,])
+        System.out.println(m1.getTop() + " Элементов в вашем стеке;");  //2 Элементов в вашем стеке;
+        m1.deleteElement();                                             //удалим элемент зашедший последним
+        System.out.println(m1.show());                                  // ([5,,])
+        m1.deleteElement();                                             //удалим элемент зашедший последним
+        System.out.println(m1.show());                                  //([,,])
+
+        m1.addElement(5);                                            //Добавлен обьект 5
+        System.out.println(m1.show());                                  //([5,,])
+        System.out.println(m1.getTop() + " Элементов в вашем стеке;");  //1 Элементов в вашем стеке;
+
+        System.out.println(m1.find(5));                            //Элемент найден: 5
+
+        /*
+        исключение бросает с коментарием если элемент не найден и если удаляем элемент которого в стеке нет
+        есть защита от переполнения
+         */
+
+
     }
 }
