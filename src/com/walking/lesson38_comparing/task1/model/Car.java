@@ -43,4 +43,7 @@ public class Car {
                 identifier.getNumber(), identifier.getYear(), color,
                 actualTechnicalInspection ? "actual" : "not actual");
     }
+
+
+
 }

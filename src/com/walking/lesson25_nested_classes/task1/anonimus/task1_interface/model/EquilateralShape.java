@@ -1,4 +1,4 @@
-package com.walking.lesson25_nested_classes.task1.anonymous_class;
+package com.walking.lesson25_nested_classes.task1.anonimus.task1_interface.model;
 
 public interface EquilateralShape {
     //    Поля интерфейса - всегда public static final

@@ -20,35 +20,39 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Car> cars = initCars();
-        printList(cars);
-
-        Comparator<Car> numberComparator = new Comparator<>() {
+       cars.sort(new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getIdentifier().getNumber().compareTo(o2.getIdentifier().getNumber());
             }
-        };
-        cars.sort(numberComparator);
-        printList(cars);
-
-        cars.sort(new Comparator<>() {
+        });
+       printList(cars);
+        cars.sort(new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getColor().compareTo(o2.getColor());
             }
         });
         printList(cars);
-
-        Comparator<Car> yearComparator = new Comparator<>() {
+        cars.sort(new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
-                return o1.getIdentifier().getYear() - o2.getIdentifier().getYear();
+                return o1.getIdentifier().getYear()-(o2.getIdentifier().getYear());
             }
-        };
-        cars.sort(yearComparator);
+        });
         printList(cars);
+        cars.sort(new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getIdentifier().getNumber().compareTo(o2.getIdentifier().getNumber());
+            }
+        }.thenComparing(new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getIdentifier().getYear()-(o2.getIdentifier().getYear());
+            }
 
-        cars.sort(numberComparator.thenComparing(yearComparator));
+        }));
         printList(cars);
     }
 
