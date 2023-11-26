@@ -6,6 +6,7 @@ package com.walking.lesson32_files_1.task3;
  * Работу с файлом предлагаю вынести в класс CarRepository,
  * но вы можете сделать иную реализацию на свое усмотрение.
  */
+//TODO
 public class Main {
     public static void main(String[] args) {
     }
