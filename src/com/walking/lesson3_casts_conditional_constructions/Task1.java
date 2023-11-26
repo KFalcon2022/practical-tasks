@@ -17,5 +17,25 @@ package com.walking.lesson3_casts_conditional_constructions;
  */
 public class Task1 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите a: ");
+        int a = scanner.nextInt();
+
+        System.out.print("Введите b: ");
+        int b = scanner.nextInt();
+
+        scanner.close();
+
+        int result;
+        if (a == b) {
+            System.out.println("числа равны!");
+        }
+        if (a % 2 == 0) {
+            result = a * b;
+        } else {
+            result = a / b;
+        }
+        System.out.println(result);
     }
 }

@@ -6,5 +6,13 @@ package com.walking.lesson1_varaibles;
  */
 public class Task1WithoutAdditionalVar {
     public static void main(String[] args) {
+        int a = 7;
+        int b = 10;
+        System.out.println("Было: a = " + a + " , b = " + b);
+
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        System.out.println("Стало: a = " + a + " , b = " + b);
     }
 }
