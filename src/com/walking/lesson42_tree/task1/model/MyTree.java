@@ -61,18 +61,15 @@ public class MyTree<T> {
             return null;
         }
 
+        Node<T> parent = removedElem.getParent();
         //если удаляемый элемент лист
         if (removedElem.getRight() == null && removedElem.getLeft() == null) {
             //определяем в какой ветви удаляемый элемент,
             // чтобы заменить у его родителя левый или правый узел на null
             if (isLeftNode(removedElem)) {
-                removedElem
-                        .getParent()
-                        .setLeft(null);
+                parent.setLeft(null);
             } else {
-                removedElem
-                        .getParent()
-                        .setRight(null);
+                parent.setRight(null);
             }
 
             size--;
@@ -83,20 +80,16 @@ public class MyTree<T> {
             //левому потомку удаляемого элемента устанавливаем родителем родителя удаляемого элемента
             removedElem
                     .getLeft()
-                    .setParent(removedElem.getParent());
+                    .setParent(parent);
 
             if (isLeftNode(removedElem)) {
                 //родителю удаляемого элемента устанавливаем потомком слева (т.к. сам удаляемый элемент у родителя слева)
                 //потомка удаляемого элемента (он у него только левый)
-                removedElem
-                        .getParent()
-                        .setLeft(removedElem.getLeft());
+                parent.setLeft(removedElem.getLeft());
             } else {
                 //родителю удаляемого элемента устанавливаем потомком справа (т.к. сам удаляемый элемент у родителя справа)
                 //потомка удаляемого элемента (он у него только левый)
-                removedElem
-                        .getParent()
-                        .setRight(removedElem.getLeft());
+                parent.setRight(removedElem.getLeft());
             }
 
             size--;
@@ -106,16 +99,12 @@ public class MyTree<T> {
         if (removedElem.getRight() != null && removedElem.getLeft() == null) {
             removedElem
                     .getRight()
-                    .setParent(removedElem.getParent());
+                    .setParent(parent);
 
             if (isLeftNode(removedElem)) {
-                removedElem
-                        .getParent()
-                        .setLeft(removedElem.getRight());
+                parent.setLeft(removedElem.getRight());
             } else {
-                removedElem
-                        .getParent()
-                        .setRight(removedElem.getRight());
+                parent.setRight(removedElem.getRight());
             }
 
             size--;
@@ -125,19 +114,15 @@ public class MyTree<T> {
         if (removedElem.getRight() != null && removedElem.getLeft() != null) {
             //ищем большего из потомков
             Node<T> max = max(removedElem);
-            max.setParent(removedElem.getParent());
+            max.setParent(parent);
 
             //левого потомка max сохраняем, чтобы прицепить его (левого потомка) потомком к его (max) правому потомку
             Node<T> temp = max.getLeft();
 
             if (isLeftNode(removedElem)) {
-                removedElem
-                        .getParent()
-                        .setLeft(max);
+                parent.setLeft(max);
             } else {
-                removedElem
-                        .getParent()
-                        .setRight(max);
+                parent.setRight(max);
             }
             //здесь устанавливаем в левую ветку нового узла левую ветку удаляемого элемента
             max.setLeft(removedElem.getLeft());
