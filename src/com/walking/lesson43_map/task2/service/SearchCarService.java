@@ -6,10 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SearchCarService {
+    Map<Integer, Car> carMap;
 
-    public Car searchCar(Integer number, HashMap<Integer, Car> cars) {
+    public SearchCarService(Map<Integer, Car> carMap) {
+        this.carMap = carMap;
+    }
 
-        for (Map.Entry<Integer, Car> car : cars.entrySet()) {
+    public Car search(Integer number) {
+
+        for (Map.Entry<Integer, Car> car : carMap.entrySet()) {
 
             if (number.equals(car.getKey())) {
 

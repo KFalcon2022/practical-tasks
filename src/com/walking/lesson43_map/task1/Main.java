@@ -1,6 +1,6 @@
 package com.walking.lesson43_map.task1;
 
-import com.walking.lesson43_map.task1.exception.ValidException;
+import com.walking.lesson43_map.task1.exception.ValidationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,28 +31,24 @@ public class Main {
 
 
         if (!wordsString.matches(INPUT_WORDS_REGEX)) {
-            throw new ValidException(wordsString, INPUT_WORDS_REGEX);
+            throw new ValidationException(wordsString, INPUT_WORDS_REGEX);
         }
 
         String[] words = wordsString.split("\\s+");
 
-        Map<String, Integer> uses = getUses(words);
+        Map<String, Integer> uses = getUsages(words);
 
         System.out.println(uses.toString());
     }
 
-    private static Map<String, Integer> getUses(String[] words) {
+    private static Map<String, Integer> getUsages(String[] words) {
         Map<String, Integer> result = new HashMap<>();
 
         for (int i = 0; i < words.length; i++) {
             validateWord(words[i]);
 
-            if (result.containsKey(words[i])) {
-                Integer count = result.get(words[i]);
-                result.replace(words[i], count + 1);
-            } else {
-                result.put(words[i], 1);
-            }
+            Integer count = result.get(words[i]);
+            result.put(words[i], count == null ? 1 : count + 1);
         }
 
         return result;
@@ -61,20 +57,22 @@ public class Main {
     private static void validateWord(String word) {
         if (word.contains("-")) {
             if (!word.matches(DASH_WORD_REGEX)) {
-                throw new ValidException(word, DASH_WORD_REGEX);
+                throw new ValidationException(word, DASH_WORD_REGEX);
             }
 
             for (String part : word.split("-")) {
                 validateSimpleWord(part);
             }
-        } else {
-            validateSimpleWord(word);
+
+            return;
         }
+
+        validateSimpleWord(word);
     }
 
     private static void validateSimpleWord(String word) {
         if (!word.matches(WORD_REGEX)) {
-            throw new ValidException(word, WORD_REGEX);
+            throw new ValidationException(word, WORD_REGEX);
         }
     }
 }

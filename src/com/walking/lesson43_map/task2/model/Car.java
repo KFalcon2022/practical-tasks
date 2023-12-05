@@ -1,13 +1,13 @@
 package com.walking.lesson43_map.task2.model;
 
 public class Car {
-    private final MarkList mark;
-    private final ColorList color;
+    private final MarkType mark;
+    private final ColorType color;
     private final int yearManufacture;
     private final int stateNumber;
 
 
-    public Car(MarkList mark, ColorList color, int yearManufacture, int stateNumber) {
+    public Car(MarkType mark, ColorType color, int yearManufacture, int stateNumber) {
         this.mark = mark;
         this.color = color;
         this.yearManufacture = yearManufacture;
@@ -24,9 +24,15 @@ public class Car {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!this.getClass().equals(obj.getClass())) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!this.getClass().equals(obj.getClass())) {
+            return false;
+        }
 
         Car car = (Car) obj;
 

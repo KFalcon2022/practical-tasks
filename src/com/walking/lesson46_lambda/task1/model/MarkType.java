@@ -1,6 +1,6 @@
-package com.walking.lesson43_map.task2.model;
+package com.walking.lesson46_lambda.task1.model;
 
-public enum MarkList {
+public enum MarkType {
     AUDI("Audi"),
     BMW("BMW"),
     VOLVO("Volvo"),
@@ -12,11 +12,11 @@ public enum MarkList {
 
     private final String name;
 
-    MarkList(String name) {
+    MarkType(String name) {
         this.name = name;
     }
 
-    public static MarkList setMark(String mark) {
+    public static MarkType setMark(String mark) {
         for (var i : values()) {
             if (i.name.equals(mark)) {
                 return i;
