@@ -3,7 +3,7 @@ import com.walking.lesson28_generics1.task4.exception.ValueNotFoundException;
 
 import java.util.Objects;
 
-public class Stack<T> {
+public class Stack<T>{
     private Node<T> top;
     private long size;
     public Stack(){};
@@ -19,28 +19,28 @@ public class Stack<T> {
         size++;
     }
     public void delete(T value) throws ValueNotFoundException{
-        Node<T> temp = top;
-        if (temp.Value.equals(value)){
-            temp=temp.nextValue;
+        if (top.value.equals(value)){
+            top=top.nextValue;
             size--;
             return;
         }
+        Node<T> tempNode=top;
         for (int i=0;i<size-1;i++){
 
-            if (temp.nextValue.Value.equals(value)){
-                temp.nextValue=temp.nextValue.nextValue;
+            if (tempNode.nextValue.value.equals(value)){
+                tempNode.nextValue=tempNode.nextValue.nextValue;
                 size--;
                 return;
             }
-            temp=temp.nextValue;
+            tempNode=tempNode.nextValue;
         }
         throw new ValueNotFoundException();
     }
     public T find(T desiredValue){
         Node<T> temp=top;
         while (temp.nextValue!=null){
-            if (Objects.equals(temp.Value,desiredValue)){
-                return temp.Value;
+            if (Objects.equals(temp.value,desiredValue)){
+                return temp.value;
             }
             temp=temp.nextValue;
         }
@@ -51,7 +51,7 @@ public class Stack<T> {
         StringBuilder resultString = new StringBuilder("[");
         Node<T> temp = top;
         while (temp!=null){
-            resultString.append(temp.Value);
+            resultString.append(temp.value);
             if (temp.nextValue!=null){
                 resultString.append(", ");
             }
@@ -62,15 +62,41 @@ public class Stack<T> {
     }
 
     private static class Node<T>{
-        private final T Value;
+        private final T value;
         private Node<T> nextValue;
         private Node (T value){
-            this.Value = value;
+            this.value = value;
         }
         private Node(T value, Node<T> nextValue){
-            this.Value = value;
+            this.value = value;
             this.nextValue = nextValue;
         }
-
     }
+
+    public Stack<T> reverseList(){
+        Stack<T> resultStack = new Stack<>();
+        Node<T> tempNode = top;
+        while (tempNode!=null){
+            resultStack.add(tempNode.value);
+            tempNode=tempNode.nextValue;
+        }
+        return resultStack;
+    }
+
+    public void deleteOddNodes(){
+        //метод, удаляющий все узлы, хэшкод элемента которых - четный.
+        Node<T> tempNode=top;
+        while (tempNode!=null){
+            if (tempNode.value.hashCode()%2==0){
+                System.out.println("Value "+tempNode.value+" has hashcode "+tempNode.value.hashCode());
+                delete(tempNode.value);
+            }
+            tempNode=tempNode.nextValue;
+        }
+    }
+
+    public T getTop(){
+        return top.value;
+    }
+
 }
