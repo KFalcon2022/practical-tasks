@@ -1,4 +1,4 @@
-package com.walking.lesson39_queue1.task2.collection;
+package com.walking.lesson39_queue1.collections;
 
 import com.walking.lesson28_generics1.task4.structure.Stack;
 

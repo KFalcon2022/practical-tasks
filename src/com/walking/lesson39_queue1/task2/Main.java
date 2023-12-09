@@ -1,7 +1,6 @@
 package com.walking.lesson39_queue1.task2;
 
-import com.walking.lesson28_generics1.task4.structure.Stack;
-import com.walking.lesson39_queue1.task2.collection.StackTrue;
+import com.walking.lesson39_queue1.collections.StackTrue;
 
 /**
  * Реализуйте структуру данных стек. Используйте односвязный список из Задачи 1.
