@@ -3,6 +3,9 @@ package com.walking.lesson39_queue1.task4;
 import com.walking.lesson39_queue1.collections.DoublyLinkedList;
 import com.walking.lesson39_queue1.collections.OneEndQueue;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  * Реализуйте одностороннюю очередь на базе двусвязного списка из Задачи 3.
  */
