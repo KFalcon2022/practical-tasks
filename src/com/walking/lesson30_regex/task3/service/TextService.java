@@ -9,17 +9,20 @@ public class TextService {
     private final static String dividerRegex = "\\s";
     private final static String invalidStringRegex1 = "[^А-Яа-я\\s-]|-{2,}";
     private int counter;
+    private String[] wordsArray;
     private final String textString;
     public TextService(String textString){
             this.textString = textString;
             countWords();
     }
-    private String[] getWordsArray(){
-        String[] words = textString.split(dividerRegex);
-        for (String word : words){
+    public String[] getWordsArray(){
+        return wordsArray;
+    }
+    private void createWordsArray(){
+        wordsArray = textString.split(dividerRegex);
+        for (String word : wordsArray){
             checkWordValidity(word);
         }
-        return words;
     }
     public int getCounter(){
         return counter;
@@ -32,16 +35,15 @@ public class TextService {
         }
     }
     private void countWords(){
-        String[] words = getWordsArray();
-        counter = words.length;
-
-        String[] tempWords = words;
-        for (int i=1;i<words.length;i++){
-            String tempWord = words[i];
+        createWordsArray();
+        counter = wordsArray.length;
+        String[] tempWords = wordsArray;
+        for (int i=1;i<wordsArray.length;i++){
+            String tempWord = wordsArray[i];
             tempWords[i]=tempWords[0];
             tempWords[0]=tempWord;
-            for (int j=1;j<words.length;j++){
-                if (tempWords[0].compareToIgnoreCase(words[j])==0){
+            for (int j=1;j<wordsArray.length;j++){
+                if (tempWords[0].compareToIgnoreCase(wordsArray[j])==0){
                     counter--;
                 }
             }
