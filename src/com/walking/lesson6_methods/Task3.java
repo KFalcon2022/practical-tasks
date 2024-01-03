@@ -14,59 +14,32 @@ import java.util.Scanner;
 public class Task3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        int length = requireInt(scanner, "Enter rectangle's length: ");
-        int width = requireInt(scanner, "Enter rectangle's width: ");
-
+        System.out.println("Введите длину прямоугольника: ");
+        int lines = scanner.nextInt();
+        System.out.println("Введите ширину прямоугольника: ");
+        int columns = scanner.nextInt();
         scanner.close();
 
-        String horizontalLine = createHorizontalLine(length);
-        String verticalLines = createVerticalLines(length, width);
+        for (int i = 1; i <= lines; i++) {
+            for (int j = 1; j <= columns; j++) {
 
-        printRectangle(horizontalLine, verticalLines);
-    }
-
-    static int requireInt(Scanner scanner, String requiringMessage) {
-        System.out.print(requiringMessage);
-
-        return scanner.nextInt();
-    }
-
-    static void printRectangle(String horizontalLine, String verticalLines) {
-        System.out.print(horizontalLine + verticalLines + horizontalLine);
-    }
-
-    static String createHorizontalLine(int length) {
-        String horizontalLine = " ";
-
-        for (int i = 0; i < length; i++) {
-            horizontalLine += "-";
+                if (isAngle(i, j, lines, columns)) {
+                    System.out.print(" ");
+                } else if (i == 1 || i == lines) {
+                    System.out.print("-");
+                } else if (j == 1 || j == columns) {
+                    System.out.print("|");
+                } else {
+                    System.out.print(" ");
+                }
+                if (j == columns) {
+                    System.out.println();
+                }
+            }
         }
-
-        horizontalLine += " \n";
-
-        return horizontalLine;
     }
 
-    static String createVerticalLines(int length, int width) {
-        String verticalLinesUnit = getVerticalLinesUnit(length);
-
-        String verticalLines = "";
-
-        for (int i = 0; i < width; i++) {
-            verticalLines += verticalLinesUnit;
-        }
-        return verticalLines;
-    }
-
-    static String getVerticalLinesUnit(int length) {
-        String verticalLinesUnit = "|";
-
-        for (int i = 0; i < length; i++) {
-            verticalLinesUnit += " ";
-        }
-
-        verticalLinesUnit += "|\n";
-        return verticalLinesUnit;
+    public static boolean isAngle(int line, int column, int lines, int columns) {
+        return line == 1 && column == 1 || line == lines && column == 1 || line == 1 && column == columns || line == lines && column == columns;
     }
 }
