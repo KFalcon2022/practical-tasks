@@ -4,6 +4,11 @@ public final class CarSpecification implements Comparable<CarSpecification> {
     private final String brandName;
     private final String modelName;
     private final double zeroToHundred;
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
     private final VehicleType vehicleType;
     private final int hashCode;
 

@@ -8,5 +8,9 @@ package com.walking.lesson47_method_reference.task3;
  */
 public class Main {
     public static void main(String[] args) {
+        //Сделано.
+        //см. задачу 48-3
+        //переписал код работы с запросом
+        //(теперь меню с выбором поиска и method reference под капотом)
     }
 }
