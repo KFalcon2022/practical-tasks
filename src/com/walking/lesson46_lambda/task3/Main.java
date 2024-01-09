@@ -30,7 +30,7 @@ import java.util.Scanner;
  * Предусмотрите возможность завершения программы с помощью пользовательского ввода.
  */
 public class Main {
-    private static HashSet<String> vinTable = new HashSet<>();
+    private static final HashSet<String> vinTable = new HashSet<>();
     public static void main(String[] args) {
         ArrayList<Car> cars = createCarsArray();
         Scanner scannerIn = new Scanner(System.in);
@@ -38,16 +38,16 @@ public class Main {
         scannerIn.close();
     }
     private static String randomVin(){
-        String resultVin = "ZFA";
+        StringBuilder resultVin = new StringBuilder("ZFA");
         Random rnd = new Random();
         for (int i=0;i<14;i++){
-            resultVin+=rnd.nextInt(11);
+            resultVin.append(rnd.nextInt(11));
         }
-        if (vinTable.contains(resultVin))
-            resultVin=randomVin();
-        else vinTable.add(resultVin);
+        if (vinTable.contains(resultVin.toString()))
+            resultVin = new StringBuilder(randomVin());
+        else vinTable.add(resultVin.toString());
 
-        return resultVin;
+        return resultVin.toString();
     }
     private static ArrayList<Car> createCarsArray(){
         ArrayList<Car> cars = new ArrayList<>();

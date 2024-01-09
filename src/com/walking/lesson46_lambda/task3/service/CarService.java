@@ -7,17 +7,16 @@ import com.walking.lesson46_lambda.task3.interfaces.CarSearchFilter;
 import com.walking.lesson46_lambda.task3.model.RequestType;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 
 public class CarService {
     private static String inText;
     private static ArrayList<Car> cars;
-    private static RequestType requestType;
+
     public static ArrayList<Car> search(String inputText, ArrayList<Car> inputCars, int inputChoice){
         inText=inputText;
         cars=inputCars;
-        requestType=RequestType.getValue(inputChoice);
+        RequestType requestType = RequestType.getValue(inputChoice);
 
         switch (requestType){
             case SEARCH_BY_CAR_MODEL -> {
@@ -33,7 +32,7 @@ public class CarService {
                 return fillList(SearchService::isNumberMatchSubstring);
             }
         }
-        throw new SearchFailedException("Input value: "+requestType);
+        throw new SearchFailedException("Input value: "+ requestType);
     }
     private static ArrayList<Car> fillList (CarSearchFilter filter){
         ArrayList<Car> tempArray=new ArrayList<>();

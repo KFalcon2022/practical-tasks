@@ -1,7 +1,5 @@
 package com.walking.lesson46_lambda.task3.model;
 
-import com.walking.lesson46_lambda.task3.exception.SearchFailedException;
-
 public enum RequestType {
     SEARCH_BY_CAR_MODEL(1),
     SEARCH_BY_NUMBER_ALL(2),

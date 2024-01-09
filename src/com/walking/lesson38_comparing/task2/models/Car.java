@@ -24,9 +24,7 @@ public class Car implements Comparable<Car>{
         if (!getClass().equals(obj.getClass()))
             return false;
         Car car = (Car) obj;
-        if (this.plateNumber.equals(car.plateNumber)&& this.VIN.equals(car.VIN))
-            return true;
-        else return false;
+        return this.plateNumber.equals(car.plateNumber) && this.VIN.equals(car.VIN);
     }
     @Override
     public int hashCode(){
