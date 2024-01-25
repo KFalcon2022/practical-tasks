@@ -1,9 +1,11 @@
 package com.walking.lesson57_stream_collect_collector.task;
 
 import com.walking.lesson57_stream_collect_collector.model.Department;
+import com.walking.lesson57_stream_collect_collector.model.Employee;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте информацию по числу женщин в каждом департаменте.
@@ -11,6 +13,12 @@ import java.util.Map;
 public class Task9 implements StatisticTask<Map<String, Long>> {
     @Override
     public Map<String, Long> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .collect(Collectors.toMap(
+                        Department::getName,
+                        d->d.getEmployees().stream()
+                                .filter(e->!e.isMale())
+                                .count()
+                ));
     }
 }
