@@ -96,7 +96,7 @@ public class Main {
         System.out.println(task24.calculate(departments));
 
     }
-    private static List<Employee> createEmployeesAccounting(){
+    public static List<Employee> createEmployeesAccounting(){
         List<Employee> list = new ArrayList<>();
         list.add(new Employee("Kevin", true, "Counter", 45));
         list.add(new Employee("Martin", true, "Counter", 33));
@@ -106,7 +106,7 @@ public class Main {
         list.add(new Employee("Rob", true, "Intern", 24));
         return list;
     }
-    private static List<Employee> createEmployeesSales(){
+    public static List<Employee> createEmployeesSales(){
         List<Employee> list = new ArrayList<>();
         list.add(new Employee("Kevin", true, "Salesman", 34));
         list.add(new Employee("Goose", false, "Salesman", 41));
@@ -117,7 +117,7 @@ public class Main {
         list.add(new Employee("Polly", false, "Salesman", 27));
         return list;
     }
-    private static List<Employee> createEmployeesAdministration(){
+    public static List<Employee> createEmployeesAdministration(){
         List<Employee> list = new ArrayList<>();
         list.add(new Employee("Steve", true, "General manager", 48));
         list.add(new Employee("Alexander", true, "Serviceman", 65));
