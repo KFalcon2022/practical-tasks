@@ -15,14 +15,25 @@ import java.util.stream.Collectors;
 public class Task17 implements StatisticTask<Map<String, Integer>> {
     @Override
     public Map<String, Integer> calculate(List<Department> departments) {
+        // after PR
         return departments.stream()
-                .collect(Collectors.groupingBy(
+                .collect(Collectors.toMap(
                         Department::getName,
-                        Collectors.summingInt(
-                                d->d.getEmployees().stream()
-                                        .mapToInt(Employee::getAge)
-                                        .max()
-                                        .getAsInt())));
+                        d -> d.getEmployees()
+                                .stream()
+                                .map(Employee::getAge)
+                                .max(Comparator.naturalOrder())
+                                .orElse(0)));
+
+//        return departments.stream()
+//                .collect(Collectors.groupingBy(
+//                        Department::getName,
+//                        Collectors.summingInt(
+//                                d -> d.getEmployees()
+//                                        .stream()
+//                                        .mapToInt(Employee::getAge)
+//                                        .max()
+//                                        .getAsInt())));
 
         //alternative
 //        return departments.stream()

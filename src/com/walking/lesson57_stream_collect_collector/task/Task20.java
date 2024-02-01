@@ -18,11 +18,12 @@ public class Task20 implements StatisticTask<Map<String, Integer>> {
                 .collect(Collectors.groupingBy(
                         Department::getName,
                         Collectors.flatMapping(
-                                d->d.getEmployees().stream()
+                                d -> d.getEmployees()
+                                        .stream()
                                         .map(Employee::getAge),
                                 Collectors.teeing(
                                         Collectors.minBy(Integer::compareTo),
                                         Collectors.maxBy(Integer::compareTo),
-                                        (ageMin,ageMax)->ageMax.orElse(0)-ageMin.orElse(0)))));
+                                        (ageMin,ageMax) -> ageMax.orElse(0)-ageMin.orElse(0)))));
     }
 }
