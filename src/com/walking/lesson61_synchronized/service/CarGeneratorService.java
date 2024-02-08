@@ -3,8 +3,11 @@ package com.walking.lesson61_synchronized.service;
 import com.walking.lesson61_synchronized.model.Car;
 import com.walking.lesson61_synchronized.model.CarIdentificator;
 
-public class CarArrayInitService {
-    public static Car[] createCarArray() {
+public class CarGeneratorService {
+    public CarGeneratorService() {
+    }
+
+    public Car[] createCarArray() {
         Car car1 = new Car(new CarIdentificator("RR-111-RR", 2015), "yellow");
         Car car2 = new Car(new CarIdentificator("RR-222-RR", 2022), "yellow");
         Car car3 = new Car(new CarIdentificator("RR-333-RR", 2017), "green");

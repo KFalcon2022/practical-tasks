@@ -2,8 +2,8 @@ package com.walking.lesson61_synchronized;
 
 import com.walking.lesson61_synchronized.model.Car;
 import com.walking.lesson61_synchronized.model.CarIdentificator;
-import com.walking.lesson61_synchronized.service.CarArrayInitService;
-import com.walking.lesson61_synchronized.service.CarInteractionService;
+import com.walking.lesson61_synchronized.service.CarGeneratorService;
+import com.walking.lesson61_synchronized.service.CarService;
 
 import java.util.Arrays;
 
@@ -15,8 +15,11 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Car[] cars = CarArrayInitService.createCarArray();
-        CarInteractionService carService = new CarInteractionService();
+        CarGeneratorService carGenerator = new CarGeneratorService();
+        Car[] cars = carGenerator.createCarArray();
+
+        CarService carService = new CarService();
+
         Arrays.stream(cars)
                 .forEach(carService::add);
 

@@ -1,9 +1,9 @@
 package com.walking.lesson61_synchronized.model;
 
 public class CarIdentificator {
-    private String plateNumber;
-    private int releaseYear;
     private final int hashcode;
+    private final int releaseYear;
+    private final String plateNumber;
 
     public CarIdentificator(String plateNumber, int releaseYear) {
         this.plateNumber = plateNumber;
@@ -11,20 +11,14 @@ public class CarIdentificator {
         hashcode = hashCode();
     }
 
-    public int getReleaseYear() {
-        return releaseYear;
-    }
-
     public String getPlateNumber() {
         return plateNumber;
     }
 
-    public void setPlateNumber(String plateNumber) {
-        this.plateNumber = plateNumber;
-    }
-
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
+    @Override
+    public String toString() {
+        return """
+                \n| Plate number: %s | Release year: %s\s""".formatted(plateNumber, releaseYear);
     }
 
     @Override
@@ -38,19 +32,17 @@ public class CarIdentificator {
         if (!getClass().equals(obj.getClass())) {
             return false;
         }
-        CarIdentificator car = (CarIdentificator) obj;
+        CarIdentificator carID = (CarIdentificator) obj;
 
-        return this.plateNumber.equals(car.plateNumber) && this.releaseYear == (car.releaseYear);
+        return this.plateNumber.equals(carID.plateNumber) && this.releaseYear == (carID.releaseYear);
     }
 
     @Override
     public int hashCode() {
         if (hashcode == 0) {
-            int result = plateNumber.hashCode();
-            result = 31 * result + releaseYear;
-
-            return result;
+            return 31 * plateNumber.hashCode() + releaseYear;
         }
+
         return hashcode;
     }
 }
