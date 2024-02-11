@@ -12,5 +12,21 @@ package com.walking.lesson30_regex.task1easy;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println(isValidPhoneNumber("+7 (121) 333-23-43"));
+        System.out.println(isValidPhoneNumber("+7 (121) 3332343"));
+        System.out.println(isValidPhoneNumber("+7 121 333-23-43"));
+        System.out.println(isValidPhoneNumber("+7(121)333-23-43"));
+        System.out.println(isValidPhoneNumber("+7(121)3332343"));
+        System.out.println(isValidPhoneNumber("+71213332343"));
+        System.out.println(isValidPhoneNumber("+7 (1121) 333-23-43"));
+        System.out.println(isValidPhoneNumber("+7(121) 333-23-43"));
+        System.out.println(isValidPhoneNumber("+7 121) 333-23-43"));
+        System.out.println(isValidPhoneNumber("+7 (121)333-23-43"));
+        System.out.println(isValidPhoneNumber("+(7 121)333-23-43"));
+        System.out.println(isValidPhoneNumber("+7 (121) 333-2343"));
+    }
+    private static boolean isValidPhoneNumber(String number){
+        final String phoneNumberRegex="^\\+7 \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}$";
+        return number.matches(phoneNumberRegex);
     }
 }
