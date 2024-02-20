@@ -1,5 +1,14 @@
 package com.walking.lesson62_wait_notify.task2;
 
+import com.walking.lesson62_wait_notify.task2.model.Buyer;
+import com.walking.lesson62_wait_notify.task2.model.Supplier;
+import com.walking.lesson62_wait_notify.task2.model.Warehouse;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Реализуйте имитацию оптовой базы с тремя поставщиками и тремя покупателями.
  * Максимальное число хранимых товаров определите на свой вкус.
@@ -28,6 +37,27 @@ package com.walking.lesson62_wait_notify.task2;
  * В таком случае выполнение программы будет более наглядным.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Warehouse warehouse = new Warehouse();
+
+        Set<Buyer> buyers = new HashSet<>();
+        Set<Supplier> suppliers = new HashSet<>();
+
+        buyers.add(new Buyer(warehouse, "Romashka"));
+        buyers.add(new Buyer(warehouse, "Pecheneg"));
+        buyers.add(new Buyer(warehouse, "Igor"));
+
+        suppliers.add(new Supplier(warehouse, "X5"));
+        suppliers.add(new Supplier(warehouse, "Ochakovo"));
+        suppliers.add(new Supplier(warehouse, "3 Korochki"));
+
+        startThread(buyers);
+        startThread(suppliers);
+    }
+
+    private static void startThread(Set<? extends Runnable> companiesSet) {
+        companiesSet.forEach(company -> {
+            new Thread(company).start();
+        });
     }
 }

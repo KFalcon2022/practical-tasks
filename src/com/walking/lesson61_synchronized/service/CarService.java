@@ -9,9 +9,6 @@ public class CarService {
     private final Map<CarIdentificator, Car> cars = new HashMap<>();
     private Car searchResult;
 
-    public CarService() {
-    }
-
     public void add(Car... inputCars) {
         new Thread(getAddingTask(inputCars)).start();
     }
@@ -36,13 +33,14 @@ public class CarService {
     private Runnable getAddingTask(Car... inputCars) {
         return () -> {
             synchronized (cars) {
-                Arrays.stream(inputCars).forEach(car -> {
-                    if (cars.containsKey(car.getCarIdentificator())) {
-                        System.out.println("\nThis car is already in list: " + car + "\n");
-                    } else {
-                        cars.put(car.getCarIdentificator(), car);
-                    }
-                });
+                Arrays.stream(inputCars)
+                        .forEach(car -> {
+                            if (cars.containsKey(car.getCarIdentificator())) {
+                                System.out.println("\nThis car is already in list: " + car + "\n");
+                            } else {
+                                cars.put(car.getCarIdentificator(), car);
+                            }
+                        });
             }
             System.out.println("Adding in thread: " + Thread.currentThread().getName());
         };
@@ -51,10 +49,11 @@ public class CarService {
     private Runnable getDeletingTask(Car... inputCars) {
         return () -> {
             synchronized (cars) {
-                Arrays.stream(inputCars).forEach(car -> {
-                    if (!cars.remove(car.getCarIdentificator(), car))
-                        System.out.println("\n" + CarServicePrintMessages.CAR_NOT_FOUND + car + "\n");
-                });
+                Arrays.stream(inputCars)
+                        .forEach(car -> {
+                            if (!cars.remove(car.getCarIdentificator(), car))
+                                System.out.println("\n" + CarServicePrintMessages.CAR_NOT_FOUND + car + "\n");
+                        });
             }
             System.out.println("Deleting in thread: " + Thread.currentThread().getName());
         };
