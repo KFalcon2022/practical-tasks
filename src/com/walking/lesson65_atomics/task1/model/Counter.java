@@ -1,11 +1,9 @@
 package com.walking.lesson65_atomics.task1.model;
 
-import com.walking.lesson61_synchronized.model.Car;
-
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Counter {
-    private AtomicLong value = new AtomicLong(0);
+    private final AtomicLong value = new AtomicLong(0);
 
     private final String name;
     private final int hashcode;

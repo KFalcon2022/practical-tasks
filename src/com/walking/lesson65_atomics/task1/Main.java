@@ -39,6 +39,8 @@ public class Main {
         counters.stream()
                 .map(Main::decreaseTask)
                 .forEach(Main::startThreads);
+
+        counterService.clear(new Counter("Counter 2"));
     }
 
     private static void startThreads(Runnable runnable) {

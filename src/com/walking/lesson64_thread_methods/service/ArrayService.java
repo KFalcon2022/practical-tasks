@@ -1,7 +1,5 @@
 package com.walking.lesson64_thread_methods.service;
 
-import com.walking.lesson64_thread_methods.daemon.CurrentTimeService;
-
 import java.util.Arrays;
 
 public class ArrayService {

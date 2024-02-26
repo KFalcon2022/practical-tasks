@@ -1,6 +1,5 @@
 package com.walking.lesson64_thread_methods.task2_3;
 
-import com.walking.lesson64_thread_methods.daemon.CurrentTimeService;
 import com.walking.lesson64_thread_methods.service.ArrayService;
 import com.walking.lesson64_thread_methods.service.IntRandomGenerator;
 
