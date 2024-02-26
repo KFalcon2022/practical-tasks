@@ -24,9 +24,14 @@ public class Buyer implements Runnable {
     @Override
     public void run() {
         boolean isPurchaseSuccessful;
-        int tempStopValue = 0;
 
-        while (tempStopValue != 100) {
+        while (!Thread.interrupted()) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             isPurchaseSuccessful = warehouse.buy(purchaseQuantity);
 
             if (!isPurchaseSuccessful) {
@@ -37,7 +42,6 @@ public class Buyer implements Runnable {
                 setPurchaseQuantity();
                 System.out.println("Buyer " + name + " new quantity is " + purchaseQuantity);
             }
-            tempStopValue++;
         }
     }
 

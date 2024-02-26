@@ -2,7 +2,7 @@ package com.walking.lesson62_wait_notify.task2.model;
 
 import java.util.Random;
 
-public class Supplier implements Runnable{
+public class Supplier implements Runnable {
     private final String name;
     private final Random random = new Random();
     private final Warehouse warehouse;
@@ -24,9 +24,14 @@ public class Supplier implements Runnable{
     @Override
     public void run() {
         int restOfSupply;
-        int tempStopValue = 0;
 
-        while (tempStopValue != 100) {
+        while (!Thread.interrupted()) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             restOfSupply = warehouse.supply(supplyQuantity);
 
             if (restOfSupply != 0) {
@@ -36,7 +41,6 @@ public class Supplier implements Runnable{
                 setSupplyQuantity();
                 System.out.println("Supplier " + name + " new quantity is " + supplyQuantity);
             }
-            tempStopValue++;
         }
     }
 

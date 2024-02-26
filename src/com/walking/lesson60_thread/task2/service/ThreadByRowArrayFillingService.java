@@ -2,7 +2,7 @@ package com.walking.lesson60_thread.task2.service;
 
 import java.util.Arrays;
 
-public class ThreadByRowArrayFillingService implements ArrayFillingService{
+public class ThreadByRowArrayFillingService implements ArrayFillingService {
     private final IntRandomGenerator randomGenerator;
 
     public ThreadByRowArrayFillingService(IntRandomGenerator randomGenerator) {
@@ -19,21 +19,23 @@ public class ThreadByRowArrayFillingService implements ArrayFillingService{
 
         return array;
     }
-    private Runnable getFillingTask(int[] array){
-        return ()-> {
+
+    private Runnable getFillingTask(int[] array) {
+        return () -> {
             for (int i = 0; i < array.length; i++) {
                 array[i] = randomGenerator.generate();
             }
         };
     }
-    private void joinThreadNoEx(Thread thread){
-        try{
+
+    private void joinThreadNoEx(Thread thread) {
+        try {
             thread.join();
-        }
-        catch(InterruptedException e){
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public String toString() {
         return "Tread by row array filling class";

@@ -4,10 +4,7 @@ import com.walking.lesson62_wait_notify.task2.model.Buyer;
 import com.walking.lesson62_wait_notify.task2.model.Supplier;
 import com.walking.lesson62_wait_notify.task2.model.Warehouse;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Реализуйте имитацию оптовой базы с тремя поставщиками и тремя покупателями.
@@ -42,6 +39,8 @@ public class Main {
 
         Set<Buyer> buyers = new HashSet<>();
         Set<Supplier> suppliers = new HashSet<>();
+        Set<Thread> buyersThread = new HashSet<>();
+        Set<Thread> sellersThread = new HashSet<>();
 
         buyers.add(new Buyer(warehouse, "Romashka"));
         buyers.add(new Buyer(warehouse, "Pecheneg"));
@@ -51,13 +50,34 @@ public class Main {
         suppliers.add(new Supplier(warehouse, "Ochakovo"));
         suppliers.add(new Supplier(warehouse, "3 Korochki"));
 
-        startThread(buyers);
-        startThread(suppliers);
+        buyersThread = createThread(buyers);
+        sellersThread = createThread(suppliers);
+
+        buyersThread.forEach(Thread::start);
+        sellersThread.forEach(Thread::start);
+
+        waitFinishSignal();
+
+        buyersThread.forEach(Thread::interrupt);
+        sellersThread.forEach(Thread::interrupt);
+
     }
 
-    private static void startThread(Set<? extends Runnable> companiesSet) {
-        companiesSet.forEach(company -> {
-            new Thread(company).start();
-        });
+    private static Set<Thread> createThread(Set<? extends Runnable> companiesSet) {
+        Set<Thread> threads = new HashSet<>();
+
+        companiesSet.forEach(company -> threads.add(new Thread(company)));
+
+        return threads;
+    }
+
+    public static void waitFinishSignal() {
+        var scanner = new Scanner(System.in);
+
+        while (!"Finish".equals(scanner.nextLine())) {
+            System.out.println("Incorrect input.");
+        }
+
+        scanner.close();
     }
 }

@@ -1,5 +1,9 @@
 package com.walking.lesson64_thread_methods.task2_2;
 
+import com.walking.lesson64_thread_methods.daemon.CurrentTimeService;
+import com.walking.lesson64_thread_methods.service.ArrayService;
+import com.walking.lesson64_thread_methods.service.IntRandomGenerator;
+
 /**
  * Напишите программу, заполняющую двумерный массив большого размера
  * (подберите на свой вкус, ограничения могут зависеть от заданного размера хипа в JVM)
@@ -11,5 +15,16 @@ package com.walking.lesson64_thread_methods.task2_2;
  */
 public class Main {
     public static void main(String[] args) {
+        int[][] array = new int[700][100000];
+
+        IntRandomGenerator intRandomGenerator = new IntRandomGenerator(0, 11);
+        ArrayService arrayService = new ArrayService(array, intRandomGenerator);
+        CurrentTimeService currentTimeService = new CurrentTimeService(false);
+
+        currentTimeService.start();
+
+        arrayService.getFilledArray();
+
+        currentTimeService.interrupt();
     }
 }
