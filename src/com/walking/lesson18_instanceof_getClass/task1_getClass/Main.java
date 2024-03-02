@@ -31,13 +31,9 @@ public class Main {
 
     private static void soundAll(Animal[] animals){
         for (Animal animal: animals){
-            if (animal.getClass().equals(Cat.class)){
-                ((Cat)animal).meow();
-            } else if (animal.getClass().equals(Dog.class)) {
-                ((Dog) animal).woof();
-            } else {
-                ((Cow)animal).moo();
-            }
+            if      (animal.getClass().equals(Cat.class)) ((Cat) animal).meow();
+            else if (animal.getClass().equals(Dog.class)) ((Dog) animal).woof();
+            else    ((Cow) animal).moo();
         }
     }
 }

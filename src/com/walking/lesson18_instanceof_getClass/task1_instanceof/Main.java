@@ -1,5 +1,8 @@
 package com.walking.lesson18_instanceof_getClass.task1_instanceof;
 
+import com.walking.lesson18_instanceof_getClass.task1_instanceof.model.*;
+
+
 /**
  * Реализовать задачу
  * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson13_inheritance/task2">...</a>
@@ -7,5 +10,15 @@ package com.walking.lesson18_instanceof_getClass.task1_instanceof;
  */
 public class Main {
     public static void main(String[] args) {
+        Animal[] a = {new Cat(), new Dog(), new Cow()};
+        soundAll(a);
+    }
+
+    private static void soundAll(Animal[] animals){
+        for (Animal animal: animals){
+            if      (animal instanceof Cat animalCat) animalCat.meow();
+            else if (animal instanceof Dog animalDog) animalDog.woof();
+            else    ((Cow) animal).moo();
+        }
     }
 }
