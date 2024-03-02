@@ -14,15 +14,15 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        byte selectedFigure, selectedLength;
+        int selectedFigure, selectedLength;
 
-        Scanner io = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("What figure do you want? [1 - triangle, 2 - square]");
-        selectedFigure = io.nextByte();
+        selectedFigure = scanner.nextInt();
         System.out.println("Enter side's length [min - 3, max - 20]");
-        selectedLength = io.nextByte();
-        io.close();
+        selectedLength = scanner.nextInt();
+        scanner.close();
 
 //        Checking user's validity
         if (selectedFigure <1 || selectedFigure > 2 || selectedLength < 3 || selectedLength > 20){
@@ -31,15 +31,15 @@ public class Main {
         }
         System.out.println("Entry is VALID. Drawing your figure...\n");
 
-        Figure aa;
+        Figure figure;
 
         if (selectedFigure == 1) {
-            aa = new Triangle();
+            figure = new Triangle();
         }
         else {
-            aa = new Square();
+            figure = new Square();
         }
-        System.out.println(aa.drawFigure(selectedLength));
+        System.out.println(figure.drawFigure(selectedLength));
 
     }
 }

@@ -6,16 +6,16 @@ public class Square implements Figure{
     public String drawFigure(int width) {
 
         StringBuilder wholeFigure = new StringBuilder();
-        String symbol;
+        String symbolToFill;
         for (byte y = 0; y < width; y++) {
-            if (y == 0 || y == width-1) symbol = HORIZONTAL_SYMBOL;
-            else symbol = FILLING_SYMBOL;
+            if (y == 0 || y == width-1) symbolToFill = HORIZONTAL_SYMBOL;
+            else symbolToFill = FILLING_SYMBOL;
 
             for (int x = 0; x < width; x++) {
                 if (x == 0 || x == width-1) {
                     wholeFigure.append(VERTICAL_SYMBOL);
                 } else {
-                    wholeFigure.append(symbol);
+                    wholeFigure.append(symbolToFill);
                 }
             }
             wholeFigure.append("\n");

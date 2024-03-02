@@ -10,15 +10,16 @@ import com.walking.lesson18_instanceof_getClass.task1_instanceof.model.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal[] a = {new Cat(), new Dog(), new Cow()};
-        soundAll(a);
+        Animal[] animals = {new Cat(), new Dog(), new Cow()};
+        soundAll(animals);
     }
 
     private static void soundAll(Animal[] animals){
         for (Animal animal: animals){
             if      (animal instanceof Cat animalCat) animalCat.meow();
             else if (animal instanceof Dog animalDog) animalDog.woof();
-            else    ((Cow) animal).moo();
+            else if (animal instanceof Cow animalCow) animalCow.moo();
+            else    System.out.println("Unknown Animal");
         }
     }
 }

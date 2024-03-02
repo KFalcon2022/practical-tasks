@@ -31,16 +31,16 @@ public class Main {
         }
         System.out.println("Entry is VALID. Drawing your figure...\n");
 
-        Figure aa;
+        Figure figure;
 
         if (selectedFigure == 1){
-            aa = new Triangle(selectedLength);
+            figure = new Triangle(selectedLength);
         }
         else {
-            aa = new Square(selectedLength);
+            figure = new Square(selectedLength);
         }
 
-        System.out.println(aa.builtFigure());
+        System.out.println(figure.builtFigure());
 
 
 

@@ -16,13 +16,13 @@ public class Main {
         int size;
         int choice;
 
-        Scanner io = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
             System.out.println("Enter figure width");
-            size = io.nextInt();
+            size = scanner.nextInt();
             System.out.println("Enter 1 for triangle, 2 for square");
-            choice = io.nextInt();
-        io.close();
+            choice = scanner.nextInt();
+        scanner.close();
         if (choice < 1 || choice > 2 || size < 1 || size > 20){
             System.out.println("Incorrect entry");
             return;
@@ -30,7 +30,8 @@ public class Main {
 
         EquiLateralShape figure = switch (choice) {
             case 1 -> EquiLateralShape.TRIANGLE;
-            default -> EquiLateralShape.SQUARE;
+            case 2 -> EquiLateralShape.SQUARE;
+            default -> EquiLateralShape.TRIANGLE; //если что, нарисуем треугольник
         };
 
 
