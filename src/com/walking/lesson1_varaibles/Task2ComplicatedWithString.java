@@ -7,5 +7,7 @@ package com.walking.lesson1_varaibles;
  */
 public class Task2ComplicatedWithString {
     public static void main(String[] args) {
+        String name = "Е\nв\nг\nе\nн\nи\nй";
+        System.out.println(name);
     }
 }
