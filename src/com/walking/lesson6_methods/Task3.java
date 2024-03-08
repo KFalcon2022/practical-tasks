@@ -17,8 +17,8 @@ public class Task3 {
         int width = scanner.nextInt();
         scanner.close();
 
-        StringBuilder firstAndLastLine = drawFirstAndLastLines(length);
-        StringBuilder intermediateLine = drawIntermediateLines(length);
+        String firstAndLastLine = drawFirstAndLastLines(length);
+        String intermediateLine = drawMiddleLines(length);
 
         System.out.print(firstAndLastLine);
         for (int i = 1; i <= width - 2; i++) {
@@ -27,23 +27,23 @@ public class Task3 {
         System.out.print(firstAndLastLine);
     }
 
-    public static StringBuilder drawFirstAndLastLines(int length) {
-        StringBuilder string = new StringBuilder();
-        string.append(" ");
-        for (int i = 0; i < length - 1; i++) {
-            string.append("-");
+    public static String drawFirstAndLastLines(int length) {
+        String line = "";
+        line += " ";
+        for (int i = 0; i < length - 2; i++) {
+            line += "-";
         }
-        string.append(" \n");
-        return string;
+        line += " \n";
+        return line;
     }
 
-    public static StringBuilder drawIntermediateLines(int length) {
-        StringBuilder string = new StringBuilder();
-        string.append("|");
-        for (int i = 0; i < length - 1; i++) {
-            string.append(" ");
+    public static String drawMiddleLines(int length) {
+        String line = "";
+        line += "|";
+        for (int i = 0; i < length - 2; i++) {
+            line += " ";
         }
-        string.append("|\n");
-        return string;
+        line += "|\n";
+        return line;
     }
 }
