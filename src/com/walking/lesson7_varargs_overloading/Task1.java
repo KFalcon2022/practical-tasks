@@ -7,5 +7,14 @@ package com.walking.lesson7_varargs_overloading;
  */
 public class Task1 {
     public static void main(String[] args) {
+        System.out.println(concateStrings("Я", "Программирую", "На","Java"));
+    }
+
+    static String concateStrings(String... strings) {
+        String result = "";
+        for (String string : strings) {
+            result += string;
+        }
+        return result;
     }
 }

@@ -40,8 +40,10 @@ public class Task3 {
             }
             number++;
         }
+        int result = 0;
         for (int primeNumber : primeNumbers) {
-            System.out.println(primeNumber);
+            result += primeNumber;
+            System.out.println(result);
         }
     }
 }
