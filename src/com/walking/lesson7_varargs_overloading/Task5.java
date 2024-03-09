@@ -18,6 +18,7 @@ public class Task5 {
         int[] primeNumbers = new int[10];
         int i = 0; // текущий индекс массива
         int number = 2; //текущее проверяемое число
+
         while (i < 10) {
             if (searchPrimeNumber(number) == 0) {
                 number++;
@@ -28,6 +29,7 @@ public class Task5 {
             number++;
             denominator = 2;
         }
+
         System.out.println(sumArray(primeNumbers, 0));
     }
 
