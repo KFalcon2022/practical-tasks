@@ -29,7 +29,7 @@ public class Task4 {
         step--;
 
         if (step == 1) {
-            return Math.sqrt(1 + Math.sqrt(number));
+            return Math.sqrt(step + Math.sqrt(number));
         }
 
         return calculateExpression(step + Math.sqrt(number), step);
