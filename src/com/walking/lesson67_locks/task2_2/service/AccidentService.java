@@ -2,8 +2,7 @@ package com.walking.lesson67_locks.task2_2.service;
 
 import com.walking.lesson67_locks.task2_2.model.Accident;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -17,6 +16,19 @@ public class AccidentService {
         try {
             lock.lock();
             return accidents.get(id);
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public List<Accident> getByIds(Collection<Long> ids) {
+        try {
+            lock.lock();
+
+            return ids.stream()
+                    .map(accidents::get)
+                    .filter(Objects::nonNull)
+                    .toList();
         } finally {
             lock.unlock();
         }

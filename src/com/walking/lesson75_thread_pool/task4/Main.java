@@ -27,8 +27,20 @@ public class Main {
         return pool.submit(() -> Stream.iterate(startNumber, i -> ++i)
                 .limit(10)
 //                Имя потока для наглядности
-                .map(i -> (Runnable) () -> System.out.println(Thread.currentThread().getName() + ": " + i))
+                .map(i -> (Runnable) () -> {
+                    getPrintNumberTask(i);
+                })
                 .map(ForkJoinTask::adapt)
                 .forEach(ForkJoinTask::fork));
+    }
+
+    private static void getPrintNumberTask(Integer i) {
+        System.out.println(Thread.currentThread().getName() + ": " + i);
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
