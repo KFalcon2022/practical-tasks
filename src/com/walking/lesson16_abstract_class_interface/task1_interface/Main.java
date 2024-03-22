@@ -24,7 +24,7 @@ public class Main {
 
         scanner.close();
 
-        if(length < 1 || (shapeType != 1 && shapeType != 2)) {
+        if (length < 1 || (shapeType != 1 && shapeType != 2)) {
             System.out.println("Incorrect input.");
             return;
         }
@@ -36,7 +36,7 @@ public class Main {
     private static String createShapeString(int length, int type) {
         IsEquilateralShape shape;
 
-        switch(type) {
+        switch (type) {
             case 1:
                 shape = new Square(length);
                 break;

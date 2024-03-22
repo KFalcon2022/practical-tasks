@@ -1,9 +1,9 @@
 package com.walking.lesson13_inheritance.task2;
 
-import com.walking.inheritance.model.Animal;
-import com.walking.inheritance.model.Cat;
-import com.walking.inheritance.model.Cow;
-import com.walking.inheritance.model.Dog;
+import com.walking.lesson13_inheritance.task2.model.Animal;
+import com.walking.lesson13_inheritance.task2.model.Cat;
+import com.walking.lesson13_inheritance.task2.model.Cow;
+import com.walking.lesson13_inheritance.task2.model.Dog;
 
 /**
  * Реализуйте класс Animal. Реализуйте его наследников: Dog, Cat, Cow.
@@ -34,13 +34,24 @@ public class Main {
     }
 
     private static void soundAll(Animal[] animals) {
-        for(Animal animal :
-                animals) {
+        for(Animal animal : animals) {
             sound(animal);
         }
     }
 
     private static void sound(Animal animal) {
-        animal.sound();
+        switch (animal.getClassName()) {
+            case Cat.CAT_CLASS_NAME:
+                ((Cat) animal).meow();
+                break;
+            case Dog.DOG_CLASS_NAME:
+                ((Dog) animal).woof();
+                break;
+            case Cow.COW_CLASS_NAME:
+                ((Cow) animal).moo();
+                break;
+            default:
+                System.out.println("Unknown animal!");
+        }
     }
 }

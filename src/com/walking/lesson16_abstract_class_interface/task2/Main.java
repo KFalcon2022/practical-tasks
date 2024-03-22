@@ -24,7 +24,6 @@ public class Main {
         scanner.close();
 
         System.out.println(getAnswer(inputString));
-
     }
 
     static String getAnswer(String inputString) {
