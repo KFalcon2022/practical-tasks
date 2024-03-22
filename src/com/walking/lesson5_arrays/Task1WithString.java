@@ -7,5 +7,11 @@ package com.walking.lesson5_arrays;
  */
 public class Task1WithString {
     public static void main(String[] args) {
+        char[] myName = {'Е', 'в', 'г', 'е', 'н', 'и', 'й'};
+        String result = "";
+        for (char letter : myName) {
+            result += letter;
+        }
+        System.out.print(result);
     }
 }

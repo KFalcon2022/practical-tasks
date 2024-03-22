@@ -18,5 +18,7 @@ package com.walking.lesson13_inheritance.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Dog dog = new Dog("black");
+        Cat cat = new Cat("white");
     }
 }

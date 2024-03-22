@@ -7,5 +7,14 @@ package com.walking.lesson1_varaibles;
  */
 public class Task2ComplicatedWithChar {
     public static void main(String[] args) {
+        char E = 'Е';
+        char v = 'в';
+        char g = 'г';
+        char e = 'е';
+        char n = 'н';
+        char i = 'и';
+        char iy = 'й';
+
+        System.out.print(E + "\n" + v + "\n" + g + "\n" + e + "\n" + n + "\n" + i + "\n" + iy);
     }
 }
