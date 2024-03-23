@@ -1,5 +1,13 @@
 package com.walking.lesson20_exceptions.task1_catchException;
 
+import com.walking.lesson20_exceptions.task1_catchException.file_service.FileService;
+import com.walking.lesson20_exceptions.task1_catchException.model.File;
+import com.walking.lesson20_exceptions.task1_catchException.model.FileTypes;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
 /**
  * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
  * <p>
@@ -15,5 +23,26 @@ package com.walking.lesson20_exceptions.task1_catchException;
  */
 public class Main {
     public static void main(String[] args) {
+        FileService fileService = new FileService(initFileArray());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите имя файла");
+        String fileName = scanner.nextLine();
+        scanner.close();
+        try {
+            File foundFile = fileService.searchFile(fileName);
+            System.out.println(foundFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден");
+        }
+
+    }
+
+    private static File[] initFileArray() {
+        File file1 = new File("1", 1024, FileTypes.TEXT);
+        File file2 = new File("2", 12351, FileTypes.IMAGE);
+        File file3 = new File("3", 1235351, FileTypes.AUDIO);
+        File file4 = new File("4", 5342, FileTypes.TEXT);
+        File file5 = new File("5", 1223511, FileTypes.VIDEO);
+        return new File[]{file1, file2, file3, file4, file5};
     }
 }
