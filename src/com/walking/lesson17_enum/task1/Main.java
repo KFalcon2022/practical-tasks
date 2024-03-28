@@ -14,6 +14,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter string: ");
         String s = scanner.nextLine();
+        scanner.close();
+        GreetingType greetingType = GreetingType.findGreetingType(s);
+        System.out.println(greetingType.getAnswer());
 
     }
 }
