@@ -1,5 +1,7 @@
 package com.walking.lesson17_enum.task2;
 
+import static com.walking.lesson17_enum.task2.Animal.*;
+
 /**
  * Реализуйте задачу
  * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson14_polymorphism/task2">...</a>
@@ -7,5 +9,9 @@ package com.walking.lesson17_enum.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Animal[] animals = new Animal[]{COW, CAT, DOG};
+        for (Animal animal : animals) {
+            System.out.println(animal.getSound());
+        }
     }
 }
