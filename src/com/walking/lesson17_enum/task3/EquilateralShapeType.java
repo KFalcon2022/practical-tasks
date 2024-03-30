@@ -2,9 +2,9 @@ package com.walking.lesson17_enum.task3;
 
 public enum EquilateralShapeType {
     TRIANGLE {
-        public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
-        public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
-        public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
+        private static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
+        private static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
+        private static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
 
         @Override
         public String createShapeString(int length) {
@@ -32,7 +32,16 @@ public enum EquilateralShapeType {
 
             return triangle;
         }
-    }
+    },
+    SQUARE {
+        private static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
+        private static final String RECTANGLE_VERTICAL_ELEMENT = "|";
+
+        @Override
+        public String createShapeString(int length) {
+            return null;
+        }
+    };
     public static final String EMPTY_ELEMENT = " ";
     public static final String EMPTY_STRING = "";
     public static final char NEW_LINE_SYMBOL = '\n';
