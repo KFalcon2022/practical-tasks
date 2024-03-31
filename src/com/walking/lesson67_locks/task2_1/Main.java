@@ -1,5 +1,11 @@
 package com.walking.lesson67_locks.task2_1;
 
+import com.walking.lesson67_locks.task2_1.model.Accident;
+import com.walking.lesson67_locks.task2_1.model.AccidentIdentificator;
+import com.walking.lesson67_locks.task2_1.service.AccidentService;
+
+import java.time.LocalDate;
+
 /**
  * Реализуйте систему диспетчерской для аварийной службы.
  * <p>
@@ -17,5 +23,46 @@ package com.walking.lesson67_locks.task2_1;
  */
 public class Main {
     public static void main(String[] args) {
+        AccidentService accidentService = new AccidentService();
+
+        Thread accidentAddingThread = new Thread(getAccidentAddTask(accidentService));
+        Thread accidentGettingThread = new Thread(getAccidentGettingTask(accidentService));
+
+        accidentAddingThread.start();
+        accidentGettingThread.start();
+        accidentService.add(new Accident("Accident 0", new AccidentIdentificator(0, LocalDate.of(2024, 03, 03))));
+
+    }
+
+    private static Runnable getAccidentAddTask(AccidentService accidentService) {
+        return () -> {
+            for (int i = 0; i < 100; i++) {
+                accidentService.add(new Accident(
+                        "Accident " + i,
+                        new AccidentIdentificator(i * 31, LocalDate.now())));
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+    }
+
+    private static Runnable getAccidentGettingTask(AccidentService accidentService) {
+        return () -> {
+            for (int i = 0; i < 100; i++) {
+                accidentService.get(new Accident(
+                        "",
+                        new AccidentIdentificator(
+                                (i + 1) * 31,
+                                LocalDate.of(2024, 03, 03))));
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
     }
 }

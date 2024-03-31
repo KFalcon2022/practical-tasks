@@ -1,5 +1,8 @@
 package com.walking.lesson68_semaphore.task2;
 
+import com.walking.lesson68_semaphore.task2.model.Philosopher;
+import com.walking.lesson68_semaphore.task2.service.PhilosopherLunchCounter;
+
 /**
  * Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.
  * Вилки лежат на столе между каждой парой ближайших философов.
@@ -19,5 +22,25 @@ package com.walking.lesson68_semaphore.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Philosopher philosopher1 = new Philosopher(1);
+        Philosopher philosopher2 = new Philosopher(2);
+        Philosopher philosopher3 = new Philosopher(3);
+        Philosopher philosopher4 = new Philosopher(4);
+        Philosopher philosopher5 = new Philosopher(5, philosopher4, philosopher1);
+
+        philosopher1.setLeftPhilosopher(philosopher5);
+        philosopher1.setRightPhilosopher(philosopher2);
+        philosopher2.setLeftPhilosopher(philosopher1);
+        philosopher2.setRightPhilosopher(philosopher3);
+        philosopher3.setLeftPhilosopher(philosopher2);
+        philosopher3.setRightPhilosopher(philosopher4);
+        philosopher4.setLeftPhilosopher(philosopher3);
+        philosopher4.setRightPhilosopher(philosopher5);
+
+        new Thread(new PhilosopherLunchCounter(philosopher1)).start();
+        new Thread(new PhilosopherLunchCounter(philosopher2)).start();
+        new Thread(new PhilosopherLunchCounter(philosopher3)).start();
+        new Thread(new PhilosopherLunchCounter(philosopher4)).start();
+        new Thread(new PhilosopherLunchCounter(philosopher5)).start();
     }
 }

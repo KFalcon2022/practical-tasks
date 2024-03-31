@@ -7,6 +7,7 @@ import java.util.*;
 
 public class CarService {
     private final Map<CarIdentificator, Car> cars = new HashMap<>();
+
     private Car searchResult;
 
     public void add(Car... inputCars) {

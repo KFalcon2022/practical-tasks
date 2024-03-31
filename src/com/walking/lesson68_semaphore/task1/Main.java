@@ -1,5 +1,12 @@
 package com.walking.lesson68_semaphore.task1;
 
+import com.walking.lesson68_semaphore.task1.model.Philosopher;
+import com.walking.lesson68_semaphore.task1.service.PhilosopherLunchCounter;
+
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.
  * Вилки лежат на столе между каждой парой ближайших философов.
@@ -20,5 +27,17 @@ package com.walking.lesson68_semaphore.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Semaphore forkSemaphore = new Semaphore(4);
+        Lock fork1 = new ReentrantLock();
+        Lock fork2 = new ReentrantLock();
+        Lock fork3 = new ReentrantLock();
+        Lock fork4 = new ReentrantLock();
+        Lock fork5 = new ReentrantLock();
+
+        new Thread(new PhilosopherLunchCounter(new Philosopher(1, fork1, fork2), forkSemaphore)).start();
+        new Thread(new PhilosopherLunchCounter(new Philosopher(2, fork2, fork3), forkSemaphore)).start();
+        new Thread(new PhilosopherLunchCounter(new Philosopher(3, fork3, fork4), forkSemaphore)).start();
+        new Thread(new PhilosopherLunchCounter(new Philosopher(4, fork4, fork5), forkSemaphore)).start();
+        new Thread(new PhilosopherLunchCounter(new Philosopher(5, fork5, fork1), forkSemaphore)).start();
     }
 }
