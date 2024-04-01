@@ -3,34 +3,26 @@ package com.walking.lesson46_lambda.task3.service;
 import com.walking.lesson46_lambda.task3.model.Car;
 import com.walking.lesson46_lambda.task3.model.IdentityCar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class CarService {
-    List<Car> cars;
+    private final Set<Car> cars;
 
-    public CarService(List<Car> cars) {
-        this.cars = cars;
+    public CarService(Set<Car> cars) {
+        this.cars = new HashSet<>(cars);
     }
 
-    public List<Car> search(int verificationOption) {
-        List<Car> result = new ArrayList<>();
+    public Set<Car> searchCars(Predicate<Car> predicate) {
+        Set<Car> result = new HashSet<>();
 
+        cars.forEach(car -> {
+            if (predicate.test(car)) {
+                result.add(car);
+            }
+        });
 
         return result;
     }
-
-    /*
-    public Car searchCar(IdentityCar searchingCar) {
-
-        for (Car car : cars) {
-            if (car.getIdentityCar().equals(searchingCar)) {
-                return car;
-            }
-        }
-        return null;
-    }
-
-     */
 }

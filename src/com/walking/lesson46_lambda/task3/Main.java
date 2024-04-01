@@ -4,9 +4,10 @@ package com.walking.lesson46_lambda.task3;
 import com.walking.lesson46_lambda.task3.model.Car;
 import com.walking.lesson46_lambda.task3.model.ColorType;
 import com.walking.lesson46_lambda.task3.model.MarkType;
-import com.walking.lesson46_lambda.task3.service.CarService;
+import com.walking.lesson46_lambda.task3.service.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Реализуйте Задачу из урока 21:
@@ -28,12 +29,27 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Car> cars = initCars();
-        CarService service = new CarService(cars);
+        CarService carService = new CarService(initCars());
+        InputService inputService = new InputService();
+        InputValidationSrevice inputValidationSrevice = new InputValidationSrevice();
+        MenuMappingSrevice menuMappingSrevice = new MenuMappingSrevice(inputValidationSrevice);
+        MessagePrinterSrevice messagePrinterSrevice = new MessagePrinterSrevice();
+
+        MenuService menuService = new MenuService(carService,
+                inputService,
+                inputValidationSrevice,
+                menuMappingSrevice,
+                messagePrinterSrevice);
+
+        try {
+            menuService.processMainMenu();
+        } finally {
+            inputService.destroy();
+        }
     }
 
-    private static ArrayList<Car> initCars() {
-        ArrayList<Car> cars = new ArrayList<>();
+    private static HashSet<Car> initCars() {
+        HashSet<Car> cars = new HashSet<>();
 
         cars.add(new Car(MarkType.AUDI, ColorType.BLACK, 2001, 674921));
         cars.add(new Car(MarkType.BMW, ColorType.BLUE, 2002, 674922));
