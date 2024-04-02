@@ -1,9 +1,8 @@
 package com.walking.lesson18_instanceof_getClass.task1_instanceof;
 
-import com.walking.lesson18_instanceof_getClass.Task1.Animal;
-import com.walking.lesson18_instanceof_getClass.Task1.Cat;
-import com.walking.lesson18_instanceof_getClass.Task1.Cow;
-import com.walking.lesson18_instanceof_getClass.Task1.Dog;
+
+
+
 
 /**
  * Реализовать задачу

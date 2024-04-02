@@ -1,6 +1,6 @@
-package com.walking.lesson18_instanceof_getClass.Task1;
+package com.walking.lesson18_instanceof_getClass.task1_getClass;
 
-public class Animal {
+ class Animal {
     private final String sound;
 
     protected Animal(String sound) {

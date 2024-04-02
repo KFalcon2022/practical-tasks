@@ -1,6 +1,6 @@
-package com.walking.lesson18_instanceof_getClass.Task1;
+package com.walking.lesson18_instanceof_getClass.task1_getClass;
 
-public class Cow extends Animal {
+ class Cow extends Animal {
     public Cow() {
         super("moo");
     }
