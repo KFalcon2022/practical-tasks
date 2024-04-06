@@ -14,18 +14,18 @@ import com.walking.lesson20_exceptions.task3.Exceptions.UnknownAnimalException;
  * которое содержит информацию об индексе массива, содержащем null.
  */
 public class Main {
-    public static void main(String[] args) throws UnknownAnimalException, ArrayValidationException {
-        Animal[] animals = new Animal[]{new Cat(), null, new Cow(), null};
+    public static void main(String[] args)  {
+        Animal[] animals = new Animal[]{new Cat(), new Dog(), new Cow(), new Animal("sdf")};
         soundALl(animals);
 
     }
 
-    public static void soundALl(Animal[] animals) {
-        try {
+    public static void soundALl(Animal[] animals) throws ArrayValidationException {
+
             for (int i = 0; i < animals.length; i++) {
 
                 if (animals[i] == null) {
-                    throw new ArrayValidationException("Index " + i + " is null");
+                    throw new ArrayValidationException(i);
                 }
                 if (animals[i].getClass().equals(Cat.class)) {
                     ((Cat) animals[i]).meow();
@@ -33,13 +33,8 @@ public class Main {
                     ((Dog) animals[i]).woof();
                 } else if (animals[i].getClass().equals(Cow.class)) {
                     ((Cow) animals[i]).moo();
-                } else throw new UnknownAnimalException();
+                } else throw new UnknownAnimalException("Unknown animal!");
             }
-        } catch (ArrayValidationException e) {
-            System.out.println(e.getMessage());
-        } catch (UnknownAnimalException e) {
-            System.out.println("Unknown animal!");
 
-        }
     }
 }

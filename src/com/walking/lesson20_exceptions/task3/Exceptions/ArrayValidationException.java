@@ -1,13 +1,10 @@
 package com.walking.lesson20_exceptions.task3.Exceptions;
 
-public class ArrayValidationException extends Exception {
+public class ArrayValidationException extends RuntimeException {
 
 
-    public ArrayValidationException(String s) {
-        super(s);
+    public ArrayValidationException(int i) {
+        super("Null element in array. Element's number: " + i);
     }
-    @Override
-    public String getMessage() {
-        return super.getMessage();
-    }
+
 }
