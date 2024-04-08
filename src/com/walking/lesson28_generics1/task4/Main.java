@@ -16,20 +16,21 @@ package com.walking.lesson28_generics1.task4;
  */
 public class Main {
     public static void main(String[] args) {
-        Stack<Integer> testStack = createTestStack();
-        System.out.println(testStack.getSize());
-        System.out.println(testStack.search(1));
-        testStack.delete(1);
-        testStack.add(100);
-        System.out.println(testStack.getSize());
+        Stack<Integer> stack = createTestStack();
+        System.out.println(stack.getSize());
+        System.out.println(stack.search(1));
+        stack.delete(1);
+        stack.add(100);
+        System.out.println(stack.getSize());
+        System.out.println(stack);
     }
 
     private static Stack<Integer> createTestStack() {
-        Stack<Integer> testStack = new Stack<>();
-        testStack.add(1);
-        testStack.add(2);
-        testStack.add(3);
-        testStack.add(4);
-        return testStack;
+        Stack<Integer> stack = new Stack<>();
+        stack.add(1);
+        stack.add(2);
+        stack.add(3);
+        stack.add(4);
+        return stack;
     }
 }

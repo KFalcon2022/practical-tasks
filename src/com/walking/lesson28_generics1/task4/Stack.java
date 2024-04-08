@@ -64,6 +64,21 @@ public class Stack<T> {
         throw new StackElementNotFoundException();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder arrayStackElements = new StringBuilder("[");
+        Node<T> tempNode = first;
+
+        while (tempNode.next != null) {
+            arrayStackElements.append(tempNode.value + ", ");
+            tempNode = tempNode.next;
+        }
+        arrayStackElements.append(tempNode.value);
+        arrayStackElements.append("]");
+
+        return arrayStackElements.toString();
+    }
+
     private static class Node<T> {
         private final T value;
         private Node<T> next;
