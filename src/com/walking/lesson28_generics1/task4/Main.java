@@ -20,6 +20,14 @@ public class Main {
         System.out.println(stack.getSize());
         System.out.println(stack.search(1));
         stack.delete(1);
+        stack.add(8);
+
+        try {
+            stack.delete(9);
+        } catch (StackElementNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
         stack.add(100);
         System.out.println(stack.getSize());
         System.out.println(stack);
