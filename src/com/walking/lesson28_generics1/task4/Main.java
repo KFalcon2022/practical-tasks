@@ -16,5 +16,29 @@ package com.walking.lesson28_generics1.task4;
  */
 public class Main {
     public static void main(String[] args) {
+        Stack<Integer> stack = createTestStack();
+        System.out.println(stack.getSize());
+        System.out.println(stack.search(1));
+        stack.delete(1);
+        stack.add(8);
+
+        try {
+            stack.delete(9);
+        } catch (StackElementNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        stack.add(100);
+        System.out.println(stack.getSize());
+        System.out.println(stack);
+    }
+
+    private static Stack<Integer> createTestStack() {
+        Stack<Integer> stack = new Stack<>();
+        stack.add(1);
+        stack.add(2);
+        stack.add(3);
+        stack.add(4);
+        return stack;
     }
 }

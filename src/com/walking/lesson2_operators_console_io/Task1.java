@@ -1,5 +1,7 @@
 package com.walking.lesson2_operators_console_io;
 
+import java.util.Scanner;
+
 /**
  * Введите с клавиатуры вещественные числа a и b. Выведите на экран результат выражения
  * c = b*a*(a + b)/(a2),         где a2 - a в квадрате
@@ -8,5 +10,14 @@ package com.walking.lesson2_operators_console_io;
  */
 public class Task1 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите а:");
+        int a = scanner.nextInt();
+        System.out.println("Введите b:");
+        int b = scanner.nextInt();
+        scanner.close();
+        int c = b * a * (a + b) / (a * a);
+        System.out.println(c);
     }
 }
+
