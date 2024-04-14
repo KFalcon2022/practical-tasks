@@ -10,5 +10,15 @@ package com.walking.lesson29_generics2.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Generic<String> stringGeneric = new Generic<>("qwer");
+        System.out.println(getOrDefault(stringGeneric, "qw"));
+
+        Generic<String> stringNull = new Generic<>(null);
+        System.out.println(getOrDefault(stringNull, "qw"));
+
+    }
+
+    private static  <T> T getOrDefault(Generic<T> generic, T object) {
+        return generic.getObject() != null ? generic.getObject() : object ;
     }
 }
