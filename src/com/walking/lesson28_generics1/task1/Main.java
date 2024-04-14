@@ -7,5 +7,7 @@ package com.walking.lesson28_generics1.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Number1<Integer> number1 = new Number1<>(5);
+        System.out.println(number1.getPow(2));
     }
 }
