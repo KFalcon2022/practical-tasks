@@ -26,8 +26,5 @@ public class Main {
         stack.add(2);
         stack.add(3);
         System.out.println(stack);
-
-
-
     }
 }

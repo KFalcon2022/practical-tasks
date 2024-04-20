@@ -16,5 +16,11 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+        String input = " +7 (921) 123-45-67";
+        System.out.println(validatePhoneNumber(input));
+    }
+
+    private static boolean validatePhoneNumber(String input) {
+        return input.matches("\\s*\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}\\s*");
     }
 }

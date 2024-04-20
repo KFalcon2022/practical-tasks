@@ -7,36 +7,6 @@ public class MyStack<T> {
     private Node<T> head;
     private int size;
 
-
-    @Override
-    public String toString() {
-        String[] array = new String[size];
-        Node<T> currentNode = head;
-        for (int i = 0; i < array.length; i++) {
-            array[i] = currentNode.value.toString();
-            currentNode = currentNode.next;
-        }
-        return Arrays.toString(array);
-    }
-
-    private static class Node<T> {
-        private final T value;
-        private Node<T> next;
-
-        private Node(T value) {
-            this.value = value;
-        }
-    }
-
-    private int increaseSize() {
-        return size++;
-    }
-
-    private int decreaseSize() {
-        return size--;
-    }
-
-
     public void add(T t) {
         Node<T> node = new Node<>(t);
         node.next = head;
@@ -57,7 +27,7 @@ public class MyStack<T> {
         return size;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return head == null;
     }
 
@@ -72,5 +42,31 @@ public class MyStack<T> {
         throw new RuntimeException("Element not found!");
     }
 
+    @Override
+    public String toString() {
+        String[] array = new String[size];
+        Node<T> currentNode = head;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = currentNode.value.toString();
+            currentNode = currentNode.next;
+        }
+        return Arrays.toString(array);
+    }
 
+    private int increaseSize() {
+        return size++;
+    }
+
+    private int decreaseSize() {
+        return size--;
+    }
+
+    private static class Node<T> {
+        private final T value;
+        private Node<T> next;
+
+        private Node(T value) {
+            this.value = value;
+        }
+    }
 }
