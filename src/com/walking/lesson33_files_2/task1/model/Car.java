@@ -1,57 +1,51 @@
 package com.walking.lesson33_files_2.task1.model;
 
-import com.walking.lesson33_files_2.task1.service.CarValidationService;
-
 import java.util.Objects;
 
 public class Car {
     private final String number;
     private final int year;
 
-    private CarColor color;
-    private boolean hasFine;
+    private Color color;
+    private boolean fine;
 
     private int hashCode;
 
-    public Car(String number, int year, CarColor color, boolean hasFine) {
-        CarValidationService.validateCarArguments(number, year, color);
-
+    public Car(String number, int year, Color color, boolean fine) {
         this.number = number;
         this.year = year;
         this.color = color;
-        this.hasFine = hasFine;
-        this.hashCode = hashCode();
+        this.fine = fine;
     }
 
     public String getNumber() {
         return number;
     }
 
-
     public int getYear() {
         return year;
     }
 
-    public CarColor getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(CarColor color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
     public boolean hasFine() {
-        return hasFine;
+        return fine;
     }
 
-    public void setHasFine(boolean hasFine) {
-        this.hasFine = hasFine;
+    public void setFine(boolean fine) {
+        this.fine = fine;
     }
 
     @Override
     public String toString() {
-        return "number: %s | year: %d | color: %-6s | hasFine: %s"
-                .formatted(number, year, color.getTextEn(), hasFine ? "+" : "-");
+        return "number: %s | year: %d | color: %-6s | fine: %s"
+                .formatted(number, year, color.getName(), fine ? "+" : "-");
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.walking.lesson33_files_2.task1;
 
 import com.walking.lesson33_files_2.task1.model.Car;
-import com.walking.lesson33_files_2.task1.model.CarColor;
-import com.walking.lesson33_files_2.task1.model.IOStreamType;
-import com.walking.lesson33_files_2.task1.service.CarRepository;
+import com.walking.lesson33_files_2.task1.model.Color;
+import com.walking.lesson33_files_2.task1.repository.CarRepository;
+import com.walking.lesson33_files_2.task1.service.CarService;
+
+import static com.walking.lesson33_files_2.task1.repository.CarRepository.*;
 
 import java.io.*;
 
@@ -18,43 +20,57 @@ import java.io.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Car[] testCars = createCars();
-        Car[] loadedCars;
-        File carCatalog = new File("./practical-tasks/resource/lesson32/carCatalog.txt");
-        CarRepository carRepository = new CarRepository(carCatalog);
+        /* BufferedReader + BufferedWriter */
+        File defaultCatalog = new File("./practical-tasks/resource/lesson33/carCatalog.txt");
+        CarService withDefaultRepository = new CarService(defaultCatalog);
 
-        System.out.println("Машины перед загрузкой из файлы: ");
-        displayCars(testCars);
+        testAddDeleteEdit(withDefaultRepository);
 
-        carRepository.save(testCars, IOStreamType.FILE_WRITER);
-        loadedCars = carRepository.load(IOStreamType.FILE_READER);
-        System.out.println("Машины после сохранения и загрузки через FileWriter\\Reader: ");
-        displayCars(loadedCars);
+        /* FileReader + FileWriter */
+        File customCatalog = new File("./practical-tasks/resource/lesson33/customCatalog.txt");
+        CarRepository customRepository = getOfIoType(customCatalog, InputType.FILE_READER, OutputType.FILE_WRITER);
+        CarService withCustomRepository = new CarService(customRepository);
 
-        carRepository.save(testCars, IOStreamType.BUFFERED_OUTPUT_STREAM);
-        loadedCars = carRepository.load(IOStreamType.BUFFERED_INPUT_STREAM);
-        System.out.println("Машины после сохранения и загрузки через BufferedOutput\\InputStream: ");
-        displayCars(loadedCars);
+        testAddDeleteEdit(withCustomRepository);
 
-        carRepository.save(testCars, IOStreamType.BUFFERED_WRITER);
-        loadedCars = carRepository.load(IOStreamType.BUFFERED_READER);
-        System.out.println("Машины после сохранения и загрузки через BufferedWriter\\Reader: ");
-        displayCars(loadedCars);
+        /* BufferedInputStream + BufferedOutputStream */
+        File customCatalog1 = new File("./practical-tasks/resource/lesson33/customCatalog1.txt");
+        CarRepository customRepository1 = getOfIoType(customCatalog1, InputType.BUFFERED_INPUT_STREAM, OutputType.BUFFERED_OUTPUT_STREAM);
+        CarService withCustomRepository1 = new CarService(customRepository1);
+
+        testAddDeleteEdit(withCustomRepository1);
     }
 
-    public static Car[] createCars() {
-        return new Car[]{new Car("A123BC", 2024, CarColor.RED, false),
-                         new Car("Z000ZZ", 2000, CarColor.YELLOW, true),
-                         new Car("F999FF", 1970, CarColor.BLACK, true)};
-    }
+    public static void testAddDeleteEdit(CarService carService) {
+        System.out.println("Машины в репозитории после инициализации сервиса:");
+        carService.displayCars();
 
-    public static void displayCars(Car[] cars) {
-        System.out.println("-".repeat(56));
+        //добавление
+        carService.add(new Car("A123BC", 2024, Color.RED, false));
+        carService.add(new Car("Z000ZZ", 2000, Color.YELLOW, true));
+        carService.add(new Car("F999FF", 1970, Color.BLACK, true));
 
-        for (Car car : cars) {
-            System.out.println(car);
+        System.out.println("Машины после добавления:");
+        carService.displayCars();
+
+        //удаление
+        carService.remove(new Car("A123BC", 2024, Color.RED, false));
+
+        System.out.println("Машины после удаления:");
+        carService.displayCars();
+
+        //изменение информации
+        Car sampleCar = new Car("Z000ZZ", 2000, Color.YELLOW, true);
+        Car foundCar = carService.find(sampleCar);
+
+        if (foundCar != null) {
+            foundCar.setColor(Color.INDIGO);
+            foundCar.setFine(false);
+
+            carService.update();
         }
 
-        System.out.println();
+        System.out.println("Машины после изменения:");
+        carService.displayCars();
     }
 }
