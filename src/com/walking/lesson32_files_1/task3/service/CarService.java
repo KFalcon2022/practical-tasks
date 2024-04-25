@@ -1,87 +1,125 @@
 package com.walking.lesson32_files_1.task3.service;
 
 import com.walking.lesson32_files_1.task3.model.Car;
-import java.util.Arrays;
+import com.walking.lesson32_files_1.task3.repository.CarRepository;
 
-//считаем, что через CarService в Car[] запрещено добавлять дубликаты и null-объекты
-//хотя массив в целом плохо подходит для задуманных операций
+import java.io.File;
 
 public class CarService {
-    private Car[] originalCars;
+    private final CarRepository carRepository;
 
-    public CarService(Car[] originalCars) {
-        this.originalCars = originalCars;
+    public CarService(File repositorySource) {
+        if (repositorySource == null) {
+            throw new NullPointerException("Need not null File value");
+        }
+
+        this.carRepository = new CarRepository(repositorySource);
     }
 
-    public Car[] getOriginalCars() {
-        return originalCars;
+    public Car[] getCars() {
+        return carRepository.getCars();
     }
 
-    public boolean add(Car target) {
-        if (target == null) {
+    public boolean add(Car car) {
+        if (car == null || contains(car)) {
             return false;
         }
 
-        if (originalCars == null) {
-            originalCars = new Car[]{target};
-            return true;
-        }
+        carRepository.setCars(getArrayWith(car));
 
-        for (Car car : originalCars) {
-            if (target.equals(car)) {
-                return false;
-            }
-        }
+        carRepository.save();
 
-        originalCars = Arrays.copyOf(originalCars, originalCars.length + 1);
-        originalCars[originalCars.length - 1] = target;
         return true;
     }
 
-    public void delete(Car target) {
-        int foundCarIndex = findIndex(target);
+    public boolean remove(Car car) {
+        int foundCarIndex = indexOf(car);
 
         if (foundCarIndex != -1) {
-            Car[] result = new Car[originalCars.length - 1];
+            carRepository.setCars(getArrayWithout(foundCarIndex));
 
-            System.arraycopy(originalCars, 0, result, 0, foundCarIndex);
+            carRepository.save();
 
-            int restIndex = foundCarIndex + 1;
-            int rest = originalCars.length - restIndex;
-
-            if (rest > 0) {
-                System.arraycopy(originalCars, restIndex, result, foundCarIndex, rest);
-            }
-
-            originalCars = result;
+            return true;
         }
+
+        return false;
     }
 
-    public Car find(Car target) {
-        if (originalCars == null || target == null) {
+    public Car find(Car car) {
+        if (car == null) {
+            throw new NullPointerException("Need not null Car value");
+        }
+
+        int foundCarIndex = indexOf(car);
+
+        /* null допустимо возвращать как отрицательный результат поиска объекта? */
+        if (foundCarIndex == -1) {
             return null;
         }
 
-        for (Car car : originalCars) {
-            if(target.equals(car)) {
-                return car;
-            }
-        }
-
-        return null;
+        return carRepository.getCars()[foundCarIndex];
     }
 
-    private int findIndex(Car target) {
-        if (originalCars == null || target == null) {
+    public void update() {
+        carRepository.save();
+    }
+
+    public void displayCars() {
+        System.out.println("-".repeat(56));
+
+        for (Car car : carRepository.getCars()) {
+            System.out.println(car);
+        }
+
+        System.out.println();
+    }
+
+    private int indexOf(Car car) {
+        if (car == null) {
             return -1;
         }
 
-        for (int i = 0; i < originalCars.length; i++) {
-            if (target.equals(originalCars[i])) {
+        Car[] cars = carRepository.getCars();
+
+        for (int i = 0; i < cars.length; i++) {
+            if (car.equals(cars[i])) {
                 return i;
             }
         }
 
         return -1;
+    }
+
+    private boolean contains(Car car) {
+        return indexOf(car) >= 0;
+    }
+
+    private Car[] getArrayWith(Car car) {
+        Car[] startCars = carRepository.getCars();
+        Car[] endCars = new Car[startCars.length + 1];
+
+        for (int i = 0; i < startCars.length; i++) {
+            endCars[i] = startCars[i];
+        }
+
+        endCars[endCars.length - 1] = car;
+
+        return endCars;
+    }
+
+    private Car[] getArrayWithout(int carIndex) {
+        Car[] startCars = carRepository.getCars();
+        Car[] endCars = new Car[startCars.length - 1];
+
+        for (int i = 0; i < carIndex; i++) {
+            endCars[i] = startCars[i];
+        }
+
+        for (int i = carIndex; i < endCars.length; i++) {
+            endCars[i] = startCars[i + 1];
+        }
+
+        return endCars;
     }
 }
