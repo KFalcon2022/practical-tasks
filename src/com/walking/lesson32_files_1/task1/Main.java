@@ -2,6 +2,7 @@ package com.walking.lesson32_files_1.task1;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
@@ -12,12 +13,14 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        Car[] cars = initCars();
+
         try (FileOutputStream fos = new FileOutputStream("./resource/carCatalog.txt")) {
 
-            byte[] buffer = Arrays.toString(initCars()).getBytes();
-            fos.write(buffer);
-            System.out.println("The file has been written!");
-
+            for (Car car : cars) {
+                fos.write(mapCarToFileView(car).getBytes());
+                fos.write('\n');
+            }
         } catch (IOException exception) {
 
             System.out.println(exception.getMessage());
@@ -31,6 +34,10 @@ public class Main {
         Car car3 = new Car("Toyota", "Camry", "0890", 2011);
 
         return new Car[]{car1, car2, car3};
+    }
+
+    private static String mapCarToFileView(Car car) {
+        return "%s; %s; %s; %d;".formatted(car.getCarMake(), car.getModel(), car.getCarNumber(), car.getYear());
     }
 }
 
