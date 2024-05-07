@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Пример входящей строки: 20.12.2022 20:16:00.
  */
 public class Main {
-    public static final DateTimeFormatter DATE_TIME_PATTERN = DateTimeFormatter.ofPattern("dd.MM.yyy kk:mm:ss");
+    public static final DateTimeFormatter DATE_TIME_PATTERN = DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm:ss");
 
     public static void main(String[] args) {
         String testLocalDateTime = "20.12.2022 20:16:00";
@@ -19,7 +19,7 @@ public class Main {
     }
 
     public static LocalDateTime parseLocalDateTime(String localDateTimeCandidate) {
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm:ss");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
         return LocalDateTime.parse(localDateTimeCandidate, pattern);
     }

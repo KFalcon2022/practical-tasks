@@ -12,10 +12,10 @@ import java.time.format.DateTimeFormatter;
  * являются ли введенные с клавиатуры дата и время больше или меньше текущего.
  */
 public class Main {
-    public static final DateTimeFormatter DATE_TIME_PATTERN = DateTimeFormatter.ofPattern("dd.MM.yyy kk:mm:ss");
+    public static final DateTimeFormatter DATE_TIME_PATTERN = DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm:ss");
 
     public static void main(String[] args) {
-        System.out.println("Введите дату и время в формате dd.mm.yyyy kk:mm:ss (например 20.12.2022 20:16:00):");
+        System.out.println("Введите дату и время в формате dd.MM.yyyy HH:mm:ss (например 20.12.2022 20:16:00):");
 
         String inputTimeDate = getDateTimeFromConsole();
 
@@ -39,7 +39,7 @@ public class Main {
     }
 
     public static LocalDateTime parseLocalDateTime(String localDateTimeCandidate) {
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd.MM.yyy kk:mm:ss");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm:ss");
 
         return LocalDateTime.parse(localDateTimeCandidate, pattern);
     }
