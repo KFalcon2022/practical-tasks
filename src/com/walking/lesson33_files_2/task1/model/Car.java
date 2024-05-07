@@ -1,7 +1,6 @@
 package com.walking.lesson33_files_2.task1.model;
 
 import java.util.Objects;
-
 public class Car {
     private final String number;
     private final int year;

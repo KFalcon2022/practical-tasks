@@ -1,42 +1,45 @@
 package com.walking.lesson33_files_2.task1.service;
 
-import com.walking.lesson33_files_2.task1.exception.RegexValidationException;
 import com.walking.lesson33_files_2.task1.exception.UnableParsingException;
 import com.walking.lesson33_files_2.task1.model.Car;
 import com.walking.lesson33_files_2.task1.model.Color;
-import com.walking.lesson33_files_2.task1.repository.CarRepository;
+
+import java.util.StringJoiner;
 
 public class CarParser {
-    private static final String VALID_NUMBERS = "^[A-Za-z]\\d{3}[A-Za-z]{2}$";
-    private static final String VALID_YEARS = "^19[56789]\\d$|^2[01]\\d{2}$";
+    private static final String ELEMENT_SEPARATOR = "\n";
+    private static final String FIELD_SEPARATOR = " ";
 
-    private final String input;
-
-    public CarParser(String input) {
-        this.input = input;
+    public String toLine(Car car) {
+        return new StringJoiner(FIELD_SEPARATOR, "", ELEMENT_SEPARATOR)
+                .add(car.getNumber())
+                .add(String.valueOf(car.getYear()))
+                .add(car.getColor().getName())
+                .add(String.valueOf(car.hasFine()))
+                .toString();
     }
 
-    public Car[] parseAllCars() {
-        if (input.length() == 0) {
+    public Car[] parseAll(String allCandidates) {
+        if (allCandidates.length() == 0) {
             return new Car[0];
         }
 
-        String[] carCandidates = input.split(CarRepository.CAR_SEPARATOR);
+        String[] singleCandidates = allCandidates.split(ELEMENT_SEPARATOR);
 
-        Car[] cars = new Car[carCandidates.length];
+        Car[] elements = new Car[singleCandidates.length];
 
-        for (int i = 0; i < carCandidates.length; i++) {
-            cars[i] = parseSingleCar(carCandidates[i]);
+        for (int i = 0; i < singleCandidates.length; i++) {
+            elements[i] = parseSingle(singleCandidates[i]);
         }
 
-        return cars;
+        return elements;
     }
 
-    public Car parseSingleCar(String carCandidate) {
-        String[] fields = carCandidate.split(CarRepository.CAR_FIELD_SEPARATOR);
+    public Car parseSingle(String singleCandidate) {
+        String[] fields = singleCandidate.split(FIELD_SEPARATOR);
 
         if (fields.length != 4) {
-            throw new IllegalArgumentException("Invalid number of fields. Need 4, but was: " + fields.length);
+            throw new UnableParsingException("Unable parse single element: ", singleCandidate);
         }
 
         String number = parseNumber(fields[0]);
@@ -48,18 +51,10 @@ public class CarParser {
     }
 
     private String parseNumber(String number) {
-        if (!number.matches(VALID_NUMBERS)) {
-            throw new RegexValidationException("Unable parse number:", number, VALID_NUMBERS);
-        }
-
         return number;
     }
 
     private int parseYear(String year) {
-        if (!year.matches(VALID_YEARS)) {
-            throw new RegexValidationException("Unable parse year:", year, VALID_YEARS);
-        }
-
         return Integer.parseInt(year);
     }
 
@@ -69,7 +64,7 @@ public class CarParser {
 
     private boolean parseFine(String fine) {
         if (!"true".equalsIgnoreCase(fine) && !"false".equalsIgnoreCase(fine)) {
-            throw new UnableParsingException("Unable parse boolean value:", fine);
+            throw new UnableParsingException("Unable parse boolean value: ", fine);
         }
 
         return Boolean.parseBoolean(fine);

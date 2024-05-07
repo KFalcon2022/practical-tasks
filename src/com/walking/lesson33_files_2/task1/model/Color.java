@@ -24,18 +24,12 @@ public enum Color {
     }
 
     public static Color parseColorByName(String name) {
-        return switch (name) {
-            case "black" -> Color.BLACK;
-            case "white" -> Color.WHITE;
-            case "red" -> Color.RED;
-            case "yellow" -> Color.YELLOW;
-            case "blue" -> Color.BLUE;
-            case "green" -> Color.GREEN;
-            case "orange" -> Color.ORANGE;
-            case "indigo" -> Color.INDIGO;
-            case "violet" -> Color.VIOLET;
+        for (Color color : Color.values()) {
+            if (color.name.equals(name)) {
+                return color;
+            }
+        }
 
-            default -> throw new UnableParsingException("Unable parse Color value:", name);
-        };
+        throw new UnableParsingException("Unable parse Color value:", name);
     }
 }

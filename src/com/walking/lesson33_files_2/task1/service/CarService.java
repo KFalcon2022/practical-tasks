@@ -3,29 +3,11 @@ package com.walking.lesson33_files_2.task1.service;
 import com.walking.lesson33_files_2.task1.model.Car;
 import com.walking.lesson33_files_2.task1.repository.CarRepository;
 
-import java.io.File;
-
 public class CarService {
     private final CarRepository carRepository;
 
-    public CarService(File repositorySource) {
-        if (repositorySource == null) {
-            throw new NullPointerException("Need not null File value");
-        }
-
-        this.carRepository = new CarRepository(repositorySource);
-    }
-
     public CarService(CarRepository carRepository) {
-        if (carRepository == null) {
-            throw new NullPointerException("Need not null CarRepository value");
-        }
-
         this.carRepository = carRepository;
-    }
-
-    public Car[] getCars() {
-        return carRepository.getCars();
     }
 
     public boolean add(Car car) {
@@ -35,7 +17,7 @@ public class CarService {
 
         carRepository.setCars(getArrayWith(car));
 
-        carRepository.save();
+        carRepository.append(car);
 
         return true;
     }
@@ -43,25 +25,20 @@ public class CarService {
     public boolean remove(Car car) {
         int foundCarIndex = indexOf(car);
 
-        if (foundCarIndex != -1) {
-            carRepository.setCars(getArrayWithout(foundCarIndex));
-
-            carRepository.save();
-
-            return true;
+        if (foundCarIndex == -1) {
+            return false;
         }
 
-        return false;
+        carRepository.setCars(getArrayWithout(foundCarIndex));
+
+        carRepository.rewrite();
+
+        return true;
     }
 
     public Car find(Car car) {
-        if (car == null) {
-            throw new NullPointerException("Need not null Car value");
-        }
-
         int foundCarIndex = indexOf(car);
 
-        /* null допустимо возвращать как отрицательный результат поиска объекта? */
         if (foundCarIndex == -1) {
             return null;
         }
@@ -70,7 +47,7 @@ public class CarService {
     }
 
     public void update() {
-        carRepository.save();
+        carRepository.rewrite();
     }
 
     public void displayCars() {
