@@ -16,6 +16,7 @@ package com.walking.lesson13_inheritance.task1;
  * Обратите внимание на консоль.
  * Такой ли порядок сообщений вы ожидали увидеть?
  */
+
 public class Main {
     public static void main(String[] args) {
     }
