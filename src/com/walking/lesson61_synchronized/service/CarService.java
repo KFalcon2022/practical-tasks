@@ -3,7 +3,9 @@ package com.walking.lesson61_synchronized.service;
 import com.walking.lesson61_synchronized.model.Car;
 import com.walking.lesson61_synchronized.model.CarIdentifier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CarService {
@@ -11,6 +13,10 @@ public class CarService {
 
     public synchronized Car findCar(CarIdentifier identifier) {
         return cars.get(identifier);
+    }
+
+    public synchronized List<Car> findAll() {
+        return new ArrayList<>(cars.values());
     }
 
     public synchronized Car add(Car car) {
