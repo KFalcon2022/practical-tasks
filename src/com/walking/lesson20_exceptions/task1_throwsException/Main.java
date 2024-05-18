@@ -3,6 +3,7 @@ package com.walking.lesson20_exceptions.task1_throwsException;
 
 import com.walking.lesson20_exceptions.task1_throwsException.model.FileType;
 import com.walking.lesson20_exceptions.task1_throwsException.model.File;
+import com.walking.lesson20_exceptions.task1_throwsException.service.FileNotFoundException;
 import com.walking.lesson20_exceptions.task1_throwsException.service.FileService;
 
 
@@ -24,7 +25,7 @@ import java.util.Scanner;
  * Подсказка: throws можно использовать в том числе в main().
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         File[] files = {new File("pic1", FileType.IMAGE, 400),
                         new File("pic2", FileType.IMAGE, 800),
                         new File("pic3", FileType.IMAGE, 1200),

@@ -2,8 +2,6 @@ package com.walking.lesson20_exceptions.task1_throwsException.service;
 
 import com.walking.lesson20_exceptions.task1_throwsException.model.File;
 
-import java.io.FileNotFoundException;
-
 public class FileService {
     private File[] files;
 
@@ -17,6 +15,6 @@ public class FileService {
                 return file;
             }
         }
-        throw new FileNotFoundException("File not found");
+        throw new FileNotFoundException("Искомый файл не найден");
     }
 }
