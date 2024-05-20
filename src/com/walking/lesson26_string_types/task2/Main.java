@@ -14,23 +14,24 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner("aa bb cc aa vv");
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a words: ");
-        String text = scanner.nextLine();
+        String[] words = scanner.nextLine()
+                .strip()
+                .toLowerCase()
+                .split(" ");
 
-        String[] words = text.strip().toLowerCase().split(" ");
         int count = 0;
-
         for (int i = 0; i < words.length; i++) {
             for (int j = 1 + i; j < words.length; j++) {
-                if(words[i].equals(words[j]) && !words[i].equals(" ")) {
+                if (words[i].equals(words[j]) && !words[i].equals(" ")) {
                     words[j] = " ";
                     count++;
                 }
             }
         }
-        System.out.println(words.length - count * 2);
+
+        System.out.printf("Unique words: %d \n", words.length - count);
     }
 }
-
