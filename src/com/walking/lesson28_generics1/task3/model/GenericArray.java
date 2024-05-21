@@ -13,7 +13,7 @@ public class GenericArray<T> {
         return array;
     }
 
-    public T getValue(T value) throws ValueNotFound {
+    public T getValue(T value) {
         for (T a : array) {
             if (a.equals(value)) {
                 return a;
