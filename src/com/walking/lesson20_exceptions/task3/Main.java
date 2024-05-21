@@ -2,10 +2,7 @@ package com.walking.lesson20_exceptions.task3;
 
 import com.walking.lesson20_exceptions.task3.exeptions.ArrayValidationException;
 import com.walking.lesson20_exceptions.task3.exeptions.UnknownAnimalException;
-import com.walking.lesson20_exceptions.task3.model.Animal;
-import com.walking.lesson20_exceptions.task3.model.Cat;
-import com.walking.lesson20_exceptions.task3.model.Cow;
-import com.walking.lesson20_exceptions.task3.model.Dog;
+import com.walking.lesson20_exceptions.task3.model.*;
 
 /**
  * Реализуйте любой из вариантов задачи в уроке 18.
@@ -17,20 +14,15 @@ import com.walking.lesson20_exceptions.task3.model.Dog;
  * которое содержит информацию об индексе массива, содержащем null.
  */
 public class Main {
-    public static void main(String[] args) throws UnknownAnimalException {
+    public static void main(String[] args) {
         Animal[] animals = {new Cat(), new Dog(), new Cow()};
-        try {
             soundAll(animals);
-        }
-        catch (ArrayValidationException ex) {
-            System.out.printf("%d %s", ex.getIndex(), ex.getMessage());
-        }
     }
 
-    private static void soundAll (Animal[] animals) throws UnknownAnimalException {
+    private static void soundAll (Animal[] animals) {
         for (int i = 0; i < animals.length; i++) {
             if (animals[i] == null) {
-                throw new ArrayValidationException("item in array is null", i);
+                throw new ArrayValidationException(i);
             }
             if (Cat.class.equals(animals[i].getClass())) {
                ((Cat) animals[i]).meow();

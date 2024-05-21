@@ -1,7 +1,11 @@
 package com.walking.lesson20_exceptions.task3.model;
 
-public class Cat extends Animal{
-    public void meow () {
-        System.out.println("meow");
+public class Cat extends Animal {
+    public Cat() {
+        super("meow");
+    }
+
+    public void meow() {
+        super.sound();
     }
 }

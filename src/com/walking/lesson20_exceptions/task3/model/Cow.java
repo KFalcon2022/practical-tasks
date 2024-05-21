@@ -1,7 +1,11 @@
 package com.walking.lesson20_exceptions.task3.model;
 
-public class Cow extends Animal{
-    public void moo () {
-        System.out.println("moo");
+public class Cow extends Animal {
+    public Cow() {
+        super("moo");
+    }
+
+    public void moo() {
+        super.sound();
     }
 }
