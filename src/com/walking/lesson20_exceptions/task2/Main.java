@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Предка исключения определите самостоятельно.
  */
 public class Main {
-    public static void main(String[] args) throws InputValidationException {
+    public static void main(String[] args) {
         Scanner io = new Scanner(System.in);
 
         System.out.println("Enter '1' for square, '2' for triangle");
