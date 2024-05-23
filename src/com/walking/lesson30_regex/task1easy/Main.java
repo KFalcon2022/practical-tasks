@@ -12,5 +12,11 @@ package com.walking.lesson30_regex.task1easy;
  */
 public class Main {
     public static void main(String[] args) {
+        String numberPhone = "+7 (999) 223-22-22";
+        System.out.println(isValid(numberPhone));
+    }
+
+    private static boolean isValid(String text) {
+        return text.matches("^\\+7 \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}$");
     }
 }
