@@ -29,4 +29,20 @@ public class Car {
     public int hashCode() {
         return Objects.hash(model, number);
     }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
 }
