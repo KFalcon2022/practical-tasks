@@ -6,5 +6,9 @@ package com.walking.lesson28_generics1.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        SomeType<String> stringSomeType = new SomeType<>();
+        System.out.println(stringSomeType.isNull());
+        stringSomeType.setValue("qwert");
+        System.out.println(stringSomeType.isNull());
     }
 }
