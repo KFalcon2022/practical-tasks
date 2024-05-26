@@ -10,14 +10,22 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
+    public Car[] getCars() {
+        return carRepository.getCars().clone();
+    }
+
     public boolean add(Car car) {
-        if (car == null || contains(car)) {
+        if (car == null) {
             return false;
         }
 
-        carRepository.setCars(getArrayWith(car));
+        if (contains(car)) {
+            carRepository.rewrite();
+        } else {
+            carRepository.setCars(getArrayWith(car));
 
-        carRepository.append(car);
+            carRepository.add(car);
+        }
 
         return true;
     }
@@ -39,25 +47,7 @@ public class CarService {
     public Car find(Car car) {
         int foundCarIndex = indexOf(car);
 
-        if (foundCarIndex == -1) {
-            return null;
-        }
-
-        return carRepository.getCars()[foundCarIndex];
-    }
-
-    public void update() {
-        carRepository.rewrite();
-    }
-
-    public void displayCars() {
-        System.out.println("-".repeat(56));
-
-        for (Car car : carRepository.getCars()) {
-            System.out.println(car);
-        }
-
-        System.out.println();
+        return (foundCarIndex == -1) ? null : carRepository.getCars()[foundCarIndex];
     }
 
     private int indexOf(Car car) {

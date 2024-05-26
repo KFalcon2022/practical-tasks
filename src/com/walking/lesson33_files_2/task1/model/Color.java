@@ -1,6 +1,6 @@
 package com.walking.lesson33_files_2.task1.model;
 
-import com.walking.lesson33_files_2.task1.exception.UnableParsingException;
+import com.walking.lesson33_files_2.task1.exception.ParsingException;
 
 public enum Color {
     BLACK("black"),
@@ -30,6 +30,6 @@ public enum Color {
             }
         }
 
-        throw new UnableParsingException("Unable parse Color value:", name);
+        throw new ParsingException("Unable parse Color value:", name);
     }
 }

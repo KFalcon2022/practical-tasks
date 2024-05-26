@@ -1,22 +1,16 @@
 package com.walking.lesson33_files_2.task1.service;
 
-import com.walking.lesson33_files_2.task1.exception.UnableParsingException;
+import com.walking.lesson33_files_2.task1.exception.ParsingException;
 import com.walking.lesson33_files_2.task1.model.Car;
 import com.walking.lesson33_files_2.task1.model.Color;
 
-import java.util.StringJoiner;
-
 public class CarParser {
-    private static final String ELEMENT_SEPARATOR = "\n";
-    private static final String FIELD_SEPARATOR = " ";
+    public final String elementSeparator;
+    public final String fieldSeparator;
 
-    public String toLine(Car car) {
-        return new StringJoiner(FIELD_SEPARATOR, "", ELEMENT_SEPARATOR)
-                .add(car.getNumber())
-                .add(String.valueOf(car.getYear()))
-                .add(car.getColor().getName())
-                .add(String.valueOf(car.hasFine()))
-                .toString();
+    public CarParser(String elementSeparator, String fieldSeparator) {
+        this.elementSeparator = elementSeparator;
+        this.fieldSeparator = fieldSeparator;
     }
 
     public Car[] parseAll(String allCandidates) {
@@ -24,7 +18,7 @@ public class CarParser {
             return new Car[0];
         }
 
-        String[] singleCandidates = allCandidates.split(ELEMENT_SEPARATOR);
+        String[] singleCandidates = allCandidates.split(elementSeparator);
 
         Car[] elements = new Car[singleCandidates.length];
 
@@ -36,10 +30,10 @@ public class CarParser {
     }
 
     public Car parseSingle(String singleCandidate) {
-        String[] fields = singleCandidate.split(FIELD_SEPARATOR);
+        String[] fields = singleCandidate.split(fieldSeparator);
 
         if (fields.length != 4) {
-            throw new UnableParsingException("Unable parse single element: ", singleCandidate);
+            throw new ParsingException("Unable parse single element: [" + singleCandidate + "]");
         }
 
         String number = parseNumber(fields[0]);
@@ -64,7 +58,7 @@ public class CarParser {
 
     private boolean parseFine(String fine) {
         if (!"true".equalsIgnoreCase(fine) && !"false".equalsIgnoreCase(fine)) {
-            throw new UnableParsingException("Unable parse boolean value: ", fine);
+            throw new ParsingException("Unable parse boolean value: [" + fine + "]");
         }
 
         return Boolean.parseBoolean(fine);

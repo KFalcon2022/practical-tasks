@@ -4,10 +4,14 @@ import com.walking.lesson33_files_2.task1.model.Car;
 import com.walking.lesson33_files_2.task1.service.CarParser;
 
 import java.io.*;
+import java.util.StringJoiner;
 
 public class CarRepository {
+    private static final String ELEMENT_SEPARATOR = "\n";
+    private static final String FIELD_SEPARATOR = " ";
+
     private final File source = new File("./practical-tasks/resource/lesson33/carCatalog.txt");
-    private final CarParser parser = new CarParser();
+    private final CarParser parser = new CarParser(ELEMENT_SEPARATOR, FIELD_SEPARATOR);
 
     private Car[] cars;
 
@@ -23,9 +27,9 @@ public class CarRepository {
         this.cars = cars;
     }
 
-    public void append(Car car) {
+    public void add(Car car) {
         //Вариант 1: FileWriter
-        saveWithFileWriter(parser.toLine(car), true);
+        saveWithFileWriter(toLine(car), true);
 
         /*//Вариант 2: BufferedOutputStream
         saveWithBufferedOutputStream(parser.toLine(car), true);*/
@@ -34,11 +38,20 @@ public class CarRepository {
         saveWithBufferedWriter(parser.toLine(car), true);*/
     }
 
+    public String toLine(Car car) {
+        return new StringJoiner(FIELD_SEPARATOR, "", ELEMENT_SEPARATOR)
+                .add(car.getNumber())
+                .add(String.valueOf(car.getYear()))
+                .add(car.getColor().getName())
+                .add(String.valueOf(car.hasFine()))
+                .toString();
+    }
+
     public void rewrite() {
         StringBuilder allCars = new StringBuilder();
 
         for (Car car : cars) {
-            allCars.append(parser.toLine(car));
+            allCars.append(toLine(car));
         }
 
         //Вариант 1: FileWriter
