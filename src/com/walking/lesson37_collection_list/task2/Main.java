@@ -1,5 +1,9 @@
 package com.walking.lesson37_collection_list.task2;
 
+import com.walking.lesson37_collection_list.task2.structure.CollectionList;
+
+import java.util.Arrays;
+
 /**
  * Попробуйте реализовать собственную коллекцию, наследуясь от Collection.
  * За основу можно взять
@@ -10,5 +14,21 @@ package com.walking.lesson37_collection_list.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        CollectionList<?> test = initList();
+
+        System.out.println(Arrays.toString(test.toArray()));
+
+    }
+
+    private static CollectionList<? extends Number> initList() {
+        CollectionList<Double> initList = new CollectionList<>();
+        initList.add(1.2);
+        initList.add(2.3);
+        initList.add(3.4);
+        initList.add(5.6);
+        initList.add(6.7);
+        initList.add(7.8);
+
+        return initList;
     }
 }
