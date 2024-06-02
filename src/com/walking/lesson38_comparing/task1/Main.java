@@ -1,13 +1,9 @@
 package com.walking.lesson38_comparing.task1;
 
-import com.walking.lesson38_comparing.task1.CarComparator.CarColorComparator;
-import com.walking.lesson38_comparing.task1.CarComparator.CarMakeComparator;
 import com.walking.lesson38_comparing.task1.CarComparator.CarNumberComparator;
 import com.walking.lesson38_comparing.task1.CarComparator.CarYearComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
