@@ -1,8 +1,8 @@
-package com.walking.lesson16_abstract_class_interface.task1_abstract_class;
+package com.walking.lesson14_polymorphism.task1;
 
-import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.EquilateralShape;
-import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.EquilateralTriangle;
-import com.walking.lesson16_abstract_class_interface.task1_abstract_class.model.Square;
+import com.walking.lesson14_polymorphism.task1.model.EquilateralShape;
+import com.walking.lesson14_polymorphism.task1.model.EquilateralTriangle;
+import com.walking.lesson14_polymorphism.task1.model.Square;
 
 import java.util.Scanner;
 
