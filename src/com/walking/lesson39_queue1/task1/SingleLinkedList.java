@@ -47,15 +47,15 @@ public class SingleLinkedList<T> {
     }
 
     public void reverseList() {
-        Node<T> current = head.next;
-        head.next = null;
+       Node<T> current = head.next;
+       head.next = null;
 
-        while (current != null) {
-            Node<T> next = current.next;
-            current.next = head;
-            head = current;
-            current = next;
-        }
+       while (current != null) {
+           Node<T> temp = current.next;
+           current.next = head;
+           head = current;
+           current = temp;
+       }
     }
 
     public void deleteNodeWithEvenHash() {
@@ -95,7 +95,7 @@ public class SingleLinkedList<T> {
         String[] array = new String[size];
         Node<T> currentNode = head;
         for (int i = 0; i < array.length; i++) {
-            array[i] = currentNode.value.toString() + " " + currentNode.hashCode();
+            array[i] = currentNode.value.toString();
             currentNode = currentNode.next;
         }
         return Arrays.toString(array);

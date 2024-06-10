@@ -1,5 +1,7 @@
 package com.walking.lesson39_queue1.task3;
 
+import java.util.Arrays;
+
 /**
  * Реализуйте двусвязный список.
  * Реализуйте метод, разворачивающий список.
@@ -7,5 +9,20 @@ package com.walking.lesson39_queue1.task3;
  */
 public class Main {
     public static void main(String[] args) {
+
+        DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
+
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+
+
+        System.out.println(list);
+
+        list.deleteNodeWithEvenHash();
+
+        System.out.println(list);
+
     }
 }

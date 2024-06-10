@@ -22,7 +22,7 @@ public class Main {
 
         System.out.println(list);
 
-        list.deleteNodeWithEvenHash();
+        list.reverseList();
         System.out.println(list);
 
 
