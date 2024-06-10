@@ -21,6 +21,14 @@ public class DoubleLinkedList<E> implements Collection<E> {
         size++;
     }
 
+    public E getFirst() {
+        return first.value;
+    }
+
+    public E getLast() {
+        return last.value;
+    }
+
     public void reverseList() {
         Node<E> current = first;
         first = last;
