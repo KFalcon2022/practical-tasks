@@ -15,12 +15,12 @@ public class CounterService {
 
     private final ArrayList<Counter> counters;
 
-    public CounterService(Counter... counters) {
-        this.counters = new ArrayList<>(Arrays.asList(counters));
+    public CounterService(List<Counter> counters) {
+        this.counters = new ArrayList<>(counters);
     }
 
     public List<Counter> getAllCounters() {
-        return counters;
+        return List.copyOf(counters);
     }
 
     public Counter getFirst() {
@@ -58,39 +58,15 @@ public class CounterService {
         return true;
     }
 
-    private List<Counter> getUniques() {
-        List<Counter> uniques = new ArrayList<>();
+    public boolean removeIdleCounters() {
+        List<Counter> idles = getIdles();
 
-        for (Counter counter : counters) {
-            if (!uniques.contains(counter)) {
-                uniques.add(counter);
-            }
-        }
-
-        return uniques;
-    }
-
-    public boolean removeAllZeroValue() {
-        List<Counter> zeroValues = getZeroValues();
-
-        if (zeroValues.size() == 0) {
+        if (idles.size() == 0) {
             return false;
         }
 
-        counters.removeAll(zeroValues);
+        counters.removeAll(idles);
         return true;
-    }
-
-    private List<Counter> getZeroValues() {
-        List<Counter> zeroValues = new ArrayList<>();
-
-        for (Counter counter : counters) {
-            if (counter.getValue() == 0) {
-                zeroValues.add(counter);
-            }
-        }
-
-        return zeroValues;
     }
 
     public void sortByName() {
@@ -113,44 +89,27 @@ public class CounterService {
 
     public Counter increaseCounter(String name, int value) {
         Counter counter = getCounterByName(name);
-
-        if (counter == null) {
-            return null;
-        }
-
-        return increaseCounter(counter, value);
+        return counter == null ? null : increaseCounter(counter, value);
     }
 
     public Counter increaseCounter(Counter counter, int value) {
         counter.setValue(counter.getValue() + value);
-
         return counter;
     }
 
     public Counter decreaseCounter(String name, int value) {
         Counter counter = getCounterByName(name);
-
-        if (counter == null) {
-            return null;
-        }
-
-        return decreaseCounter(counter, value);
+        return counter == null ? null : decreaseCounter(counter, value);
     }
 
     public Counter decreaseCounter(Counter counter, int value) {
         counter.setValue(counter.getValue() - value);
-
         return counter;
     }
 
     public Counter incrementCounter(String name) {
         Counter counter = getCounterByName(name);
-
-        if (counter == null) {
-            return null;
-        }
-
-        return incrementCounter(counter);
+        return counter == null ? null : incrementCounter(counter);
     }
 
     public Counter incrementCounter(Counter counter) {
@@ -160,12 +119,7 @@ public class CounterService {
 
     public Counter decrementCounter(String name) {
         Counter counter = getCounterByName(name);
-
-        if (counter == null) {
-            return null;
-        }
-
-        return decrementCounter(counter);
+        return counter == null ? null : decrementCounter(counter);
     }
 
     public Counter decrementCounter(Counter counter) {
@@ -175,35 +129,39 @@ public class CounterService {
 
     public Counter reset(String name) {
         Counter counter = getCounterByName(name);
-
-        if (counter == null) {
-            return null;
-        }
-
-        return reset(counter);
+        return counter == null ? null : reset(counter);
     }
 
     public Counter reset(Counter counter) {
         counter.setValue(0);
-
         return counter;
     }
 
-    public void displayContent() {
-        System.out.printf("Всего счетчиков: %s\n%s\n", counters.size(), "-".repeat(20));
+    private List<Counter> getUniques() {
+        List<Counter> uniques = new ArrayList<>();
 
-        if (counters.isEmpty()) {
-            System.out.println("Добавьте счетчики для работы с ними.");
-        } else {
-            printCounterValues();
+        for (Counter counter : counters) {
+            if (!uniques.contains(counter)) {
+                uniques.add(counter);
+            }
         }
 
-        System.out.println("-".repeat(20));
+        return uniques;
     }
 
-    private void printCounterValues() {
+    private List<Counter> getIdles() {
+        List<Counter> idles = new ArrayList<>();
+
         for (Counter counter : counters) {
-            System.out.printf("%s: %d %s\n", counter.getName(), counter.getValue(), counter.getUnitOfMeasure());
+            if (isIdle(counter)) {
+                idles.add(counter);
+            }
         }
+
+        return idles;
+    }
+
+    private boolean isIdle(Counter counter) {
+        return counter.getValue() == 0;
     }
 }

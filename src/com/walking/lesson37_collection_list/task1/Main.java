@@ -3,7 +3,9 @@ package com.walking.lesson37_collection_list.task1;
 import com.walking.lesson37_collection_list.task1.model.Counter;
 import com.walking.lesson37_collection_list.task1.service.CounterService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Реализуйте задачу
@@ -23,9 +25,11 @@ public class Main {
     public static final String M_3_UNIT = "м3";
     public static final String KW_H_UNIT = "кВт*ч";
 
+    private static final String LINE_DELIMITER = "-".repeat(20);
+
     public static void main(String[] args) {
-        CounterService counterService = new CounterService();
-        counterService.displayContent();
+        CounterService counterService = new CounterService(new ArrayList<>());
+        printOverview(counterService.getAllCounters());
 
         Counter gasCounter = new Counter(GAS_COUNTER_NAME, M_3_UNIT);
         Counter hotWaterCounter = new Counter(HOT_WATER_COUNTER_NAME, M_3_UNIT);
@@ -34,30 +38,29 @@ public class Main {
         Counter electricCounter = new Counter(ELECTRIC_COUNTER_NAME, KW_H_UNIT);
         electricCounter.setValue(15);
 
-        counterService = new CounterService(coldWaterCounter, gasCounter);
+        counterService = new CounterService(List.of(coldWaterCounter, gasCounter));
 
         counterService.addCounter(hotWaterCounter);
         counterService.addCountersIfAbsent(electricCounter);
         counterService.addCountersIfAbsent(electricCounter);
         counterService.addCounter(electricCounter);
         counterService.addFirst(electricCounter);
+        counterService.addFirst(new Counter("Электричество", KW_H_UNIT, 456));
         counterService.increaseCounter(GAS_COUNTER_NAME, 100);
         counterService.increaseCounter(coldWaterCounter, 10);
-        counterService.displayContent();
+        printOverview(counterService.getAllCounters());
 
         counterService.removeDuplicates();
         counterService.sortByName();
-        counterService.removeAllZeroValue();
-        System.out.println("Удаляем дубликаты, счетчики с нулевыми показаниями и сортируем по алфавиту:");
-        counterService.displayContent();
+        counterService.removeIdleCounters();
+        System.out.println(">>>Удаляем дубликаты, счетчики с нулевыми показаниями и сортируем по алфавиту:");
+        printOverview(counterService.getAllCounters());
 
 
         System.out.println("Название первого в списке счетчика: " + counterService.getFirst().getName());
 
-        Counter[] allCounters = new Counter[counterService.getAllCounters().size() + 5];
-
-        counterService.getAllCounters().toArray(allCounters);
-        System.out.println("Переносим счетчики из списка в заранее созданный массив:");
+        Counter[] allCounters = counterService.getAllCounters().toArray(new Counter[0]);
+        System.out.println(">>>Переносим счетчики из списка в массив и выводим их названия:");
         printCounterNames(allCounters);
 
         List<Counter> waterCounters = List.of(hotWaterCounter, coldWaterCounter);
@@ -66,19 +69,35 @@ public class Main {
         hotWaterCounter.setValue(100);
         counterService.addCounter(hotWaterCounter);
         counterService.removeIfNotMatch(waterCounters);
-        System.out.println("Оставляем только счетчики воды:");
-        counterService.displayContent();
+        System.out.println(">>>Оставляем только счетчики воды:");
+        printOverview(counterService.getAllCounters());
     }
 
     public static void printCounterNames(Counter[] counters) {
-        System.out.println("Названия счетчиков в массиве:");
+        StringJoiner result = new StringJoiner("\n", LINE_DELIMITER + "\n", "\n" + LINE_DELIMITER);
 
         for (Counter counter : counters) {
-            if (counter == null) {
-                System.out.println("-");
-            } else {
-                System.out.println(counter.getName());
-            }
+            result.add(counter == null ? "-" : counter.getName());
+        }
+
+        System.out.println(result);
+    }
+
+    public static void printOverview(List<Counter> counters) {
+        System.out.printf("Всего счетчиков: %s\n%s\n", counters.size(), LINE_DELIMITER);
+
+        if (counters.isEmpty()) {
+            System.out.println("Добавьте счетчики для работы с ними.");
+        } else {
+            printCounterValues(counters);
+        }
+
+        System.out.println(LINE_DELIMITER);
+    }
+
+    private static void printCounterValues(List<Counter> counters) {
+        for (Counter counter : counters) {
+            System.out.printf("%s: %d %s\n", counter.getName(), counter.getValue(), counter.getUnitOfMeasure());
         }
     }
 }
