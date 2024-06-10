@@ -16,23 +16,18 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a words: ");
-        String[] s = scanner.nextLine()
+        String[] words = scanner.nextLine()
                 .trim()
                 .toLowerCase()
                 .split(" ");
         scanner.close();
 
         Map<String, Integer> uniqueWords = new HashMap<>();
-        uniqueWords.put(s[0], 1);
-
-        for (int i = 1; i < s.length; i++) {
-            if (uniqueWords.containsKey(s[i])) {
-                uniqueWords.put(s[i], uniqueWords.get(s[i]) + 1);
-            } else {
-                uniqueWords.put(s[i], 1);
-            }
+        for (String s : words) {
+            int count = uniqueWords.getOrDefault(s, 0);
+            uniqueWords.put(s, ++count);
         }
 
-        System.out.println(uniqueWords);
+        System.out.println("Уникальных слов -> " + uniqueWords);
     }
 }
