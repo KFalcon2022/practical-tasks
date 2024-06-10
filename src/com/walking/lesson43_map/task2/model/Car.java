@@ -50,9 +50,12 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
+
         return year == car.year && Objects.equals(number, car.number);
     }
 
@@ -68,7 +71,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "%s; %d; %s; %s \n".formatted(number, year, color,
+        return "Car -> %s; %d; %s; %s \n".formatted(number, year, color,
                 actualTechnicalInspection ? "actual" : "not actual");
     }
 }

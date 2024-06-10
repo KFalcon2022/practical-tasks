@@ -3,20 +3,18 @@ package com.walking.lesson43_map.task2.service;
 import com.walking.lesson43_map.task2.exception.CarNotFound;
 import com.walking.lesson43_map.task2.model.Car;
 
-import java.util.TreeMap;
+import java.util.Map;
 
 public class CarService {
-    private final TreeMap<Integer, Car> carService;
+    private final Map<Integer, Car> carService;
 
-    public CarService(TreeMap<Integer, Car> carService) {
-        this.carService = carService;
+    public CarService(Map<Integer, Car> cars) {
+        this.carService = cars;
     }
 
-    public String findCar(Car car) {
-        for (Car c : carService.values()) {
-            if (c.equals(car)) {
-                return c.toString();
-            }
+    public Car findCar(Car car) {
+        if (carService.containsKey(car.getHashcode())) {
+            return carService.get(car.getHashcode());
         }
 
         throw new CarNotFound("Машина не найдена!");
