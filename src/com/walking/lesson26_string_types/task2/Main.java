@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        String[] arrayInput = input.toLowerCase(Locale.ROOT).trim().split(" ");
+        String input = scanner.nextLine().toLowerCase(Locale.ROOT);
+        String[] arrayInput = input.trim().split(" ");
         int counter = 0;
         for (int i = 0; i < arrayInput.length; i++) {
             for (int j = 0; j < arrayInput.length; j++) {
