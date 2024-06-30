@@ -1,5 +1,9 @@
 package com.walking.lesson68_semaphore.task1;
 
+import com.walking.lesson68_semaphore.task1.model.Philosopher;
+
+import java.util.concurrent.Semaphore;
+
 /**
  * Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.
  * Вилки лежат на столе между каждой парой ближайших философов.
@@ -20,5 +24,10 @@ package com.walking.lesson68_semaphore.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(5);
+
+        for (int i = 1; i < 6; i++) {
+            new Philosopher("Философ", semaphore, i).start();
+        }
     }
 }
