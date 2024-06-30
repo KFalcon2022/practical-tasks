@@ -1,5 +1,9 @@
 package com.walking.lesson43_map.task1;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * Реализуйте программу, выводящую в консоль количество использований каждого из уникальных слов
  * во введенной пользователем строке.
@@ -9,5 +13,21 @@ package com.walking.lesson43_map.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a words: ");
+        String[] words = scanner.nextLine()
+                .trim()
+                .toLowerCase()
+                .split(" ");
+        scanner.close();
+
+        Map<String, Integer> uniqueWords = new HashMap<>();
+        for (String s : words) {
+            int count = uniqueWords.getOrDefault(s, 0);
+            uniqueWords.put(s, ++count);
+        }
+
+        System.out.println("Уникальных слов -> " + uniqueWords);
     }
 }

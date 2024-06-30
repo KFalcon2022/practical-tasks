@@ -1,5 +1,7 @@
 package com.walking.lesson65_atomics.task1;
 
+import com.walking.lesson65_atomics.task1.model.Counter;
+
 /**
  * Реализуйте сервис управления счетчиками.
  * Счетчики могут добавляться и удаляться,
@@ -10,5 +12,6 @@ package com.walking.lesson65_atomics.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Counter counter = new Counter("Счетчик", "Целые числа");
     }
 }
