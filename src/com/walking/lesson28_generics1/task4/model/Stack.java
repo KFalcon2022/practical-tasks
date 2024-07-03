@@ -44,7 +44,7 @@ public class Stack<T> {
     public int findElement(T value){
         var temp=this;
         while (temp.next!=null) {
-            if(temp.value==value){
+            if(temp.value.equals(value)){
                 return temp.index;
             }
             temp=temp.next;
@@ -52,15 +52,14 @@ public class Stack<T> {
         throw new RuntimeException("Not found");
     }
 
-    @Override
-    public String toString(){
-        StringBuilder s=new StringBuilder();
+    public String[] getStrings(){
+        String[] s=new String[this.index];
         var temp=this;
         while (temp.next!=null) {
-            s.append(temp.value.toString()+", ");
+            s[temp.index-1]=temp.value.toString();
             temp=temp.next;
         }
-        s.append(temp.value.toString());
-        return s.toString();
+        s[temp.index-1]=temp.value.toString();
+        return s;
     }
 }

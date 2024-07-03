@@ -22,7 +22,9 @@ public class Main {
         stack.push("1");
         stack.push("2");
         stack.push("3");
-        System.out.println(stack.toString());
+        for (String s:stack.getStrings()){
+            System.out.println(s);
+        }
         System.out.println(stack.findElement("2"));
         System.out.println(stack.pop().toString());
         System.out.println(stack.pop().toString());
