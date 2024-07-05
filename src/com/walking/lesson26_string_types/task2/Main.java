@@ -19,6 +19,21 @@ public class Main {
         String s=sc.nextLine();
         sc.close();
         String[] arr=s.strip().split(" ");
-        System.out.printf("Вы ввели %d слов(а)", arr.length);
+        String[] unique=new String[arr.length];
+        unique[0]=arr[0];
+        boolean flag;
+        int uniqueCounter=1;
+        for (int i=1; i<arr.length;i++){
+            flag=true;
+            for (int j=0; j<uniqueCounter;j++){
+                if (arr[i].equals(unique[j]))
+                    flag=false;
+            }
+            if (flag){
+                unique[uniqueCounter]=arr[i];
+                uniqueCounter++;
+            }
+        }
+        System.out.printf("Вы ввели %d уникальных слов(а)", uniqueCounter);
     }
 }

@@ -6,7 +6,7 @@ public class Stack<T> {
     private int index;
 
     public Stack(){
-        this.index=1;
+        this.index=0;
     }
     private Stack(T value, int index, Stack<T> stack){
         this.value=value;
@@ -20,7 +20,8 @@ public class Stack<T> {
 
     public void push(T element){
         if (this.value==null){
-            value=element;
+            this.value=element;
+            this.index++;
         } else{
             this.next=new Stack<T>(this.value, this.index, this.next);
             this.value=element;
@@ -33,8 +34,15 @@ public class Stack<T> {
     }
 
     public T pop(){
-        if (index==1) throw new RuntimeException("This is last element of stack");
-        T temp=value;
+        T temp;
+        if (index==0) throw new RuntimeException("No more elements");
+        if (index==1){
+            temp=this.value;
+            this.value=null;
+            index=0;    
+            return temp;        
+        }
+        temp=value;
         this.index=next.index;
         this.value=next.value;
         this.next=next.next;

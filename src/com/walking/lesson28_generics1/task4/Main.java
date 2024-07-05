@@ -29,5 +29,6 @@ public class Main {
         System.out.println(stack.pop().toString());
         System.out.println(stack.pop().toString());
         System.out.println(stack.pop().toString());
+        System.out.println(stack.pop().toString());
     }
 }
