@@ -1,5 +1,7 @@
 package com.walking.lesson30_regex.task1hard;
 
+import java.util.regex.Pattern;
+
 /**
  * Реализуйте boolean-метод, валидирующий входящую строку.
  * Метод должен возвращать true,
@@ -16,5 +18,54 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+        String[] inputs={
+            "89246558354",
+            "+7 (924) 653-29-98",
+            "+7(924) 653-29-98",
+            "+7 (924) 65329-98",
+            "+7 (924) 653-29-98",
+            "+7 924 653-29-98",
+            "+7 (924)653-29-98",
+            "+a (924) 653-29-98",
+            " +7 (924) 663-29-98",
+            "+7 (924) 653-29-94 ",
+            "+7 (924) 603-29-98",
+            "+7 (924) 653-29-68",
+            "+7 (924) 6532968",
+            "+7(924)653-29-68",
+            "+7 924 653-29-68",
+            "+7924653-29-68",
+            "+7(924)6532968",
+            "+7 924 6532968",
+            "+7 (924)653-29-68",
+            "+7 (924) 653 29 68",
+            "+7-(924)-653-29-68",
+            "+7 (924 653-29-68",
+            "+7 924) 653-29-68",
+            "+7 (924)653-29-68",
+            "+7(924) 653-29-68",
+            "+7 (924) 653-2968",
+            "+7 (924) 65329-68",
+            "+77777777777"
+        };
+        for (String s:inputs){
+            System.out.println(s+" "+isValid(s));
+        }
+    }
+    private static boolean isValid(String number){
+        String brackets="^\\+7\\s?\\(\\d{3}\\)\\s?\\d{3}-?\\d{2}-?\\d{2}$";
+        String notBrackets="^\\+7\\s?\\d{3}\\s?\\d{3}-?\\d{2}-?\\d{2}$";
+        String spaces="^\\+7\\s\\(?\\d{3}\\)?\\s\\d{3}-?\\d{2}-?\\d{2}$";
+        String notSpaces="^\\+7\\(?\\d{3}\\)?\\d{3}-?\\d{2}-?\\d{2}$";
+        String dashes="^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-\\d{2}-\\d{2}$";
+        String notDashes="^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}\\d{2}\\d{2}$";
+        if(Pattern.matches(brackets, number)|Pattern.matches(notBrackets, number)){
+            if(Pattern.matches(spaces, number)|Pattern.matches(notSpaces, number)){
+                if(Pattern.matches(dashes, number)|Pattern.matches(notDashes, number)){
+                    return true;
+                }
+            }            
+        }
+        return false;
     }
 }

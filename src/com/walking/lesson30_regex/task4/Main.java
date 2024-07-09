@@ -1,5 +1,7 @@
 package com.walking.lesson30_regex.task4;
 
+import com.walking.lesson30_regex.task4.model.Divider;
+
 /**
  * Реализуйте программу, разбивающую исходный текст на составные части.
  * Текст – на абзацы (разделены ‘\n’), абзацы на предложения (разделены "."/ "?"/ "?!"/ "!"/ "…").
@@ -16,5 +18,30 @@ package com.walking.lesson30_regex.task4;
  */
 public class Main {
     public static void main(String[] args) {
+        String s="После этого выведите на экран исходный текст. Предложения допустимо разделить точками, слова – пробелами без сохранения знаков пунктуации внутри предложения. Сохранение изначальной пунктуации, на мой взгляд, излишне усложнит задачу и сдвинет акцент с практики регулярных выражений.\n" + //
+                        "Подумайте, как наиболее корректно декомпозировать ваше решение.\n" + //
+                        "В качестве совета: попробуйте разные подходы для решения задачи, нет необходимости реализовать наиболее оптимальным способом. Например, одним из вариантов упрощения исходной задачи может стать избавление от лишних символов или их замена одним определенным через метод replaceAll() класса String.";
+        Divider divider=new Divider(s);
+
+        String[] paragraphs=divider.getParagraphs();
+        System.out.println("Paragraphs:");
+        for (String x : paragraphs) {
+            System.out.println(x);
+        }
+
+        String[] sentences=divider.getSentences();
+        System.out.println("Sentences:");
+        for (String x : sentences) {
+            System.out.println(x);
+        }
+
+        String[] words=divider.getWords();
+        System.out.println("Words:");
+        for (String x : words) {
+            System.out.println(x);
+        }
+
+        System.out.println("Restored string:");
+        System.out.println(divider.getRestoredString());
     }
 }
