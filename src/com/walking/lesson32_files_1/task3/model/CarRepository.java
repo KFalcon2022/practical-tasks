@@ -1,27 +1,32 @@
-package com.walking.lesson32_files_1.task2;
+package com.walking.lesson32_files_1.task3.model;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.walking.lesson32_files_1.task1.model.Car;
 import com.walking.lesson32_files_1.task1.model.Specification;
+import com.walking.lesson32_files_1.task1.model.Car;
 
-/**
- * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
- * реализовав сохранение данных в массив Car.
- */
-public class Main {
-    public static void main(String[] args) {
-        Car[] cars=loadCars("./resource/Cars.txt");
+public class CarRepository {
+    public static boolean saveCars(Car[] cars, String path){
+        StringBuilder stringToSave=new StringBuilder();
         for (Car car : cars) {
-            System.out.println(car.toString());
+            stringToSave.append(car.getStringToSave()+"\n");
         }
+        try (FileOutputStream fos=new FileOutputStream(path)) {
+            byte[] buffer=stringToSave.toString().getBytes("ISO8859_5");
+            fos.write(buffer);
+            return true;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
     }
-    private static Car[] loadCars(String path){
+    public static Car[] loadCars(String path){
         StringBuilder loadedString=new StringBuilder();
         try (InputStreamReader isr=new InputStreamReader(new FileInputStream(path),"ISO8859_5")){
             int i;  
@@ -50,8 +55,10 @@ public class Main {
             modelMatcher.find();
             brandMatcher.find();
             colorMatcher.find();
-            cars[i]=new Car(gosNumberMatcher.group().substring(10), engineVinMatcher.group().substring(10),
-             new Specification(brandMatcher.group().substring(6), modelMatcher.group().substring(6)), colorMatcher.group().substring(6));
+            cars[i]=new Car(gosNumberMatcher.group().substring(10),
+             engineVinMatcher.group().substring(10),
+             new Specification(brandMatcher.group().substring(6), modelMatcher.group().substring(6)),
+              colorMatcher.group().substring(6));
         }
         return cars;
     }

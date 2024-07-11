@@ -1,0 +1,8 @@
+gosNumber:ά785γέ,engineVin:x7mxkn7fp6m004121,model:Porter,brand:Hyundai,color:White
+gosNumber:ά786γέ,engineVin:x7mxkn7fp6m004122,model:Porter,brand:Hyundai,color:Black
+gosNumber:ά787γέ,engineVin:x7mxkn7fp6m004123,model:Porter,brand:Hyundai,color:Grey
+gosNumber:462,engineVin:sjnbaap10u0107597,model:Primera,brand:Nissan,color:Blue
+gosNumber:γ463γέ,engineVin:sjnbaap10u0107598,model:Primera,brand:Nissan,color:Blue
+gosNumber:γ464γέ,engineVin:sjnbaap10u0107599,model:Primera,brand:Nissan,color:Green
+gosNumber:ά131ÒÒ,engineVin:wvwzzz1k26w024582,model:Golf,brand:Volkswagen,color:Grey
+gosNumber:ά231ÒÒ,engineVin:wvwzzz1k26w024583,model:Golf,brand:Volkswagen,color:Grey
