@@ -1,8 +1,8 @@
-gosNumber:‹785„›,engineVin:x7mxkn7fp6m004121,model:Porter,brand:Hyundai,color:White
-gosNumber:‹786„›,engineVin:x7mxkn7fp6m004122,model:Porter,brand:Hyundai,color:Black
-gosNumber:‹787„›,engineVin:x7mxkn7fp6m004123,model:Porter,brand:Hyundai,color:Grey
-gosNumber:462,engineVin:sjnbaap10u0107597,model:Primera,brand:Nissan,color:Blue
-gosNumber:„463„›,engineVin:sjnbaap10u0107598,model:Primera,brand:Nissan,color:Blue
-gosNumber:„464„›,engineVin:sjnbaap10u0107599,model:Primera,brand:Nissan,color:Green
-gosNumber:‹131““,engineVin:wvwzzz1k26w024582,model:Golf,brand:Volkswagen,color:Grey
-gosNumber:‹231““,engineVin:wvwzzz1k26w024583,model:Golf,brand:Volkswagen,color:Grey
+gosNumber:–º785—É–Ω,engineVin:x7mxkn7fp6m004121,model:Porter,brand:Hyundai,color:White
+gosNumber:–º786—É–Ω,engineVin:x7mxkn7fp6m004122,model:Porter,brand:Hyundai,color:Black
+gosNumber:–º787—É–Ω,engineVin:x7mxkn7fp6m004123,model:Porter,brand:Hyundai,color:Grey
+gosNumber:—É462—É–Ω,engineVin:sjnbaap10u0107597,model:Primera,brand:Nissan,color:Blue
+gosNumber:—É463—É–Ω,engineVin:sjnbaap10u0107598,model:Primera,brand:Nissan,color:Blue
+gosNumber:—É464—É–Ω,engineVin:sjnbaap10u0107599,model:Primera,brand:Nissan,color:Green
+gosNumber:–º131–≤–≤,engineVin:wvwzzz1k26w024582,model:Golf,brand:Volkswagen,color:Grey
+gosNumber:–º231–≤–≤,engineVin:wvwzzz1k26w024583,model:Golf,brand:Volkswagen,color:Grey
