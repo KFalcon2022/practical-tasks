@@ -10,6 +10,12 @@ package com.walking.lesson60_thread.task3;
  * Его метод имеет возвращаемое значение.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        var callableThread = new CallableThread<>(() -> Thread.currentThread().getName());
+        callableThread.start();
+        System.out.println(callableThread.getResult());
+
+        callableThread = new CallableThread<>(() -> Thread.currentThread().getName());
+        System.out.println(callableThread.startAndGet());
     }
 }
