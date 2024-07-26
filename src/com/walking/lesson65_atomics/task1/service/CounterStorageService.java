@@ -11,13 +11,10 @@ public class CounterStorageService {
     private final Map<String, Counter> counterByName = new HashMap<>();
 
     public synchronized Counter add(Counter counter) {
-        return counterByName.compute(counter.getName(), (c1, c2) -> {
-            if (c1 != null) {
-                throw new RuntimeException("Counter already exists, name: '%s'".formatted(counter.getName()));
-            }
-
-            return c2;
-        });
+        if (counterByName.containsKey(counter.getName())) {
+            throw new RuntimeException("Counter already exists, name: '%s'".formatted(counter.getName()));
+        }
+        return counterByName.put(counter.getName(), counter);
     }
 
     public synchronized void delete(String name) {
