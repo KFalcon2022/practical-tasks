@@ -1,4 +1,4 @@
-package com.walking.lesson25_nested_classes.task1.nested_class;
+package com.walking.lesson25_nested_classes.task1.inner_class;
 
 import java.util.Scanner;
 
