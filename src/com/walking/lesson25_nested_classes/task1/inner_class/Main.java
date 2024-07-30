@@ -1,12 +1,15 @@
 package com.walking.lesson25_nested_classes.task1.inner_class;
 
-// Реализуйте задачу https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson16_abstract_class_interface/task1_interface
-// используя внутренние классы;
-
 import com.walking.lesson25_nested_classes.task1.inner_class.model.EquilateralShape;
+import com.walking.lesson25_nested_classes.task1.inner_class.model.Shape;
 
 import java.util.Scanner;
 
+/**
+ * Реализуйте задачу
+ * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson16_abstract_class_interface/task1_interface">...</a>
+ * используя внутренние классы.
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -29,12 +32,12 @@ public class Main {
     }
 
     private static String createShapeString(int sideLength, int selectedShape) {
-        EquilateralShape equilateralShape = new EquilateralShape();
-
-        return switch (selectedShape) {
-            case 1 -> equilateralShape.new Square(sideLength).createShape();
-            case 2 -> equilateralShape.new EquilateralTriangle(sideLength).createShape();
+        Shape shape = switch (selectedShape) {
+            case 1 -> new EquilateralShape().new Square(sideLength);
+            case 2 -> new EquilateralShape().new EquilateralTriangle(sideLength);
             default -> throw new RuntimeException("Invalid shape");
         };
+
+        return shape.createShapeString();
     }
 }

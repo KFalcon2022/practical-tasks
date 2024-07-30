@@ -1,4 +1,4 @@
-package com.walking.lesson25_nested_classes.task1.inner_class.model;
+package com.walking.lesson25_nested_classes.task1.static_class.model;
 
 public class EquilateralShape {
     private static final String HORIZONTAL_SYMBOL = "-";
@@ -6,7 +6,7 @@ public class EquilateralShape {
     private static final String LEFT_SIDE_SYMBOL = "/";
     private static final String RIGHT_SIDE_SYMBOL = "\\";
 
-    public class Square implements Shape {
+    public static class Square implements Shape {
         private final int sideLength;
 
         public Square(int sideLength) {
@@ -57,7 +57,7 @@ public class EquilateralShape {
         }
     }
 
-    public class EquilateralTriangle implements Shape {
+    public static class EquilateralTriangle implements Shape {
         private final int sideLength;
 
         public EquilateralTriangle(int sideLength) {
