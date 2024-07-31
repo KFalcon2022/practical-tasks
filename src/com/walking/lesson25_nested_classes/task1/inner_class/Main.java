@@ -1,7 +1,6 @@
 package com.walking.lesson25_nested_classes.task1.inner_class;
 
 import com.walking.lesson25_nested_classes.task1.inner_class.model.EquilateralShape;
-import com.walking.lesson25_nested_classes.task1.inner_class.model.Shape;
 
 import java.util.Scanner;
 
@@ -27,17 +26,7 @@ public class Main {
 
         scanner.close();
 
-        String shapeString = createShapeString(sideLength, selectedShape);
+        String shapeString = new EquilateralShape().createShape(sideLength, selectedShape);
         System.out.println(shapeString);
-    }
-
-    private static String createShapeString(int sideLength, int selectedShape) {
-        Shape shape = switch (selectedShape) {
-            case 1 -> new EquilateralShape().new Square(sideLength);
-            case 2 -> new EquilateralShape().new EquilateralTriangle(sideLength);
-            default -> throw new RuntimeException("Invalid shape");
-        };
-
-        return shape.createShapeString();
     }
 }
