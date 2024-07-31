@@ -1,6 +1,7 @@
 package com.walking.lesson25_nested_classes.task1.inner_class;
 
 import com.walking.lesson25_nested_classes.task1.inner_class.model.EquilateralShape;
+import com.walking.lesson25_nested_classes.task1.inner_class.model.Shape;
 
 import java.util.Scanner;
 
@@ -22,11 +23,11 @@ public class Main {
         }
 
         System.out.println("Select a shape:\n1. square\n2. triangle");
-        int selectedShape = scanner.nextInt();
+        int selectedType = scanner.nextInt();
 
         scanner.close();
 
-        String shapeString = new EquilateralShape().createShape(sideLength, selectedShape);
-        System.out.println(shapeString);
+        Shape chosenShape = new EquilateralShape().buildShape(sideLength, selectedType);
+        chosenShape.draw();
     }
 }

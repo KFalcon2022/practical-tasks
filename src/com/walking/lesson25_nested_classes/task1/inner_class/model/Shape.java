@@ -7,5 +7,5 @@ public interface Shape {
 
     int getSideLength();
 
-    String createShapeString();
+    void draw();
 }

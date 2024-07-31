@@ -6,14 +6,13 @@ public class EquilateralShape {
     private static final String LEFT_SIDE_SYMBOL = "/";
     private static final String RIGHT_SIDE_SYMBOL = "\\";
 
-    public String createShape(int sideLength, int selectedShape) {
-        Shape shape = switch (selectedShape) {
+    public Shape buildShape(int sideLength, int selectedShape) {
+
+        return switch (selectedShape) {
             case 1 -> new Square(sideLength);
             case 2 -> new EquilateralTriangle(sideLength);
             default -> throw new RuntimeException("Invalid selected shape: " + selectedShape);
         };
-
-        return shape.createShapeString();
     }
 
     public class Square implements Shape {
@@ -29,11 +28,9 @@ public class EquilateralShape {
         }
 
         @Override
-        public String createShapeString() {
-            String horizontalUnit = createHorizontalLine(sideLength);
-            String verticalUnit = createVerticalLine(sideLength);
-
-            return horizontalUnit + verticalUnit + horizontalUnit;
+        public void draw() {
+            String drawShape =  createHorizontalLine(sideLength) + createVerticalLine(sideLength) + createHorizontalLine(sideLength);
+            System.out.println(drawShape);
         }
 
         private String createHorizontalLine(int sideLength) {
@@ -80,11 +77,9 @@ public class EquilateralShape {
         }
 
         @Override
-        public String createShapeString() {
-            String twoSide = getTwoSide(sideLength);
-            String thirdSide = getHorizontalElement(sideLength);
-
-            return twoSide + thirdSide;
+        public void draw() {
+            String drawShape = getTwoSide(sideLength) + getHorizontalElement(sideLength);
+            System.out.println(drawShape);
         }
 
         private String getTwoSide(int sideLength) {
