@@ -37,13 +37,15 @@ public class Main {
             for (int j = i + 1; j < words.length; j++) {
                 if (words[i].equals(words[j])) {
                     isUnique = false;
-                    counter--;
+                    break;
                 }
             }
+
             if (isUnique) {
                 counter++;
             }
         }
+
         return counter;
     }
 }
