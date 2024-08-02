@@ -36,10 +36,10 @@ public class Main {
     }
 
     static StringBuilder getLengthLine(int length) {
-        return new StringBuilder(Symbol.SPACE_SYMBOL.getSymbol())
-                .append(Symbol.LENGTH_SYMBOL.getSymbol().repeat(length))
-                .append(Symbol.SPACE_SYMBOL.getSymbol())
-                .append(Symbol.NEX_LINE.getSymbol());
+        return new StringBuilder(Symbol.SPACE.getSymbol())
+                .append(Symbol.LENGTH.getSymbol().repeat(length))
+                .append(Symbol.SPACE.getSymbol())
+                .append(Symbol.NEWLINE.getSymbol());
     }
 
     static StringBuilder getWidthLine(int width, int length) {
@@ -50,9 +50,9 @@ public class Main {
 
     static StringBuilder getWidthUnit(int length) {
 
-        return new StringBuilder(Symbol.WIDTH_SYMBOL.getSymbol())
-                .append(Symbol.SPACE_SYMBOL.getSymbol().repeat(length))
-                .append(Symbol.WIDTH_SYMBOL.getSymbol())
-                .append(Symbol.NEX_LINE.getSymbol());
+        return new StringBuilder(Symbol.WIDTH.getSymbol())
+                .append(Symbol.SPACE.getSymbol().repeat(length))
+                .append(Symbol.WIDTH.getSymbol())
+                .append(Symbol.NEWLINE.getSymbol());
     }
 }

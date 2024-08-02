@@ -1,10 +1,10 @@
 package com.walking.lesson26_string_types.task1;
 
 public enum Symbol {
-    LENGTH_SYMBOL("-"),
-    WIDTH_SYMBOL("|"),
-    SPACE_SYMBOL(" "),
-    NEX_LINE(System.lineSeparator());
+    LENGTH("-"),
+    WIDTH("|"),
+    SPACE(" "),
+    NEWLINE(System.lineSeparator());
 
     private String symbol;
 
