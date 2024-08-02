@@ -8,12 +8,6 @@ import java.util.Scanner;
  * используя StringBuilder или StringBuffer. Объясните свой выбор.
  */
 public class Main {
-    static String lengthSymbol = "-";
-    static String widthSymbol = "|";
-    static String spaceSymbol = " ";
-    static String nextLine = "\n";
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -21,7 +15,6 @@ public class Main {
         int length = scanner.nextInt();
 
         if(length <= 0) {
-            scanner.close();
             throw new RuntimeException("The length of the rectangle should be greater than 0");
         }
 
@@ -29,11 +22,8 @@ public class Main {
         int width = scanner.nextInt();
 
         if(width <= 0) {
-            scanner.close();
             throw new RuntimeException("The width of the rectangle should be greater than 0");
         }
-
-        scanner.close();
 
         printRectangle(length, width);
     }
@@ -46,10 +36,10 @@ public class Main {
     }
 
     static StringBuilder getLengthLine(int length) {
-        return new StringBuilder(spaceSymbol)
-                .append(lengthSymbol.repeat(length))
-                .append(spaceSymbol)
-                .append(nextLine);
+        return new StringBuilder(Symbol.SPACE_SYMBOL.getSymbol())
+                .append(Symbol.LENGTH_SYMBOL.getSymbol().repeat(length))
+                .append(Symbol.SPACE_SYMBOL.getSymbol())
+                .append(Symbol.NEX_LINE.getSymbol());
     }
 
     static StringBuilder getWidthLine(int width, int length) {
@@ -60,9 +50,9 @@ public class Main {
 
     static StringBuilder getWidthUnit(int length) {
 
-        return new StringBuilder(widthSymbol)
-                .append(spaceSymbol.repeat(length))
-                .append(widthSymbol)
-                .append(nextLine);
+        return new StringBuilder(Symbol.WIDTH_SYMBOL.getSymbol())
+                .append(Symbol.SPACE_SYMBOL.getSymbol().repeat(length))
+                .append(Symbol.WIDTH_SYMBOL.getSymbol())
+                .append(Symbol.NEX_LINE.getSymbol());
     }
 }
