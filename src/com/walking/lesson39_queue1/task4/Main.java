@@ -11,13 +11,13 @@ public class Main {
         // System.out.println(queue.peek());
         // System.out.println(queue.size());
         // System.out.println(queue.pop());
-        queue.push("1");
+        queue.offer("1");
         // System.out.println(queue.peek());
         // System.out.println(queue.size());
-        queue.push("2");
+        queue.offer("2");
         // System.out.println(queue.peek());
         // System.out.println(queue.size());
-        System.out.println(queue.pop());
+        System.out.println(queue.poll());
         System.out.println(queue.peek());
         System.out.println(queue.size());
     }

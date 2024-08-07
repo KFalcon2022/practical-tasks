@@ -5,11 +5,11 @@ import com.walking.lesson39_queue1.task3.model.TwoLinkedList;
 public class Queue<T> {
     private TwoLinkedList<T> list=new TwoLinkedList<>();
 
-    public T pop(){
+    public T poll(){
         return list.delFirst();
     }
 
-    public void push(T value){
+    public void offer(T value){
         list.addLast(value);
     }
 
