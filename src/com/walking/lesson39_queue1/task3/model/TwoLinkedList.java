@@ -91,7 +91,8 @@ public class TwoLinkedList<T> implements Iterable<T> {
             return null;
         T value=head.value;
         head=head.next;
-        head.previous=null;
+        if (size!=1)
+            head.previous=null;
         size--;
         if (size==0)
             tail=null;
@@ -103,7 +104,8 @@ public class TwoLinkedList<T> implements Iterable<T> {
             return null;
         T value=tail.value;
         tail=tail.previous;
-        tail.next=null;
+        if (size!=1)
+            tail.next=null;
         size--;
         if (size==0)
             head=null;
