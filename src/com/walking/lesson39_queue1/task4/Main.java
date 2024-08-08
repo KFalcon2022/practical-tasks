@@ -11,14 +11,14 @@ public class Main {
         // System.out.println(queue.peek());
         // System.out.println(queue.size());
         // System.out.println(queue.pop());
-        queue.offer("1");
+        lhSet.offer("1");
         // System.out.println(queue.peek());
         // System.out.println(queue.size());
-        queue.offer("2");
+        lhSet.offer("2");
         // System.out.println(queue.peek());
         // System.out.println(queue.size());
-        System.out.println(queue.poll());
-        System.out.println(queue.peek());
-        System.out.println(queue.size());
+        System.out.println(lhSet.poll());
+        System.out.println(lhSet.peek());
+        System.out.println(lhSet.size());
     }
 }
