@@ -16,6 +16,5 @@ public class Main {
 
         System.out.println(searchValue.searchValue(3));
         System.out.println(searchValue.searchValue(7));
-
     }
 }
