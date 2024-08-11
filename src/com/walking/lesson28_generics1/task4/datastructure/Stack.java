@@ -13,7 +13,7 @@ public class Stack<T> {
     }
 
     public void push(T value) {
-        top = new Node<T>(value, top);
+        top = new Node<>(value, top);
         size++;
     }
 
@@ -26,6 +26,7 @@ public class Stack<T> {
 
             return;
         }
+
         delete(value, temporary);
     }
 
@@ -40,6 +41,7 @@ public class Stack<T> {
 
             return;
         }
+
         element = element.next;
         delete(value, element);
     }
@@ -48,11 +50,14 @@ public class Stack<T> {
         Node<T> temporary = top;
 
         while (temporary.next != null) {
+
             if (Objects.equals(value, temporary.value)) {
                 return temporary.value;
             }
+
             temporary = temporary.next;
         }
+
         throw new ElementNotFoundException("Element " + value + " not found in stack");
     }
 
