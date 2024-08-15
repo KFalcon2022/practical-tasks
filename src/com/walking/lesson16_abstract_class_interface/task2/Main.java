@@ -1,11 +1,17 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
-/**
- * Реализуйте задачу
- * <a href="https://github.com/KFalcon2022/practical-tasks/blob/master/src/com/walking/lesson3/Task2SwitchCase.java">...</a>
- * с использованием интерфейсов. Каждая реализация должна возвращать свое сообщение.
- */
+import java.util.Scanner;
+
 public class Main {
+    public static final Scanner SCANNER = new Scanner(System.in);
     public static void main(String[] args) {
+        String question = requireMessage();
+        SCANNER.close();
+
+        Answer.compare(question);
+    }
+
+    private static String requireMessage() {
+        return SCANNER.nextLine();
     }
 }
