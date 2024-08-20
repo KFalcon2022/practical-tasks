@@ -7,16 +7,16 @@ public class TaskManager {
     Queue<Task> queue=new Queue<>();
 
     public void addTask(String name, String description, String term){
-        lhSet.offer(new Task(name, description, term));
+        queue.offer(new Task(name, description, term));
         System.out.println("Успешно добавлено задание: "+name);
     }
     
     public void completeTask(){
-        if (lhSet.size()==0){
+        if (queue.size()==0){
             System.out.println("Заданий нет");
             return;
         }
-        Task temp=lhSet.poll();
+        Task temp=queue.poll();
         if (temp.late()){
             System.out.println("С опозданием выполнено задание: "+temp.name);
         } else {
@@ -25,11 +25,11 @@ public class TaskManager {
     }
 
     public String getNextTask(){
-        if (lhSet.size()==0)
+        if (queue.size()==0)
             return "Заданий нет";
-        StringBuilder task=new StringBuilder(lhSet.peek().name+"\n");
-        task.append(lhSet.peek().description+"\n");
-        task.append("Срок до "+lhSet.peek().term.toString());
+        StringBuilder task=new StringBuilder(queue.peek().name+"\n");
+        task.append(queue.peek().description+"\n");
+        task.append("Срок до "+queue.peek().term.toString());
         return task.toString();
         
     }
