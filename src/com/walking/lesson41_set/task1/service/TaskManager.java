@@ -2,7 +2,6 @@ package com.walking.lesson41_set.task1.service;
 
 import java.util.LinkedHashSet;
 
-import com.walking.lesson39_queue1.task4.model.Queue;
 import com.walking.lesson41_set.task1.model.Task;
 
 public class TaskManager {
