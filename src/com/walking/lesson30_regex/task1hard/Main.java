@@ -1,5 +1,7 @@
 package com.walking.lesson30_regex.task1hard;
 
+import java.util.Scanner;
+
 /**
  * Реализуйте boolean-метод, валидирующий входящую строку.
  * Метод должен возвращать true,
@@ -16,5 +18,41 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите номер телефона в формате +7 (XXX) XXX-XX-XX");
+        String phoneNumber = scanner.nextLine();
+        scanner.close();
+
+        System.out.println(isValid(phoneNumber));
     }
+
+    public static boolean isValid(String phoneNumber) {
+        if (!phoneNumber.contains("(") && !phoneNumber.contains(")")
+                && !phoneNumber.contains(" ") && !phoneNumber.contains("-")) {
+            return phoneNumber.matches("\\+\\d{11}");
+        }
+        return isValidSpace(phoneNumber) && isValidBrackets(phoneNumber) && isValidHyphen(phoneNumber);
+    }
+
+    private static boolean isValidBrackets(String phoneNumber) {
+        if (phoneNumber.contains("(") || phoneNumber.contains(")")) {
+            return phoneNumber.matches("^\\+7\\s?\\(\\d{3}\\)\\s?\\d{3}-?\\d{2}-?\\d{2}$");
+        }
+        return true;
+    }
+
+    private static boolean isValidHyphen(String phoneNumber) {
+        if (phoneNumber.contains("-")) {
+            return phoneNumber.matches("^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-\\d{2}-\\d{2}$");
+        }
+        return true;
+    }
+
+    private static boolean isValidSpace(String phoneNumber) {
+        if (phoneNumber.contains(" ")) {
+            return phoneNumber.matches("^\\+7 \\(?\\d{3}\\)? \\d{3}-?\\d{2}-?\\d{2}$");
+        }
+        return true;
+    }
+
 }

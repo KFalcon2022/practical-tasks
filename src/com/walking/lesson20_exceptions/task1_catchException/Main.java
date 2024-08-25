@@ -1,8 +1,8 @@
 package com.walking.lesson20_exceptions.task1_catchException;
 
-import com.walking.lesson20_exceptions.task1_catchException.file_service.FileService;
 import com.walking.lesson20_exceptions.task1_catchException.model.File;
 import com.walking.lesson20_exceptions.task1_catchException.model.FileTypes;
+import com.walking.lesson20_exceptions.task1_throwsException.file_service.FileService;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;

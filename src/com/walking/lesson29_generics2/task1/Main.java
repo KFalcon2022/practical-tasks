@@ -10,5 +10,10 @@ package com.walking.lesson29_generics2.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println(method(new Generic<>(null), "Generic field is null"));
+    }
+
+    public static <T> T method(Generic<T> generic, T object) {
+        return generic.getField() != null ? generic.getField() : object;
     }
 }

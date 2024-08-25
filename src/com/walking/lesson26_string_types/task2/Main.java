@@ -32,5 +32,6 @@ public class Main {
                 uniqueWords++;
             }
         }
+        System.out.println(uniqueWords);
     }
 }
