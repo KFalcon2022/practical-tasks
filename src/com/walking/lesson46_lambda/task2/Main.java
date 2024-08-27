@@ -1,5 +1,13 @@
 package com.walking.lesson46_lambda.task2;
 
+import java.util.LinkedList;
+import java.util.function.Consumer;
+
+import com.walking.lesson46_lambda.task2.model.Animal;
+import com.walking.lesson46_lambda.task2.model.Cat;
+import com.walking.lesson46_lambda.task2.model.Cow;
+import com.walking.lesson46_lambda.task2.model.Dog;
+
 /**
  * Знакомимся с функциональным интерфейсом Consumer.
  * Используя реализацию Задачи 3 из урока 16 по ссылке:
@@ -11,5 +19,15 @@ package com.walking.lesson46_lambda.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        LinkedList<Animal> animals=new LinkedList<>();
+        animals.add(new Cat());
+        animals.add(new Dog());
+        animals.add(new Cow());
+
+        Consumer<Animal> soundAll=x->x.sound();
+
+        for (Animal animal : animals) {
+            soundAll.accept(animal);
+        }
     }
 }
