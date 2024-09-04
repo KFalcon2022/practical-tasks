@@ -10,6 +10,6 @@ import java.util.List;
 public class Task7 implements StatisticTask<Integer> {
     @Override
     public Integer calculate(List<Department> departments) {
-        return null;
+        return departments.stream().mapToInt(Department::getVacancyAmount).sum();
     }
 }
