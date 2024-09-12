@@ -46,14 +46,11 @@ public final class CarIdentifier implements Comparable<CarIdentifier> {
         return hashcode;
     }
 
-    @Override
-    public int compareTo(CarIdentifier o) {
-        if (number.compareTo(o.number) > 0) {
-            return 1;
-        } else if (number.compareTo(o.number) < 0) {
-            return -1;
-        } else {
-            return year - o.year;
+    public int compareTo(CarIdentifier identifier) {
+        if (this.number.equals(identifier.number)){
+            return this.year - identifier.year;
+        }else{
+        return this.number.compareTo(identifier.number);
         }
     }
 }
