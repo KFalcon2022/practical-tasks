@@ -1,0 +1,15 @@
+package com.walking.lesson17.task2;
+
+public enum ANIMALS { // создаем перечисление Animals
+    CAT("meow"), DOG ("woof"), COW ("moo"); //заполняем перечисление элементами
+    
+    private final String sound; //создаем поле sound
+    
+    ANIMALS(String sound) { //создаем конструктор 
+        this.sound = sound; 
+    }
+    
+    public String getSound() { //создаем метод воспроизведения звука
+        return sound;
+    }
+}

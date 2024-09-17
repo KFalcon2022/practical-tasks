@@ -7,5 +7,10 @@ package com.walking.lesson17_enum.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        ANIMALS[] animal = ANIMALS.values(); // создаем массив элементов Enum с помощью метода values
+        
+        for (ANIMALS a : animal) { // запускаем цикл для вывода на экран элементов 
+            System.out.println(a);
+        }
     }
 }
