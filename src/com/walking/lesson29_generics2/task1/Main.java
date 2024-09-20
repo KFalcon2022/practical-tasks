@@ -1,5 +1,6 @@
 package com.walking.lesson29_generics2.task1;
 
+
 /**
  * Реализуйте обобщенный тип, хранящий параметризованное поле.
  * Также в классе Main реализуйте параметризованый метод,
@@ -11,4 +12,5 @@ package com.walking.lesson29_generics2.task1;
 public class Main {
     public static void main(String[] args) {
     }
+
 }
