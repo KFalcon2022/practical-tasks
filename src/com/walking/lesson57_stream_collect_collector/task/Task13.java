@@ -10,6 +10,9 @@ import java.util.List;
 public class Task13 implements StatisticTask<Double> {
     @Override
     public Double calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+        .flatMapToDouble(d->d.getEmployees().stream().mapToDouble(e->e.getAge()))
+        .average()
+        .orElseThrow();
     }
 }

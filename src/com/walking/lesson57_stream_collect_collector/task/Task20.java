@@ -1,9 +1,11 @@
 package com.walking.lesson57_stream_collect_collector.task;
 
 import com.walking.lesson57_stream_collect_collector.model.Department;
+import com.walking.lesson57_stream_collect_collector.model.Employee;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте информацию по разнице в возрасте между самым молодым
@@ -12,6 +14,10 @@ import java.util.Map;
 public class Task20 implements StatisticTask<Map<String, Integer>> {
     @Override
     public Map<String, Integer> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+        .collect(Collectors.toMap(
+            Department::getName, 
+            d->d.getEmployees().stream().map(Employee::getAge).max(Integer::compare).get()-
+            d.getEmployees().stream().map(Employee::getAge).min(Integer::compare).get()));
     }
 }
