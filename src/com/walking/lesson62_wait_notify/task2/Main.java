@@ -1,5 +1,11 @@
 package com.walking.lesson62_wait_notify.task2;
 
+import java.util.Scanner;
+
+import com.walking.lesson62_wait_notify.task2.service.Customer;
+import com.walking.lesson62_wait_notify.task2.service.Storage;
+import com.walking.lesson62_wait_notify.task2.service.Supplier;
+
 /**
  * Реализуйте имитацию оптовой базы с тремя поставщиками и тремя покупателями.
  * Максимальное число хранимых товаров определите на свой вкус.
@@ -29,5 +35,34 @@ package com.walking.lesson62_wait_notify.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Storage storage=new Storage(100);
+        Supplier s1=new Supplier(90, storage);
+        Supplier s2=new Supplier(80, storage);
+        Supplier s3=new Supplier(90, storage);
+        Customer c1=new Customer(15, storage);
+        Customer c2=new Customer(15, storage);
+        Customer c3=new Customer(15, storage);
+        c3.start();
+        c2.start();
+        c1.start();
+        s1.start();
+        s2.start();
+        s3.start();
+        waitFinishSignal();
+        c3.interrupt();
+        c2.interrupt();
+        c1.interrupt();
+        s1.interrupt();
+        s2.interrupt();
+        s3.interrupt();
+    }
+    private static void waitFinishSignal() {
+        var scanner = new Scanner(System.in);
+
+        while (!"Finish".equals(scanner.nextLine())) {
+            System.out.println("Incorrect input");
+        }
+
+        scanner.close();
     }
 }
