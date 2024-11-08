@@ -1,5 +1,10 @@
 package com.walking.lesson68_semaphore.task2;
 
+import java.util.ArrayList;
+
+import com.walking.lesson68_semaphore.task2.model.Fork;
+import com.walking.lesson68_semaphore.task2.model.Philosopher;
+
 /**
  * Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.
  * Вилки лежат на столе между каждой парой ближайших философов.
@@ -19,5 +24,28 @@ package com.walking.lesson68_semaphore.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        ArrayList<Fork> forks=new ArrayList<>(5);
+        for (int i = 0; i < 5; i++) {
+            forks.add(new Fork(i));
+        }
+        ArrayList<Philosopher> philosophers=new ArrayList<>(5);
+        philosophers.add(new Philosopher("Sokrat", forks.get(0), forks.get(4)));
+        philosophers.add(new Philosopher("Kant", forks.get(1), forks.get(0)));
+        philosophers.add(new Philosopher("Izop", forks.get(2), forks.get(1)));
+        philosophers.add(new Philosopher("Lokk", forks.get(3), forks.get(2)));
+        philosophers.add(new Philosopher("Platon", forks.get(4), forks.get(3)));
+        philosophers.get(0).setLeftPhilosopher(philosophers.get(1).getSemaphore());
+        philosophers.get(0).setRightPhilosopher(philosophers.get(4).getSemaphore());
+        philosophers.get(1).setLeftPhilosopher(philosophers.get(2).getSemaphore());
+        philosophers.get(1).setRightPhilosopher(philosophers.get(0).getSemaphore());
+        philosophers.get(2).setLeftPhilosopher(philosophers.get(3).getSemaphore());
+        philosophers.get(2).setRightPhilosopher(philosophers.get(1).getSemaphore());
+        philosophers.get(3).setLeftPhilosopher(philosophers.get(4).getSemaphore());
+        philosophers.get(3).setRightPhilosopher(philosophers.get(2).getSemaphore());
+        philosophers.get(4).setLeftPhilosopher(philosophers.get(0).getSemaphore());
+        philosophers.get(4).setRightPhilosopher(philosophers.get(3).getSemaphore());
+        for (Philosopher philosopher : philosophers) {
+            philosopher.start();
+        }
     }
 }

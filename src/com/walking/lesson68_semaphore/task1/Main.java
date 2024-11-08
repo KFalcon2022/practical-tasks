@@ -1,5 +1,11 @@
 package com.walking.lesson68_semaphore.task1;
 
+import java.util.ArrayList;
+
+import com.walking.lesson68_semaphore.task1.model.Broker;
+import com.walking.lesson68_semaphore.task1.model.Fork;
+import com.walking.lesson68_semaphore.task1.model.Philosopher;
+
 /**
  * Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.
  * Вилки лежат на столе между каждой парой ближайших философов.
@@ -20,5 +26,19 @@ package com.walking.lesson68_semaphore.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Broker broker=new Broker();
+        ArrayList<Fork> forks=new ArrayList<>(5);
+        for (int i = 0; i < 5; i++) {
+            forks.add(new Fork(i));
+        }
+        ArrayList<Philosopher> philosophers=new ArrayList<>(5);
+        philosophers.add(new Philosopher("Sokrat", forks.get(0), forks.get(4), broker));
+        philosophers.add(new Philosopher("Kant", forks.get(1), forks.get(0), broker));
+        philosophers.add(new Philosopher("Izop", forks.get(2), forks.get(1), broker));
+        philosophers.add(new Philosopher("Lokk", forks.get(3), forks.get(2), broker));
+        philosophers.add(new Philosopher("Platon", forks.get(4), forks.get(3), broker));
+        for (Philosopher philosopher : philosophers) {
+            philosopher.start();
+        }
     }
 }
