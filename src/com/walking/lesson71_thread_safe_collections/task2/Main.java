@@ -1,6 +1,5 @@
 package com.walking.lesson71_thread_safe_collections.task2;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**

@@ -1,7 +1,5 @@
 package com.walking.lesson67_locks.task3.model;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 public class Counter {
     private int counter;
     private int border;
