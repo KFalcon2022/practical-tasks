@@ -1,5 +1,7 @@
 package com.walking.lesson10_static_constants.task3;
 
+import java.util.Scanner;
+
 /**
  * Используя задачу </p>
  * (можете сделать на основе своего решения,
@@ -19,11 +21,19 @@ package com.walking.lesson10_static_constants.task3;
  * Примечание: это одна задача, а не различные варианты:)
  */
 public class Main {
-    public static void main(String[] args) {
-        PrimeNumbersFinder array = new PrimeNumbersFinder();
-        array.setArrayValue();
-        array.show();
+    public static final Scanner SCANNER = new Scanner(System.in);
 
-        array.sum();
+    public static void main(String[] args) {
+//        int[] array = new int[requireInt()];
+        PrimeNumbersFinder primeNumbersFinder = new PrimeNumbersFinder(requireInt());
+        primeNumbersFinder.setArrayValue();
+        primeNumbersFinder.show();
+
+        primeNumbersFinder.getArraySum();
+    }
+
+    private static int requireInt() {
+        System.out.print("Enter a num: ");
+        return SCANNER.nextInt();
     }
 }
