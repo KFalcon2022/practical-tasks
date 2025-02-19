@@ -1,5 +1,12 @@
 package com.walking.lesson46_lambda.task2;
 
+import com.walking.lesson46_lambda.task2.model.Animal;
+import com.walking.lesson46_lambda.task2.model.Cat;
+import com.walking.lesson46_lambda.task2.model.Cow;
+import com.walking.lesson46_lambda.task2.model.Dog;
+
+import java.util.List;
+
 /**
  * Знакомимся с функциональным интерфейсом Consumer.
  * Используя реализацию Задачи 3 из урока 16 по ссылке:
@@ -11,5 +18,12 @@ package com.walking.lesson46_lambda.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        List<Animal> animals = List.of(new Cat(), new Dog(), new Cow());
+
+        soundAll(animals);
+    }
+
+    private static void soundAll(List<Animal> animals) {
+        animals.forEach(Animal::sound);
     }
 }
