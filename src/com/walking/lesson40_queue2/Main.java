@@ -1,5 +1,7 @@
 package com.walking.lesson40_queue2;
 
+import com.walking.lesson40_queue2.Service.TaskRepository;
+
 /**
  * Реализуйте класс Задание. Он должен содержать поле Название,
  * состав остальных полей - на ваше усмотрение.
@@ -15,5 +17,17 @@ package com.walking.lesson40_queue2;
  */
 public class Main {
     public static void main(String[] args) {
+        TaskRepository repository = new TaskRepository();
+
+        repository.add(new Task("Task 1"));
+        repository.add(new Task("Task 2"));
+        repository.add(new Task("Task 3"));
+
+        repository.complete();
+        repository.complete();
+        repository.complete();
+        repository.complete();
+
+
     }
 }
