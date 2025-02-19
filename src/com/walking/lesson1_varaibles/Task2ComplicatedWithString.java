@@ -7,5 +7,6 @@ package com.walking.lesson1_varaibles;
  */
 public class Task2ComplicatedWithString {
     public static void main(String[] args) {
+        System.out.print("G\na\nl\ni\nn\na");
     }
 }
