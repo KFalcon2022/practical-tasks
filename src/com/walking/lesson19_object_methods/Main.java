@@ -1,5 +1,3 @@
-package com.walking.lesson19_object_methods;
-
 /**
  * Реализуйте класс «Машина». Поля допустимо выбрать на свое усмотрение, но необходимо,
  * чтобы по ним можно было однозначно идентифицировать каждую машину.
@@ -12,7 +10,25 @@ package com.walking.lesson19_object_methods;
  * <p>
  * Опциональное усложнение: номер машины может быть не уникальным.
  */
+package com.walking.lesson19;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+
+        Car [] cars = new Car[] {new Car("Skoda", "T310KK116"),
+                new Car("BMW", "E450CC116")}; // создаем массив автомобилей
+
+        Scanner sc = new Scanner(System.in); //открываем консоль
+
+        System.out.println("Введите номер машины: ");
+        String string = sc.nextLine(); //вводим строковую переменную стринг для хранения введенного значения с консоли
+        sc.close(); //закрываем сканер
+
+        for (int i = 0; i < cars.length; i++) { //вводим цикл поиска по массиву объектов
+            if (cars[i].carnumber.equals(string)) { //если поле "номер машины" совпадает с введенным значением
+                System.out.println("Совпадение найдено"); //вывод в консоль сообщения
+            }
+        }
     }
 }
