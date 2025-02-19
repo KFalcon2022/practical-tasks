@@ -1,0 +1,28 @@
+do
+$$
+    declare pass1_id integer;
+    declare pass2_id integer;
+begin
+    insert into passenger (first_name, last_name, birth_date, male, last_purchase)
+    values ('Elisey', 'Eliseev', '13-05-2004', true, now())
+    on conflict do nothing
+    returning id into pass1_id;
+
+    insert into ticket (departure_airport, arrival_airport, departure_date,
+                    arrival_date, purchase_date, passenger_id)
+    values ('Moscow', 'Paris', '29-12-2023', '29-12-2023', now(), pass1_id)
+    on conflict do nothing;
+
+    insert into passenger (first_name, last_name, birth_date, male, last_purchase)
+    values ('Fedor', 'Fedorov', '26-11-1986', true, now())
+    on conflict do nothing
+    returning id into pass2_id;
+
+    insert into ticket (departure_airport, arrival_airport, departure_date,
+                    arrival_date, purchase_date, passenger_id)
+    values ('Saint-Petersburg', 'Moscow', '13-11-2023', '14-11-2023', now(), pass2_id)
+    on conflict do nothing;
+
+commit;
+end;
+$$ language plpgsql;

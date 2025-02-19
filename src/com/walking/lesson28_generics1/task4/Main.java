@@ -1,20 +1,15 @@
 package com.walking.lesson28_generics1.task4;
 
-/**
- * Реализовать параметризованный класс, хранящий и обрабатывающий стек.
- * Стек — структура данных, в котором каждый элемент хранит ссылку на следующий.
- * Работает по принципу LIFO (последний вошел — первый вышел).
- * <p>
- * Реализовать следующие методы:
- * <p>
- * Добавление элемента в стек;
- * Удаление элемента из стека. При удалении несуществующего элемента – исключение;
- * Получение глубины (количества элементов) стека;
- * Поиск по стеку, при отсутствии искомого значения – исключение;
- * Получение строкового эквивалента элементов стека, представленных в виде массива
- * ([строковое представление элемента1, ..., строковое представление элементаN]).
- */
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
+        Stack<Integer> integerStack = new Stack<>(new Integer[]{1, 8, 7, 10});
+        System.out.println(Arrays.toString(integerStack.toStringArray()));
+        integerStack.addElement(52);
+        System.out.println(integerStack.getSize());
+        System.out.println(Arrays.toString(integerStack.toStringArray()));
+        integerStack.deleteElement();
+        System.out.println(Arrays.toString(integerStack.toStringArray()));
     }
 }

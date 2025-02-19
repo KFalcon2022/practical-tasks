@@ -1,18 +1,33 @@
 package com.walking.lesson30_regex.task2;
 
-/**
- * Реализуйте метод для работы с ФИО.
- * Входным параметром должна являться строка,
- * содержащая русскоязычное ФИО.
- * Фамилия, имя и отчество должны начинаться с прописной буквы
- * и быть разделены пробелами.
- * Фамилия может быть двойной и писаться через дефис
- * (каждая часть фамилии начинается с прописной буквы).
- * Если строка валидна – верните ФИО, обернутое в класс «Полное имя»,
- * содержащий фамилию, имя и отчество.
- * Если невалидна – бросьте из метода исключение, указывающее на ошибку валидации.
- */
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("������� ���:");
+        String fullName = scanner.nextLine();
+        scanner.close();
+
+        System.out.println(checkFullName(fullName));
+    }
+
+    public static FullName checkFullName(String fullName) {
+        Pattern pattern = Pattern.compile("^[�-ߨ&&[^���]][�-��]+(-[�-ߨ&&[^���]][�-��]+)?\s[�-ߨ&&[^���]][�-��]+\s[�-ߨ&&[^���]][�-��]+$");
+        Matcher matcher = pattern.matcher(fullName);
+
+        if (!matcher.matches()) {
+            throw new IncorrectInputException();
+        }
+
+        String[] splitFullName = fullName.split("\s");
+        String surname = splitFullName[0];
+        String name = splitFullName[1];
+        String patronymic = splitFullName[2];
+        FullName result = new FullName(surname, name, patronymic);
+
+        return result;
     }
 }
