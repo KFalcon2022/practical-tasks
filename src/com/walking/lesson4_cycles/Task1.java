@@ -17,12 +17,10 @@ public class Task1 {
 
         if (number < 0) { //Факториал отрицательного числа не существует
             System.out.println("The number must be at least 0");
-        } else if (number == 0) {
-//            0! == 1
-            System.out.println(1);
         } else {
             int result = 1;
 
+            // Для number == 0 цикл не будет выполнен ни разу (0! == 1), в остальных случаях будет произведен расчет
             for (int i = 1; i <= number; i++) {
                 result *= i;
             }
