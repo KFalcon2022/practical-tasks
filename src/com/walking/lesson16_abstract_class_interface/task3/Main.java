@@ -10,5 +10,10 @@ package com.walking.lesson16_abstract_class_interface.task3;
  */
 public class Main {
     public static void main(String[] args) {
+        Animal[] animals = new Animal[] {new Cow(), new Dog(), new Cat()};
+
+        for (Animal animal : animals) {
+            animal.sound();
+        }
     }
 }
