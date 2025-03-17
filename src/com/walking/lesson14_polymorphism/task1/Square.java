@@ -1,7 +1,7 @@
 package com.walking.lesson14_polymorphism.task1;
 
 public class Square extends RightFigure {
-    public static final String NAME = "квадрат";
+    public static final String NAME = "РєРІР°РґСЂР°С‚";
 
     private final String HORIZONTAL = "-";
     private final String VERTICAL = "|";

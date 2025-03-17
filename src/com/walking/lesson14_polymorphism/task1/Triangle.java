@@ -1,7 +1,7 @@
 package com.walking.lesson14_polymorphism.task1;
 
 public class Triangle extends RightFigure {
-    public static final String NAME = "треугольник";
+    public static final String NAME = "С‚СЂРµСѓРіРѕР»СЊРЅРёРє";
 
     private final String RIGHT_SIDE = "\\";
     private final String LEFT_SIDE = "/";

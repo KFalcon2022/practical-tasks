@@ -8,7 +8,7 @@ public class RightFigure {
     }
 
     protected void getTheFigure() {
-        System.out.println("Неизвестная фигура");
+        System.out.println("РќРµРёР·РІРµСЃС‚РЅР°СЏ С„РёРіСѓСЂР°");
     }
 
 
