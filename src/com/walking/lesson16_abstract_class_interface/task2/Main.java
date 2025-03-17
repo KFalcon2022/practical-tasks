@@ -1,5 +1,10 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
+import com.walking.lesson16_abstract_class_interface.task2.printer.Goodbye;
+import com.walking.lesson16_abstract_class_interface.task2.printer.Hello;
+import com.walking.lesson16_abstract_class_interface.task2.printer.How;
+import com.walking.lesson16_abstract_class_interface.task2.printer.Printer;
+
 import java.util.Scanner;
 
 /**
@@ -10,21 +15,28 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter massage: ");
-        String massage = in.nextLine();
+        System.out.print("Enter message: ");
+        String message = in.nextLine();
 
-        switch (massage) {
-            case Hello.MASSAGE:
-                Hello.print();
+        Printer answer;
+        switch (message) {
+            case "Hi":
+                answer = new Hello();
                 break;
-            case Goodbye.MASSAGE:
-                Goodbye.print();
+            case "Bye":
+                answer = new Goodbye();
                 break;
-            case How.MASSAGE:
-                How.print();
+            case "How are you":
+                answer = new How();
                 break;
             default:
-                Printer.print();
+                answer = null;
+        }
+
+        if (answer != null) {
+            System.out.println(answer.print());
+        } else {
+            System.out.println("Unknown message");
         }
     }
 }
