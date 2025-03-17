@@ -1,5 +1,9 @@
 package com.walking.lesson14_polymorphism.task1;
 
+import com.walking.lesson14_polymorphism.task1.figure.RegularFigure;
+import com.walking.lesson14_polymorphism.task1.figure.Square;
+import com.walking.lesson14_polymorphism.task1.figure.Triangle;
+
 import java.util.Scanner;
 
 /**
@@ -12,9 +16,8 @@ import java.util.Scanner;
  * <p>
  * Обратите внимание, символ '\' в Java необходимо экранировать: '\\'.
  */
-    import java.util.Scanner;
 
-    public class Main {
+public class Main {
 
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
@@ -28,23 +31,17 @@ import java.util.Scanner;
                 return;
             }
 
-            RightFigure figure = new RightFigure(length);
-            createShape(figure, figureType);
+            RegularFigure figure = new RegularFigure(length);
 
-        }
-
-        private static void createShape(RightFigure figure, String figureType) {
             switch (figureType.toLowerCase()) {
                 case Triangle.NAME:
                     figure = new Triangle(figure.length);
-                    figure.getTheFigure();
                     break;
                 case Square.NAME:
                     figure = new Square(figure.length);
-                    figure.getTheFigure();
                     break;
-                default:
-                    figure.getTheFigure();
             }
+
+            System.out.println(figure.getFigure());
         }
     }
