@@ -1,6 +1,11 @@
 package com.walking.lesson16_abstract_class_interface.task3;
 
 
+import com.walking.lesson16_abstract_class_interface.task3.animals.Animal;
+import com.walking.lesson16_abstract_class_interface.task3.animals.Cat;
+import com.walking.lesson16_abstract_class_interface.task3.animals.Cow;
+import com.walking.lesson16_abstract_class_interface.task3.animals.Dog;
+
 /**
  * Реализуйте любую задачу из уроков о наследовании или полиморфизме с использованием новых знаний.
  * Выбирайте инструмент с умом.
