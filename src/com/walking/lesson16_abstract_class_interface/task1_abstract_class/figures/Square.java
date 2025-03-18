@@ -1,11 +1,10 @@
-package com.walking.lesson14_polymorphism.task1.figure;
+package com.walking.lesson16_abstract_class_interface.task1_abstract_class.figures;
 
 public class Square extends RegularFigure {
     public static final String NAME = "квадрат";
 
     private final String HORIZONTAL = "-";
     private final String VERTICAL = "|";
-    private final String SPACE = " ";
 
     public Square(int length) {
         super(length);
@@ -21,10 +20,10 @@ public class Square extends RegularFigure {
     }
 
     private String getHorizontalSide() {
-        return SPACE + HORIZONTAL.repeat(length - 2) + SPACE + "\n";
+        return SPACE + HORIZONTAL.repeat(length - 2) + SPACE + NEXT_LINE_SYMBOL;
     }
 
     private String getVerticalSide() {
-        return VERTICAL + SPACE.repeat(length - 2) + VERTICAL + "\n";
+        return VERTICAL + SPACE.repeat(length - 2) + VERTICAL + NEXT_LINE_SYMBOL;
     }
 }
