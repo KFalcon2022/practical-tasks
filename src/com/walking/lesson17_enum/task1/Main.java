@@ -18,21 +18,8 @@ public class Main {
         System.out.print("Enter message: ");
         String greeting = in.nextLine();
 
-        GreetingTypes greet;
-        switch (greeting) {
-            case "Hi":
-                greet = GreetingTypes.HELLO;
-                break;
-            case "Bye":
-                greet = GreetingTypes.GOODBYE;
-                break;
-            case "How are you":
-                greet = GreetingTypes.HOW;
-                break;
-            default:
-                greet = GreetingTypes.UNKNOWN;
-                break;
-        }
-        System.out.println(greet.getGreeting());
+        GreetingTypes greet = GreetingTypes.findGreetingType(greeting);
+        System.out.println(greet.getRespond());
+
     }
 }
