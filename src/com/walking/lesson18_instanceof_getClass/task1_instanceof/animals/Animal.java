@@ -1,7 +1,8 @@
 package com.walking.lesson18_instanceof_getClass.task1_instanceof.animals;
 
-public abstract class Animal {
-    public abstract String getVoice();
+public class Animal {
 
-    public abstract void sound();
+    public void sound() {
+        System.out.println();
+    }
 }

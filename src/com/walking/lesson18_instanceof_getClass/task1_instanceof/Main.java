@@ -13,13 +13,13 @@ public class Main {
         Animal[] animals = new Animal[]{new Cat(), new Cow(), new Unknown(), new Dog(), new Cow()};
         for (Animal animal : animals) {
             if (animal instanceof Cat cat) {
-                cat.sound();
+                cat.meow();
             }
             if (animal instanceof Dog dog) {
-                dog.sound();
+                dog.woof();
             }
             if (animal instanceof Cow cow) {
-                cow.sound();
+                cow.moo();
             }
             if (animal instanceof Unknown unknown) {
                 unknown.sound();
