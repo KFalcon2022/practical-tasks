@@ -9,7 +9,7 @@ import com.walking.lesson18_instanceof_getClass.task1_getClass.animals.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[]{new Cat(), new Cow(), new Unknown(), new Dog(), new Cow()};
+        Animal[] animals = new Animal[]{new Cat(), new Cow(), new Dog(), new Cow()};
         for (Animal animal : animals) {
             if (animal.getClass().equals(Cat.class)) {
                 ((Cat) animal).meow();
@@ -18,7 +18,7 @@ public class Main {
             } else if (animal.getClass().equals(Cow.class)) {
                 ((Cow) animal).moo();
             } else {
-                ((Unknown) animal).sound();
+                System.out.println("Unknown animal");
             }
         }
     }
