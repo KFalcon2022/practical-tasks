@@ -1,7 +1,5 @@
 package com.walking.lesson19_object_methods.autos;
 
-import java.util.Objects;
-
 public class Auto {
     private final String make;
     private final String owner;
