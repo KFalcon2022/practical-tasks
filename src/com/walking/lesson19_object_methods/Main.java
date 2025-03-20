@@ -41,7 +41,8 @@ public class Main {
         if (car == null) {
             System.out.println("Машина не найдена!");
         } else {
-            System.out.println(car.toString());
+            System.out.println(car);
+            System.out.println(car.hashCode());
         }
     }
 }
