@@ -11,13 +11,13 @@ public class Auto {
         this.number = number;
     }
 
-    public Auto findAuto(Auto[] autos) {
+    public boolean findAuto(Auto[] autos) {
         for (Auto auto : autos) {
             if (this.equals(auto)) {
-                return auto;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override

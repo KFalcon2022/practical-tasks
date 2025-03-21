@@ -36,9 +36,8 @@ public class Main {
         String number = in.nextLine();
 
         Auto car = new Auto(make, owner, number);
-        car = car.findAuto(autos);
 
-        if (car == null) {
+        if (!car.findAuto(autos)) {
             System.out.println("Машина не найдена!");
         } else {
             System.out.println(car);
