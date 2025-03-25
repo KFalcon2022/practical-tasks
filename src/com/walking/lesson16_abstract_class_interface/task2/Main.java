@@ -1,9 +1,9 @@
 package com.walking.lesson16_abstract_class_interface.task2;
 
-import com.walking.lesson16_abstract_class_interface.task2.printer.Goodbye;
-import com.walking.lesson16_abstract_class_interface.task2.printer.Hello;
-import com.walking.lesson16_abstract_class_interface.task2.printer.How;
-import com.walking.lesson16_abstract_class_interface.task2.printer.Printer;
+import com.walking.lesson16_abstract_class_interface.task2.greet.Goodbye;
+import com.walking.lesson16_abstract_class_interface.task2.greet.Hello;
+import com.walking.lesson16_abstract_class_interface.task2.greet.How;
+import com.walking.lesson16_abstract_class_interface.task2.greet.Greeting;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Main {
         System.out.print("Enter message: ");
         String message = in.nextLine();
 
-        Printer answer;
+        Greeting answer;
         switch (message) {
             case "Hi":
                 answer = new Hello();
@@ -34,7 +34,7 @@ public class Main {
         }
 
         if (answer != null) {
-            System.out.println(answer.print());
+            System.out.println(answer.greet());
         } else {
             System.out.println("Unknown message");
         }
