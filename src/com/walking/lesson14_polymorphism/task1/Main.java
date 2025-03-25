@@ -31,17 +31,18 @@ public class Main {
                 return;
             }
 
-            RegularFigure figure = new RegularFigure(length);
-
-            switch (figureType.toLowerCase()) {
-                case Triangle.NAME:
-                    figure = new Triangle(figure.length);
-                    break;
-                case Square.NAME:
-                    figure = new Square(figure.length);
-                    break;
-            }
+            RegularFigure figure = getFigure(figureType, length);
 
             System.out.println(figure.getFigure());
+        }
+
+        private static RegularFigure getFigure(String figureType, int length) {
+            switch (figureType.toLowerCase()) {
+                case Triangle.NAME:
+                    return new Triangle(length);
+                case Square.NAME:
+                    return new Square(length);
+            }
+            return new RegularFigure(length);
         }
     }
