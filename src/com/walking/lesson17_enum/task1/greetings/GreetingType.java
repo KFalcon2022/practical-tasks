@@ -1,6 +1,6 @@
 package com.walking.lesson17_enum.task1.greetings;
 
-public enum GreetingTypes {
+public enum GreetingType {
 
     HELLO("Hi", "Hello"),
     GOODBYE("Bye", "Goodbye"),
@@ -10,17 +10,17 @@ public enum GreetingTypes {
     private final String greeting;
     private final String respond;
 
-    GreetingTypes(String greeting, String respond) {
+    GreetingType(String greeting, String respond) {
         this.greeting = greeting;
         this.respond = respond;
     }
 
-    public static GreetingTypes findGreetingType(String greeting) {
+    public static GreetingType findGreetingType(String greeting) {
         if (greeting == null) {
             return UNKNOWN;
         }
 
-        for (GreetingTypes type : GreetingTypes.values()) {
+        for (GreetingType type : GreetingType.values()) {
             if (greeting.equals(type.greeting)) {
                 return type;
             }

@@ -1,6 +1,6 @@
 package com.walking.lesson17_enum.task1;
 
-import com.walking.lesson17_enum.task1.greetings.GreetingTypes;
+import com.walking.lesson17_enum.task1.greetings.GreetingType;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Main {
         System.out.print("Enter message: ");
         String greeting = in.nextLine();
 
-        GreetingTypes greet = GreetingTypes.findGreetingType(greeting);
+        GreetingType greet = GreetingType.findGreetingType(greeting);
         System.out.println(greet.getRespond());
 
     }

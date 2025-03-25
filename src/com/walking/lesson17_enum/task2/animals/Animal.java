@@ -1,7 +1,9 @@
 package com.walking.lesson17_enum.task2.animals;
 
 public enum Animal {
-    CAT("meow"), Dog("woof"), Cow("moo");
+    CAT("meow"),
+    DOG("woof"),
+    COW("moo");
 
     private final String sound;
 
