@@ -3,35 +3,38 @@ package com.walking.lesson17_enum.task3.figure;
 
 public enum RegularFigure {
     TRIANGLE("треугольник"){
-        public String getFigure() {
-            int k = getLength() / 2;
-            int j = getLength() % 2;
+        @Override
+        public String getFigure(int length) {
+            int k = length / 2;
+            int j = length % 2;
 
             String triangle = "";
-            for (int i = 0; i < getLength() / 2; i++) {
+            for (int i = 0; i < length / 2; i++) {
                 triangle += SPACE.repeat(k) + LEFT_SIDE_TRIANGLE + SPACE.repeat(j) + RIGHT_SIDE_TRIANGLE + NEXT_LINE;
                 k--;
                 j += 2;
             }
 
-            triangle += LEFT_SIDE_TRIANGLE + HORIZONTAL_SIDE.repeat(getLength()) + RIGHT_SIDE_TRIANGLE;
+            triangle += LEFT_SIDE_TRIANGLE + HORIZONTAL_SIDE.repeat(length) + RIGHT_SIDE_TRIANGLE;
             return triangle;
         }
     },
 
     SQUARE("квадрат") {
-        public String getFigure() {
-            String square = SPACE + HORIZONTAL_SQUARE.repeat(getLength() - 2) + SPACE + NEXT_LINE;
-            for (int i = 0; i < getLength() - 2; i++) {
-                square += VERTICAL_SQUARE + SPACE.repeat(getLength() - 2) + VERTICAL_SQUARE + NEXT_LINE;
+        @Override
+        public String getFigure(int length) {
+            String square = SPACE + HORIZONTAL_SQUARE.repeat(length - 2) + SPACE + NEXT_LINE;
+            for (int i = 0; i < length - 2; i++) {
+                square += VERTICAL_SQUARE + SPACE.repeat(length - 2) + VERTICAL_SQUARE + NEXT_LINE;
             }
-            square += SPACE + HORIZONTAL_SQUARE.repeat(getLength() - 2) + SPACE + NEXT_LINE;
+            square += SPACE + HORIZONTAL_SQUARE.repeat(length - 2) + SPACE + NEXT_LINE;
             return square;
         }
     },
 
     UNKNOWN(null) {
-        public String getFigure() {
+        @Override
+        public String getFigure(int length) {
             return "Неизвестная фигура";
         }
     };
@@ -44,8 +47,6 @@ public enum RegularFigure {
     private static final String HORIZONTAL_SQUARE = "-";
     private static final String VERTICAL_SQUARE = "|";
     private final String name;
-
-    private int length;
 
     RegularFigure(String name) {
         this.name = name;
@@ -65,17 +66,9 @@ public enum RegularFigure {
         return UNKNOWN;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
     public String getName() {
         return name;
     }
 
-    public abstract String getFigure();
+    public abstract String getFigure(int length);
 }

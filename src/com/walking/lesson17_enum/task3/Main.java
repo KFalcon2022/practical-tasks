@@ -19,8 +19,6 @@ public class Main {
         int length = in.nextInt();
 
         RegularFigure figure = RegularFigure.getFigureByName(name);
-        figure.setLength(length);
-
-        System.out.println(figure.getFigure());
+        System.out.println(figure.getFigure(length));
     }
 }

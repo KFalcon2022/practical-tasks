@@ -18,15 +18,15 @@ public class Triangle extends RegularFigure {
     }
 
     private String getBottomSide() {
-        return LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
+        return LEFT_SIDE + BOTTOM_SIDE.repeat(getLength()) + RIGHT_SIDE;
     }
 
     private String getTriangle() {
-        int k = length / 2;
-        int j = length % 2;
+        int k = getLength() / 2;
+        int j = getLength() % 2;
 
         String triangle = "";
-        for (int i = 0; i < length / 2; i++) {
+        for (int i = 0; i < getLength() / 2; i++) {
             triangle += SPACE.repeat(k) + LEFT_SIDE + SPACE.repeat(j) + RIGHT_SIDE + "\n";
             k--;
             j += 2;

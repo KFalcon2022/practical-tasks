@@ -14,17 +14,17 @@ public class Square extends RegularFigure {
     @Override
     public String getFigure() {
         String square = getHorizontalSide();
-        for (int i = 0; i < length - 2; i++) {
+        for (int i = 0; i < getLength() - 2; i++) {
             square += getVerticalSide();
         }
         return square + getHorizontalSide();
     }
 
     private String getHorizontalSide() {
-        return SPACE + HORIZONTAL.repeat(length - 2) + SPACE + "\n";
+        return SPACE + HORIZONTAL.repeat(getLength() - 2) + SPACE + "\n";
     }
 
     private String getVerticalSide() {
-        return VERTICAL + SPACE.repeat(length - 2) + VERTICAL + "\n";
+        return VERTICAL + SPACE.repeat(getLength() - 2) + VERTICAL + "\n";
     }
 }

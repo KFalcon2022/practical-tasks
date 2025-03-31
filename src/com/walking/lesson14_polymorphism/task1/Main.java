@@ -37,12 +37,10 @@ public class Main {
         }
 
         private static RegularFigure getFigure(String figureType, int length) {
-            switch (figureType.toLowerCase()) {
-                case Triangle.NAME:
-                    return new Triangle(length);
-                case Square.NAME:
-                    return new Square(length);
-            }
-            return new RegularFigure(length);
+            return switch (figureType.toLowerCase()) {
+                case Triangle.NAME -> new Triangle(length);
+                case Square.NAME -> new Square(length);
+                default -> new RegularFigure(length);
+            };
         }
     }
