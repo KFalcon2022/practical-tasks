@@ -1,7 +1,5 @@
 package com.walking.lesson20_exceptions.task1_throwsException.files;
 
-import com.walking.lesson20_exceptions.task1_catchException.files.FileType;
-
 public class File {
     private final String name;
     private final String size;

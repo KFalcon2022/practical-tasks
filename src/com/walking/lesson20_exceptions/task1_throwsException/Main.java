@@ -1,12 +1,11 @@
 package com.walking.lesson20_exceptions.task1_throwsException;
 
-import com.walking.lesson20_exceptions.task1_catchException.files.File;
-import com.walking.lesson20_exceptions.task1_catchException.files.FileNotFoundException;
+import com.walking.lesson20_exceptions.task1_throwsException.files.File;
+import com.walking.lesson20_exceptions.task1_throwsException.files.FileNotFoundException;
 
 import java.util.Scanner;
 
-import static com.walking.lesson20_exceptions.task1_catchException.files.FileType.*;
-import static com.walking.lesson20_exceptions.task1_catchException.files.FileType.PICTURE;
+import static com.walking.lesson20_exceptions.task1_throwsException.files.FileType.*;
 
 /**
  * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
