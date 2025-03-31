@@ -52,6 +52,6 @@ public class Main {
                 return file;
             }
         }
-        throw new FileNotFoundException("Файл не найден!");
+        throw new FileNotFoundException("Искомый файл не существует.");
     }
 }
