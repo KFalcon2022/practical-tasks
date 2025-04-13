@@ -10,13 +10,13 @@ public class Square extends EquilateralShape {
 
     @Override
     public String createShapeString() {
-        String horizontalLine = createHorizontalLine(length);
-        String verticalLines = createVerticalLines(length);
+        String horizontalLine = createHorizontalLine();
+        String verticalLines = createVerticalLines();
 
         return horizontalLine + verticalLines + horizontalLine;
     }
 
-    private String createHorizontalLine(int length) {
+    private String createHorizontalLine() {
         String horizontalLine = EMPTY_ELEMENT;
 
         for (int i = 0; i < length; i++) {
@@ -28,8 +28,8 @@ public class Square extends EquilateralShape {
         return horizontalLine;
     }
 
-    private String createVerticalLines(int length) {
-        String verticalLinesUnit = getVerticalLinesUnit(length);
+    private String createVerticalLines() {
+        String verticalLinesUnit = getVerticalLinesUnit();
 
         String verticalLines = EMPTY_STRING;
 
@@ -40,7 +40,7 @@ public class Square extends EquilateralShape {
         return verticalLines;
     }
 
-    private String getVerticalLinesUnit(int length) {
+    private String getVerticalLinesUnit() {
         String verticalLinesUnit = RECTANGLE_VERTICAL_ELEMENT;
 
         for (int i = 0; i < length; i++) {

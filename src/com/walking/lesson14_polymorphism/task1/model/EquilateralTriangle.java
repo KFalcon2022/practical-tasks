@@ -30,7 +30,7 @@ public class EquilateralTriangle extends EquilateralShape {
             triangle += TRIANGLE_RIGHT_SIDE_ELEMENT + NEW_LINE_SYMBOL;
         }
 
-        triangle += " ";
+        triangle += EMPTY_ELEMENT;
 
         for (int i = 0; i < length; i++) {
             triangle += TRIANGLE_HORIZONTAL_SIDE_ELEMENT;
