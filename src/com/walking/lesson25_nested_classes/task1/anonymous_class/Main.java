@@ -43,7 +43,7 @@ public class Main {
                         return triangle + LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
                     }
                 };
-                return triangle.getFigure();
+                triangle.getFigure();
 
             case "квадрат":
                 RegularFigure square = new RegularFigure() {
@@ -65,7 +65,7 @@ public class Main {
                     public String getFigure() {
                         return "Неизвестная фигура";
                     }
-                } ;
+                };
                 return unknown.getFigure();
         }
     }
