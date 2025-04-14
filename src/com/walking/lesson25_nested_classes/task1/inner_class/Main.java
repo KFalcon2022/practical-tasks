@@ -1,7 +1,6 @@
 package com.walking.lesson25_nested_classes.task1.inner_class;
 
-
-import com.walking.lesson25_nested_classes.task1.static_class.figure.RegularFigure;
+import com.walking.lesson25_nested_classes.task1.inner_class.figure.RegularFigure;
 
 import java.util.Scanner;
 
@@ -23,14 +22,15 @@ public class Main {
             return;
         }
 
-        System.out.println(getResult(figureType).getFigure(length));
+        RegularFigure figure = new RegularFigure(length);
+        System.out.println(getResult(figure, figureType));
     }
 
-    public static RegularFigure getResult(String figureType) {
+    public static String getResult(RegularFigure figure, String figureType) {
         return switch(figureType.toLowerCase()) {
-            case "треугольник" -> new RegularFigure.Triangle();
-            case "квадрат" -> new RegularFigure.Square();
-            default -> new RegularFigure.Unknown();
+            case "треугольник" -> figure.triangle.getFigure();
+            case "квадрат" -> figure.square.getFigure();
+            default -> "Неизвестная фигура";
         };
     }
 }

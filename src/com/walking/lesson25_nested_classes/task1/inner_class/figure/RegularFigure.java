@@ -1,46 +1,62 @@
 package com.walking.lesson25_nested_classes.task1.inner_class.figure;
 
-public interface RegularFigure {
-    String SPACE = " ";
-    String NEXT_LINE_SYMBOL = "\n";
-    String HORIZONTAL = "-";
-    String VERTICAL = "|";
-    String RIGHT_SIDE = "\\";
-    String LEFT_SIDE = "/";
-    String BOTTOM_SIDE = "_";
+public class RegularFigure {
+    // как я поняла, у интерфейса внутренние классы статик по умолчанию, поэтому тут заменила интерфейс на класс
 
-    String getFigure(int length);
+    private final String SPACE = " ";
+    private final String NEXT_LINE_SYMBOL = "\n";
+    private final String HORIZONTAL = "-";
+    private final String VERTICAL = "|";
+    private final String RIGHT_SIDE = "\\";
+    private final String LEFT_SIDE = "/";
+    private final String BOTTOM_SIDE = "_";
 
-    class Square implements RegularFigure {
-        @Override
-        public String getFigure(int length) {
-            String square = getHorizontalSide(length);
-            for (int i = 0; i < length - 2; i++) {
-                square += getVerticalSide(length);
-            }
-            return square + getHorizontalSide(length);
+    public final Square square;
+    public final Triangle triangle;
+
+    public RegularFigure (int length) {
+        square = new Square(length);
+        triangle = new Triangle(length);
+    }
+
+    public class Square {
+        private final int length;
+        private Square(int length) {
+            this.length = length;
         }
 
-        private String getHorizontalSide(int length) {
+        public String getFigure() {
+            String square = getHorizontalSide();
+            for (int i = 0; i < length - 2; i++) {
+                square += getVerticalSide();
+            }
+            return square + getHorizontalSide();
+        }
+
+        private String getHorizontalSide() {
             return SPACE + HORIZONTAL.repeat(length - 2) + SPACE + NEXT_LINE_SYMBOL;
         }
 
-        private String getVerticalSide(int length) {
+        private String getVerticalSide() {
             return VERTICAL + SPACE.repeat(length - 2) + VERTICAL + NEXT_LINE_SYMBOL;
         }
     }
 
-    class Triangle implements RegularFigure {
-        @Override
-        public String getFigure(int length) {
-            return getTriangle(length) + getBottomSide(length);
+    public class Triangle {
+        private final int length;
+        private Triangle(int length) {
+            this.length = length;
         }
 
-        private String getBottomSide(int length) {
+        public String getFigure() {
+            return getTriangle() + getBottomSide();
+        }
+
+        private String getBottomSide() {
             return LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
         }
 
-        private String getTriangle(int length) {
+        private String getTriangle() {
             int k = length / 2;
             int j = length % 2;
 
@@ -52,13 +68,6 @@ public interface RegularFigure {
             }
 
             return triangle;
-        }
-    }
-
-    class Unknown implements RegularFigure{
-        @Override
-        public String getFigure(int length) {
-            return "Неизвестная фигура";
         }
     }
 }
