@@ -26,18 +26,11 @@ public class Main {
             return;
         }
 
-        RegularFigure figure;
-
-        switch (figureType.toLowerCase()) {
-            case Triangle.NAME:
-                figure = new Triangle(length);
-                break;
-            case Square.NAME:
-                figure = new Square(length);
-                break;
-            default:
-                figure = new Unknown(length);
-        }
+        RegularFigure figure = switch (figureType.toLowerCase()) {
+            case Triangle.NAME -> new Triangle(length);
+            case Square.NAME -> new Square(length);
+            default -> new Unknown(length);
+        };
 
         System.out.println(figure.getFigure());
     }
