@@ -10,6 +10,4 @@ public interface RegularFigure {
     String BOTTOM_SIDE = "_";
 
     String getFigure();
-
-
 }
