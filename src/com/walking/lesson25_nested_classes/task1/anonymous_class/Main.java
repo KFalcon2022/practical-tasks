@@ -43,7 +43,7 @@ public class Main {
                         return triangle + LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
                     }
                 };
-                triangle.getFigure();
+                return triangle.getFigure();
 
             case "квадрат":
                 RegularFigure square = new RegularFigure() {
