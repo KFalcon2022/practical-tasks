@@ -1,6 +1,7 @@
 package com.walking.lesson25_nested_classes.task1.inner_class;
 
-import com.walking.lesson25_nested_classes.task1.inner_class.figure.RegularFigure;
+
+import com.walking.lesson25_nested_classes.task1.static_class.figure.RegularFigure;
 
 import java.util.Scanner;
 
