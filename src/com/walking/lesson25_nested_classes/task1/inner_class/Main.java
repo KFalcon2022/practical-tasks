@@ -62,8 +62,9 @@ public class Main {
         }
     }
 
-    class Triangle implements RegularFigure{
+    class Triangle implements RegularFigure {
         private final int length;
+
         private Triangle(int length) {
             this.length = length;
         }
