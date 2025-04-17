@@ -15,13 +15,13 @@ public class Main {
     public static final String RECTANGLE_LENGTH_UNIT = "||";
     public static final String RECTANGLE_WIDTH_UNIT = "==";
     public static final String RECTANGLE_SPACE_UNIT = "  ";
-    public static final Scanner scanner = new Scanner(System.in);
+    public static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
         int length = requireInt("Enter rectangle's length: ");
         int width = requireInt("Enter rectangle's width: ");
 
-        scanner.close();
+        SCANNER.close();
 
         String horizontalLine = createHorizontalLine(length);
         String verticalLines = createVerticalLines(length, width);
@@ -32,7 +32,7 @@ public class Main {
     static int requireInt(String requiringMessage) {
         System.out.print(requiringMessage);
 
-        return scanner.nextInt();
+        return SCANNER.nextInt();
     }
 
     static void printRectangle(String horizontalLine, String verticalLines) {
