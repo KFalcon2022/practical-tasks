@@ -1,6 +1,6 @@
 package com.walking.lesson14_polymorphism.task1.model;
 
-public class Triangle extends com.walking.lesson14_polymorphism.task1.model.CorrectFigure {
+public class Triangle extends CorrectFigure {
     public static final String LEFT_SIDE_UNIT = "/";
     public static final String RIGHT_SIDE_UNIT = "\\";
     public static final String HORIZONTAL_UNIT = "--";
@@ -50,3 +50,4 @@ public class Triangle extends com.walking.lesson14_polymorphism.task1.model.Corr
         return verticalLineUnit;
     }
 }
+

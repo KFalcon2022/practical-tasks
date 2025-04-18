@@ -1,6 +1,6 @@
 package com.walking.lesson14_polymorphism.task1.model;
 
-public class Square extends com.walking.lesson14_polymorphism.task1.model.CorrectFigure {
+public class Square extends CorrectFigure {
     public static final String VERTICAL_LINE_UNIT = "|";
     public static final String HORIZONTAL_UNIT = "---";
 
@@ -44,3 +44,4 @@ public class Square extends com.walking.lesson14_polymorphism.task1.model.Correc
         return verticalLineUnit;
     }
 }
+
