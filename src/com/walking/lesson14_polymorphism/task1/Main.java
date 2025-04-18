@@ -1,5 +1,10 @@
 package com.walking.lesson14_polymorphism.task1;
 
+import com.walking.lesson14_polymorphism.task1.model.Square;
+import com.walking.lesson14_polymorphism.task1.model.Triangle;
+
+import java.util.Scanner;
+
 /**
  * Реализуйте класс «Правильная фигура».
  * Для него создайте классы-наследники «Треугольник» и «Квадрат».
