@@ -1,6 +1,5 @@
 package com.walking.lesson14_polymorphism.task1;
 
-import com.walking.lesson14_polymorphism.task1.model.CorrectFigure;
 import com.walking.lesson14_polymorphism.task1.model.Square;
 import com.walking.lesson14_polymorphism.task1.model.Triangle;
 
@@ -25,17 +24,11 @@ public class Main {
         int figure = requireInt(("""
                 1. Triangle
                 2. Square
-
+                
                 Make your choice: """));
 
         int width = requireInt("Enter a width: ");
 
-//        CorrectFigure square = new Square(width);
-//        square.printFigure();
-//
-//        CorrectFigure triangle = new Triangle(width);
-//        triangle.printFigure();
-//
         switch (figure) {
             case 1:
                 new Triangle(width).printFigure();

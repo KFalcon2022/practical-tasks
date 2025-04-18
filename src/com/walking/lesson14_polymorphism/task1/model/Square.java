@@ -1,8 +1,6 @@
 package com.walking.lesson14_polymorphism.task1.model;
 
-import java.lang.ref.SoftReference;
-
-public class Square extends CorrectFigure{
+public class Square extends CorrectFigure {
     public static final String VERTICAL_LINE_UNIT = "|";
 
     public Square(int width) {
@@ -15,6 +13,7 @@ public class Square extends CorrectFigure{
         String vertcalLines = createVerticalLines();
         System.out.println(horizontalLine + vertcalLines + horizontalLine);
     }
+
     @Override
     protected String createHorizontalLine() {
         String horizontalLine = EMPTY_UNIT;
