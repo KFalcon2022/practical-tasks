@@ -2,6 +2,7 @@ package com.walking.lesson14_polymorphism.task1.model;
 
 public class Square extends CorrectFigure {
     public static final String VERTICAL_LINE_UNIT = "|";
+    public static final String HORIZONTAL_UNIT = "---";
 
     public Square(int width) {
         super(width);
@@ -17,7 +18,7 @@ public class Square extends CorrectFigure {
     @Override
     protected String createHorizontalLine() {
         String horizontalLine = EMPTY_UNIT;
-        for (int i = 0; i < width * 3; i++) {
+        for (int i = 0; i < width; i++) {
             horizontalLine += HORIZONTAL_UNIT;
         }
         horizontalLine += EMPTY_UNIT + NEW_LINE_UNIT;

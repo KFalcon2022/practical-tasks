@@ -3,7 +3,6 @@ package com.walking.lesson14_polymorphism.task1.model;
 public class CorrectFigure {
     public static final String EMPTY_UNIT =" ";
     public static final String NEW_LINE_UNIT = "\n";
-    public static final String HORIZONTAL_UNIT = "-";
 
     public final int width;
 
@@ -21,5 +20,4 @@ public class CorrectFigure {
     protected String createVerticalLines() {
         return EMPTY_UNIT;
     }
-
 }

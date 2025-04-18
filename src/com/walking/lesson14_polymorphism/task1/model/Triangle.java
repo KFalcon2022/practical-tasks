@@ -3,6 +3,7 @@ package com.walking.lesson14_polymorphism.task1.model;
 public class Triangle extends CorrectFigure {
     public static final String LEFT_SIDE_UNIT = "/";
     public static final String RIGHT_SIDE_UNIT = "\\";
+    public static final String HORIZONTAL_UNIT = "--";
 
     public Triangle(int width) {
         super(width);
@@ -16,7 +17,7 @@ public class Triangle extends CorrectFigure {
     @Override
     protected String createHorizontalLine() {
         String horizontalLine = EMPTY_UNIT;
-        for (int i = 0; i < width * 2; i++) {
+        for (int i = 0; i < width; i++) {
             horizontalLine += HORIZONTAL_UNIT;
         }
         return horizontalLine + NEW_LINE_UNIT;
