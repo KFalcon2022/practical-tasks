@@ -1,5 +1,10 @@
 package com.walking.lesson13_inheritance.task2;
 
+import com.walking.lesson13_inheritance.task2.animal.Animal;
+import com.walking.lesson13_inheritance.task2.animal.Cat;
+import com.walking.lesson13_inheritance.task2.animal.Cow;
+import com.walking.lesson13_inheritance.task2.animal.Dog;
+
 /**
  * Реализуйте класс Animal. Реализуйте его наследников: Dog, Cat, Cow.
  * Каждый из наследников должен содержать свой метод: woof(), meow() и moo() соответственно.
@@ -22,5 +27,16 @@ package com.walking.lesson13_inheritance.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Animal[] animals = new Animal[]{new Dog(), new Cat(), new Cow()};
+
+        System.out.println(call(animals));
+    }
+
+    private static String call(Animal[] animals) {
+        String all = "";
+        for (Animal x : animals) {
+            all += x.sound() + "\n";
+        }
+        return all;
     }
 }

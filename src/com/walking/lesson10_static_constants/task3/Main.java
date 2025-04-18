@@ -1,22 +1,39 @@
 package com.walking.lesson10_static_constants.task3;
 
+import java.util.Scanner;
+
 /**
- * Используя задачу
- * <a href="https://github.com/KFalcon2022/practical-tasks/blob/master/src/lesson7_varargs_overloading/Task5.java">...</a>
+ * Используя задачу </p>
  * (можете сделать на основе своего решения,
- * но для наглядности удобства новых возможностей рекомендую взять за основу решение по ссылке):
+ * </p>но для наглядности удобства новых возможностей
+ * </p>рекомендую взять за основу решение по ссылке):
  * <p>
- * 1. Вынесите поиск простых чисел в отдельный класс.
- * <p>
- * 2. Реализуйте возможность вывода на экран суммы N первых простых чисел,
- * где N – число, введенное пользователем с клавиатуры;
- * <p>
- * 3. Вынесите нужные вам переменные в поля класса.
+ * Вынесите поиск простых чисел в отдельный класс.</p>
+ * Реализуйте возможность вывода на экран суммы N первых простых чисел, где
+ * </p>N – число, введенное пользователем с клавиатуры;
+ * </p>
+ * Вынесите нужные вам переменные в поля класса.<p>
  * Если необходимо – сделайте их константами уровня класса или объекта.
- * Помните, константа ссылочного типа гарантирует неизменность ссылки, а не содержимого объекта.
- * Массив – ссылочный тип.
+ * </p>Помните, константа ссылочного типа гарантирует
+ * </p>неизменность ссылки, а не содержимого объекта.
+ * </p>Массив – ссылочный тип.
+ * </p>
+ * Примечание: это одна задача, а не различные варианты:)
  */
 public class Main {
+    public static final Scanner SCANNER = new Scanner(System.in);
+
     public static void main(String[] args) {
+//        int[] array = new int[requireInt()];
+        PrimeNumbersFinder primeNumbersFinder = new PrimeNumbersFinder(requireInt());
+        primeNumbersFinder.setArrayValue();
+        primeNumbersFinder.show();
+
+        primeNumbersFinder.getArraySum();
+    }
+
+    private static int requireInt() {
+        System.out.print("Enter a num: ");
+        return SCANNER.nextInt();
     }
 }
