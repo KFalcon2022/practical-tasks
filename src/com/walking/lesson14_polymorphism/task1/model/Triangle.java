@@ -1,29 +1,21 @@
 package com.walking.lesson14_polymorphism.task1.model;
 
 public class Triangle extends CorrectFigure {
-    public static final String TRIANGLE_LEFT_SIDE_UNIT = "/";
-    public static final String TRIANGLE_RIGHT_SIDE_UNIT = "\\";
+    public static final String LEFT_SIDE_UNIT = "/";
+    public static final String RIGHT_SIDE_UNIT = "\\";
 
-    public Triangle(int length) {
-        super(length);
+    public Triangle(int width) {
+        super(width);
     }
 
     @Override
-    public void printCorrectFigure() {
-        super.printCorrectFigure();
+    public void printFigure() {
+        System.out.println(createVerticalLines() + createHorizontalLine());
     }
 
     @Override
-    protected String printCorrectFigure(int height, int width) {
-        String horizontalLine = createHorizontalLine(width);
-        String verticalLines = createVerticalLines(height, width);
-        return verticalLines + horizontalLine;
-    }
-
-    @Override
-    protected String createHorizontalLine(int width) {
-        String horizontalLine = SPACE_UNIT;
-
+    protected String createHorizontalLine() {
+        String horizontalLine = EMPTY_UNIT;
         for (int i = 0; i < width * 2; i++) {
             horizontalLine += HORIZONTAL_UNIT;
         }
@@ -31,30 +23,29 @@ public class Triangle extends CorrectFigure {
     }
 
     @Override
-    protected String createVerticalLines(int height, int width) {
-        String verticalLines = EMPTY_UNIT;
-        int addingValue = 0;
+    protected String createVerticalLines() {
+        String verticalLines = "";
+        return createVerticalLines(width, width, verticalLines);
+    }
 
-        verticalLines += createVerticalLines(height, width, addingValue, verticalLines);
+    private String createVerticalLines(int width, int height, String verticalLines) {
+        for (int l = 0; l < height; l++) {
+            verticalLines += createVerticalLineUnit(width--, l);
+        }
         return verticalLines;
     }
 
-    protected String createVerticalLines(int height, int width, int addingValue, String verticalLines) {
-        if (height == 0) {
-            return verticalLines;
+    private String createVerticalLineUnit(int width, int height) {
+        String verticalLineUnit = "";
+        for (int before = width; before > 0; before--) {
+            verticalLineUnit += EMPTY_UNIT;
         }
-        for (int w = width; w > 0; w--) {
-            verticalLines += SPACE_UNIT;
+        verticalLineUnit += LEFT_SIDE_UNIT;
+        for (int after = height * 2; after > 0; after--) {
+            verticalLineUnit += EMPTY_UNIT;
         }
-        verticalLines += TRIANGLE_LEFT_SIDE_UNIT;
+        verticalLineUnit += RIGHT_SIDE_UNIT + NEW_LINE_UNIT;
 
-        for (int a = addingValue; a > 0; a--) {
-            verticalLines += SPACE_UNIT;
-        }
-        verticalLines += TRIANGLE_RIGHT_SIDE_UNIT + NEW_LINE_UNIT;
-        width--;
-        height--;
-        addingValue += 2;
-        return createVerticalLines(height, width, addingValue, verticalLines);
+        return verticalLineUnit;
     }
 }

@@ -6,58 +6,50 @@ import com.walking.lesson14_polymorphism.task1.model.Triangle;
 
 import java.util.Scanner;
 
-/**
- * Реализуйте класс «Правильная фигура».
- * <P>
- * Для него создайте классы-наследники Треугольник и Квадрат.
- *
- * Пользователь должен иметь возможность ввести длину стороны и выбрать тип фигуры.
- * <p>
- * Программа должна нарисовать в консоли выбранную пользователем фигуру, используя символы '-', '|', '/', '\'.
- * <p>
- * Обратите внимание, символ '\' в Java необходимо экранировать: '\\'.
+/*
+Реализуйте класс «Правильная фигура».
+Для него создайте классы-наследники `Треугольник` и `Квадрат`.
+
+Пользователь должен иметь возможность ввести длину стороны и выбрать тип фигуры.
+Программа должна нарисовать в консоли выбранную пользователем фигуру,
+используя символы `'-'`, `'|'`, `'/'`, `'\'`.
+
+Обратите внимание, символ `'\'` в Java необходимо экранировать: `'\\'.`
+
  */
 public class Main {
-    private static final String MENU = """
-            1. Square
-            2. Triangle
-            
-            Made your choice: """;
-    private static final String SIDE_LENGTH = "Enter a figure's side length: ";
-
-    private static final Scanner scanner = new Scanner(System.in);
+    public static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        createFigure();
 
+        int figure = requireInt(("""
+                1. Triangle
+                2. Square
+
+                Make your choice: """));
+
+        int width = requireInt("Enter a width: ");
+
+//        CorrectFigure square = new Square(width);
+//        square.printFigure();
+//
+//        CorrectFigure triangle = new Triangle(width);
+//        triangle.printFigure();
+//
+        switch (figure) {
+            case 1:
+                new Triangle(width).printFigure();
+                break;
+            case 2:
+                new Square(width).printFigure();
+                break;
+            default:
+                System.out.println("Unknown figure");
+        }
     }
 
-    public static final int requireInt(String message) {
+    public static int requireInt(String message) {
         System.out.print(message);
-        return scanner.nextInt();
-    }
-
-    public static final void createFigure() {
-        int figureNum = requireInt(MENU);
-
-        if (figureNum == 1 || figureNum == 2) {
-            int figureSide = requireInt(SIDE_LENGTH);
-
-            scanner.close();
-            switch (figureNum) {
-                case 1:
-                    CorrectFigure square = new Square(figureSide);
-                    break;
-                case 2:
-                    CorrectFigure triangle = new Triangle(figureSide);
-                    break;
-                default:
-                    System.out.println("Unknown figure");
-            }
-        }
-        else {
-            scanner.close();
-            System.out.println("Unknown fig");
-        }
+        return SCANNER.nextInt();
     }
 }

@@ -1,42 +1,46 @@
 package com.walking.lesson14_polymorphism.task1.model;
 
-public class Square extends CorrectFigure {
+import java.lang.ref.SoftReference;
 
-    public static final String VERTICAL_UNIT = "|";
+public class Square extends CorrectFigure{
+    public static final String VERTICAL_LINE_UNIT = "|";
 
-
-    public Square(int length) {
-        super(length);
-
+    public Square(int width) {
+        super(width);
     }
 
     @Override
-    public void printCorrectFigure() {
-        super.printCorrectFigure();
+    public void printFigure() {
+        String horizontalLine = createHorizontalLine();
+        String vertcalLines = createVerticalLines();
+        System.out.println(horizontalLine + vertcalLines + horizontalLine);
     }
-
     @Override
-    protected String printCorrectFigure(int height, int width) {
-        return super.printCorrectFigure(height, width);
-    }
-
-    @Override
-    protected String createHorizontalLine(int width) {
-        return super.createHorizontalLine(width);
-    }
-
-    @Override
-    protected String createVerticalLines(int height, int width) {
-        return super.createVerticalLines(height, width);
-    }
-
-    @Override
-    protected String createVerticalLineUnit(int width) {
-        String verticalLineUnit = VERTICAL_UNIT;
-
+    protected String createHorizontalLine() {
+        String horizontalLine = EMPTY_UNIT;
         for (int i = 0; i < width * 3; i++) {
-            verticalLineUnit += SPACE_UNIT;
+            horizontalLine += HORIZONTAL_UNIT;
         }
-        return verticalLineUnit + VERTICAL_UNIT + NEW_LINE_UNIT;
+        horizontalLine += EMPTY_UNIT + NEW_LINE_UNIT;
+        return horizontalLine;
+    }
+
+    @Override
+    protected String createVerticalLines() {
+        String verticalLineUnit = createVerticalLineUnit();
+        String verticalLines = "";
+        for (int i = 0; i < width; i++) {
+            verticalLines += verticalLineUnit;
+        }
+        return verticalLines;
+    }
+
+    private String createVerticalLineUnit() {
+        String verticalLineUnit = VERTICAL_LINE_UNIT;
+        for (int i = 0; i < width * 3; i++) {
+            verticalLineUnit += EMPTY_UNIT;
+        }
+        verticalLineUnit += VERTICAL_LINE_UNIT + NEW_LINE_UNIT;
+        return verticalLineUnit;
     }
 }
