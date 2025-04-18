@@ -13,6 +13,7 @@ import com.walking.lesson14_polymorphism.task2.model.Dog;
  * <p>
  * Использовать отдельное поле для хранения выводимой строки — недопустимо:)
  */
+
 public class Main {
     public static void main(String[] args) {
         Animal[] animals = new Animal[]{new Cat(), new Cow(), new Dog()};
@@ -22,14 +23,7 @@ public class Main {
 
     private static void soundAll(Animal[] animals) {
         for (Animal x : animals) {
-            if ("meow".equals(x.sound()))
-                System.out.println(new Cat().sound());
-            else if ("moo".equals(x.sound()))
-                System.out.println(new Cow().sound());
-            else if ("woof".equals(x.sound()))
-                System.out.println(new Dog().sound());
-            else
-                System.out.println("Unknown animal!");
+            x.sound();
         }
     }
 }

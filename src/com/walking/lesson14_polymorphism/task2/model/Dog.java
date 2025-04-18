@@ -1,8 +1,8 @@
 package com.walking.lesson14_polymorphism.task2.model;
 
-public class Dog extends com.walking.lesson14_polymorphism.task2.model.Animal {
+public class Dog extends Animal {
     @Override
-    public String sound() {
-        return "woof";
+    public void sound() {
+        System.out.println("woof");
     }
 }
