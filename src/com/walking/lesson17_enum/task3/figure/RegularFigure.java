@@ -46,6 +46,7 @@ public enum RegularFigure {
     private static final String HORIZONTAL_SIDE = "_";
     private static final String HORIZONTAL_SQUARE = "-";
     private static final String VERTICAL_SQUARE = "|";
+
     private final String name;
 
     RegularFigure(String name) {

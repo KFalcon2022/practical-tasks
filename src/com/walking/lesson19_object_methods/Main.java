@@ -1,6 +1,6 @@
 package com.walking.lesson19_object_methods;
 
-import com.walking.lesson19_object_methods.autos.Car;
+import com.walking.lesson19_object_methods.car.Car;
 
 import java.util.Scanner;
 
@@ -37,7 +37,7 @@ public class Main {
 
         Car car = new Car(make, owner, number);
 
-        if (!carExist(cars, car)) {
+        if (!isCarExist(cars, car)) {
             System.out.println("Машина не найдена!");
         } else {
             System.out.println(car);
@@ -45,7 +45,7 @@ public class Main {
         }
     }
 
-    public static boolean carExist(Car[] cars, Car car) {
+    public static boolean isCarExist(Car[] cars, Car car) {
         for (Car car1 : cars) {
             if (car1.equals(car)) {
                 return true;

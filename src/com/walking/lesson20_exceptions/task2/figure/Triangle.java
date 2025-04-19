@@ -1,4 +1,4 @@
-package com.walking.lesson20_exceptions.task2.figures;
+package com.walking.lesson20_exceptions.task2.figure;
 
 public class Triangle extends RegularFigure {
     public static final String NAME = "треугольник";

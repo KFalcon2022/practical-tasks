@@ -1,4 +1,4 @@
-package com.walking.lesson20_exceptions.task1_catchException.files;
+package com.walking.lesson20_exceptions.task1_throwsException.file;
 
 public enum FileType {
     TEXT("текст"),
@@ -16,6 +16,3 @@ public enum FileType {
         return name;
     }
 }
-
-
-

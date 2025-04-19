@@ -1,4 +1,4 @@
-package com.walking.lesson21_immutable_object.autos;
+package com.walking.lesson21_immutable_object.car;
 
 public class Car {
     private final CarIdentifier identifier;
@@ -7,6 +7,10 @@ public class Car {
     public Car(String brand, String owner, String number) {
         this.identifier = new CarIdentifier(brand, number);
         this.owner = owner;
+    }
+
+    public Car(CarIdentifier identifier) {
+        this.identifier = identifier;
     }
 
     @Override
@@ -26,4 +30,21 @@ public class Car {
         this.owner = owner;
     }
 
+    public boolean equals(Object car) {
+        if (this == car) {
+            return true;
+        }
+
+        if (car == null) {
+            return false;
+        }
+
+        if (!getClass().equals(car.getClass())) {
+            return false;
+        }
+
+        Car c = (Car) car;
+
+        return identifier.equals(c.identifier);
+    }
 }

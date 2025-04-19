@@ -1,7 +1,8 @@
 package com.walking.lesson21_immutable_object;
 
-import com.walking.lesson21_immutable_object.autos.Car;
-import com.walking.lesson21_immutable_object.autos.CarIdentifier;
+import com.walking.lesson21_immutable_object.car.Car;
+import com.walking.lesson21_immutable_object.car.CarIdentifier;
+import com.walking.lesson21_immutable_object.car.CarService;
 
 import java.util.Scanner;
 
@@ -30,22 +31,13 @@ public class Main {
         System.out.print("Номер машины: ");
         String number = in.nextLine();
 
-        CarIdentifier car = new CarIdentifier(brand, number);
-        Car car1 = findCar(cars, car);
+        Car car = new Car(new CarIdentifier(brand, number));
+        car = CarService.findCar(cars, car);
 
-        if (car1 == null) {
+        if (car == null) {
             System.out.println("Машина не найдена!");
         } else {
-            System.out.println(car1);
+            System.out.println(car);
         }
-    }
-
-    public static Car findCar(Car[] cars, CarIdentifier car) {
-        for (Car car1 : cars) {
-            if (car1.getIdentifier().equals(car)) {
-                return car1;
-            }
-        }
-        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.walking.lesson20_exceptions.task3.animals;
+package com.walking.lesson20_exceptions.task3.animal;
 
 public class Dog extends Animal {
 

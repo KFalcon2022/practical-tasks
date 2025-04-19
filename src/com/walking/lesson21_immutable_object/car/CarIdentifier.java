@@ -1,19 +1,12 @@
-package com.walking.lesson19_object_methods.autos;
+package com.walking.lesson21_immutable_object.car;
 
-public class Car {
+public final class CarIdentifier {
     private final String brand;
-    private final String owner;
     private final String number;
 
-    public Car(String brand, String owner, String number) {
+    public CarIdentifier(String brand, String number) {
         this.brand = brand;
-        this.owner = owner;
         this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return "Машина марки " + brand + ", владелец: " + owner + ", номер: " + number;
     }
 
     @Override
@@ -30,18 +23,25 @@ public class Car {
             return false;
         }
 
-        Car auto = (Car) car;
+        CarIdentifier c = (CarIdentifier) car;
 
-        return number.equals(auto.number) && brand.equals(auto.brand) && owner.equals(auto.owner);
+        return number.equals(c.number) && brand.equals(c.brand);
     }
 
     @Override
     public int hashCode() {
         int result = brand != null ? brand.hashCode() : 0;
-        result *= 31 + (owner != null ? owner.hashCode() : 0);
         result *= 31 + (number != null ? number.hashCode() : 0);
 
         return result;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
 }
