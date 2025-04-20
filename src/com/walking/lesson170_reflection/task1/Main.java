@@ -1,4 +1,4 @@
-package com.walking.lesson169_reflection.task1;
+package com.walking.lesson170_reflection.task1;
 
 /**
  * Реализуйте метод, которая выводит в консоль метаинформацию о переданном классе:
