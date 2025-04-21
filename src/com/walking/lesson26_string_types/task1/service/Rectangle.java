@@ -1,12 +1,12 @@
 package com.walking.lesson26_string_types.task1.service;
 
 public class Rectangle {
-    private int length;
-    private int width;
-
     private final String SPACE = " ";
     private final String LENGTH_SYMBOL = "-";
     private final String WIDTH_SYMBOL = "|";
+
+    private int length;
+    private int width;
 
     public Rectangle(int length, int width) {
         this.length = length;
@@ -22,9 +22,11 @@ public class Rectangle {
 
     public StringBuilder getRectangle() {
         StringBuilder rectangle = getLine(SPACE, LENGTH_SYMBOL);
+
         for (int i = 0; i < width - 2; i++) {
             rectangle.append(getLine(WIDTH_SYMBOL, SPACE));
         }
+
         return rectangle.append(getLine(SPACE, LENGTH_SYMBOL));
     }
 

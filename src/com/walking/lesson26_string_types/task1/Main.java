@@ -24,10 +24,11 @@ public class Main {
     public static int getNumber(Scanner in, String message) throws UnexpectedNumberException {
         System.out.print(message);
         int num = in.nextInt();
+
         if (num > 0) {
             return num;
         }
-        
+
         throw new UnexpectedNumberException("Число должно быть больше 0");
     }
 }
