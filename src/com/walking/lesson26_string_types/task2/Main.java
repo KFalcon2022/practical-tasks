@@ -38,6 +38,7 @@ public class Main {
             for (int j = i + 1; j < phrase.length; j++)
                 if (phrase[i].compareToIgnoreCase(phrase[j]) == 0) {
                 counter--;
+                break;
                 }
         }
         return counter;
