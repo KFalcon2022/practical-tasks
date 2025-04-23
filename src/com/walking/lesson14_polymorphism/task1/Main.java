@@ -23,7 +23,7 @@ public class Main {
             1. Triangle
             2. Square
             
-            Make your choice: """;
+            Make your choice:""";
 
     public static void main(String[] args) {
         int figureType = requireInt(MENU);
@@ -34,7 +34,7 @@ public class Main {
     }
 
     private static String createFigure(int figureType, int length) {
-        RegularFigure figure = null;
+        RegularFigure figure;
 
         switch (figureType) {
             case 1:
