@@ -5,6 +5,7 @@ public class Square implements EquiliteralShape {
     public static final String RECTANGLE_VERTICAL_ELEMENT= "-";
 
     private final int length;
+
     public Square(int length) {
         this.length = length;
     }
@@ -15,6 +16,11 @@ public class Square implements EquiliteralShape {
         String verticalLines = createVerticalLines();
 
         return horizontalLine + verticalLines + horizontalLine;
+    }
+
+    @Override
+    public int getLength() {
+        return length;
     }
 
     private String createHorizontalLine() {

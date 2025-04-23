@@ -1,6 +1,6 @@
 package com.walking.lesson14_polymorphism.task1;
 
-import com.walking.lesson14_polymorphism.task1.model.CorrectFigure;
+import com.walking.lesson14_polymorphism.task1.model.RegularFigure;
 import com.walking.lesson14_polymorphism.task1.model.Square;
 import com.walking.lesson14_polymorphism.task1.model.Triangle;
 
@@ -20,35 +20,33 @@ import java.util.Scanner;
 public class Main {
     public static final Scanner SCANNER = new Scanner(System.in);
     public static final String MENU = """
-                1. Triangle
-                2. Square
-                
-                Make your choice: """;
+            1. Triangle
+            2. Square
+            
+            Make your choice: """;
+
     public static void main(String[] args) {
+        int figureType = requireInt(MENU);
 
-        int figureType = requireInt((MENU));
+        int length = requireInt("Enter a length: ");
 
-
-        int width = requireInt("Enter a width: ");
-
-        createFigure(figureType, width).printFigure();
-
+        System.out.println(createFigure(figureType, length));
     }
 
-    private static CorrectFigure createFigure(int figureType, int width) {
-        CorrectFigure figure = null;
+    private static String createFigure(int figureType, int length) {
+        RegularFigure figure = null;
 
         switch (figureType) {
             case 1:
-                figure = new Triangle(width);
+                figure = new Triangle(length);
                 break;
             case 2:
-                figure = new Square(width);
+                figure = new Square(length);
                 break;
             default:
-                System.out.println("Unknown figure");
+                figure = new RegularFigure(length);
         }
-        return figure;
+        return figure.print();
     }
 
     public static int requireInt(String message) {

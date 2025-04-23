@@ -6,4 +6,6 @@ public interface EquiliteralShape {
     char NEW_LINE_SYMBOL = '\n';
 
     String createShapeString();
+
+    int getLength();
 }

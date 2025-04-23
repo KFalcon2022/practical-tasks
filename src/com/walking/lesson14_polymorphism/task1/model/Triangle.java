@@ -1,32 +1,30 @@
 package com.walking.lesson14_polymorphism.task1.model;
 
-public class Triangle extends CorrectFigure {
+public class Triangle extends RegularFigure {
     public static final String LEFT_SIDE_UNIT = "/";
     public static final String RIGHT_SIDE_UNIT = "\\";
     public static final String HORIZONTAL_UNIT = "--";
 
-    public Triangle(int width) {
-        super(width);
+    public Triangle(int length) {
+        super(length);
     }
 
     @Override
-    public void printFigure() {
-        System.out.println(createVerticalLines() + createHorizontalLine());
+    public String print() {
+        return createVerticalLines() + createHorizontalLine();
     }
 
-    @Override
     protected String createHorizontalLine() {
         String horizontalLine = EMPTY_UNIT;
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < length; i++) {
             horizontalLine += HORIZONTAL_UNIT;
         }
         return horizontalLine + NEW_LINE_UNIT;
     }
 
-    @Override
     protected String createVerticalLines() {
         String verticalLines = "";
-        return createVerticalLines(width, width, verticalLines);
+        return createVerticalLines(length, length, verticalLines);
     }
 
     private String createVerticalLines(int width, int height, String verticalLines) {
@@ -50,4 +48,3 @@ public class Triangle extends CorrectFigure {
         return verticalLineUnit;
     }
 }
-

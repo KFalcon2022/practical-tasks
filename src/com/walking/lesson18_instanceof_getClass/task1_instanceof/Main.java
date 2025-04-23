@@ -16,6 +16,7 @@ public class Main {
         Animal[] animals = new Animal[]{new Cow(), new Cat(), new Dog()};
 
         soundAll(animals);
+
     }
 
     private static void soundAll(Animal[] animals) {

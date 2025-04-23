@@ -34,4 +34,9 @@ public class EquiliteralTriangle implements EquiliteralShape {
 
         return triangle;
     }
+
+    @Override
+    public int getLength() {
+        return length;
+    }
 }

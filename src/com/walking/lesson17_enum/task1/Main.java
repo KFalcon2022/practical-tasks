@@ -19,6 +19,7 @@ public class Main {
 
         scanner.close();
 
-        Answer.phraseSearch(question);
+        Answer[] answers = Answer.values();
+        System.out.println(Answer.comparePhrase(question, answers));
     }
 }
