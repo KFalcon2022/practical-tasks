@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите тип фигуры: ");
-        String figureType = in.nextLine();
+        String shape = in.nextLine();
         System.out.print("Введите длину стороны: ");
         int length = in.nextInt();
 
@@ -22,51 +22,54 @@ public class Main {
             return;
         }
 
-        System.out.println(getResult(length, figureType));
+        System.out.println(getResult(length, shape));
     }
 
-    public static String getResult(int length, String figureType) {
-        switch (figureType.toLowerCase()) {
+    public static String getResult(int length, String shape) {
+        RegularFigure figure;
+
+        switch (shape.toLowerCase()) {
             case "треугольник":
-                RegularFigure triangle = new RegularFigure() {
-                    @Override
-                    public String getFigure() {
-                        int k = length / 2;
-                        int j = length % 2;
-
-                        String triangle = "";
-                        for (int i = 0; i < length / 2; i++) {
-                            triangle += SPACE.repeat(k) + LEFT_SIDE + SPACE.repeat(j) + RIGHT_SIDE + NEXT_LINE_SYMBOL;
-                            k--;
-                            j += 2;
-                        }
-                        return triangle + LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
-                    }
-                };
-                return triangle.getFigure();
-
+                figure = getTriangle(length);
+                break;
             case "квадрат":
-                RegularFigure square = new RegularFigure() {
-                    @Override
-                    public String getFigure() {
-                        String horizontal = SPACE + HORIZONTAL.repeat(length - 2) + SPACE + NEXT_LINE_SYMBOL;
-                        String square = horizontal;
-                        for (int i = 0; i < length - 2; i++) {
-                            square += VERTICAL + SPACE.repeat(length - 2) + VERTICAL + NEXT_LINE_SYMBOL;
-                        }
-                        return square + horizontal;
-                    }
-                };
-                return square.getFigure();
-
+                figure = getSquare(length);
+                break;
             default:
-                RegularFigure unknown = new RegularFigure() {
-                    @Override
-                    public String getFigure() {
-                        return "Неизвестная фигура";
-                    }
-                };
-                return unknown.getFigure();
+                throw new RuntimeException("Unknown shape");
         }
+        return figure.getFigure();
+    }
+
+    public static RegularFigure getTriangle(int length) {
+        return new RegularFigure() {
+            @Override
+            public String getFigure() {
+                int k = length / 2;
+                int j = length % 2;
+
+                String triangle1 = "";
+                for (int i = 0; i < length / 2; i++) {
+                    triangle1 += SPACE.repeat(k) + LEFT_SIDE + SPACE.repeat(j) + RIGHT_SIDE + NEXT_LINE_SYMBOL;
+                    k--;
+                    j += 2;
+                }
+                return triangle1 + LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
+            }
+        };
+    }
+
+    public static RegularFigure getSquare(int length) {
+        return new RegularFigure() {
+            @Override
+            public String getFigure() {
+                String horizontal = SPACE + HORIZONTAL.repeat(length - 2) + SPACE + NEXT_LINE_SYMBOL;
+                String square = horizontal;
+                for (int i = 0; i < length - 2; i++) {
+                    square += VERTICAL + SPACE.repeat(length - 2) + VERTICAL + NEXT_LINE_SYMBOL;
+                }
+                return square + horizontal;
+            }
+        };
     }
 }

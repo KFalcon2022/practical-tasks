@@ -32,7 +32,7 @@ public class Main {
         String number = in.nextLine();
 
         Car car = new Car(new CarIdentifier(brand, number));
-        car = CarService.findCar(cars, car);
+        car = CarService.find(cars, car);
 
         if (car == null) {
             System.out.println("Машина не найдена!");

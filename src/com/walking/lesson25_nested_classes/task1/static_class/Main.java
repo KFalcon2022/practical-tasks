@@ -33,8 +33,7 @@ public class Main {
         };
     }
 
-
-    static class Square implements RegularFigure {
+    private static class Square implements RegularFigure {
         public String getFigure(int length) {
             String square = getHorizontalSide(length);
             for (int i = 0; i < length - 2; i++) {
@@ -52,7 +51,7 @@ public class Main {
         }
     }
 
-    static class Triangle implements RegularFigure {
+    private static class Triangle implements RegularFigure {
         public String getFigure(int length) {
             return getTriangle(length) + getBottomSide(length);
         }

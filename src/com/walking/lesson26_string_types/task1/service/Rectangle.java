@@ -32,9 +32,13 @@ public class Rectangle {
 
     private StringBuilder getLine(String side, String center) {
         StringBuilder horizontal = new StringBuilder(side);
-        horizontal.append(center.repeat(length - 2));
+        for (int i = 0; i < length - 2; i++) {
+            horizontal.append(center);
+        }
 
-        return horizontal.append(side).append("\n");
+        return horizontal
+                .append(side)
+                .append("\n");
     }
 
     public int getLength() {

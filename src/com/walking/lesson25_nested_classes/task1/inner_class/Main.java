@@ -11,11 +11,9 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        Main main = new Main();
-
         Scanner in = new Scanner(System.in);
         System.out.print("Введите тип фигуры: ");
-        String figureType = in.nextLine();
+        String shape = in.nextLine();
         System.out.print("Введите длину стороны: ");
         int length = in.nextInt();
 
@@ -24,20 +22,23 @@ public class Main {
             return;
         }
 
-        switch (figureType.toLowerCase()) {
-            case "треугольник":
-                System.out.println(main.new Triangle(length).getFigure());
-                break;
-            case "квадрат":
-                System.out.println(main.new Square(length).getFigure());
-                break;
-            default:
-                System.out.println("Неизвестная фигура");
-                break;
-        }
+        System.out.println(createFigure(length, shape));
     }
 
-    class Square implements RegularFigure {
+    public static String createFigure(int length, String shape) {
+        Main main = new Main();
+        RegularFigure figure = switch (shape.toLowerCase()) {
+            case "треугольник" -> main.new Triangle(length);
+            case "квадрат" -> main.new Square(length);
+            default -> throw new RuntimeException("Неизвестная фигура");
+        };
+
+        return figure.getFigure();
+    }
+
+    private class Square implements RegularFigure {
+        private final String HORIZONTAL = "-";
+        private final String VERTICAL = "|";
         private final int length;
 
         private Square(int length) {
@@ -62,7 +63,10 @@ public class Main {
         }
     }
 
-    class Triangle implements RegularFigure {
+    private class Triangle implements RegularFigure {
+        String RIGHT_SIDE = "\\";
+        String LEFT_SIDE = "/";
+        String BOTTOM_SIDE = "_";
         private final int length;
 
         private Triangle(int length) {
@@ -71,14 +75,14 @@ public class Main {
 
         @Override
         public String getFigure() {
-            return getTriangle() + getBottomSide();
+            return getSides() + getBottomSide();
         }
 
         private String getBottomSide() {
             return LEFT_SIDE + BOTTOM_SIDE.repeat(length) + RIGHT_SIDE;
         }
 
-        private String getTriangle() {
+        private String getSides() {
             int k = length / 2;
             int j = length % 2;
 

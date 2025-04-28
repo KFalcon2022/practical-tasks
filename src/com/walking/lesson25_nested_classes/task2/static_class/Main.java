@@ -20,21 +20,21 @@ public class Main {
         }
     }
 
-    static class Cat extends Animal {
+    private static class Cat extends Animal {
         @Override
         public void sound() {
             System.out.println("meow");
         }
     }
 
-    static class Dog extends Animal {
+    private static class Dog extends Animal {
         @Override
         public void sound() {
             System.out.println("woof");
         }
     }
 
-    static class Cow extends Animal {
+    private static class Cow extends Animal {
         @Override
         public void sound() {
             System.out.println("moo");
