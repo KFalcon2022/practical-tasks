@@ -19,7 +19,6 @@ public class Main {
 
         scanner.close();
 
-        Answer[] answers = Answer.values();
-        System.out.println(Answer.comparePhrase(question, answers));
+        System.out.println(Answer.toAnswer(question));
     }
 }

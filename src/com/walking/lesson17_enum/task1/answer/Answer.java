@@ -22,8 +22,8 @@ public enum Answer {
         return question;
     }
 
-    public static String comparePhrase(String question, Answer[] answers) {
-        for (Answer x : answers) {
+    public static String toAnswer(String question) {
+        for (Answer x : values()) {
             if (question.equals(x.getQuestion())) {
                 return x.getAnswer();
             }

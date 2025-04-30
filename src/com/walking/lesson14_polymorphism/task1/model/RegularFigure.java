@@ -11,7 +11,8 @@ public class RegularFigure {
     }
 
     public String print() {
-        return "Unknown figure";
+        String figure = EMPTY_UNIT + NEW_LINE_UNIT;
+        return figure;
     }
 
 }
