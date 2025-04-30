@@ -14,5 +14,4 @@ public class RegularFigure {
         String figure = EMPTY_UNIT + NEW_LINE_UNIT;
         return figure;
     }
-
 }
