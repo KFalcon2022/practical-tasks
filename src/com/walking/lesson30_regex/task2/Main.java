@@ -14,5 +14,12 @@ package com.walking.lesson30_regex.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        String name = "Иванов Иван Иванович";
+
+
+    }
+
+    public static boolean isValidName(String name) {
+        return name.matches("\\s*");
     }
 }
