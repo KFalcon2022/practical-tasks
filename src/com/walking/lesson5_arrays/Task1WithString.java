@@ -7,5 +7,11 @@ package com.walking.lesson5_arrays;
  */
 public class Task1WithString {
     public static void main(String[] args) {
+        char[] array = {'G', 'a', 'l', 'i', 'n', 'a'};
+        String name = "";
+        for (char element: array){
+            name += element;
+        }
+        System.out.println(name);
     }
 }

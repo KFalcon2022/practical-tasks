@@ -1,5 +1,7 @@
 package com.walking.lesson4_cycles;
 
+import java.util.Scanner;
+
 /**
  * Ввести с клавиатуры целое число (Число 2).
  * Для каждого из чисел от 1 до 10 выполнить:
@@ -20,5 +22,17 @@ package com.walking.lesson4_cycles;
  */
 public class Task4 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите целое число: ");
+        int n = scanner.nextInt();
+        scanner.close();
+
+        for (int i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                System.out.println("Сумма " + (i + n));
+            } else {
+                System.out.println("Разность " + (i - n));
+            }
+        }
     }
 }

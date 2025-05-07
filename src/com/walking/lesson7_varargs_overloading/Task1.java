@@ -7,5 +7,15 @@ package com.walking.lesson7_varargs_overloading;
  */
 public class Task1 {
     public static void main(String[] args) {
+        System.out.println(addString("Hello", "my", "new", "friend"));
+    }
+
+    static String addString(String ...str) {
+        String s = "";
+        for (String element : str) {
+            s += element + " ";
+        }
+        s = s.trim();
+        return s;
     }
 }
