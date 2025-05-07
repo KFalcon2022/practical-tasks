@@ -1,5 +1,8 @@
 package com.walking.lesson30_regex.task1hard;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Реализуйте boolean-метод, валидирующий входящую строку.
  * Метод должен возвращать true,
@@ -16,5 +19,14 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+        String number = "+79999999999";
+        System.out.println(check(number));
+    }
+
+    private static boolean check(String str) {
+        Pattern pattern = Pattern.compile("^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}\\-?\\d{2}\\-?\\d{2}$");
+        Matcher matcher = pattern.matcher(str);
+
+        return matcher.matches();
     }
 }
