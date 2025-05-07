@@ -1,5 +1,7 @@
 package com.walking.lesson57_stream_collect_collector;
 
+import java.util.stream.Stream;
+
 /**
  * Необходимо реализовать набор функций для HRM-системы компании,
  * каждая из которых сводится к формированию определенной статистики на базе информации

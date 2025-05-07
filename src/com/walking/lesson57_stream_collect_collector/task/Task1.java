@@ -4,6 +4,7 @@ import com.walking.lesson57_stream_collect_collector.model.Department;
 import com.walking.lesson57_stream_collect_collector.model.Employee;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте список всех сотрудников компании.
@@ -11,6 +12,10 @@ import java.util.List;
 public class Task1 implements StatisticTask<List<Employee>> {
     @Override
     public List<Employee> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                          .flatMap(d -> d.getEmployees()
+                                         .stream())
+                          .distinct()
+                          .collect(Collectors.toList());
     }
 }
