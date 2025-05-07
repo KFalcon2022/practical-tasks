@@ -1,5 +1,7 @@
 package com.walking.lesson26_string_types.task2;
 
+import java.util.Scanner;
+
 /**
  * Реализуйте программу, принимающую с клавиатуры строку,
  * содержащую слова, разделенные пробелом.
@@ -18,5 +20,32 @@ package com.walking.lesson26_string_types.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String phrase  = scanner.nextLine();
+        scanner.close();
+
+        phrase.strip();
+
+        String[] words = phrase.split(" ");
+
+        System.out.println(compareWords(words));
     }
-}
+
+    public static int compareWords(String[] words) {
+        int amount = 1;
+        StringBuilder sb = new StringBuilder();
+        sb.append(" " + words[0] + " ");
+
+        for (int i = 0; i < (words.length - 1); i++) {
+                int result = words[i].compareToIgnoreCase(words[i+1]);
+                if (result > 0 || result < 0) {
+                    if (!(sb.toString().contains(" " + words[i+1] + " "))) {
+                        sb.append(words[i+1] + " ");
+                        amount++;
+                    }
+                }
+        }
+
+        return amount;
+    }
+ }
