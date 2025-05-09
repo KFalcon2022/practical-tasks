@@ -1,7 +1,7 @@
 package com.walking.lesson16_abstract_class_interface.task1_interface;
 
-import com.walking.lesson16_abstract_class_interface.task1_interface.model.EquiliteralShape;
-import com.walking.lesson16_abstract_class_interface.task1_interface.model.EquiliteralTriangle;
+import com.walking.lesson16_abstract_class_interface.task1_interface.model.EquilateralShape;
+import com.walking.lesson16_abstract_class_interface.task1_interface.model.EquilateralTriangle;
 import com.walking.lesson16_abstract_class_interface.task1_interface.model.Square;
 
 import java.util.Scanner;
@@ -34,14 +34,14 @@ public class Main {
     }
 
     private static String createShapeString(int length, int type) {
-        EquiliteralShape shape;
+        EquilateralShape shape;
 
         switch (type) {
             case 1:
                 shape = new Square(length);
                 break;
             case 2:
-                shape = new EquiliteralTriangle(length);
+                shape = new EquilateralTriangle(length);
                 break;
             default:
                 return "Unknown shape";

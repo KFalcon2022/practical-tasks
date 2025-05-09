@@ -1,6 +1,6 @@
 package com.walking.lesson16_abstract_class_interface.task1_interface.model;
 
-public class Square implements EquiliteralShape {
+public class Square implements EquilateralShape {
     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
     public static final String RECTANGLE_VERTICAL_ELEMENT= "-";
 

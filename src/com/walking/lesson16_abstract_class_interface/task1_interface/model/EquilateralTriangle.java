@@ -1,13 +1,13 @@
 package com.walking.lesson16_abstract_class_interface.task1_interface.model;
 
-public class EquiliteralTriangle implements EquiliteralShape {
+public class EquilateralTriangle implements EquilateralShape {
     public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
     public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
     public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
 
     private final int length;
 
-    public EquiliteralTriangle(int length) {
+    public EquilateralTriangle(int length) {
         this.length = length;
     }
 
