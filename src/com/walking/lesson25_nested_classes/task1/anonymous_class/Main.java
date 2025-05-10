@@ -1,6 +1,6 @@
 package com.walking.lesson25_nested_classes.task1.anonymous_class;
 
-import com.walking.lesson25_nested_classes.task1.inner_class.task1_interface.model.EquilateralShape;
+import com.walking.lesson25_nested_classes.task1.inner_class.model.EquilateralShape;
 
 import java.util.Scanner;
 
