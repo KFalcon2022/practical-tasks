@@ -10,6 +10,12 @@ import java.util.Scanner;
  * используя статические вложенные классы.
  */
 public class Main {
+    public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
+    public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
+    public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
+    public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
+    public static final String RECTANGLE_VERTICAL_ELEMENT = "-";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -49,10 +55,6 @@ public class Main {
     }
 
     private static class EquilateralTriangle implements EquilateralShape {
-        public static final String TRIANGLE_HORIZONTAL_SIDE_ELEMENT = "--";
-        public static final String TRIANGLE_LEFT_SIDE_ELEMENT = "/";
-        public static final String TRIANGLE_RIGHT_SIDE_ELEMENT = "\\";
-
         private final int length;
 
         public EquilateralTriangle(int length) {
@@ -90,9 +92,6 @@ public class Main {
     }
 
     private static class Square implements EquilateralShape {
-        public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
-        public static final String RECTANGLE_VERTICAL_ELEMENT = "-";
-
         private final int length;
 
         public Square(int length) {
