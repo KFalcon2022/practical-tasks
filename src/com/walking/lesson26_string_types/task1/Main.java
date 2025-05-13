@@ -17,7 +17,7 @@ public class Main {
 
         scanner.close();
 
-        StringBuffer rectangle = new StringBuffer(printRectangle(length, width));
+        StringBuffer rectangle = printRectangle(length, width);
         System.out.println("StringBuffer выбран по причине отсутствия многопоточности");
         System.out.println(rectangle);
     }
