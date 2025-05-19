@@ -31,6 +31,12 @@ public class Main {
         System.out.println("ИЛИ ЖЕ ПРОЩЕ СОЗДАТЬ МАССИВ STRINGBUILDER И ЗНАЧЕНИЕ КАЖДОГО МАССИВА ПРИВОДИТЬ К СТРОКЕ??" +
                 "ОТВЕТЬ ПЖ В КОМЕНТАРИЯХ К ПР)");
 
+        int wordsCounter = getWordsCounter(array);
+
+        System.out.println(wordsCounter);
+    }
+
+    private static int getWordsCounter(String[] array) {
         int wordsCounter = 0;
 
         for (int i = 0; i < array.length; i++) {
@@ -54,7 +60,6 @@ public class Main {
                 }
             }
         }
-
-        System.out.println(wordsCounter);
+        return wordsCounter;
     }
 }
