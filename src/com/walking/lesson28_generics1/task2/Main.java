@@ -15,6 +15,5 @@ public class Main {
         NotNullObject<Object> nullObject = new NotNullObject<>(null);
         System.out.println(nullObject.isNull());
 
-
     }
 }

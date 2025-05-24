@@ -17,6 +17,6 @@ public class ValueSearcher<T> {
             }
         }
 
-        throw new ValueNotFoundException("Required Value is not found");
+        throw new ValueNotFoundException();
     }
 }
