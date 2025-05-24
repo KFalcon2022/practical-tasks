@@ -1,6 +1,7 @@
 package com.walking.lesson21_immutable_object;
 
-import com.walking.lesson21_immutable_object.model.PersonalCar;
+import com.walking.lesson21_immutable_object.model.Car;
+import com.walking.lesson21_immutable_object.model.CarIdentifier;
 import com.walking.lesson21_immutable_object.service.CarService;
 
 import java.util.Scanner;
@@ -17,49 +18,43 @@ public class Main {
     public static void main(String[] args) {
         CarService carService = new CarService(initCars());
 
-        PersonalCar desiredCar = createCar();
-        PersonalCar foundCar = null;
-        try {
-            foundCar = carService.findCar(desiredCar);
-            System.out.println(foundCar);
-        } catch (CarFindException e) {
-            System.out.println(e.getMessage());
-        }
+        CarIdentifier desiredCar = createCar();
+
+        Car foundCar = carService.findCar(desiredCar);
+        System.out.println(foundCar);
+
+
+        // тупо переписал твоё решение - сам не додумался,
+        // что можно отдельный класс идентификатора создать в классе САR
     }
 
-    private static PersonalCar createCar() {
+    private static CarIdentifier createCar() {
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a car's number: ");
         String number = scanner.nextLine();
 
-        System.out.print("Enter a car's color: ");
-        String color = scanner.nextLine();
-
         System.out.print("Enter a car's year: ");
         int year = scanner.nextInt();
 
-        System.out.println("Enter a actuality of technical inspection: ");
-        boolean actualTechnicalInspection = scanner.nextBoolean();
-
         scanner.close();
 
-        return new PersonalCar(number, year, color, actualTechnicalInspection);
+        return new CarIdentifier(number, year);
     }
 
-    private static PersonalCar[] initCars() {
-        PersonalCar car1 = new PersonalCar("RR-111-RR", 2015, "yellow", true);
-        PersonalCar car2 = new PersonalCar("RR-222-RR", 2016, "yellow", true);
-        PersonalCar car3 = new PersonalCar("RR-333-RR", 2017, "yellow", true);
-        PersonalCar car4 = new PersonalCar("RR-444-RR", 2018, "yellow", true);
-        PersonalCar car5 = new PersonalCar("RR-555-RR", 2018, "yellow", true);
-        PersonalCar car6 = new PersonalCar("RR-666-RR", 2018, "yellow", true);
-        PersonalCar car7 = new PersonalCar("RR-777-RR", 2018, "yellow", true);
-        PersonalCar car8 = new PersonalCar("RR-888-RR", 2018, "yellow", true);
-        PersonalCar car9 = new PersonalCar("RR-999-RR", 2018, "yellow", true);
-        PersonalCar car10 = new PersonalCar("RR-000-RR", 2018, "yellow", true);
+    private static Car[] initCars() {
+        Car car1 = new Car("RR-111-RR", 2015, "yellow", true);
+        Car car2 = new Car("RR-222-RR", 2016, "yellow", true);
+        Car car3 = new Car("RR-333-RR", 2017, "yellow", true);
+        Car car4 = new Car("RR-444-RR", 2018, "yellow", true);
+        Car car5 = new Car("RR-555-RR", 2018, "yellow", true);
+        Car car6 = new Car("RR-666-RR", 2018, "yellow", true);
+        Car car7 = new Car("RR-777-RR", 2018, "yellow", true);
+        Car car8 = new Car("RR-888-RR", 2018, "yellow", true);
+        Car car9 = new Car("RR-999-RR", 2018, "yellow", true);
+        Car car10 = new Car("RR-000-RR", 2018, "yellow", true);
 
-        return new PersonalCar[]{car1, car2, car3, car4, car5, car6, car7, car8, car9, car10};
+        return new Car[]{car1, car2, car3, car4, car5, car6, car7, car8, car9, car10};
     }
 }

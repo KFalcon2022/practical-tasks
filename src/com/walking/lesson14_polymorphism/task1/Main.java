@@ -46,7 +46,7 @@ public class Main {
             default:
                 figure = new RegularFigure(length);
         }
-        return figure.print();
+        return figure.getFigure();
     }
 
     public static int requireInt(String message) {

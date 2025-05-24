@@ -37,6 +37,6 @@ public class File {
 
     @Override
     public String toString() {
-        return "File %s%s found and his size: %d".formatted(getName(), type.getType(), getSize());
+        return "File %s%s size: %d".formatted(getName(), type.getType(), getSize());
     }
 }

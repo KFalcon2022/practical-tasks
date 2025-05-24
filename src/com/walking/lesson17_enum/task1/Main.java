@@ -1,6 +1,6 @@
 package com.walking.lesson17_enum.task1;
 
-import com.walking.lesson17_enum.task1.answer.Answer;
+import com.walking.lesson17_enum.task1.answer.Answerable;
 
 import java.util.Scanner;
 
@@ -19,6 +19,6 @@ public class Main {
 
         scanner.close();
 
-        System.out.println(Answer.toAnswer(question));
+        System.out.println(Answerable.toAnswer(question));
     }
 }

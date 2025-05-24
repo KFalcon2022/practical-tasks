@@ -1,5 +1,7 @@
 package com.walking.lesson20_exceptions.task3;
 
+import com.walking.lesson20_exceptions.task3.exception.ArrayValidationException;
+import com.walking.lesson20_exceptions.task3.exception.UnknownAnimalException;
 import com.walking.lesson20_exceptions.task3.model.*;
 
 /**
@@ -13,13 +15,9 @@ import com.walking.lesson20_exceptions.task3.model.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[]{new Cow(), new Cat(), new Dog(), new bee() };
+        Animal[] animals = new Animal[]{new Cow(), new Cat(), new Dog(), new Bee() };
 
-        try {
             soundAll(animals);
-        } catch (UnknownAnimalException | ArrayValidationException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     private static void soundAll(Animal[] animals) throws UnknownAnimalException, ArrayValidationException {
@@ -32,7 +30,7 @@ public class Main {
         }
     }
 
-    private static void sound(Animal animal) throws UnknownAnimalException {
+    private static void sound(Animal animal)  {
         if (animal instanceof Cat cat) {
             cat.meow();
         } else if (animal instanceof Dog dog) {

@@ -5,7 +5,7 @@ import com.walking.lesson20_exceptions.task1_throwsException.model.File;
 import java.io.FileNotFoundException;
 
 public class FileService {
-    File[] files;
+    private final File[] files;
 
     public FileService(File[] files) {
         this.files = files;

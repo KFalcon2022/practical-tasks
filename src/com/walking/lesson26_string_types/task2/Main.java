@@ -23,7 +23,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a words: ");
-        StringBuffer strings = new StringBuffer(scanner.nextLine().trim());
+        String strings = new String(scanner.nextLine().trim().toLowerCase());
 
         scanner.close();
 
@@ -31,35 +31,30 @@ public class Main {
         System.out.println("ИЛИ ЖЕ ПРОЩЕ СОЗДАТЬ МАССИВ STRINGBUILDER И ЗНАЧЕНИЕ КАЖДОГО МАССИВА ПРИВОДИТЬ К СТРОКЕ??" +
                 "ОТВЕТЬ ПЖ В КОМЕНТАРИЯХ К ПР)");
 
-        int wordsCounter = getWordsCounter(array);
-
-        System.out.println(wordsCounter);
+        System.out.println(getWordsCounter(array));
     }
 
-    private static int getWordsCounter(String[] array) {
+    private static String getWordsCounter(String[] array) {
         int wordsCounter = 0;
 
         for (int i = 0; i < array.length; i++) {
 
-            if (i == 0) {
-                wordsCounter++;
-                continue;
-            }
-            if (array[i].isBlank()) {
-                continue;
-            }
+            int j = 0;
+            boolean isUnique = true;
 
-            for (int j = 0; j < i; j++) {
-
-                if (array[i].compareToIgnoreCase(array[j]) == 0) {
-                    break;
-                } else if (j < i - 1) {
-                    continue;
+            while (j < i && isUnique) {
+                if (array[i].equals(array[j])) {
+                    isUnique = false;
                 } else {
-                    wordsCounter++;
+                    j++;
                 }
             }
+
+            if (isUnique) {
+                wordsCounter++;
+            }
         }
-        return wordsCounter;
+
+        return "Found " + wordsCounter + " unique words";
     }
 }

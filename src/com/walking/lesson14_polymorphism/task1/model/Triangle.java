@@ -10,7 +10,7 @@ public class Triangle extends RegularFigure {
     }
 
     @Override
-    public String print() {
+    public String getFigure() {
         return createVerticalLines() + createHorizontalLine();
     }
 

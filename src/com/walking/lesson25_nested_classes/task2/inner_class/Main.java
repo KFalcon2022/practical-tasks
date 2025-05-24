@@ -9,7 +9,9 @@ import com.walking.lesson25_nested_classes.task2.inner_class.model.Animal;
  */
 public class Main {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[]{new Main().new Cat(), new Main().new Cow(), new Main().new Dog()};
+
+        Main main = new Main();
+        Animal[] animals = new Animal[]{main.new Cat(), main.new Cow(), main.new Dog()};
 
         soundAll(animals);
     }

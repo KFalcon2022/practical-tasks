@@ -10,7 +10,7 @@ public class RegularFigure {
         this.length = length;
     }
 
-    public String print() {
+    public String getFigure() {
         String figure = EMPTY_UNIT + NEW_LINE_UNIT;
         return figure;
     }

@@ -1,7 +1,7 @@
 package com.walking.lesson20_exceptions.task3.model;
 
-public class bee extends Animal {
-    public bee() {
+public class Bee extends Animal {
+    public Bee() {
         super("bzzz");
     }
 

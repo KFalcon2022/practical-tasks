@@ -10,16 +10,23 @@ import com.walking.lesson25_nested_classes.task2.anonymous_class.model.Animal;
 
 public class Main {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[]{new Animal(){
-            public void sound (){
+
+        Animal[] animals = new Animal[]{new Animal() {
+
+            @Override
+            public void sound() {
                 System.out.println("meow");
             }
         }, new Animal() {
-            public void sound (){
+
+            @Override
+            public void sound() {
                 System.out.println("moo");
             }
         }, new Animal() {
-            public void sound (){
+
+            @Override
+            public void sound() {
                 System.out.println("woof");
             }
         }};

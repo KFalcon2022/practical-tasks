@@ -1,30 +1,30 @@
 package com.walking.lesson17_enum.task1.answer;
 
-public enum Answer {
+public enum Answerable {
     HI("Hello", "Hi"),
     HOW_ARE_YOU("How are you  doing?", "How are you"),
     BYE("Good bye", "Bye"),
     UNKNOWN_GREETING("Unknown phrase", "some question");
 
     private final String answer;
-    private final String question;
+    private final String message;
 
-    Answer(String answer, String question) {
+    Answerable(String answer, String message) {
         this.answer = answer;
-        this.question = question;
+        this.message = message;
     }
 
     public String getAnswer() {
         return answer;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getMessage() {
+        return message;
     }
 
     public static String toAnswer(String question) {
-        for (Answer x : values()) {
-            if (question.equals(x.getQuestion())) {
+        for (Answerable x : values()) {
+            if (question.equals(x.getMessage())) {
                 return x.getAnswer();
             }
         }

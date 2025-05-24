@@ -9,7 +9,7 @@ public class Square extends RegularFigure {
     }
 
     @Override
-    public String print() {
+    public String getFigure() {
         return createHorizontalLine() + createVerticalLines() + createHorizontalLine();
 
     }

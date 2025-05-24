@@ -17,18 +17,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        try {
             System.out.print("Enter shape's length: ");
             int length = scanner.nextInt();
+
+            if (length < 1) {
+                throw new InvalidValidationException("Length can't be less than 1!");
+            }
 
             System.out.println("Enter shape's type:\n 1: Square\n 2: Triangle\n");
             int shapeType = scanner.nextInt();
 
             String shapeString = createShapeString(length, shapeType);
             System.out.println(shapeString);
-        } catch (InvalidValidationException i) {
-            System.out.println(i);
-        }
     }
 
     private static String createShapeString(int length, int type) {
