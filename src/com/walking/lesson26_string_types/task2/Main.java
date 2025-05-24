@@ -23,11 +23,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a words: ");
-        String strings = new String(scanner.nextLine().trim().toLowerCase());
+        String strings = scanner.nextLine().trim().toLowerCase();
 
         scanner.close();
 
-        String[] array = strings.toString().split(" ");
+        String[] array = strings.split(" ");
         System.out.println("ИЛИ ЖЕ ПРОЩЕ СОЗДАТЬ МАССИВ STRINGBUILDER И ЗНАЧЕНИЕ КАЖДОГО МАССИВА ПРИВОДИТЬ К СТРОКЕ??" +
                 "ОТВЕТЬ ПЖ В КОМЕНТАРИЯХ К ПР)");
 
