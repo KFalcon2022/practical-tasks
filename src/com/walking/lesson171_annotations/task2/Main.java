@@ -1,5 +1,8 @@
 package com.walking.lesson171_annotations.task2;
 
+import com.walking.lesson171_annotations.task2.model.PersonEntity;
+import com.walking.lesson171_annotations.task2.service.TableQueryGenerator;
+
 /**
  * Создайте ряд аннотаций для POJO, аналогичных или схожих с JPA аннотациями для Entity-классов
  * <p>
@@ -21,5 +24,9 @@ package com.walking.lesson171_annotations.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        var queryGenerator = new TableQueryGenerator();
+        var createPersonQuery = queryGenerator.generateCreateTableQuery(PersonEntity.class);
+
+        System.out.println(createPersonQuery);
     }
 }

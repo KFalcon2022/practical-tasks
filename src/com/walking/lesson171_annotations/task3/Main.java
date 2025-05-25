@@ -1,5 +1,10 @@
 package com.walking.lesson171_annotations.task3;
 
+import com.walking.lesson171_annotations.task3.service.ComponentLoaderService;
+import com.walking.lesson171_annotations.task3.service.ComponentService;
+
+import java.util.List;
+
 /**
  * Развейте решение, разработанное в
  * <a href="https://github.com/KFalcon2022/practical-tasks/blob/for-pr/src/com/walking/lesson170_reflection/task2/Main.java">Задаче 2</a>
@@ -15,5 +20,22 @@ package com.walking.lesson171_annotations.task3;
  */
 public class Main {
     public static void main(String[] args) {
+        var componentLoaderService = new ComponentLoaderService();
+        var componentService = new ComponentService();
+
+        var correctComponentPackages = List.of(
+                "com.walking.lesson171_annotations.task3.model1",
+                "com.walking.lesson171_annotations.task3.model2"
+        );
+        var classes = componentLoaderService.load(correctComponentPackages);
+        var objects = componentService.createObjects(classes);
+
+        var componentPackagesWithCircularDependency = List.of(
+                "com.walking.lesson171_annotations.task3.model1",
+                "com.walking.lesson171_annotations.task3.model2",
+                "com.walking.lesson171_annotations.task3.model3"
+        );
+        var classesWithCircularDependency = componentLoaderService.load(componentPackagesWithCircularDependency);
+        componentService.createObjects(classesWithCircularDependency); // В ходе обработки произойдет ошибка
     }
 }
