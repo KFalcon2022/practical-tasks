@@ -28,30 +28,34 @@ public class Main {
     }
 
     public static String[] splitPhrase(String phrase) {
-        phrase = phrase
-                .trim()
-                .toLowerCase();
-        return phrase.split(" ");
+        return phrase.trim()
+                .toLowerCase()
+                .split(" ");
     }
 
     public static int countWords(String[] phrase) {
         int counter = 0;
-        boolean isEqual = true;
+        boolean isEqual;
         for (int i = 0; i < phrase.length; i++) {
-            for (int j = i + 1; j < phrase.length; j++) {
-                if (phrase[i].equals(phrase[j])) {
-                    isEqual = false;
-                }
-            }
+            isEqual = isEqual(phrase, i);
 
             if (!isEqual) {
                 counter--;
             }
 
             counter++;
-            isEqual = true;
         }
 
         return counter;
+    }
+
+    public static boolean isEqual(String[] phrase, int num) {
+        for (int i = num + 1; i < phrase.length; i++) {
+            if (phrase[num].equals(phrase[i])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
