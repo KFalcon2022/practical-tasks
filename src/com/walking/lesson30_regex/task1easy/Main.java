@@ -1,5 +1,8 @@
 package com.walking.lesson30_regex.task1easy;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 /**
  * Реализуйте boolean-метод, валидирующий входящую строку.
  * Метод должен возвращать true,
@@ -12,5 +15,19 @@ package com.walking.lesson30_regex.task1easy;
  */
 public class Main {
     public static void main(String[] args) {
+        String regex = "^\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}$";
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите номер телефона: ");
+        String phrase = in.nextLine();
+
+        if (isPhoneNumber(phrase, regex)) {
+            System.out.println("Всё верно.");
+        } else {
+            throw new RuntimeException("Ошибка в данных.");
+        }
+    }
+
+    public static boolean isPhoneNumber(String phrase, String regex) {
+        return Pattern.matches(regex, phrase);
     }
 }
