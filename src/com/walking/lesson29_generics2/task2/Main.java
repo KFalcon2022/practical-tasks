@@ -1,7 +1,7 @@
 package com.walking.lesson29_generics2.task2;
 
 
-import com.walking.lesson29_generics2.task2.service.GenericNum;
+import com.walking.lesson29_generics2.task2.service.GenericNumber;
 
 /**
  * Используя Задачу 1 из урока Generics.
@@ -11,14 +11,14 @@ import com.walking.lesson29_generics2.task2.service.GenericNum;
  */
 public class Main {
     public static void main(String[] args) {
-        GenericNum<?> num = getGeneric(7);
-        System.out.println(num.getResult(3));
+        GenericNumber<?> num = getGeneric(7);
+        System.out.println(num.getPow(3));
 
         num = getGeneric(654L);
-        System.out.println(num.getResult(2));
+        System.out.println(num.getPow(2));
     }
 
-    public static GenericNum<? extends Number> getGeneric(Number num) {
-        return new GenericNum<>(num);
+    public static GenericNumber<? extends Number> getGeneric(Number num) {
+        return new GenericNumber<>(num);
     }
 }

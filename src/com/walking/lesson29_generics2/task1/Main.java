@@ -1,6 +1,6 @@
 package com.walking.lesson29_generics2.task1;
 
-import com.walking.lesson29_generics2.task1.service.Generic1;
+import com.walking.lesson29_generics2.task1.service.Generic;
 
 /**
  * Реализуйте обобщенный тип, хранящий параметризованное поле.
@@ -12,18 +12,18 @@ import com.walking.lesson29_generics2.task1.service.Generic1;
  */
 public class Main {
     public static void main(String[] args) {
-        Generic1<String> genericString = new Generic1<>("Hello");
+        Generic<String> genericString = new Generic<>("Hello");
         System.out.println(getSmth(genericString, "Okay"));
-        Generic1<Integer> genericInt = new Generic1<>(null);
+        Generic<Integer> genericInt = new Generic<>(null);
         System.out.println(getSmth(genericInt, 8));
     }
 
-    public static <T> T getSmth(Generic1<T> generic, T object) {
-        T something = generic.getObject();
-        if (something == null) {
+    public static <T> T getSmth(Generic<T> generic, T object) {
+        T genericObject = generic.getObject();
+        if (genericObject == null) {
             return object;
         }
 
-        return something;
+        return genericObject;
     }
 }

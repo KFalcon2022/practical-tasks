@@ -1,6 +1,6 @@
 package com.walking.lesson28_generics1.task1.service;
 
-public class GenericNum<T extends Number> {
+public class GenericNumber<T extends Number> {
     private T num;
 
     public void setNum(T num) {
@@ -11,7 +11,7 @@ public class GenericNum<T extends Number> {
         return num;
     }
 
-    public double getResult(double pow) {
+    public double getPow(double pow) {
         double number = num.doubleValue();
 
         return Math.pow(number, pow);

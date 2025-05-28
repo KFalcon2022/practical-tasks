@@ -19,6 +19,6 @@ public class Main {
             throw new RuntimeException("Object is null");
         }
 
-        System.out.println(object.getObj());
+        System.out.println(object.get());
     }
 }

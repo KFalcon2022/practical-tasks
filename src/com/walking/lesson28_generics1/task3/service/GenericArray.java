@@ -7,7 +7,7 @@ public class GenericArray<T> {
         this.arr = arr;
     }
 
-    public T[] getArr() {
+    public T[] get() {
         return arr;
     }
 

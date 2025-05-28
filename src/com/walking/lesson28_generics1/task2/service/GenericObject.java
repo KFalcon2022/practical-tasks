@@ -11,7 +11,7 @@ public class GenericObject<T> {
         return obj == null;
     }
 
-    public T getObj() {
+    public T get() {
         return obj;
     }
 }
