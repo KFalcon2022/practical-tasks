@@ -18,16 +18,16 @@ public class Main {
         String regex = "^\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}$";
         Scanner in = new Scanner(System.in);
         System.out.print("Введите номер телефона: ");
-        String phrase = in.nextLine();
+        String number = in.nextLine();
 
-        if (isPhoneNumber(phrase, regex)) {
+        if (isPhoneNumber(number, regex)) {
             System.out.println("Всё верно.");
         } else {
             throw new RuntimeException("Ошибка в данных.");
         }
     }
 
-    public static boolean isPhoneNumber(String phrase, String regex) {
-        return Pattern.matches(regex, phrase);
+    public static boolean isPhoneNumber(String number, String regex) {
+        return Pattern.matches(regex, number);
     }
 }
