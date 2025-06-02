@@ -42,13 +42,7 @@ public class Main {
             int j = 0;
             boolean isUnique = true;
 
-            while (j < i && isUnique) {
-                if (array[i].equals(array[j])) {
-                    isUnique = false;
-                } else {
-                    j++;
-                }
-            }
+            isUnique = isUnique(array, j, i, isUnique);
 
             if (isUnique) {
                 wordsCounter++;
@@ -56,5 +50,16 @@ public class Main {
         }
 
         return "Found " + wordsCounter + " unique words";
+    }
+
+    private static boolean isUnique(String[] array, int j, int i, boolean isUnique) {
+        while (j < i && isUnique) {
+            if (array[i].equals(array[j])) {
+                isUnique = false;
+            } else {
+                j++;
+            }
+        }
+        return isUnique;
     }
 }

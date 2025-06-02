@@ -29,12 +29,9 @@ public class Main {
     }
 
     private static StringBuilder printRectangle(int length, int width) {
-        StringBuilder rectangle = createHorizontalLine(length);
-
-        rectangle.append(createVerticalLines(length, width));
-        rectangle.append(createHorizontalLine(length));
-
-        return rectangle;
+        return createHorizontalLine(length)
+                .append(createVerticalLines(length, width))
+                .append(createHorizontalLine(length));
     }
 
     private static StringBuilder createHorizontalLine(int length) {

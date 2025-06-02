@@ -20,7 +20,7 @@ public class Main {
             soundAll(animals);
     }
 
-    private static void soundAll(Animal[] animals) throws UnknownAnimalException, ArrayValidationException {
+    private static void soundAll(Animal[] animals) throws ArrayValidationException {
         for (int i = 0; i < animals.length; i++) {
             if (animals[i] == null) {
                 throw new ArrayValidationException("Index " + i + " is null");
