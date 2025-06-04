@@ -5,12 +5,12 @@ public class Stack<T extends Object> {
 
     public Stack(T[] array) {
         this.array = array;
-
     }
 
     public void addToStack(T... objects) {
         int arrayLength = getArray().length + objects.length;
     }
+
     public T[] getArray() {
         return array;
     }

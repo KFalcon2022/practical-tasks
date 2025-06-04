@@ -1,6 +1,6 @@
 package com.walking.lesson17_enum.task1.answer;
 
-public enum Answerable {
+public enum Report {
     HI("Hello", "Hi"),
     HOW_ARE_YOU("How are you  doing?", "How are you"),
     BYE("Good bye", "Bye"),
@@ -9,7 +9,7 @@ public enum Answerable {
     private final String answer;
     private final String message;
 
-    Answerable(String answer, String message) {
+    Report(String answer, String message) {
         this.answer = answer;
         this.message = message;
     }
@@ -23,7 +23,7 @@ public enum Answerable {
     }
 
     public static String toAnswer(String question) {
-        for (Answerable x : values()) {
+        for (Report x : values()) {
             if (question.equals(x.getMessage())) {
                 return x.getAnswer();
             }

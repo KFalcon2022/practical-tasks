@@ -10,7 +10,6 @@ public class ValueSearcher<T> {
     }
 
     public T search(T requiredValue) {
-
         for (T arrayValue : array) {
             if (arrayValue.equals(requiredValue)) {
                 return arrayValue;
