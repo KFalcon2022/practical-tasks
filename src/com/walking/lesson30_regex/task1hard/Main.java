@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class Main {
     public static void main(String[] args) {
-        String regex = "^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}$";
+        String regex = "^\\+7 ?\\(?\\d{3}\\)? ?\\d{3}-?\\d{2}-?\\d{2}$";
         Scanner in = new Scanner(System.in);
         System.out.print("Введите номер телефона: ");
         String number = in.nextLine();
@@ -38,7 +38,7 @@ public class Main {
 
     private static boolean isValidSpase(String number) {
         if (number.contains(" ")) {
-            return number.matches("\\S+\\s\\S+\\s\\S+");
+            return number.matches("\\S+ \\S+ \\S+");
         }
         return true;
     }
