@@ -35,36 +35,36 @@ public class Main {
     }
 
     private static StringBuilder createHorizontalLine(int length) {
-        String horizontalLine = " ";
+        StringBuilder horizontalLine = new StringBuilder(" ");
 
         for (int i = 0; i < length; i++) {
-            horizontalLine += "-";
+            horizontalLine = horizontalLine.append("-");
         }
 
-        horizontalLine += " \n";
+        horizontalLine = horizontalLine.append(" \n");
 
-        return new StringBuilder(horizontalLine);
+        return horizontalLine;
     }
 
     private static StringBuilder createVerticalLines(int length, int width) {
-        String verticalLinesUnit = getVerticalLinesUnit(length);
+        StringBuilder verticalLinesUnit = new StringBuilder(getVerticalLinesUnit(length));
 
-        String verticalLines = "";
+        StringBuilder verticalLines = new StringBuilder("");
 
         for (int i = 0; i < width; i++) {
-            verticalLines += verticalLinesUnit;
+            verticalLines = verticalLines.append(verticalLinesUnit);
         }
-        return new StringBuilder(verticalLines);
+        return verticalLines;
     }
 
-    static String getVerticalLinesUnit(int length) {
-        String verticalLinesUnit = "|";
+    static StringBuilder getVerticalLinesUnit(int length) {
+        StringBuilder verticalLinesUnit = new StringBuilder("|");
 
         for (int i = 0; i < length; i++) {
-            verticalLinesUnit += " ";
+            verticalLinesUnit = verticalLinesUnit.append(" ");
         }
 
-        verticalLinesUnit += "|\n";
+        verticalLinesUnit = verticalLinesUnit.append( "|\n");
         return verticalLinesUnit;
     }
 }
