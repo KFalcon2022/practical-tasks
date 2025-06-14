@@ -5,6 +5,8 @@ import com.walking.lesson19_object_methods.car.Car;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
@@ -12,7 +14,7 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        Car[] cars = getCars(readFile("./resources/carCatalog.txt"));
+        Car[] cars = getCars(getCarInformation(readFile("./resources/carCatalog.txt")));
         Scanner in = new Scanner(System.in);
         System.out.print("Номер машины в списке: ");
         int i = in.nextInt();
@@ -26,21 +28,46 @@ public class Main {
         StringBuilder cars = new StringBuilder("");
         int i;
         try (FileReader reader = new FileReader(nameFile)) {
-                while ((i = reader.read()) != -1) {
-                    cars.append((char) i);
-                }
+            while ((i = reader.read()) != -1) {
+                cars.append((char) i);
             }
+        }
         return cars.toString().trim();
     }
 
-    public static Car[] getCars(String cars) {
-        String[] carInformation = cars.split("\n");
-        Car[] carsArr = new Car[carInformation.length];
-        for(int i = 0; i < carsArr.length; i++) {
-            String information = carInformation[i].replaceAll(",", "");
-            String[] car = information.split(" ");
-            carsArr[i] = new Car(car[2], car[4] + " " + car[5], car[7]);
+    public static Car[] getCars(String[] cars) {
+        Pattern number = Pattern.compile("[а-я]{2}\\d{3}[а-я]");
+        Pattern owner = Pattern.compile("[А-Я][а-я]+ [А-Я]\\.[А-Я]\\.");
+        Car[] carsArr = new Car[cars.length];
+        for (int i = 0; i < carsArr.length; i++) {
+            Matcher matcher = number.matcher(cars[i]);
+            String num = "";
+            while (matcher.find()) {
+                num = matcher.group();
+            }
+            matcher = owner.matcher(cars[i]);
+            String own = "";
+            while (matcher.find()) {
+                own = matcher.group();
+            }
+            String brand = cars[i].replaceAll(num, "")
+                    .replaceAll(own, "")
+                    .trim();
+            carsArr[i] = new Car(brand, own, num);
         }
         return carsArr;
+    }
+
+    private static String[] getCarInformation(String cars) {
+        String[] carInformation = cars.split("\n");
+        for (int i = 0; i < carInformation.length; i++) {
+            String car = carInformation[i].replaceAll(",", "")
+                    .replaceAll("Машина марки", "")
+                    .replaceAll("владелец:", "")
+                    .replaceAll("номер:", "")
+                    .trim();
+            carInformation[i] = car;
+        }
+        return carInformation;
     }
 }
