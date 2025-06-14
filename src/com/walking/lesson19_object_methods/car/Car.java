@@ -44,4 +44,15 @@ public class Car {
         return result;
     }
 
+    public final String getBrand() {
+        return brand;
+    }
+
+    public final String getOwner() {
+        return owner;
+    }
+
+    public final String getNumber() {
+        return number;
+    }
 }
