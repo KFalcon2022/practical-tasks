@@ -5,8 +5,6 @@ import com.walking.lesson19_object_methods.car.Car;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
