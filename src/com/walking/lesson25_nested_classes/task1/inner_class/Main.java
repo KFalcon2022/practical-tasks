@@ -16,7 +16,6 @@ public class Main {
     public static final String RECTANGLE_HORIZONTAL_ELEMENT = "-";
     public static final String RECTANGLE_VERTICAL_ELEMENT = "|";
 
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -35,7 +34,6 @@ public class Main {
 
         String shapeString = new Main().createShapeString(length, shapeType);
         System.out.println(shapeString);
-
     }
 
     private String createShapeString(int length, int type) {
@@ -44,7 +42,6 @@ public class Main {
         switch (type) {
             case 1:
                 shape = new Square(length);
-
                 break;
             case 2:
                 shape = new EquilateralTriangle(length);
@@ -149,5 +146,4 @@ public class Main {
             return verticalLinesUnit;
         }
     }
-
 }
