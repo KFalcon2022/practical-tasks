@@ -4,6 +4,7 @@ import com.walking.lesson19_object_methods.car.Car;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Используя Задачу 1, реализуйте чтение из carCatalog.txt,
@@ -11,11 +12,14 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println(readFile("./resources/carCatalog.txt"));
         Car[] cars = getCars(readFile("./resources/carCatalog.txt"));
-        System.out.println(cars[0].getBrand());
-        System.out.println(cars[0].getOwner());
-        System.out.println(cars[0].getNumber());
+        Scanner in = new Scanner(System.in);
+        System.out.print("Номер машины в списке: ");
+        int i = in.nextInt();
+
+        System.out.println(cars[i - 1].getBrand());
+        System.out.println(cars[i - 1].getOwner());
+        System.out.println(cars[i - 1].getNumber());
     }
 
     public static String readFile(String nameFile) throws IOException {
