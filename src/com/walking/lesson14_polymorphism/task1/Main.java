@@ -1,16 +1,46 @@
 package com.walking.lesson14_polymorphism.task1;
 
+import com.walking.lesson14_polymorphism.task1.figure.RegularFigure;
+import com.walking.lesson14_polymorphism.task1.figure.Square;
+import com.walking.lesson14_polymorphism.task1.figure.Triangle;
+
+import java.util.Scanner;
+
 /**
  * Реализуйте класс «Правильная фигура».
  * Для него создайте классы-наследники «Треугольник» и «Квадрат».
  * <p>
- * Пользователь должен иметь возможность ввести длину стороны и выбрать тип фигуры.
- * Программа должна нарисовать в консоли выбранную пользователем фигуру,
- * используя символы '-', '|', '/', '\'.
+ *  Пользователь должен иметь возможность ввести длину стороны и выбрать тип фигуры.
+ *  Программа должна нарисовать в консоли выбранную пользователем фигуру,
+ *  используя символы '-', '|', '/', '\'.
  * <p>
  * Обратите внимание, символ '\' в Java необходимо экранировать: '\\'.
  */
+
 public class Main {
-    public static void main(String[] args) {
+
+        public static void main(String[] args) {
+            Scanner in = new Scanner(System.in);
+            System.out.print("Введите тип фигуры: ");
+            String figureType = in.nextLine();
+            System.out.print("Введите длину стороны: ");
+            int length = in.nextInt();
+
+            if (length < 1) {
+                System.out.println("Некорректный ввод");
+                return;
+            }
+
+            RegularFigure figure = getFigure(figureType, length);
+
+            System.out.println(figure.getFigure());
+        }
+
+        private static RegularFigure getFigure(String figureType, int length) {
+            return switch (figureType.toLowerCase()) {
+                case Triangle.NAME -> new Triangle(length);
+                case Square.NAME -> new Square(length);
+                default -> new RegularFigure(length);
+            };
+        }
     }
-}
