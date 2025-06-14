@@ -36,38 +36,18 @@ public class Main {
     }
 
     public static Car[] getCars(String[] cars) {
-        Pattern number = Pattern.compile("[а-я]{2}\\d{3}[а-я]");
-        Pattern owner = Pattern.compile("[А-Я][а-я]+ [А-Я]\\.[А-Я]\\.");
         Car[] carsArr = new Car[cars.length];
         for (int i = 0; i < carsArr.length; i++) {
-            Matcher matcher = number.matcher(cars[i]);
-            String num = "";
-            while (matcher.find()) {
-                num = matcher.group();
-            }
-            matcher = owner.matcher(cars[i]);
-            String own = "";
-            while (matcher.find()) {
-                own = matcher.group();
-            }
-            String brand = cars[i].replaceAll(num, "")
-                    .replaceAll(own, "")
-                    .trim();
-            carsArr[i] = new Car(brand, own, num);
+            String[] info = cars[i].split(",");
+            carsArr[i] = new Car(info[0].trim(), info[1].trim(), info[2].trim());
         }
         return carsArr;
     }
 
     private static String[] getCarInformation(String cars) {
-        String[] carInformation = cars.split("\n");
-        for (int i = 0; i < carInformation.length; i++) {
-            String car = carInformation[i].replaceAll(",", "")
-                    .replaceAll("Машина марки", "")
-                    .replaceAll("владелец:", "")
-                    .replaceAll("номер:", "")
-                    .trim();
-            carInformation[i] = car;
-        }
-        return carInformation;
+        return cars.replaceAll("Машина марки", "")
+                .replaceAll("владелец:", "")
+                .replaceAll("номер:", "")
+                .split("\n");
     }
 }
