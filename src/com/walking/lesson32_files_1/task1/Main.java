@@ -11,6 +11,8 @@ import java.io.IOException;
  * Реализуйте сохранение массива машин в файл carCatalog.txt
  */
 public class Main {
+    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[6];
         cars[0] = new Car("Audi", "Печкин Ф.Б.", "уе777к");
@@ -24,16 +26,16 @@ public class Main {
     }
 
     public static void saveCars(Car[] cars) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream("./resources/carCatalog.txt")) {
+        try (FileOutputStream fos = new FileOutputStream(FILE_LOCATION)) {
             for (Car car : cars) {
-                String information = car.toString() + "\n";
-                byte[] buffer = information.getBytes();
-                fos.write(buffer, 0, buffer.length);
+                String carInfo = car.toString() + "\n";
+                byte[] bytes = carInfo.getBytes();
+                fos.write(bytes, 0, bytes.length);
             }
             System.out.println("Файл записан.");
 
         } catch (IOException ex) {
-            System.out.println("Какая-то ошибка.");
+            throw new RuntimeException("Не удалось записать файл", ex);
         }
     }
 }

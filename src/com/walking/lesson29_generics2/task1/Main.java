@@ -1,6 +1,6 @@
 package com.walking.lesson29_generics2.task1;
 
-import com.walking.lesson29_generics2.task1.service.Generic;
+import com.walking.lesson29_generics2.task1.model.Generic;
 
 /**
  * Реализуйте обобщенный тип, хранящий параметризованное поле.

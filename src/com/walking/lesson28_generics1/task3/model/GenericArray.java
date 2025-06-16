@@ -1,4 +1,4 @@
-package com.walking.lesson28_generics1.task3.service;
+package com.walking.lesson28_generics1.task3.model;
 
 public class GenericArray<T> {
     private final T[] arr;

@@ -1,6 +1,6 @@
 package com.walking.lesson28_generics1.task1;
 
-import com.walking.lesson28_generics1.task1.service.GenericNumber;
+import com.walking.lesson28_generics1.task1.model.GenericNumber;
 
 /**
  * Создать обобщенный тип, принимающий в себя любого из наследников Number.

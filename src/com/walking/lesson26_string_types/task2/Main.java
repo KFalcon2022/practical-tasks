@@ -37,7 +37,7 @@ public class Main {
         int counter = 0;
         boolean isEqual;
         for (int i = 0; i < phrase.length; i++) {
-            isEqual = isEqual(phrase, i);
+            isEqual = isUnique(phrase, i);
 
             if (!isEqual) {
                 counter--;
@@ -49,7 +49,7 @@ public class Main {
         return counter;
     }
 
-    public static boolean isEqual(String[] phrase, int num) {
+    public static boolean isUnique(String[] phrase, int num) {
         for (int i = num + 1; i < phrase.length; i++) {
             if (phrase[num].equals(phrase[i])) {
                 return false;

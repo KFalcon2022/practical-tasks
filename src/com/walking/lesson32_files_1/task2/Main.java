@@ -11,8 +11,11 @@ import java.util.Scanner;
  * реализовав сохранение данных в массив Car.
  */
 public class Main {
+    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+
     public static void main(String[] args) throws IOException {
-        Car[] cars = getCars(getCarInformation(readFile("./resources/carCatalog.txt")));
+        String text = readFile();
+        Car[] cars = getCars(getCarInformation(text));
         Scanner in = new Scanner(System.in);
         System.out.print("Номер машины в списке: ");
         int i = in.nextInt();
@@ -22,10 +25,10 @@ public class Main {
         System.out.println(cars[i - 1].getNumber());
     }
 
-    public static String readFile(String nameFile) throws IOException {
-        StringBuilder cars = new StringBuilder("");
-        int i;
-        try (FileReader reader = new FileReader(nameFile)) {
+    public static String readFile() throws IOException {
+        StringBuilder cars = new StringBuilder();
+        try (FileReader reader = new FileReader(FILE_LOCATION)) {
+            int i;
             while ((i = reader.read()) != -1) {
                 cars.append((char) i);
             }

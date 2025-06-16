@@ -1,4 +1,4 @@
-package com.walking.lesson28_generics1.task2.service;
+package com.walking.lesson28_generics1.task2.model;
 
 public class GenericObject<T> {
     private final T obj;

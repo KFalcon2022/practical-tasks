@@ -1,7 +1,7 @@
 package com.walking.lesson29_generics2.task2;
 
 
-import com.walking.lesson29_generics2.task2.service.GenericNumber;
+import com.walking.lesson29_generics2.task2.model.GenericNumber;
 
 /**
  * Используя Задачу 1 из урока Generics.

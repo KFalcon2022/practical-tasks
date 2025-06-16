@@ -1,9 +1,9 @@
-package com.walking.lesson28_generics1.task1.service;
+package com.walking.lesson29_generics2.task2.model;
 
 public class GenericNumber<T extends Number> {
-    private T num;
+    private final T num;
 
-    public void setNum(T num) {
+    public GenericNumber(T num) {
         this.num = num;
     }
 

@@ -1,6 +1,6 @@
 package com.walking.lesson28_generics1.task2;
 
-import com.walking.lesson28_generics1.task2.service.GenericObject;
+import com.walking.lesson28_generics1.task2.model.GenericObject;
 
 /**
  * Создать класс-обертку над объектом любого типа.

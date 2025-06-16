@@ -3,6 +3,8 @@ package com.walking.lesson30_regex.task3;
 import com.walking.lesson30_regex.task3.exception.InvalidWordException;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Реализуйте задачу
@@ -26,14 +28,14 @@ public class Main {
                 .trim()
                 .toLowerCase();
 
-        System.out.printf("Найдено уникальных слов: %d", countWords(validatePhrase(phrase)));
+        System.out.printf("Найдено уникальных слов: %d", countWords(splitPhrase(phrase)));
     }
 
     public static int countWords(String[] phrase) {
         int counter = 0;
         boolean isEqual;
         for (int i = 0; i < phrase.length; i++) {
-            isEqual = isEqual(phrase, i);
+            isEqual = isUnique(phrase, i);
 
             if (!isEqual) {
                 counter--;
@@ -45,7 +47,7 @@ public class Main {
         return counter;
     }
 
-    public static String[] validatePhrase(String phrase) {
+    public static String[] splitPhrase(String phrase) {
         String[] words = phrase.split("\\s+");
         for (String word : words) {
             if (!validateWord(word)) {
@@ -58,21 +60,18 @@ public class Main {
     public static boolean validateWord(String word) {
         if (!word.contains("-")) {
             return word.matches(WORD);
-        } else {
-            if (!word.matches(WORD_WITH_HYPHENS)) {
-                throw new InvalidWordException("Некорректное слово: " + word);
-            }
-
-            for (String wordPart : word.split("-")) {
-                if (!wordPart.matches(WORD)) {
-                    throw new InvalidWordException("Некорректное слово: " + wordPart);
-                }
-            }
         }
-        return true;
+
+        Pattern multiplyHyphens = Pattern.compile("--+");
+        Matcher matcher = multiplyHyphens.matcher(word);
+        if (matcher.find()) {
+            return false;
+        }
+
+        return word.matches(WORD_WITH_HYPHENS);
     }
 
-    public static boolean isEqual(String[] phrase, int num) {
+    public static boolean isUnique(String[] phrase, int num) {
         for (int i = num + 1; i < phrase.length; i++) {
             if (phrase[num].equals(phrase[i])) {
                 return false;

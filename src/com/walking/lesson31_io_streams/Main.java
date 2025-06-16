@@ -32,7 +32,7 @@ public class Main {
         if (string.length() == 1 || string.length() == 2 && string.charAt(1) == '\n') {
             return string.charAt(0);
         }
-        throw new WrongTypeExeption("%s не может быть представлено в виде символа".formatted(string));
+        throw new WrongTypeExeption("\"%s\" не может быть представлено в виде символа".formatted(string));
     }
 
     public static boolean readBoolean() throws IOException {
@@ -45,7 +45,7 @@ public class Main {
         if ("true".equalsIgnoreCase(string)) {
             return true;
         }
-        throw new WrongTypeExeption("%s не похоже на boolean".formatted(string));
+        throw new WrongTypeExeption("\"%s\" не похоже на boolean".formatted(string));
     }
 
     public static String readString() throws IOException {

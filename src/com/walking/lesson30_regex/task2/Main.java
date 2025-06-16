@@ -1,6 +1,6 @@
 package com.walking.lesson30_regex.task2;
 
-import com.walking.lesson30_regex.task2.exeption.InvalidFullName;
+import com.walking.lesson30_regex.task2.exeption.InvalidFullNameException;
 import com.walking.lesson30_regex.task2.service.FullName;
 
 import java.util.Scanner;
@@ -26,17 +26,22 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите имя: ");
         String fullName = in.nextLine();
-        isFullNameValid(fullName).printFullName();
+        getFullName(fullName).printFullName();
     }
 
-    public static FullName isFullNameValid(String fullName) {
-        if (fullName.matches(FULL_NAME_REGEX)) {
-            String[] fullNameArr = fullName.split(" ");
-            if (isSurnameValid(fullNameArr[0]) && isNameValid(fullNameArr[1]) && isNameValid(fullNameArr[2])) {
-                return new FullName(fullNameArr[0], fullNameArr[1], fullNameArr[2]);
-            }
+    public static FullName getFullName(String fullName) {
+        if (!isFullNameValid(fullName)) {
+            throw new InvalidFullNameException();
         }
-        throw new InvalidFullName("Имя указано некорректно.");
+        String[] fullNameArr = fullName.split(" ");
+        if (isSurnameValid(fullNameArr[0]) && isNameValid(fullNameArr[1]) && isNameValid(fullNameArr[2])) {
+            return new FullName(fullNameArr[0], fullNameArr[1], fullNameArr[2]);
+        }
+        throw new InvalidFullNameException();
+    }
+
+    public static boolean isFullNameValid(String fullName) {
+        return fullName.matches(FULL_NAME_REGEX);
     }
 
     public static boolean isSurnameValid(String surname) {

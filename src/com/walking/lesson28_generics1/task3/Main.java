@@ -1,6 +1,6 @@
 package com.walking.lesson28_generics1.task3;
 
-import com.walking.lesson28_generics1.task3.service.GenericArray;
+import com.walking.lesson28_generics1.task3.model.GenericArray;
 
 /**
  * Реализовать класс для работы с массивом.
