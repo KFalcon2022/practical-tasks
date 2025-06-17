@@ -36,7 +36,7 @@ public class Main {
         System.out.println(toExponent(numberExponentiater).toString());
     }
 
-    private static <T> NumberExponentiater toExponent(NumberExponentiater<?> generic) {
+    private static NumberExponentiater toExponent(NumberExponentiater<?> generic) {
         return new NumberExponentiater<>(generic.exponentiate(2));
     }
 }
