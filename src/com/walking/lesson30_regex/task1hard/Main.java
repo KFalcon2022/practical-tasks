@@ -16,5 +16,16 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+        String phoneNumber = "+7 (914) 029-00-24";
+
+        if (isPhoneNumber(phoneNumber)) {
+            System.out.println("It is a Phone Number!");
+        } else {
+            System.out.println("It is not a Phone Number!");
+        }
+    }
+
+    private static boolean isPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("\\+\\d\\s*\\(*\\d{3}\\)*\\s*\\d{3}-*\\d{2}-*\\d{2}");
     }
 }
