@@ -16,6 +16,8 @@ package com.walking.lesson30_regex.task1hard;
  */
 public class Main {
     public static void main(String[] args) {
+
+        //Да, я уже посмотрел решение и понял, что я не выполнил условие задачи до конца)
         String phoneNumber = "+7 (914) 029-00-24";
 
         if (isPhoneNumber(phoneNumber)) {
