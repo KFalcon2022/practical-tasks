@@ -1,5 +1,15 @@
 package com.walking.lesson49_optional.task2;
 
+import com.walking.lesson49_optional.task2.model.Car;
+import com.walking.lesson49_optional.task2.model.CarIdentifier;
+import com.walking.lesson49_optional.task2.model.Home;
+import com.walking.lesson49_optional.task2.model.Person;
+import com.walking.lesson49_optional.task2.service.CarService;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Реализуйте рад классов:
  * 1. Жилье, должен иметь поле «адрес»;
@@ -17,5 +27,33 @@ package com.walking.lesson49_optional.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        Home testHome = new Home("ADDRESS");
+        Car testCar = new Car(new CarIdentifier("NUMBER", 2000), null, "red", true);
+        Person testCarOwner = new Person("OWNER", null, null, new ArrayList<>(), testHome, testCar, "fireman");
+        testCar.setOwner(testCarOwner);
+        Person testCarOwnerChild = new Person("CHILD", null, testCarOwner, null, testHome, null, "fireman");
+        testCarOwner.addChild(testCarOwnerChild);
+
+        CarService carService = new CarService(new Car[]{testCar});
+
+        Optional<String> foundAddress = carService.findCar(testCar)
+                                                  .filter(car -> car.getIdentifier()
+                                                                    .getYear() <= 2021)
+                                                  .map(Car::getOwner)
+                                                  .filter(person -> !person.getProfession()
+                                                                           .equals("policeman"))
+                                                  .map(Person::getChildren)
+                                                  .filter(list -> !list.isEmpty())
+                                                  .map(List::getFirst)
+                                                  .filter(person -> !person.getProfession()
+                                                                           .equals("policeman"))
+                                                  .map(Person::getHome)
+                                                  .map(Home::getAddress)
+                                                  .filter(address -> !address.contains("Рублевское шоссе"));
+
+        String address = foundAddress.map("Найден адрес:\n%s"::formatted)
+                                     .orElse("Адресс не найден");
+
+        System.out.println(address);
     }
 }
