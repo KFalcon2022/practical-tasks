@@ -28,6 +28,6 @@ public class Main {
     }
 
     private static boolean isPhoneNumber(String phoneNumber) {
-        return phoneNumber.matches("\\+\\d\\s*\\(*\\d{3}\\)*\\s*\\d{3}-*\\d{2}-*\\d{2}");
+        return phoneNumber.matches("^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}$");
     }
 }

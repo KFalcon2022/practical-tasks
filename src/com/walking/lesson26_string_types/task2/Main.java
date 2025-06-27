@@ -23,10 +23,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a words: ");
-        String[] array = scanner.nextLine().
-                trim().
-                toLowerCase().
-                split(" ");
+        String[] array = scanner.nextLine()
+                .trim()
+                .toLowerCase()
+                .split(" ");
 
         scanner.close();
 
@@ -37,11 +37,7 @@ public class Main {
         int wordsCounter = 0;
 
         for (int i = 0; i < array.length; i++) {
-
-            int j = 0;
-            boolean isUnique = true;
-
-            isUnique = isIsUnique(array, j, i, isUnique);
+            boolean isUnique = validateUnique(array, i);
 
             if (isUnique) {
                 wordsCounter++;
@@ -51,14 +47,15 @@ public class Main {
         return "Found " + wordsCounter + " unique words";
     }
 
-    private static boolean isIsUnique(String[] array, int j, int i, boolean isUnique) {
-        while (j < i && isUnique) {
+    private static boolean validateUnique(String[] array, int i) {
+        int j = 0;
+        while (j < i) {
             if (array[i].equals(array[j])) {
-                isUnique = false;
-            } else {
-                j++;
+                return false;
             }
+
+                j++;
         }
-        return isUnique;
+        return true;
     }
 }

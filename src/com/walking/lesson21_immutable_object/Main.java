@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         CarService carService = new CarService(initCars());
 
-        CarIdentifier desiredCar = createCar();
+        CarIdentifier desiredCar = requireCarsInformation();
 
         Car foundCar = carService.findCar(desiredCar);
         System.out.println(foundCar);
@@ -28,7 +28,7 @@ public class Main {
         // что можно отдельный класс идентификатора создать в классе САR
     }
 
-    private static CarIdentifier createCar() {
+    private static CarIdentifier requireCarsInformation() {
 
         Scanner scanner = new Scanner(System.in);
 

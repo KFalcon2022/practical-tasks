@@ -22,9 +22,9 @@ public enum Report {
         return message;
     }
 
-    public static String toAnswer(String question) {
+    public static String toAnswer(String phrase) {
         for (Report x : values()) {
-            if (question.equals(x.getMessage())) {
+            if (phrase.equals(x.getMessage())) {
                 return x.getAnswer();
             }
         }

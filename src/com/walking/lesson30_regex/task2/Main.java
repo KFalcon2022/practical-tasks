@@ -19,6 +19,10 @@ import java.util.regex.Pattern;
  * Если невалидна – бросьте из метода исключение, указывающее на ошибку валидации.
  */
 public class Main {
+
+    public static final String SURNAME_WITH_HYPHEN_REGEX = "^[А-Я][а-я]+-[А-Я][а-я]+$";
+    public static final String USUAL_NAME_REGEX = "^[А-Я][а-я]+$";
+
     public static void main(String[] args) {
         String someName = "Ниязов Алексей Рустамович";
         System.out.println(getFullName(someName));
@@ -43,7 +47,7 @@ public class Main {
     }
 
     private static boolean isValidName(String secondName, String firstName, String fathersName) {
-        boolean isValidName = isValidStringWithHyphen(secondName)
+        boolean isValidName = isValidSurname(secondName)
                 && isValidString(firstName)
                 && isValidString(fathersName);
 
@@ -51,12 +55,12 @@ public class Main {
             return true;
         }
 
-        throw new RuntimeException("not valid");
+        throw new ValidationException("not valid");
     }
 
-    private static boolean isValidStringWithHyphen(String name) {
+    private static boolean isValidSurname(String name) {
         if (name.contains("-")) {
-            if (isValidString("^[А-Я][а-я]+-[А-Я][а-я]+$", name)) {
+            if (isValidString(SURNAME_WITH_HYPHEN_REGEX, name)) {
                 return true;
             }
         }
@@ -64,9 +68,9 @@ public class Main {
         return isValidString(name);
     }
 
-    private static boolean isValidString(String regex, String secondName) {
+    private static boolean isValidString(String regex, String name) {
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(secondName);
+        Matcher matcher = pattern.matcher(name);
 
         return matcher.find();
     }
@@ -74,7 +78,7 @@ public class Main {
     private static boolean isValidString(String name) {
         /// Это же будет считаться перегрузкой?)
 
-        Pattern pattern = Pattern.compile("^[А-Я][а-я]+$");
+        Pattern pattern = Pattern.compile(USUAL_NAME_REGEX);
         Matcher matcher = pattern.matcher(name);
 
         return matcher.find();

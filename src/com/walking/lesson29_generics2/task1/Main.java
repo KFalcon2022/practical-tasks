@@ -12,20 +12,18 @@ import com.walking.lesson29_generics2.task1.model.Generic1;
  */
 public class Main {
     public static void main(String[] args) {
-        int fieldForGeneric = 0;
-        Generic1<Integer> generic1 = new Generic1<>(fieldForGeneric);
-        System.out.println(method(generic1, 240));
+        Generic1<Integer> notNullObject = new Generic1<>(25);
+        System.out.println(getOrDefault(notNullObject, 240));
 
-        generic1 = null;
-
-        System.out.println(method(generic1, 240));
+        Generic1<Integer> nullObject = new Generic1<>(null);
+        System.out.println(getOrDefault(nullObject, 240));
     }
 
-    private static <T> T method(Generic1<T> object, T field) {
+    private static <T> T getOrDefault(Generic1<T> object, T defaultField) {
         if (object == null) {
-            return field;
+            return defaultField;
         }
 
-        return object.getField();
+        return object.getNumber();
     }
 }
