@@ -13,12 +13,12 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static final String CAR_CATALOG_TXT_PATH = "./resource/files/carCatalog.txt";
+    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32/task1/carCatalog.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
 
-        try (FileOutputStream carCatalog = new FileOutputStream(CAR_CATALOG_TXT_PATH, false)) {
+        try (FileOutputStream carCatalog = new FileOutputStream(CAR_CATALOG_TXT_DIRECTORY, false)) {
             for (Car car : cars) {
                 String carsInformation = carInformationToFileView(car);
 
