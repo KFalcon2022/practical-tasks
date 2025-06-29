@@ -2,7 +2,6 @@ package com.walking.lesson32_files_1.task1;
 
 import com.walking.lesson32_files_1.task1.model.Car;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
