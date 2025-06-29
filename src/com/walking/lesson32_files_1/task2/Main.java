@@ -29,7 +29,7 @@ public class Main {
 
 
     private static String readCarCatalog() {
-        StringBuilder fileLine = new StringBuilder("");
+        StringBuilder fileLine = new StringBuilder();
         try (FileInputStream carCatalogueReader = new FileInputStream(CAR_CATALOG_TXT_DIRECTORY)) {
             int i;
 

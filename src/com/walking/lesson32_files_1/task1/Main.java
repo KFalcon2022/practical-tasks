@@ -29,8 +29,6 @@ public class Main {
             }
 
             System.out.println("Record is over");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
