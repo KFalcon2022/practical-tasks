@@ -19,16 +19,15 @@ public class CarService {
         cars[cars.length - 1] = car;
     }
 
-    public Car update(Car car) {
+    public void update(Car car) {
         Car existedCar = find(car);
 
         if (existedCar == null) {
             System.out.println("Машина не найдена.");
-            return null;
+            return;
         }
 
         existedCar.setOwner(car.getOwner());
-        return existedCar;
     }
 
     public void delete(Car car) {
@@ -54,7 +53,7 @@ public class CarService {
 
     private Car find(Car car) {
         for (Car c : cars) {
-            if (c.hashCode() == car.hashCode() && c.equals(car)) {
+            if (c.equals(car)) {
                 return c;
             }
         }
@@ -63,7 +62,7 @@ public class CarService {
 
     private int getIndex(Car car) {
         for (int i = 0; i < cars.length; i++) {
-            if (cars[i].equals(car) && cars[i].hashCode() == car.hashCode()) {
+            if (cars[i].equals(car)) {
                 return i;
             }
         }

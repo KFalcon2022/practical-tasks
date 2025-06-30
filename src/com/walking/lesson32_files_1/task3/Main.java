@@ -20,7 +20,10 @@ public class Main {
         String[] cars = getCarInformation(readFile());
         CarService carService = new CarService(getAll(cars));
         carService.addCar(new Car("Волга", "Петрова О.Е.", "ер765к"));
+        carService.delete(new Car ("Audi", "Печкин Ф.Б.", "уе777к"));
+        carService.update(new Car("BMW", "Михайлова Р.Г.", "ос025р"));
         saveCars(carService.getCars());
+
     }
 
     private static Car[] setCars() {
