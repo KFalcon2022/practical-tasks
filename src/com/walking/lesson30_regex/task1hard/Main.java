@@ -15,6 +15,32 @@ package com.walking.lesson30_regex.task1hard;
  * или использования символов-разделителей в другом порядке считаем невалидным)
  */
 public class Main {
+
+    public static final String PHONE_NUMBER_REGEX = "^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}$";
+    public static final String SPACE_REGEX = "^.+\\s.+\\s.+$";
+    public static final String HYPHEN_REGEX = "^.+-.+-.+$";
+
     public static void main(String[] args) {
+
+        //Да, я уже посмотрел решение и понял, что я не выполнил условие задачи до конца)
+        String phoneNumber = "+7 (914) 029-00-24";
+
+        if (isPhoneNumber(phoneNumber) && isPhoneSpaces(phoneNumber) && isPhoneHyphen(phoneNumber)) {
+            System.out.println("It is a Phone Number!");
+        } else {
+            System.out.println("It is not a Phone Number!");
+        }
+    }
+
+    private static boolean isPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches(PHONE_NUMBER_REGEX);
+    }
+
+    private static boolean isPhoneSpaces(String phoneNumber) {
+        return phoneNumber.matches(SPACE_REGEX);
+    }
+
+    private static boolean isPhoneHyphen(String phoneNumber) {
+        return phoneNumber.matches(HYPHEN_REGEX);
     }
 }
