@@ -1,6 +1,6 @@
 package com.walking.lesson29_generics2.task1;
 
-import com.walking.lesson29_generics2.task1.model.Generic1;
+import com.walking.lesson29_generics2.task1.model.Generic;
 
 /**
  * Реализуйте обобщенный тип, хранящий параметризованное поле.
@@ -12,14 +12,14 @@ import com.walking.lesson29_generics2.task1.model.Generic1;
  */
 public class Main {
     public static void main(String[] args) {
-        Generic1<Integer> notNullObject = new Generic1<>(25);
+        Generic<Integer> notNullObject = new Generic<>(25);
         System.out.println(getOrDefault(notNullObject, 240));
 
-        Generic1<Integer> nullObject = new Generic1<>(null);
+        Generic<Integer> nullObject = new Generic<>(null);
         System.out.println(getOrDefault(nullObject, 240));
     }
 
-    private static <T> T getOrDefault(Generic1<T> object, T defaultField) {
+    private static <T> T getOrDefault(Generic<T> object, T defaultField) {
         if (object == null) {
             return defaultField;
         }

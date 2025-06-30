@@ -31,59 +31,43 @@ public class Main {
 
     private static FullName getFullName(String input) {
         String[] arrayID = input.split(" ");
-        String secondName = arrayID[0];
-        String firstName = arrayID[1];
-        String fathersName = arrayID[2];
-        /// Да да, я понимаю, что так делать нельзя
-        /// слёзно прошу помочь с решением этого момента
-        /// или же я что-то увижу в решении)
-        /// это всё до коммита и пуша)
+        FullName fullName = new FullName(arrayID[1], arrayID[0], arrayID[2]);
 
-        if (isValidName(secondName, firstName, fathersName)) {
-            return new FullName(firstName, secondName, fathersName);
+        if (isValidFullName(fullName)) {
+            return fullName;
         }
 
         throw new ValidationException("Input data is invalid");
     }
 
-    private static boolean isValidName(String secondName, String firstName, String fathersName) {
-        boolean isValidName = isValidSurname(secondName)
-                && isValidString(firstName)
-                && isValidString(fathersName);
+    private static boolean isValidFullName(FullName fullName) {
 
-        if (isValidName) {
-            return true;
-        }
-
-        throw new ValidationException("not valid");
+        return isValidSurname(fullName.getSurname())
+                && isValidName(fullName.getFirstName())
+                && isValidName(fullName.getFathersName());
     }
 
-    private static boolean isValidSurname(String name) {
-        if (name.contains("-")) {
-            if (isValidString(SURNAME_WITH_HYPHEN_REGEX, name)) {
+    private static boolean isValidSurname(String surname) {
+        if (surname.contains("-")) {
+            if (isValidName(SURNAME_WITH_HYPHEN_REGEX, surname)) {
                 return true;
             }
         }
 
-        return isValidString(name);
+        return isValidName(surname);
     }
 
-    private static boolean isValidString(String regex, String name) {
+    private static boolean isValidName(String regex, String name) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(name);
 
         return matcher.find();
     }
 
-    private static boolean isValidString(String name) {
-        /// Это же будет считаться перегрузкой?)
-
+    private static boolean isValidName(String name) {
         Pattern pattern = Pattern.compile(USUAL_NAME_REGEX);
         Matcher matcher = pattern.matcher(name);
 
         return matcher.find();
     }
 }
-
-/// Я ЗАЕБАЛСЯ, ЭТО МАКСИМУМ ДЕКОМПОЗИЦИИ, НА КАКУЮ Я СЕЙЧАС СПОСОБЕН)
-/// ДО ЭТОГО БЫЛО 200 СТРОК ПРИМЕРНО)

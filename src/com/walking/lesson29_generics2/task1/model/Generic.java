@@ -1,10 +1,10 @@
 package com.walking.lesson29_generics2.task1.model;
 
-public class Generic1<T> {
+public class Generic<T> {
     private final T number;
 
-    public Generic1(T field) {
-        this.number = field;
+    public Generic(T number) {
+        this.number = number;
     }
 
     public T getNumber() {

@@ -2,26 +2,26 @@ package com.walking.lesson30_regex.task2.information;
 
 public class FullName {
     private final String firstName;
-    private final String secondName;
+    private final String surname;
     private final String fathersName;
 
-    public FullName(String firstName, String secondName, String fathersName) {
+    public FullName(String firstName, String surname, String fathersName) {
         this.firstName = firstName;
-        this.secondName = secondName;
+        this.surname = surname;
         this.fathersName = fathersName;
     }
 
     @Override
     public String toString() {
-        return "%s %s %s".formatted(secondName, firstName, fathersName);
+        return "%s %s %s".formatted(surname, firstName, fathersName);
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getSurname() {
+        return surname;
     }
 
     public String getFathersName() {

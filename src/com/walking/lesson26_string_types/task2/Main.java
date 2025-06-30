@@ -37,9 +37,7 @@ public class Main {
         int wordsCounter = 0;
 
         for (int i = 0; i < array.length; i++) {
-            boolean isUnique = validateUnique(array, i);
-
-            if (isUnique) {
+            if (isUnique(array, i)) {
                 wordsCounter++;
             }
         }
@@ -47,15 +45,16 @@ public class Main {
         return "Found " + wordsCounter + " unique words";
     }
 
-    private static boolean validateUnique(String[] array, int i) {
+    private static boolean isUnique(String[] array, int i) {
         int j = 0;
         while (j < i) {
             if (array[i].equals(array[j])) {
                 return false;
             }
 
-                j++;
+            j++;
         }
+
         return true;
     }
 }
