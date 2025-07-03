@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+    public static final String FILE_LOCATION = "./resources/carCatalog1.txt";
 
     public static void main(String[] args) throws IOException {
         String text = readFile();
@@ -44,9 +44,6 @@ public class Main {
     }
 
     private static String[] getCarInformation(String cars) {
-        return cars.replaceAll("Машина марки", "")
-                .replaceAll("владелец:", "")
-                .replaceAll("номер:", "")
-                .split("\n");
+        return cars.split("\n");
     }
 }

@@ -7,16 +7,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+    public static final String FILE_LOCATION = "./resources/carCatalog1.txt";
 
     public static void main(String[] args) throws IOException {
-        Car[] cars = new Car[6];
-        cars[0] = new Car("Audi", "Печкин Ф.Б.", "уе777к");
-        cars[1] = new Car("BMW", "Борисов Ю.А.", "ос025р");
-        cars[2] = new Car("Ford", "Снегирь Ю.В.", "мр666м");
-        cars[3] = new Car("Bentley", "Белова Д.М.", "ра345з");
-        cars[4] = new Car("Ferrari", "Сергеев К.Л.", "уе999з");
-        cars[5] = new Car("Москвич", "Попов А.Д.", "ар832с");
+        Car[] cars = new Car[5];
+        cars[0] = new Car("Audi", "Styles H.", "rt777e");
+        cars[1] = new Car("BMW", "Steeve J.", "er025w");
+        cars[2] = new Car("Ford", "Potter H.", "we666a");
+        cars[3] = new Car("Bentley", "Malfoy D.", "po345r");
+        cars[4] = new Car("Ferrari", "Hadid G..", "re999t");
 
         saveCars(cars);
     }
@@ -25,7 +24,7 @@ public class Main {
         try (FileOutputStream fos = new FileOutputStream(FILE_LOCATION);
              BufferedOutputStream bos = new BufferedOutputStream(fos)) {
             for (Car car : cars) {
-                String carInfo = car.toString() + "\n";
+                String carInfo = car.getBrand() + ", " + car.getOwner() + ", " + car.getNumber() + "\n";
                 byte[] buffer = carInfo.getBytes();
                 bos.write(buffer, 0, buffer.length);
             }
