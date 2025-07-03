@@ -1,5 +1,8 @@
 package com.walking.lesson29_generics2.task2;
 
+
+import com.walking.lesson29_generics2.task2.model.GenericNumber;
+
 /**
  * Используя Задачу 1 из урока Generics.
  * Часть I, реализуйте в Main метод, принимающий аргументом объект подходящего
@@ -8,5 +11,14 @@ package com.walking.lesson29_generics2.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        GenericNumber<?> num = getGeneric(7);
+        System.out.println(num.getPow(3));
+
+        num = getGeneric(654L);
+        System.out.println(num.getPow(2));
+    }
+
+    public static GenericNumber<? extends Number> getGeneric(Number num) {
+        return new GenericNumber<>(num);
     }
 }
