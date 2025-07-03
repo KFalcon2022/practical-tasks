@@ -6,6 +6,11 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * для второго варианта в таск2 и здесь сделала отдельный файл на англе,
+ * не уверена, можно ли через FileInputStream кириллицу читать
+ * (у меня не выходит)
+ */
 public class Main {
     public static final String FILE_LOCATION = "./resources/carCatalog1.txt";
 
