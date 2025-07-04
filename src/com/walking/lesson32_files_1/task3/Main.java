@@ -15,13 +15,13 @@ public class Main {
     public static void main(String[] args) {
         Car[] cars = initCars();
 
-//        CarRepository carCatalogWriter = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
-//        carCatalogWriter.writeCarCatalog(cars);
+        CarRepository carCatalogWriter = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
+        carCatalogWriter.writeCarCatalog(cars);
 
 
-//        Car newCar = new Car("FFFF", 1995, "green");
-//        CarRepository addNewCar = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
-//        addNewCar.addNewCar(newCar);
+        Car newCar = new Car("FFFF", 1995, "green");
+        CarRepository addNewCar = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
+        addNewCar.addNewCar(newCar);
 
 
         CarRepository changeCarInformation = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
