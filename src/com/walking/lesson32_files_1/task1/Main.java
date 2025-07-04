@@ -2,6 +2,7 @@ package com.walking.lesson32_files_1.task1;
 
 import com.walking.lesson32_files_1.task1.model.Car;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -12,24 +13,28 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32/task1/carCatalog.txt";
+    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32_files_1/task1/carCatalog.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
 
+        writeIntoTheFile(cars);
+    }
+
+    private static void writeIntoTheFile(Car[] cars) {
         try (FileOutputStream carCatalog = new FileOutputStream(CAR_CATALOG_TXT_DIRECTORY, false)) {
             for (Car car : cars) {
-                String carsInformation = carInformationToFileView(car);
-
-                byte[] bytesCarInformation = carsInformation.getBytes();
+                byte[] bytesCarInformation = carInformationToFileView(car).getBytes();
 
                 carCatalog.write(bytesCarInformation);
                 carCatalog.write("\n".getBytes());
             }
 
             System.out.println("Record is over");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

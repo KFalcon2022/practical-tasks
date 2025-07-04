@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32/task2/carCatalog.txt";
+    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32_files_1/task2/carCatalog.txt";
 
     public static void main(String[] args) {
         String carCatalog = readCarCatalog();
