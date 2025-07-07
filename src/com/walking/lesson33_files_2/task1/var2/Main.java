@@ -1,19 +1,19 @@
-package com.walking.lesson32_files_1.task1;
+package com.walking.lesson33_files_2.task1.var2;
 
-import com.walking.lesson32_files_1.task1.model.Car;
+import com.walking.lesson33_files_2.model.Car;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
- * Используя класс Car (или создав новый класс для сущности «машина», на ваше усмотрение) из задачи
- * <a href="https://github.com/KFalcon2022/practical-tasks/tree/master/src/com/walking/lesson19_object_methods/model">...</a>
- * Реализуйте сохранение массива машин в файл carCatalog.txt
+ * Реализуйте Задачу 1 из урока
+ * <a href="https://telegra.ph/Rabota-s-fajlami-CHast-I-12-17">...</a>
+ * с помощью:
+ * <p>
+ * Вариант 2: BufferedOutputStream;
  */
-public class Main {
 
-    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson32_files_1/task1/carCatalog.txt";
+public class Main {
+    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson33_files_2/task1/var2/carCatalog.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
@@ -22,15 +22,20 @@ public class Main {
     }
 
     private static void writeCarCatalog(Car[] cars) {
-        try (FileOutputStream carCatalog = new FileOutputStream(CAR_CATALOG_FILE_PATH, false)) {
+        File carCatalog = new File(CAR_CATALOG_FILE_PATH);
+        System.out.println("record is beginning");
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(carCatalog, true);
+             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream)) {
+
             for (Car car : cars) {
-                byte[] bytesCarInformation = parseString(car).getBytes();
+                byte[] carBuffer = parseString(car).getBytes();
 
-                carCatalog.write(bytesCarInformation);
-                carCatalog.write("\n".getBytes());
+                bufferedOutputStream.write(carBuffer);
+                bufferedOutputStream.write('\n');
             }
+            System.out.println("record is over");
 
-            System.out.println("Record is over");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

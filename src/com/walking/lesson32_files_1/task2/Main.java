@@ -11,16 +11,11 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32_files_1/task2/carCatalog.txt";
+    public static final String CAR_CATALOG_FILE_PATH = "./resource/files/lesson32_files_1/task2/carCatalog.txt";
 
     public static void main(String[] args) {
-        String carCatalog = readCarCatalog();
-        String[] carsArray = carCatalog.split("\n");
-        Car[] cars = new Car[carsArray.length];
-
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = parseCar(carsArray[i].split(";"));
-        }
+        String carCatalog = readCarCatalog(CAR_CATALOG_FILE_PATH);
+        Car[] cars = getCars(carCatalog.split("\n"));
 
         for (Car car : cars) {
             System.out.println(car);
@@ -28,20 +23,29 @@ public class Main {
     }
 
 
-    private static String readCarCatalog() {
+    private static String readCarCatalog(String carCatalogPath) {
         StringBuilder fileLine = new StringBuilder();
-        try (FileInputStream carCatalogueReader = new FileInputStream(CAR_CATALOG_TXT_DIRECTORY)) {
-            int i;
+        try (FileInputStream carCatalogueReader = new FileInputStream(carCatalogPath)) {
+            byte[] b = carCatalogueReader.readAllBytes();
 
-            while ((i = carCatalogueReader.read()) != -1) {
-                fileLine.append((char) i);
+            for (byte sym : b) {
+                fileLine.append((char) sym);
             }
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return fileLine.toString();
+    }
+
+    private static Car[] getCars(String[] carCatalogText) {
+        Car[] cars = new Car[carCatalogText.length];
+
+        for (int i = 0; i < carCatalogText.length; i++) {
+            cars[i] = parseCar(carCatalogText[i].split(";"));
+        }
+
+        return cars;
     }
 
     private static Car parseCar(String[] carInformation) {
