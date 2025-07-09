@@ -28,7 +28,10 @@ public class Main {
                 .trim()
                 .toLowerCase();
 
-        System.out.printf("Найдено уникальных слов: %d", countWords(splitPhrase(phrase)));
+        String[] words = splitPhrase(phrase);
+        if (validateWords(words)) {
+            System.out.printf("Найдено уникальных слов: %d", countWords(words));
+        }
     }
 
     public static int countWords(String[] phrase) {
@@ -47,14 +50,13 @@ public class Main {
         return counter;
     }
 
-    public static String[] splitPhrase(String phrase) {
-        String[] words = phrase.split("\\s+");
+    public static boolean validateWords(String[] words) {
         for (String word : words) {
             if (!validateWord(word)) {
                 throw new InvalidWordException("Некорректное слово: " + word);
             }
         }
-        return words;
+        return true;
     }
 
     public static boolean validateWord(String word) {
@@ -79,5 +81,9 @@ public class Main {
         }
 
         return true;
+    }
+
+    private static String[] splitPhrase(String phrase) {
+        return phrase.split("\\s+");
     }
 }
