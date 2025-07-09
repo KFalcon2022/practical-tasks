@@ -1,12 +1,10 @@
 package com.walking.lesson32_files_1.task3;
 
 import com.walking.lesson21_immutable_object.car.Car;
+import com.walking.lesson32_files_1.task3.repository.CarRepository;
 import com.walking.lesson32_files_1.task3.service.CarService;
 
 import java.io.IOException;
-
-import static com.walking.lesson32_files_1.task3.repository.CarRepository.*;
-import static com.walking.lesson32_files_1.task3.service.CarService.*;
 
 /**
  * Реализуйте возможность добавления, удаления и изменения информации о машинах,
@@ -16,14 +14,14 @@ import static com.walking.lesson32_files_1.task3.service.CarService.*;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        saveCars(setCars());
-        String[] cars = getCarInformation(readFile());
-        CarService carService = new CarService(getAll(cars));
-        carService.addCar(new Car("Волга", "Петрова О.Е.", "ер765к"));
-        carService.delete(new Car ("Audi", "Печкин Ф.Б.", "уе777к"));
-        carService.update(new Car("BMW", "Михайлова Р.Г.", "ос025р"));
-        saveCars(carService.getCars());
+        CarRepository repository = new CarRepository();
 
+        CarService service = new CarService(repository.findAll());
+        service.addCar(new Car("Волга", "Курочкин Л.Д.", "зщ876е"));
+        service.update(new Car("Audi", "Вовочкин Д.Е.", "уе777к"));
+        service.delete(new Car("Ford", "Снегирь Ю.В.", "мр666м"));
+
+        repository.saveAll(service.getCars());
     }
 
     private static Car[] setCars() {

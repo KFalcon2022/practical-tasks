@@ -17,6 +17,7 @@ public class CarService {
         }
         cars = Arrays.copyOf(cars, cars.length + 1);
         cars[cars.length - 1] = car;
+        System.out.println("Машина добавлена.");
     }
 
     public void update(Car car) {
@@ -28,6 +29,7 @@ public class CarService {
         }
 
         existedCar.setOwner(car.getOwner());
+        System.out.println("Информация о владельце обновлена.");
     }
 
     public void delete(Car car) {
@@ -49,6 +51,11 @@ public class CarService {
         }
 
         cars = updatedCars;
+        System.out.println("Машина удалена.");
+    }
+
+    public Car[] getCars() {
+        return cars;
     }
 
     private Car find(Car car) {
@@ -67,9 +74,5 @@ public class CarService {
             }
         }
         return -1;
-    }
-
-    public Car[] getCars() {
-        return cars;
     }
 }

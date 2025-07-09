@@ -15,7 +15,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Машина марки " + identifier.getBrand() + ", владелец: " + owner + ", номер: " + identifier.getNumber();
+        return identifier.getBrand() + ", " + owner + ", " + identifier.getNumber();
     }
 
     public CarIdentifier getIdentifier() {

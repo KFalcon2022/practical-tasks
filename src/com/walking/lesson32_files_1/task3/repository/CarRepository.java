@@ -1,4 +1,5 @@
 package com.walking.lesson32_files_1.task3.repository;
+
 import com.walking.lesson21_immutable_object.car.Car;
 
 import java.io.FileOutputStream;
@@ -8,7 +9,7 @@ import java.io.IOException;
 public class CarRepository {
     public static final String FILE_LOCATION = "./resources/carCatalog.txt";
 
-    public static void saveCars(Car[] cars) throws IOException {
+    public void saveAll(Car[] cars) {
         try (FileOutputStream fos = new FileOutputStream(FILE_LOCATION)) {
             for (Car car : cars) {
                 String carInfo = car.toString() + "\n";
@@ -22,16 +23,17 @@ public class CarRepository {
         }
     }
 
-    public static Car[] getAll(String[] cars) {
-        Car[] carsArr = new Car[cars.length];
+    public Car[] findAll() throws IOException {
+        String[] carsInfo = readFile().split("\n");
+        Car[] carsArr = new Car[carsInfo.length];
+
         for (int i = 0; i < carsArr.length; i++) {
-            String[] info = cars[i].split(",");
-            carsArr[i] = new Car(info[0].trim(), info[1].trim(), info[2].trim());
+            carsArr[i] = getCar(carsInfo[i]);
         }
         return carsArr;
     }
 
-    public static String readFile() throws IOException {
+    private String readFile() throws IOException {
         StringBuilder cars = new StringBuilder();
         try (FileReader reader = new FileReader(FILE_LOCATION)) {
             int i;
@@ -42,10 +44,11 @@ public class CarRepository {
         return cars.toString().trim();
     }
 
-    public static String[] getCarInformation(String cars) {
-        return cars.replaceAll("Машина марки", "")
-                .replaceAll("владелец:", "")
-                .replaceAll("номер:", "")
-                .split("\n");
+    private Car getCar(String car) {
+        String[] info = car.split(",");
+        String brand = info[0] == null ? null : info[0].trim();
+        String owner = info[1] == null ? null : info[1].trim();
+        String number = info[2] == null ? null : info[2].trim();
+        return new Car(brand, owner, number);
     }
 }
