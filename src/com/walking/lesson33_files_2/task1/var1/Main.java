@@ -14,7 +14,7 @@ import java.io.*;
  * Вариант 3: BufferedWriter.
  */
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+    public static final File FILE = new File("./resources/carCatalog.txt");
 
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[6];
@@ -29,7 +29,7 @@ public class Main {
     }
 
     public static void saveCars(Car[] cars) throws IOException {
-        try (FileWriter writer = new FileWriter(FILE_LOCATION)) {
+        try (FileWriter writer = new FileWriter(FILE)) {
             for (Car car : cars) {
                 String carInfo = car.toString();
                 writer.write(carInfo);

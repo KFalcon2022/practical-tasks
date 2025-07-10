@@ -3,12 +3,13 @@ package com.walking.lesson33_files_2.task2.var3;
 import com.walking.lesson19_object_methods.car.Car;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+    public static final File FILE = new File("./resources/carCatalog.txt");
 
     public static void main(String[] args) throws IOException {
         String text = readFile();
@@ -24,7 +25,7 @@ public class Main {
 
     public static String readFile() throws IOException {
         StringBuilder cars = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(FILE_LOCATION))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
             int i;
             while ((i = br.read()) != -1) {
                 cars.append((char) i);

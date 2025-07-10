@@ -3,11 +3,12 @@ package com.walking.lesson33_files_2.task1.var3;
 import com.walking.lesson19_object_methods.car.Car;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog3.txt";
+    public static final File FILE = new File( "./resources/carCatalog3.txt");
 
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[6];
@@ -22,7 +23,7 @@ public class Main {
     }
 
     public static void saveCars(Car[] cars) throws IOException {
-        try (FileWriter writer = new FileWriter(FILE_LOCATION);
+        try (FileWriter writer = new FileWriter(FILE);
              BufferedWriter bw = new BufferedWriter(writer)) {
             for (Car car : cars) {
                 String carInfo = car.toString();

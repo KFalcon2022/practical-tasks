@@ -3,6 +3,7 @@ package com.walking.lesson33_files_2.task1.var2;
 import com.walking.lesson19_object_methods.car.Car;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ import java.io.IOException;
  * (у меня не выходит)
  */
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog1.txt";
+    public static final File FILE = new File( "./resources/carCatalog1.txt");
 
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[5];
@@ -26,7 +27,7 @@ public class Main {
     }
 
     public static void saveCars(Car[] cars) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream(FILE_LOCATION);
+        try (FileOutputStream fos = new FileOutputStream(FILE);
              BufferedOutputStream bos = new BufferedOutputStream(fos)) {
             for (Car car : cars) {
                 String carInfo = car.getBrand() + ", " + car.getOwner() + ", " + car.getNumber() + "\n";

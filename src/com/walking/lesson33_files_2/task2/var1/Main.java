@@ -2,8 +2,7 @@ package com.walking.lesson33_files_2.task2.var1;
 
 import com.walking.lesson19_object_methods.car.Car;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,7 +17,7 @@ import java.util.Scanner;
  * Вариант 3: BufferedReader.
  */
 public class Main {
-    public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+    public static final File FILE = new File("./resources/carCatalog.txt");
 
     public static void main(String[] args) throws IOException {
         String text = readFile();
@@ -34,7 +33,7 @@ public class Main {
 
     public static String readFile() throws IOException {
         StringBuilder cars = new StringBuilder();
-        try (FileReader reader = new FileReader(FILE_LOCATION)) {
+        try (FileReader reader = new FileReader(FILE)) {
             int i;
             while ((i = reader.read()) != -1) {
                 cars.append((char) i);
