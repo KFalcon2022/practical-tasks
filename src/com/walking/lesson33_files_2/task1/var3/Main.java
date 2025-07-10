@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
-    public static final File FILE = new File( "./resources/carCatalog3.txt");
+    public static final File FILE = new File( "./resources", "carCatalog.txt");
 
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[6];

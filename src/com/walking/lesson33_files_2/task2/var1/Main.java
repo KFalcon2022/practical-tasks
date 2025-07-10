@@ -17,7 +17,7 @@ import java.util.Scanner;
  * Вариант 3: BufferedReader.
  */
 public class Main {
-    public static final File FILE = new File("./resources/carCatalog.txt");
+    public static final File FILE = new File("./resources", "carCatalog.txt");
 
     public static void main(String[] args) throws IOException {
         String text = readFile();

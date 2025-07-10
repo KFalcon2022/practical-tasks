@@ -13,7 +13,7 @@ import java.io.IOException;
  * (у меня не выходит)
  */
 public class Main {
-    public static final File FILE = new File( "./resources/carCatalog1.txt");
+    public static final File FILE = new File( "./resources", "carCatalog1.txt");
 
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[5];

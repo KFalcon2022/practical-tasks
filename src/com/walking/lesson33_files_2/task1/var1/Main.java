@@ -14,7 +14,7 @@ import java.io.*;
  * Вариант 3: BufferedWriter.
  */
 public class Main {
-    public static final File FILE = new File("./resources/carCatalog.txt");
+    public static final File FILE = new File("./resources", "carCatalog.txt");
 
     public static void main(String[] args) throws IOException {
         Car[] cars = new Car[6];
