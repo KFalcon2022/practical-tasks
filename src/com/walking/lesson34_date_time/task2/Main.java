@@ -23,9 +23,9 @@ public class Main {
     public static void compareDateTime(LocalDateTime dateTime) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         if (currentDateTime.isAfter(dateTime)) {
-            System.out.println("Указанная дата была раньше текущей.");
+            System.out.println("Указанна дата раньше текущей.");
         } else if (currentDateTime.isBefore(dateTime)) {
-            System.out.println("Указанная дата наступит позже текущей.");
+            System.out.println("Указанна дата позже текущей.");
         } else {
             System.out.println("Указана текущая дата.");
         }
