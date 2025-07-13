@@ -53,6 +53,6 @@ public class Main {
         int year = Integer.parseInt(carInformation[1]);
         String color = carInformation[2];
 
-        return new Car(number, year, color);
+        return new Car(number, year, color, true);
     }
 }

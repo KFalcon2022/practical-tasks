@@ -5,13 +5,22 @@ import java.util.Objects;
 public class Car {
     private final String number;
     private final int year;
+
     private String color;
+    private boolean actualTechnicalInspection;
+
     private int hashcode;
 
     public Car(String number, int year, String color) {
+        this(number, year, color, false);
+    }
+
+    public Car(String number, int year, String color, boolean actualTechnicalInspection) {
         this.number = number;
         this.year = year;
         this.color = color;
+        this.actualTechnicalInspection = actualTechnicalInspection;
+
         this.hashcode = hashCode();
     }
 
@@ -27,8 +36,16 @@ public class Car {
         return color;
     }
 
+    public boolean isActualTechnicalInspection() {
+        return actualTechnicalInspection;
+    }
+
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setActualTechnicalInspection(boolean actualTechnicalInspection) {
+        this.actualTechnicalInspection = actualTechnicalInspection;
     }
 
     @Override
@@ -59,9 +76,13 @@ public class Car {
     @Override
     public String toString() {
         return """
+                
                 number: %s
                 year: %d
                 color: %s
-                """.formatted(number, year, color);
+                actualTechnicalInspection: %s
+                """.formatted(
+                number, year, color,
+                actualTechnicalInspection ? "actual" : "not actual");
     }
 }
