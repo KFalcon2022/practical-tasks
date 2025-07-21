@@ -19,13 +19,15 @@ public class Main {
     public static final String PHONE_NUMBER_REGEX = "^\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}$";
     public static final String SPACE_REGEX = "^.+\\s.+\\s.+$";
     public static final String HYPHEN_REGEX = "^.+-.+-.+$";
+    public static final String BRACKET_REGEX = "^.+\\(.+\\).+$";
 
     public static void main(String[] args) {
 
         //Да, я уже посмотрел решение и понял, что я не выполнил условие задачи до конца)
         String phoneNumber = "+7 (914) 029-00-24";
 
-        if (isPhoneNumber(phoneNumber) && isPhoneSpaces(phoneNumber) && isPhoneHyphen(phoneNumber)) {
+        if (isPhoneNumber(phoneNumber) && isPhoneSpaces(phoneNumber)
+                && isPhoneHyphen(phoneNumber) && isPhoneBrackets(phoneNumber)) {
             System.out.println("It is a Phone Number!");
         } else {
             System.out.println("It is not a Phone Number!");
@@ -37,10 +39,26 @@ public class Main {
     }
 
     private static boolean isPhoneSpaces(String phoneNumber) {
-        return phoneNumber.matches(SPACE_REGEX);
+        if (phoneNumber.contains(" ")) {
+            return phoneNumber.matches(SPACE_REGEX);
+        }
+
+        return true;
     }
 
     private static boolean isPhoneHyphen(String phoneNumber) {
-        return phoneNumber.matches(HYPHEN_REGEX);
+        if (phoneNumber.contains("-")) {
+            return phoneNumber.matches(HYPHEN_REGEX);
+        }
+
+        return true;
+    }
+
+    private static boolean isPhoneBrackets(String phoneNumber) {
+        if (phoneNumber.contains("(") || phoneNumber.contains(")")) {
+            return phoneNumber.matches(BRACKET_REGEX);
+        }
+
+        return true;
     }
 }

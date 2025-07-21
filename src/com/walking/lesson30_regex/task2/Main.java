@@ -3,6 +3,7 @@ package com.walking.lesson30_regex.task2;
 import com.walking.lesson30_regex.task2.exception.ValidationException;
 import com.walking.lesson30_regex.task2.information.FullName;
 
+import java.lang.reflect.Parameter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,8 +31,8 @@ public class Main {
     }
 
     private static FullName getFullName(String input) {
-        String[] arrayID = input.split(" ");
-        FullName fullName = new FullName(arrayID[1], arrayID[0], arrayID[2]);
+        String[] fullNameArray = input.split(" ");
+        FullName fullName = new FullName(fullNameArray[1], fullNameArray[0], fullNameArray[2]);
 
         if (isValidFullName(fullName)) {
             return fullName;
@@ -48,26 +49,24 @@ public class Main {
     }
 
     private static boolean isValidSurname(String surname) {
-        if (surname.contains("-")) {
-            if (isValidName(SURNAME_WITH_HYPHEN_REGEX, surname)) {
+        if (surname.contains("-") && isValidName(SURNAME_WITH_HYPHEN_REGEX, surname)) {
                 return true;
-            }
         }
 
         return isValidName(surname);
     }
 
     private static boolean isValidName(String regex, String name) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(name);
 
-        return matcher.find();
+        return Pattern.compile(regex)
+                .matcher(name)
+                .find();
     }
 
     private static boolean isValidName(String name) {
-        Pattern pattern = Pattern.compile(USUAL_NAME_REGEX);
-        Matcher matcher = pattern.matcher(name);
 
-        return matcher.find();
+        return Pattern.compile(USUAL_NAME_REGEX)
+                .matcher(name)
+                .find();
     }
 }
