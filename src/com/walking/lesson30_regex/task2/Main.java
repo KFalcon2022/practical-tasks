@@ -3,8 +3,6 @@ package com.walking.lesson30_regex.task2;
 import com.walking.lesson30_regex.task2.exception.ValidationException;
 import com.walking.lesson30_regex.task2.information.FullName;
 
-import java.lang.reflect.Parameter;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -50,7 +48,7 @@ public class Main {
 
     private static boolean isValidSurname(String surname) {
         if (surname.contains("-") && isValidName(SURNAME_WITH_HYPHEN_REGEX, surname)) {
-                return true;
+            return true;
         }
 
         return isValidName(surname);
