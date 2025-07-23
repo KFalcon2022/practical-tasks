@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class CarRepository {
     public static final String FILE_LOCATION = "./resources/carCatalog.txt";
+    public Car[] carsArr;
 
     public void saveAll(Car[] cars) {
         try (FileOutputStream fos = new FileOutputStream(FILE_LOCATION)) {
@@ -23,14 +24,14 @@ public class CarRepository {
         }
     }
 
-    public Car[] findAll() throws IOException {
+    public void findAll() throws IOException {
         String[] carsInfo = readFile().split("\n");
         Car[] carsArr = new Car[carsInfo.length];
 
         for (int i = 0; i < carsArr.length; i++) {
             carsArr[i] = getCar(carsInfo[i]);
         }
-        return carsArr;
+        this.carsArr = carsArr;
     }
 
     private String readFile() throws IOException {

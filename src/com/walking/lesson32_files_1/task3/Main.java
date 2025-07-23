@@ -15,8 +15,10 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         CarRepository repository = new CarRepository();
+        repository.saveAll(setCars());
+        repository.findAll();
 
-        CarService service = new CarService(repository.findAll());
+        CarService service = new CarService(repository);
         service.addCar(new Car("Волга", "Курочкин Л.Д.", "зщ876е"));
         service.update(new Car("Audi", "Вовочкин Д.Е.", "уе777к"));
         service.delete(new Car("Ford", "Снегирь Ю.В.", "мр666м"));

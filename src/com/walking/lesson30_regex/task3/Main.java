@@ -64,9 +64,7 @@ public class Main {
             return word.matches(WORD);
         }
 
-        Pattern multiplyHyphens = Pattern.compile("--+");
-        Matcher matcher = multiplyHyphens.matcher(word);
-        if (matcher.find()) {
+        if (word.matches("^.*--+.*$")) {
             return false;
         }
 
