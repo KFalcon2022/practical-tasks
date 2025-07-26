@@ -2,6 +2,7 @@ package com.walking.lesson38_comparing.task2;
 
 import com.walking.lesson38_comparing.task2.model.Car;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Main {
     }
 
     private static List<Car> initCars() {
-        List<Car> cars = List.of();
+        List<Car> cars = new ArrayList<>();
         cars.add(new Car("RR-111-RR", 2015, "yellow", true));
         cars.add(new Car("RR-222-RR", 2016, "yellow", true));
         cars.add(new Car("RR-333-RR", 2017, "black", true));
