@@ -76,7 +76,7 @@ public class SinglyLinkedList<E> implements Collection<E> {
     }
 
     @Override
-    public <T> T @NotNull [] toArray(T[] a) {
+    public <T> T @NotNull [] toArray(T @NotNull [] a) {
         return (T[]) Arrays.copyOf(toArray(a), size, a.getClass());
     }
 
@@ -99,13 +99,15 @@ public class SinglyLinkedList<E> implements Collection<E> {
 
         Node<E> temp = top;
 
-        while (temp != null) {
-            if (Objects.equals(o, temp.value)) {
-                temp = temp.next;
+        while (temp.next != null) {
+            if (Objects.equals(o, temp.next.value)) {
+                temp.next = temp.next.next;
                 size--;
 
                 return true;
             }
+
+            temp = temp.next;
         }
 
         return false;
