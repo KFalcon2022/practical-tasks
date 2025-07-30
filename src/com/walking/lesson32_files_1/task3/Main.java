@@ -1,7 +1,8 @@
 package com.walking.lesson32_files_1.task3;
 
 import com.walking.lesson32_files_1.task3.model.Car;
-import com.walking.lesson32_files_1.task3.service.CarRepository;
+import com.walking.lesson32_files_1.task3.repository.CarRepository;
+import com.walking.lesson32_files_1.task3.service.CarService;
 
 /**
  * Реализуйте возможность добавления, удаления и изменения информации о машинах,
@@ -10,27 +11,18 @@ import com.walking.lesson32_files_1.task3.service.CarRepository;
  * но вы можете сделать иную реализацию на свое усмотрение.
  */
 public class Main {
-    public static final String CAR_CATALOG_TXT_DIRECTORY = "./resource/files/lesson32_files_1/task3/carCatalog.txt";
 
     public static void main(String[] args) {
         Car[] cars = initCars();
 
-        CarRepository carCatalogWriter = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
-        carCatalogWriter.writeCarCatalog(cars);
+        CarRepository carRepository = new CarRepository();
+        carRepository.writeCarCatalog(cars);
 
+        CarService carService = new CarService(carRepository.getCarCatalog());
+        carService.add(new Car("EE-111-EE", 2025, "black"));
+        carService.change(new Car("RR-222-RR", 2016, "pink"));
+        carService.delete(new Car("RR-333-RR", 2017, "yellow"));
 
-        Car newCar = new Car("FFFF", 1995, "green");
-        CarRepository addNewCar = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
-        addNewCar.addNewCar(newCar);
-
-
-        CarRepository changeCarInformation = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
-        changeCarInformation.changeCar(new Car("RR-666-RR",2018, "yellow")
-                ,new Car("FF-777-FF", 2018, "green"));
-
-        CarRepository carCatalogReader = new CarRepository(CAR_CATALOG_TXT_DIRECTORY);
-        String carsDatabase = carCatalogReader.readCarCatalog();
-        System.out.println(carsDatabase);
     }
 
     private static Car[] initCars() {

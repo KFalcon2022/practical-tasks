@@ -50,10 +50,12 @@ public final class CarIdentifier implements Comparable<CarIdentifier> {
     public int compareTo(@NotNull CarIdentifier o) {
         if (number.compareTo(o.getNumber()) > 0) {
             return 1;
-        } else if (number.compareTo(o.getNumber()) < 0) {
-            return -1;
-        } else {
-            return Integer.compare(year, o.getYear());
         }
+
+        if (number.compareTo(o.getNumber()) < 0) {
+            return -1;
+        }
+
+        return 0;
     }
 }

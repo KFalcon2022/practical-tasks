@@ -45,12 +45,10 @@ public class Main {
 
     private static void getTimeDifference(LocalDateTime date1, LocalDateTime date2) {
         long date1EpochSecond = date1.toEpochSecond(ZoneOffset.UTC);
-//        System.out.println(date1EpochSecond);
-
         long date2EpochSecond = date2.toEpochSecond(ZoneOffset.UTC);
-//        System.out.println(date2EpochSecond);
 
-        long difference = date1EpochSecond - date2EpochSecond;
+        long difference = Math.abs(date1EpochSecond - date2EpochSecond);
+
         System.out.println("Seconds: " + difference);
         difference /= 60;
         System.out.println("Minutes: " + difference);
@@ -60,10 +58,8 @@ public class Main {
         System.out.println("Days: " + difference);
 
         long date1EpochDays = date1.toLocalDate().toEpochDay();
-        System.out.println(date1EpochDays);
         long date2EpochDays = date2.toLocalDate().toEpochDay();
-        System.out.println(date2EpochDays);
-        long daysDifference = date1EpochDays - date2EpochDays;
+        long daysDifference = Math.abs(date1EpochDays - date2EpochDays);
         System.out.println(daysDifference);
 
     }

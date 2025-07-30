@@ -8,6 +8,9 @@ import java.time.format.DateTimeFormatter;
  * Пример входящей строки: 20.12.2022 20:16:00.
  */
 public class Main {
+
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+
     public static void main(String[] args) {
         String dateTime = "20.12.2022 20:16:00";
 
@@ -15,6 +18,6 @@ public class Main {
     }
 
     private static LocalDateTime parseDateTime(String dataTime) {
-        return LocalDateTime.parse(dataTime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+        return LocalDateTime.parse(dataTime, FORMATTER);
     }
 }

@@ -29,9 +29,9 @@ public class Main {
              BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream)) {
 
             for (Car car : cars) {
-                byte[] carBuffer = parseString(car).getBytes();
+                byte[] carBytes = parseString(car).getBytes();
 
-                bufferedOutputStream.write(carBuffer);
+                bufferedOutputStream.write(carBytes);
                 bufferedOutputStream.write('\n');
             }
             System.out.println("record is over");

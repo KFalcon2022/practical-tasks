@@ -3,6 +3,7 @@ package com.walking.lesson37_collection_list.task1.service;
 import com.walking.lesson37_collection_list.task1.model.Counter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,9 +16,8 @@ import java.util.List;
 public class CounterService {
     private final List<Counter> counters;
 
-    public CounterService(List<Counter> counters) {
+    public CounterService(Collection<Counter> counters) {
         this.counters = new ArrayList<>(counters);
-
     }
 
     public Counter getCounterByName(String name) {
@@ -31,7 +31,7 @@ public class CounterService {
     }
 
     public List<Counter> getCounters() {
-        return counters;
+        return new ArrayList<>(counters);
     }
 
     public boolean addCounter(Counter newCounter) {
