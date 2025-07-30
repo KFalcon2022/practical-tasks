@@ -36,8 +36,6 @@ public class Main {
             }
             System.out.println("record is over");
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
