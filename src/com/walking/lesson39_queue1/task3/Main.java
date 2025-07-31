@@ -1,7 +1,6 @@
 package com.walking.lesson39_queue1.task3;
 
 import com.walking.lesson39_queue1.collection.DoublyLinkedList;
-import com.walking.lesson39_queue1.collection.SinglyLinkedList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;

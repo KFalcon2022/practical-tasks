@@ -69,7 +69,7 @@ public class DoublyLinkedList<E> implements Collection<E> {
     }
 
     @Override
-    public @NotNull Object[] toArray() {
+    public @NotNull Object @NotNull [] toArray() {
         Node<E> temp = top;
         Object[] arr = new Object[size];
 
@@ -82,7 +82,7 @@ public class DoublyLinkedList<E> implements Collection<E> {
     }
 
     @Override
-    public @NotNull <T> T[] toArray(@NotNull T @NotNull [] a) {
+    public @NotNull <T> T @NotNull [] toArray(@NotNull T @NotNull [] a) {
         return (T[]) Arrays.copyOf(toArray(), size, a.getClass());
     }
 
