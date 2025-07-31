@@ -48,7 +48,7 @@ public class Stack<T> implements Collection<T> {
     }
 
     @Override
-    public @NotNull Object[] toArray() {
+    public @NotNull Object @NotNull [] toArray() {
         Object[] array = new Object[size];
         Node<T> temp = top;
 
@@ -61,7 +61,7 @@ public class Stack<T> implements Collection<T> {
     }
 
     @Override
-    public @NotNull <E> E[] toArray(@NotNull E[] a) {
+    public @NotNull <E> E @NotNull [] toArray(@NotNull E @NotNull [] a) {
         return (E[]) Arrays.copyOf(toArray(), size, a.getClass());
     }
 
