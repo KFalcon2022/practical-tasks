@@ -19,6 +19,14 @@ public class DoublyLinkedList<E> implements Collection<E> {
         size++;
     }
 
+    public E getTop() {
+        return top.value;
+    }
+
+    public E getLast() {
+        return last.value;
+    }
+
     public void reverse() {
         if (size <= 1) {
             return;
