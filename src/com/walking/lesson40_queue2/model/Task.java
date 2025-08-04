@@ -8,11 +8,6 @@ public class Task {
         this.name = name;
     }
 
-    public Task(String name, Task prev) {
-        this.name = name;
-        this.prev = prev;
-    }
-
     public String getName() {
         return name;
     }

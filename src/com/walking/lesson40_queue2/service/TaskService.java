@@ -2,7 +2,6 @@ package com.walking.lesson40_queue2.service;
 
 import com.walking.lesson40_queue2.model.Task;
 
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,9 +15,8 @@ public class TaskService {
         return true;
     }
 
-    public Task complete() {
+    public void complete() {
         Task task = checkList.poll();
-
 
         if (task == null) {
             System.out.println("CheckList is empty");
@@ -28,11 +26,5 @@ public class TaskService {
                 checkList.peek().setPrev(null);
             }
         }
-
-        return task;
     }
-
-
-
-
 }
