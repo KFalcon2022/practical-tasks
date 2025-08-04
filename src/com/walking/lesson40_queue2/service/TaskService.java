@@ -22,9 +22,6 @@ public class TaskService {
             System.out.println("CheckList is empty");
         } else {
             System.out.printf("Task %s is complete\n", task.getName());
-            if (checkList.peek() != null) {
-                checkList.peek().setPrev(null);
-            }
         }
     }
 }
