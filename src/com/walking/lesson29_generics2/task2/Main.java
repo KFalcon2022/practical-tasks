@@ -1,12 +1,14 @@
 package com.walking.lesson29_generics2.task2;
 
-/**
- * Используя Задачу 1 из урока Generics.
- * Часть I, реализуйте в Main метод, принимающий аргументом объект подходящего
- * для дженерика типа и возвращающий объект дженерика.
- * Допустима параметризация только с использованием wildcard.
- */
+import com.walking.lesson29_generics2.task2.Generic;
 public class Main {
     public static void main(String[] args) {
+        Generic<?> integerGeneric = getGen(5);
+        System.out.println(integerGeneric.exponentiateGeneric(3));
+    }
+
+    public static Generic<? extends Number>  getGen(Number param) {
+
+        return new Generic<>(param);
     }
 }

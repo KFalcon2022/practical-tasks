@@ -1,5 +1,7 @@
 package com.walking.lesson52_stream_creation.task3_vars;
 
+import java.util.List;
+
 /**
  * Реализуйте метод, возвращающий Stream<String> из дат месяца,
  * номер которого был передан параметром.

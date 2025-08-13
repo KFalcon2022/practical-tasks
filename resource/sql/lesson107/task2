@@ -1,0 +1,38 @@
+begin;
+    insert into passenger (id, first_name, last_name, birth_date, male, last_purchase)
+    values (22, 'Maksim', 'Maksimov', '08-06-1995', true, now())
+    on conflict do nothing;
+
+    savepoint first_savepoint;
+
+    insert into ticket (departure_airport, arrival_airport, departure_date,
+                    arrival_date, purchase_date, passenger_id)
+    values ('Moscow', 'Minsk', '12-10-2023 14:47:00', '12-10-2023 16:04:00', now(), 22);
+
+    rollback to first_savepoint;
+
+    insert into ticket (departure_airport, arrival_airport, departure_date,
+                    arrival_date, purchase_date, passenger_id)
+    values ('Minsk', 'Moscow', '15-10-2023 20:17:00', '15-10-2023 21:40:00', now(), 22);
+
+    rollback to first_savepoint;
+
+    insert into passenger (id, first_name, last_name, birth_date, male, last_purchase)
+    values (23, 'Anna', 'Maksimova', '24-09-1997', false, now())
+    on conflict do nothing;
+
+    savepoint second_savepoint;
+
+    insert into ticket (departure_airport, arrival_airport, departure_date,
+                    arrival_date, purchase_date, passenger_id)
+    values ('Moscow', 'Minsk', '12-10-2023 14:47:00', '12-10-2023 16:04:00', now(), 23);
+
+    rollback to second_savepoint;
+
+    insert into ticket (departure_airport, arrival_airport, departure_date,
+                    arrival_date, purchase_date, passenger_id)
+    values ('Minsk', 'Moscow', '15-10-2023 20:17:00', '15-10-2023 21:40:00', now(), 23);
+
+    rollback to second_savepoint;
+
+commit;
