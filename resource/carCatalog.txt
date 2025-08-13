@@ -1,0 +1,3 @@
+BMW; 8765; 2007; grey; true
+Toyota; 6532; 1994; White; false
+Toyota; 1278; 2024; Black; true
