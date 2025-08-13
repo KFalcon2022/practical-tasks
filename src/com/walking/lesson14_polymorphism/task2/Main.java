@@ -10,5 +10,14 @@ package com.walking.lesson14_polymorphism.task2;
  */
 public class Main {
     public static void main(String[] args) {
+
+        Animal[] animals = new Animal[]{new Cow(), new Cat(), new Dog()};
+        getSound(animals);
+    }
+
+    private static void getSound(Animal[] animals) {
+        for (Animal animal : animals) {
+            animal.sound();
+        }
     }
 }
