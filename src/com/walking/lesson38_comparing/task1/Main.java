@@ -23,13 +23,16 @@ public class Main {
     public static void main(String[] args) {
         List<Car> cars = initCars();
 
-        cars.sort(new CarNumberComparator());
+        CarNumberComparator numberComparator = new CarNumberComparator();
+        cars.sort(numberComparator);
 
-        cars.sort(new CarColorComparator());
+        CarColorComparator colorComparator = new CarColorComparator();
+        cars.sort(colorComparator);
 
-        cars.sort(new CarYearComparator());
+        CarYearComparator yearComparator = new CarYearComparator();
+        cars.sort(yearComparator);
 
-        cars.sort(new CarNumberComparator().thenComparing(new CarYearComparator()));
+        cars.sort(numberComparator.thenComparing(yearComparator));
         for (Car car : cars) {
             System.out.println(car);
         }

@@ -133,32 +133,32 @@ public class DoublyLinkedList<E> implements Collection<E> {
 
     @Override
     public boolean remove(Object o) {
+        Node<E> temp = top;
+
         if (Objects.equals(o, top.value)) {
             top = top.next;
             size--;
 
             if (top == null) {
                 last = null;
+            }
+
+            return true;
+        }
+
+        while (temp.next != null) {
+            if (Objects.equals(o, temp.next.value)) {
+                temp.next = temp.next.next;
+                size--;
+
+                if (temp.next == null) {
+                    last = null;
+                }
 
                 return true;
             }
 
-            Node<E> temp = top;
-
-            while (temp.next != null) {
-                if (Objects.equals(o, temp.next.value)) {
-                    temp.next = temp.next.next;
-                    size--;
-
-                    if (temp.next == null) {
-                        last = null;
-                    }
-
-                    return true;
-                }
-
-                temp = temp.next;
-            }
+            temp = temp.next;
         }
 
         return false;
@@ -225,14 +225,14 @@ public class DoublyLinkedList<E> implements Collection<E> {
 
     @Override
     public boolean retainAll(@NotNull Collection<?> c) {
-        if (!c.contains(top.value)) {
+        while (!c.contains(top.value)) {
             top = top.next;
             size--;
         }
 
         Node<E> temp = top;
 
-        while (temp.next != null) {
+        while (temp != null) {
             if (!c.contains(temp.next.value)) {
                 temp.next = temp.next.next;
                 size--;

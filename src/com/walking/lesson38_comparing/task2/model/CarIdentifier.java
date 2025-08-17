@@ -56,6 +56,16 @@ public final class CarIdentifier implements Comparable<CarIdentifier> {
             return -1;
         }
 
+        if (number.compareTo(o.getNumber()) == 0) {
+            if (Integer.compare(year, o.getYear()) > 0) {
+                return 1;
+            }
+
+            if (Integer.compare(year, o.getYear()) < 0) {
+                return -1;
+            }
+        }
+
         return 0;
     }
 }

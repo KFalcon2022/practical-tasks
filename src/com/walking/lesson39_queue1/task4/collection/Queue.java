@@ -6,7 +6,7 @@ public class Queue<E> {
     private final DoublyLinkedList<E> list = new DoublyLinkedList<>();
 
     public void push(E e) {
-        list.addTop(e);
+        list.add(e);
     }
 
     public E pop() {
