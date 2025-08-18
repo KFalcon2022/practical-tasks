@@ -2,10 +2,7 @@ package com.walking.lesson42_tree.task1_easy.structure;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class UnbalancedBinaryTree<E> {
     private Node<E> root;
@@ -23,28 +20,28 @@ public class UnbalancedBinaryTree<E> {
         add(root, new Node<>(e));
     }
 
-    private void add(Node<E> currentRoot, Node<E> node) {
-        if (node.compareTo(currentRoot) > 0) {
-            if (currentRoot.right == null) {
-                currentRoot.right = node;
+    private void add(Node<E> current, Node<E> node) {
+        if (node.compareTo(current) > 0) {
+            if (current.right == null) {
+                current.right = node;
                 System.out.printf("element %s added\n", node.value.toString());
                 return;
             }
 
-            add(currentRoot.right, node);
+            add(current.right, node);
             return;
         }
 
-        if (currentRoot.left == null) {
-            currentRoot.left = node;
+        if (current.left == null) {
+            current.left = node;
             System.out.printf("element %s added\n", node.value.toString());
             return;
         }
 
-        add(currentRoot.left, node);
+        add(current.left, node);
     }
 
-    public Node<E> getMaxLeaf() {
+    public E getMaxLeaf() {
         if (root == null) {
             System.out.println("Main root is null! ");
             return null;
@@ -53,20 +50,20 @@ public class UnbalancedBinaryTree<E> {
         return getMaxLeaf(root);
     }
 
-    public Node<E> getMaxLeaf(Node<E> currentRoot) {
-        if (currentRoot == null) {
+    public E getMaxLeaf(Node<E> current) {
+        if (current == null) {
             System.out.println("Current root is null!");
             return null;
         }
 
-        if (currentRoot.right == null) {
-            return currentRoot;
+        if (current.right == null) {
+            return current.value;
         }
 
-        return getMaxLeaf(currentRoot.right);
+        return getMaxLeaf(current.right);
     }
 
-    public Node<E> getMinLeaf() {
+    public E getMinLeaf() {
         if (root == null) {
             System.out.println("Main root is null!");
             return null;
@@ -75,14 +72,14 @@ public class UnbalancedBinaryTree<E> {
         return getMinLeaf(root);
     }
 
-    public Node<E> getMinLeaf(Node<E> currentRoot) {
+    public E getMinLeaf(Node<E> currentRoot) {
         if (currentRoot == null) {
             System.out.println("Current Root is null! ");
             return null;
         }
 
         if (currentRoot.left == null) {
-            return currentRoot;
+            return currentRoot.value;
         }
 
         return getMinLeaf(currentRoot.left);
@@ -100,137 +97,86 @@ public class UnbalancedBinaryTree<E> {
         return currentRoot.left != null;
     }
 
-    public Node<E> findNode(E e) {
-        if (root == null) {
-            System.out.println("Element not found");
-            return null;
-        }
-
-        Node<E> required = new Node<>(e);
-
-        if (required.compareTo(root) == 0) {
-            System.out.println("Required node is root!");
-            return root;
-        }
-
-        return required.compareTo(root) > 0
-                ? findNode(root.right, required)
-                : findNode(root.left, required);
-    }
-
-    private Node<E> findNode(Node<E> currentNode, Node<E> required) {
-        if (currentNode == null) {
-            System.out.println("Element not found");
-            return null;
-        }
-
-        if (required.compareTo(currentNode) == 0) {
-            System.out.println("Required node found!");
-            return currentNode;
-        }
-
-        return required.compareTo(currentNode) > 0
-                ? findNode(currentNode.right, required)
-                : findNode(currentNode.left, required);
-    }
-
-    private Node<E> findNodesParent(Node<E> required) {
+    private Node<E> findParentNode(Node<E> required) {
         if (root == null) {
             System.out.println("Required node not found");
             return null;
         }
 
         if (required.compareTo(root) == 0) {
-            System.out.println("Required node doesn't have a parent!");
-            return null;
+            throw new RuntimeException("Required node doesn't have a parent!");
         }
 
         return required.compareTo(root) > 0
-                ? findNodesParent(root.right, required)
-                : findNodesParent(root.left, required);
+                ? findParentNode(root.right, required)
+                : findParentNode(root.left, required);
     }
 
-    private Node<E> findNodesParent(Node<E> current, Node<E> required) {
+    private Node<E> findParentNode(Node<E> current, Node<E> required) {
         if (current == null) {
-            System.out.println("Element not found");
-            return null;
+            throw new RuntimeException("Element not found");
         }
 
-        if (required.compareTo(current.left) == 0 || required.compareTo(current.right) == 0) {
-            return current;
+        if (isHasLeftChild(current) || isHasRightChild(current)) {
+            if (required.compareTo(current.left) == 0 || required.compareTo(current.right) == 0) {
+                return current;
+            }
         }
 
         return required.compareTo(current) > 0
-                ? findNodesParent(current.right, required)
-                : findNodesParent(current.left, required);
+                ? findParentNode(current.right, required)
+                : findParentNode(current.left, required);
     }
 
-    public Node<E> delete(E e) {
+    public Node<E> delete(E e) { //Удаление по значению
         Node<E> required = new Node<>(e);
-        Node<E> found = findNodesParent(required); //находим родительский узел, один из потомков которого является удаляемым узлом
-        if (found == null) {
-            return null;
+        Node<E> parentNode = findParentNode(required); //находим родительский узел, один из потомков которого является удаляемым узлом
+        if (parentNode == null) {
+            throw new RuntimeException("Element not found");
         }
 
-        return delete(required, found);
+        return delete(required, parentNode);
     }
 
-    private Node<E> delete(Node<E> required) {
-        Node<E> parent = findNodesParent(required);
+    private Node<E> delete(Node<E> required) { // удаление по Узлу
+        Node<E> parent = findParentNode(required);
         if (parent == null) {
-            return null;
+            throw new RuntimeException("Element not found");
         }
 
         return delete(required, parent);
     }
 
-    private @NotNull Node<E> delete(Node<E> node, Node<E> found) {
+    private @NotNull Node<E> delete(Node<E> required, Node<E> parent) {
         Node<E> removed;
-        if (node.compareTo(found.left) == 0) { //Если необходимо удалить левого потомка родительского узла
-            removed = found.left; //Присваеваем ссылку на удаляемый узел(здесь - левый) во временную переменную, которую будем возвращать
+        if (required.compareTo(parent.left) == 0) { //Если необходимо удалить левого потомка родительского узла
+            removed = parent.left; //Присваеваем ссылку на удаляемый узел(здесь - левый) во временную переменную, которую будем возвращать
 
-            if (isHasTwoChild(found.left)) {// если удаляемый узел имеет двух потомков
-                found.left = delete(getMaxLeaf(found.left.left));// ищем максимальный лист левого потомка удаляемого элемента
+            if (isHasTwoChild(parent.left)) {// если удаляемый узел имеет двух потомков
+                parent.left = delete(getMaxLeaf(parent.left.left));// ищем максимальный лист левого потомка удаляемого элемента
 //                    // и присваеваем ссылку, удаляя ссылку на найденный лист
-            } else if (isHasLeftChild(found.left)) {// если удаляемый элемент имеет только левого потомка
-                found.left = found.left.left;
+            } else if (isHasLeftChild(parent.left)) {// если удаляемый элемент имеет только левого потомка
+                parent.left = parent.left.left;
             } else {
-                found.left = found.left.right;
+                parent.left = parent.left.right;
             }
-
-            return removed;
-//            found.left = isHasTwoChild(found.left) // если удаляемый узел имеет двух потомков
-//                    ? delete(getMaxLeaf(found.left.left)) // ищем максимальный лист левого потомка удаляемого элемента
-//                    // и присваеваем ссылку, удаляя ссылку на найденный лист
-//                    : isHasLeftChild(found.left) // если левый потомок удаляемого элемента имеет только левого потомка
-//                    ? found.left.left
-//                    : isHasRightChild(found.left)
-//                    ? found.left.right
-//                    : null;
         } else {  // в противном случае мы точно понимаем, что нам нужно удалить правого потомка родительского узла
-            removed = found.right; //Присваеваем ссылку на удаляемый узел(здесь - правый) во временную переменную, которую будем возвращать
+            removed = parent.right; //Присваеваем ссылку на удаляемый узел(здесь - правый) во временную переменную, которую будем возвращать
 
-            if (isHasTwoChild(found.right)) {
-                found.right = delete(found.right.left);
-            } else if (isHasLeftChild(found.right)) {
-                found.right = found.right.left;
+            if (isHasTwoChild(parent.right)) {
+                parent.right = delete(parent.right.left);
+            } else if (isHasLeftChild(parent.right)) {
+                parent.right = parent.right.left;
             } else {
-                found.right = found.right.right;
+                parent.right = parent.right.right;
             }
-
-            return removed;
-//            found.right = isHasTwoChild(found.right) // если удаляемый элемент имеет двух потомков
-//                    ? delete(getMaxLeaf(found.right.left)) //Ищем максимальный лист левого потомка удаляемого узла
-//                    // и присваеваем ссылку, удаляя ссылку на найденный лист
-//                    : isHasLeftChild(found.right) // Если удаляемый узел имеет только левого потомка
-//                    ? found.right.left
-//                    : isHasRightChild(found.right)
-//                    ? found.right.right
-//                    : null;
         }
+
+        System.out.printf("Element %s deleted\n", removed.value);
+        return removed;
     }
 
-    public void straightPrintTree() {
+    public void straightBypass() {
         if (root == null) {
             System.out.println("Root is empty");
             return;
@@ -239,11 +185,11 @@ public class UnbalancedBinaryTree<E> {
         list.add(root.value);
 
         if (isHasLeftChild(root)) {
-            straightPrintTree(root.left, list);
+            straightBypass(root.left, list);
         }
 
         if (isHasRightChild(root)) {
-            straightPrintTree(root.right, list);
+            straightBypass(root.right, list);
         }
 
         for (Object o : list) {
@@ -251,7 +197,7 @@ public class UnbalancedBinaryTree<E> {
         }
     }
 
-    private void straightPrintTree(Node<E> current, Collection<E> list) {
+    private void straightBypass(Node<E> current, Collection<E> list) {
         if (current == null) {
             return;
         }
@@ -259,15 +205,15 @@ public class UnbalancedBinaryTree<E> {
         list.add(current.value);
 
         if (isHasLeftChild(current)) {
-            straightPrintTree(current.left, list);
+            straightBypass(current.left, list);
         }
 
         if (isHasRightChild(current)) {
-            straightPrintTree(current.right, list);
+            straightBypass(current.right, list);
         }
     }
 
-    public void middlePrintTree() {
+    public void middleBypass() {
         if (root == null) {
             System.out.println("Root is empty!");
             return;
@@ -276,13 +222,13 @@ public class UnbalancedBinaryTree<E> {
         List<E> list = new LinkedList<>();
 
         if (isHasLeftChild(root)) {
-            middlePrintTree(root.left, list);
+            middleBypass(root.left, list);
         }
 
         list.add(root.value);
 
         if (isHasRightChild(root)) {
-            middlePrintTree(root.right, list);
+            middleBypass(root.right, list);
         }
 
         for (Object o : list) {
@@ -290,23 +236,23 @@ public class UnbalancedBinaryTree<E> {
         }
     }
 
-    private void middlePrintTree(Node<E> current, Collection<E> list) {
+    private void middleBypass(Node<E> current, Collection<E> list) {
         if (current == null) {
             return;
         }
 
         if (isHasLeftChild(current)) {
-            middlePrintTree(current.left, list);
+            middleBypass(current.left, list);
         }
 
         list.add(current.value);
 
         if (isHasRightChild(current)) {
-            middlePrintTree(current.right, list);
+            middleBypass(current.right, list);
         }
     }
 
-    public void reversePrintTree() {
+    public void reverseBypass() {
         if (root == null) {
             System.out.println("Root is empty");
             return;
@@ -314,11 +260,11 @@ public class UnbalancedBinaryTree<E> {
         List<E> list = new LinkedList<>();
 
         if (isHasLeftChild(root)) {
-            reversePrintTree(root.left, list);
+            reverseBypass(root.left, list);
         }
 
         if (isHasRightChild(root)) {
-            reversePrintTree(root.right, list);
+            reverseBypass(root.right, list);
         }
 
         list.add(root.value);
@@ -328,24 +274,67 @@ public class UnbalancedBinaryTree<E> {
         }
     }
 
-    private void reversePrintTree(Node<E> current, Collection<E> list) {
+    private void reverseBypass(Node<E> current, Collection<E> list) {
         if (current == null) {
             return;
         }
 
         if (isHasLeftChild(current)) {
-            reversePrintTree(current.left, list);
+            reverseBypass(current.left, list);
         }
 
         if (isHasRightChild(current)) {
-            reversePrintTree(current.right, list);
+            reverseBypass(current.right, list);
         }
 
         list.add(current.value);
     }
 
-    public void widthPrintTree() {
+    public void widthBypass() {
+        if (root == null) {
+            System.out.println("Root is empty!");
+            return;
+        }
 
+        List<E> valueQueue = new LinkedList<>();
+        Queue<Node<E>> nodeQueue = new LinkedList<>();
+        valueQueue.add(root.value);
+
+        if (isHasLeftChild(root)) {
+            valueQueue.add(root.left.value);
+            nodeQueue.add(root.left);
+        }
+        if (isHasRightChild(root)) {
+            valueQueue.add(root.right.value);
+            nodeQueue.add(root.right);
+        }
+
+        widthBypass(valueQueue, nodeQueue);
+
+        for (E e : valueQueue) {
+            System.out.println(e);
+        }
+    }
+
+    private void widthBypass(Collection<E> collection, Queue<Node<E>> nodeQueue) {
+        if (nodeQueue.isEmpty()) {
+            return;
+        }
+
+        Queue<Node<E>> newNodeQueue = new LinkedList<>();
+        for (Node<E> n : nodeQueue) {
+            if (isHasLeftChild(n)) {
+                collection.add(n.left.value);
+                newNodeQueue.add(n.left);
+            }
+
+            if (isHasRightChild(n)) {
+                collection.add(n.right.value);
+                newNodeQueue.add(n.right);
+            }
+        }
+
+        widthBypass(collection, newNodeQueue);
     }
 
     public class Node<E> implements Comparable<Node<E>> {
@@ -357,12 +346,6 @@ public class UnbalancedBinaryTree<E> {
 
         public Node(E value) {
             this.value = value;
-        }
-
-        public Node(Node<E> left, E value, Node<E> right) {
-            this.left = left;
-            this.value = value;
-            this.right = right;
         }
 
         public E getValue() {

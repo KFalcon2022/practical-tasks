@@ -2,8 +2,6 @@ package com.walking.lesson42_tree.task1_easy;
 
 import com.walking.lesson42_tree.task1_easy.structure.UnbalancedBinaryTree;
 
-import java.util.Comparator;
-
 /**
  * Реализуйте бинарное дерево поиска. Учтите возможность использования дерева как для Comparable-сущностей,
  * так и для сортировки на основе компаратора.
@@ -36,16 +34,13 @@ public class Main {
         tree.add(31);
         tree.add(20);
 
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return 0;
-            }
-        };
-        tree.straightPrintTree();
+//        tree.delete(40);
+//        tree.straightBypass();
 
 //        tree.printReverseTree();
 
 //        tree.middlePrintTree();
+
+        tree.widthBypass();
     }
 }
