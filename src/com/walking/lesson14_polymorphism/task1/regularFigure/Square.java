@@ -1,4 +1,4 @@
-package com.walking.lesson14.task1.regularFigure;
+package com.walking.lesson14_polymorphism.task1.regularFigure;
 
 public class Square extends RegularFigure{
     final String VERTICAL_ELEMENT = "|";
