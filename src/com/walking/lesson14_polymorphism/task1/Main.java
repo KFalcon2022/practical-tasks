@@ -33,6 +33,9 @@ public class Main {
     }
 
     private static RegularFigure createObjFigure(int size, String figure) {
+        if (size < 1) {
+            return new RegularFigure(size);
+        }
         switch (figure) {
             case RegularTriangle.NAME_TRIANGLE:
                 return new RegularTriangle(size);
