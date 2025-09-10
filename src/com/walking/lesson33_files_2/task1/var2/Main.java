@@ -30,8 +30,7 @@ public class Main {
         try (FileOutputStream fos = new FileOutputStream(FILE);
              BufferedOutputStream bos = new BufferedOutputStream(fos)) {
             for (Car car : cars) {
-                String carInfo = car.getBrand() + ", " + car.getOwner() + ", " + car.getNumber() + "\n";
-                byte[] buffer = carInfo.getBytes();
+                byte[] buffer = getCarInfo(car).getBytes();
                 bos.write(buffer, 0, buffer.length);
             }
             System.out.println("Файл записан.");
@@ -39,5 +38,9 @@ public class Main {
         } catch (IOException ex) {
             throw new RuntimeException("Не удалось записать файл", ex);
         }
+    }
+
+    private static String getCarInfo(Car car) {
+        return "%s, %s, %s.\n".formatted(car.getBrand(), car.getOwner(), car.getNumber());
     }
 }

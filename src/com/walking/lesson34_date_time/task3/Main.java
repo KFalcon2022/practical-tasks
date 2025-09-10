@@ -33,14 +33,9 @@ public class Main {
         long years = Math.abs(date1.until(date2, ChronoUnit.YEARS));
 
         long finalMonth = months % 12;
-        int finalDays;
-        if (date1.isBefore(date2)) {
-            finalDays = countDays(date1, date2);
-        } else {
-            finalDays = countDays(date2, date1);
-        }
-        long finalHours =  hours % 24;
-        long finalMinutes =  minutes % 60;
+        int finalDays = date1.isBefore(date2) ? countDays(date1, date2) : countDays(date2, date1);
+        long finalHours = hours % 24;
+        long finalMinutes = minutes % 60;
         long finalSeconds = seconds % 60;
 
         return """
@@ -52,8 +47,18 @@ public class Main {
                 Years: %d
                 
                 Summary: %d years, %d months, %d days, %d hours, %d minutes, %d seconds
-                """.formatted(seconds, minutes, hours, days, months, years, years, finalMonth, finalDays, finalHours,
-                finalMinutes, finalSeconds);
+                """.formatted(seconds,
+                minutes,
+                hours,
+                days,
+                months,
+                years,
+                years,
+                finalMonth,
+                finalDays,
+                finalHours,
+                finalMinutes,
+                finalSeconds);
     }
 
     private static LocalDateTime getLocalDateTime(String dateTime) {
@@ -70,11 +75,11 @@ public class Main {
 
         if (day1 < day2) {
             return day2 - day1;
-        } else {
-            LocalDateTime date = dateAfter.minusMonths(1);
-            Month month = date.getMonth();
-            int daysInMonth = month.length(new GregorianCalendar().isLeapYear(date.getYear()));
-            return daysInMonth - day1 + day2;
         }
+        LocalDateTime date = dateAfter.minusMonths(1);
+        Month month = date.getMonth();
+        int daysInMonth = month.length(new GregorianCalendar().isLeapYear(date.getYear()));
+        return daysInMonth - day1 + day2;
+
     }
 }

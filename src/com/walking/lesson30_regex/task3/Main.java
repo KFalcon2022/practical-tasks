@@ -3,8 +3,6 @@ package com.walking.lesson30_regex.task3;
 import com.walking.lesson30_regex.task3.exception.InvalidWordException;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Реализуйте задачу
@@ -29,9 +27,9 @@ public class Main {
                 .toLowerCase();
 
         String[] words = splitPhrase(phrase);
-        if (validateWords(words)) {
-            System.out.printf("Найдено уникальных слов: %d", countWords(words));
-        }
+        validateWords(words);
+        System.out.printf("Найдено уникальных слов: %d", countWords(words));
+
     }
 
     public static int countWords(String[] phrase) {
@@ -50,13 +48,12 @@ public class Main {
         return counter;
     }
 
-    public static boolean validateWords(String[] words) {
+    public static void validateWords(String[] words) {
         for (String word : words) {
             if (!validateWord(word)) {
                 throw new InvalidWordException("Некорректное слово: " + word);
             }
         }
-        return true;
     }
 
     public static boolean validateWord(String word) {

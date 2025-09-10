@@ -19,11 +19,11 @@ public class Main {
         repository.findAll();
 
         CarService service = new CarService(repository);
-        service.addCar(new Car("Волга", "Курочкин Л.Д.", "зщ876е"));
+        service.add(new Car("Волга", "Курочкин Л.Д.", "зщ876е"));
         service.update(new Car("Audi", "Вовочкин Д.Е.", "уе777к"));
         service.delete(new Car("Ford", "Снегирь Ю.В.", "мр666м"));
 
-        repository.saveAll(service.getCars());
+        repository.saveAll(service.getAll());
     }
 
     private static Car[] setCars() {

@@ -5,10 +5,11 @@ import com.walking.lesson21_immutable_object.car.Car;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class CarRepository {
     public static final String FILE_LOCATION = "./resources/carCatalog.txt";
-    public Car[] carsArr;
+    private Car[] carsArr;
 
     public void saveAll(Car[] cars) {
         try (FileOutputStream fos = new FileOutputStream(FILE_LOCATION)) {
@@ -26,11 +27,41 @@ public class CarRepository {
 
     public void findAll() throws IOException {
         String[] carsInfo = readFile().split("\n");
-        Car[] carsArr = new Car[carsInfo.length];
+        Car[] arr = new Car[carsInfo.length];
 
-        for (int i = 0; i < carsArr.length; i++) {
-            carsArr[i] = getCar(carsInfo[i]);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = getCar(carsInfo[i]);
         }
+        this.carsArr = arr;
+    }
+
+    public Car[] deleteCar(int index) {
+        int length = carsArr.length;
+        Car[] updatedCars = new Car[length - 1];
+        for (int i = 0; i < length; i++) {
+            if (i < index) {
+                updatedCars[i] = carsArr[i];
+            }
+
+            if (i > index) {
+                updatedCars[i - 1] = carsArr[i];
+            }
+        }
+        return updatedCars;
+    }
+
+    public Car[] addCar(Car car) {
+        int length = carsArr.length;
+        Car[] updatedCars = Arrays.copyOf(carsArr, length + 1);
+        updatedCars[length] = car;
+        return updatedCars;
+    }
+
+    public Car[] getRepository() {
+        return carsArr;
+    }
+
+    public void setRepository(Car[] carsArr) {
         this.carsArr = carsArr;
     }
 
