@@ -50,6 +50,9 @@ public class CarRepository {
         return updatedCars;
     }
 
+    /** ты только про удаление написал, но я подумала, будет логично по аналогии сделать метод и с добавлением машины.
+     * если, конечно, я правильно поняла, какую логику сюда перенести надо было ахаха
+     */
     public Car[] addCar(Car car) {
         int length = carsArr.length;
         Car[] updatedCars = Arrays.copyOf(carsArr, length + 1);
