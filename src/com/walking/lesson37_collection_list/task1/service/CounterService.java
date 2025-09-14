@@ -6,13 +6,11 @@ import com.walking.lesson37_collection_list.task1.model.Counter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.List.of;
-
 public class CounterService {
     private ArrayList<Counter> counters;
 
     public CounterService(Counter... counters) {
-        this.counters = new ArrayList<>(of(counters));
+        this.counters = new ArrayList<>(List.of(counters));
     }
 
     public CounterService(List<Counter> counters) {
