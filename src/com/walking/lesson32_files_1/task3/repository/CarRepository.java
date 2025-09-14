@@ -60,11 +60,11 @@ public class CarRepository {
         return updatedCars;
     }
 
-    public Car[] getRepository() {
-        return carsArr;
+    public Car[] getCarsArr() {
+        return Arrays.copyOf(carsArr, carsArr.length);
     }
 
-    public void setRepository(Car[] carsArr) {
+    public void setCarsArr(Car[] carsArr) {
         this.carsArr = carsArr;
     }
 

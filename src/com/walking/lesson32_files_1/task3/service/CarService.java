@@ -15,7 +15,7 @@ public class CarService {
             return;
         }
 
-        repository.setRepository(repository.addCar(car));
+        repository.setCarsArr(repository.addCar(car));
         System.out.println("Машина добавлена.");
     }
 
@@ -38,12 +38,12 @@ public class CarService {
             return;
         }
 
-        repository.setRepository(repository.deleteCar(index));
+        repository.setCarsArr(repository.deleteCar(index));
         System.out.println("Машина удалена.");
     }
 
     public Car[] getAll() {
-        return repository.getRepository();
+        return repository.getCarsArr();
     }
 
     private Car find(Car car) {

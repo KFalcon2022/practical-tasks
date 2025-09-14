@@ -50,13 +50,13 @@ public class Main {
 
     public static void validateWords(String[] words) {
         for (String word : words) {
-            if (!validateWord(word)) {
+            if (!isWordValid(word)) {
                 throw new InvalidWordException("Некорректное слово: " + word);
             }
         }
     }
 
-    public static boolean validateWord(String word) {
+    public static boolean isWordValid(String word) {
         if (!word.contains("-")) {
             return word.matches(WORD);
         }
