@@ -32,8 +32,7 @@ public class Main {
         counterService.increaseValue(hotWaterCounter, 23);
 
         counterService.add(new Counter(HOT_WATER_COUNTER_NAME, M_3_UNIT, 45));
-        counterService.add(electricCounter);
-        counterService.incrementValue(gasCounter);
+        counterService.incrementValue(electricCounter);
         counterService.delete(coldWaterCounter);
 
         printCounterValues(counterService);

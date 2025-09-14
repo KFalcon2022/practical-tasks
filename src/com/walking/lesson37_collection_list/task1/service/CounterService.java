@@ -27,13 +27,13 @@ public class CounterService {
     }
 
     public void add(Counter counter) {
-        if(isContains(counter)) {
+        if (isContains(counter)) {
             getByName(counter.getNAME()).setValue(counter.getValue());
             System.out.printf("Счётчик с названием '%s' уже существует. Данные обновлены.\n", counter.getNAME());
             return;
         }
 
-        if(counters.add(counter)) {
+        if (counters.add(counter)) {
             System.out.printf("Счётчик '%s' добавлен.\n", counter.getNAME());
             counters.trimToSize();
         } else {
@@ -42,7 +42,7 @@ public class CounterService {
     }
 
     public void delete(Counter counter) {
-        if(counters.remove(counter)) {
+        if (counters.remove(counter)) {
             System.out.printf("Счётчик '%s' удалён.\n", counter.getNAME());
             counters.trimToSize();
         } else {
@@ -81,7 +81,7 @@ public class CounterService {
     }
 
     public void setCounters(List<Counter> counters) {
-        if(!counters.isEmpty()) {
+        if (!counters.isEmpty()) {
             this.counters = new ArrayList<>(counters);
         }
     }
