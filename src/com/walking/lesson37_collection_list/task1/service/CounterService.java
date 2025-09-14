@@ -1,6 +1,5 @@
 package com.walking.lesson37_collection_list.task1.service;
 
-import com.walking.lesson37_collection_list.task1.exception.UnexpectedName;
 import com.walking.lesson37_collection_list.task1.model.Counter;
 
 import java.util.ArrayList;
@@ -17,19 +16,23 @@ public class CounterService {
         this.counters = new ArrayList<>(counters);
     }
 
-    public Counter getByName(String name) throws UnexpectedName {
+    public Counter getByName(String name) {
         for (Counter counter : counters) {
             if (name.equals(counter.getNAME())) {
                 return counter;
             }
         }
-        throw new UnexpectedName("Счётчика с указанным названием не существует: " + name);
+        return null;
     }
 
     public void add(Counter counter) {
+        if (counter == null) {
+            System.out.println("Добавить счётчик не удалось.");
+            return;
+        }
+
         if (isContains(counter)) {
-            getByName(counter.getNAME()).setValue(counter.getValue());
-            System.out.printf("Счётчик с названием '%s' уже существует. Данные обновлены.\n", counter.getNAME());
+            System.out.printf("Счётчик с названием '%s' уже существует.\n", counter.getNAME());
             return;
         }
 
@@ -51,6 +54,11 @@ public class CounterService {
     }
 
     public void increaseValue(Counter counter, int value) {
+        if(counter == null) {
+            System.out.println("Обновить данные счётчика не удалось.");
+            return;
+        }
+
         int newValue = counter.getValue() + value;
         counter.setValue(newValue);
         System.out.printf("Данные счётчика '%s' обновлены.\n", counter.getNAME());
