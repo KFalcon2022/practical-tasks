@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CounterService {
-    private ArrayList<Counter> counters;
+    private final ArrayList<Counter> counters;
 
     public CounterService(Counter... counters) {
         this.counters = new ArrayList<>(List.of(counters));
@@ -26,7 +26,7 @@ public class CounterService {
     }
 
     public void add(Counter counter) {
-        if (counter == null) {
+        if (isNull(counter)) {
             System.out.println("Добавить счётчик не удалось.");
             return;
         }
@@ -88,12 +88,6 @@ public class CounterService {
         return new ArrayList<>(counters);
     }
 
-    public void setCounters(List<Counter> counters) {
-        if (!counters.isEmpty()) {
-            this.counters = new ArrayList<>(counters);
-        }
-    }
-
     private boolean isContains(Counter counter) {
         for (Counter c : counters) {
             if (counter.getNAME().equals(c.getNAME())) {
@@ -101,5 +95,9 @@ public class CounterService {
             }
         }
         return false;
+    }
+
+    private boolean isNull(Counter counter) {
+        return counter == null;
     }
 }
