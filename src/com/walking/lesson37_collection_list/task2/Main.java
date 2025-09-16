@@ -22,8 +22,8 @@ public class Main {
 
         System.out.println(Arrays.toString(strings.toArray()));
 
-        MyCollection<String> col2 = new MyCollection<>("how");
-        strings.retainAll(col2);
+        MyCollection<String> col2 = new MyCollection<>("lol");
+        System.out.println(strings.retainAll(col2));
         System.out.println(Arrays.toString(strings.toArray()));
     }
 }

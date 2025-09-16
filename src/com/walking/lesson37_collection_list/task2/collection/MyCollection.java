@@ -39,11 +39,6 @@ public class MyCollection<E> implements Collection<E> {
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
-    }
-
-    @Override
     public Object[] toArray() {
         Object[] elements = new Object[size];
         Element<E> lastElement = top;
@@ -113,7 +108,7 @@ public class MyCollection<E> implements Collection<E> {
             return false;
         }
 
-        while (!c.contains(top.value)) {
+        while (top != null && !c.contains(top.value)) {
             top = top.previous;
             size--;
         }
@@ -158,6 +153,11 @@ public class MyCollection<E> implements Collection<E> {
     @Override
     public Object[] toArray(Object[] a) {
         return a;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return null;
     }
 
     private static class Element<E> {
