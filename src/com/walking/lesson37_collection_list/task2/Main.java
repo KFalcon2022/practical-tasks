@@ -2,7 +2,6 @@ package com.walking.lesson37_collection_list.task2;
 
 import com.walking.lesson37_collection_list.task2.collection.MyCollection;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -15,19 +14,16 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
+        MyCollection<String> strings = new MyCollection<>();
+        strings.add("hello");
+        strings.add("how");
+        strings.add("are");
+        strings.add("you");
 
-        MyCollection<Object> col1 = new MyCollection<>(34);
-        col1.add("love");
-        System.out.println(Arrays.toString(col1.toArray()));
+        System.out.println(Arrays.toString(strings.toArray()));
 
-        MyCollection<String> col2 = new MyCollection<>("45");
-        col2.add("hello");
-        System.out.println(Arrays.toString(col2.toArray()));
-        col1.addAll(col2);
-        System.out.println(Arrays.toString(col1.toArray()));
-        System.out.println(col1.size());
-        col2.clear();
-        System.out.println(Arrays.toString(col2.toArray()));
-
+        MyCollection<String> col2 = new MyCollection<>("how");
+        strings.retainAll(col2);
+        System.out.println(Arrays.toString(strings.toArray()));
     }
 }

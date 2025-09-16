@@ -1,20 +1,17 @@
 package com.walking.lesson37_collection_list.task2.collection;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
 public class MyCollection<E> implements Collection<E> {
-    public Object[] elements;
+    private Element<E> top;
     private int size;
 
-
     public MyCollection() {
-        elements = new Object[]{};
     }
 
-    public MyCollection(E el) {
-        elements = new Object[]{el};
+    public MyCollection(E top) {
+        this.top = new Element<>(top);
         size++;
     }
 
@@ -30,10 +27,13 @@ public class MyCollection<E> implements Collection<E> {
 
     @Override
     public boolean contains(Object o) {
-        for (Object object : elements) {
-            if (o.equals(object)) {
+        Element<E> el = top;
+
+        while (el != null) {
+            if (o.equals(el.value)) {
                 return true;
             }
+            el = el.previous;
         }
         return false;
     }
@@ -45,101 +45,132 @@ public class MyCollection<E> implements Collection<E> {
 
     @Override
     public Object[] toArray() {
-        return Arrays.copyOf(elements, size);
+        Object[] elements = new Object[size];
+        Element<E> lastElement = top;
+        for (int i = size - 1; i >= 0; i--) {
+            elements[i] = lastElement.value;
+            lastElement = lastElement.previous;
+        }
+
+        return elements;
     }
 
     @Override
     public boolean add(E el) {
+        Element<E> newTop = new Element<>(top, el);
         size++;
-        elements = Arrays.copyOf(elements, size);
-        elements[size - 1] = el;
+        top = newTop;
         return true;
-    }
-
-    public boolean remove() {
-        return removeByIndex(size - 1);
     }
 
     @Override
     public boolean remove(Object o) {
-        return removeByIndex(getIndex(o));
-    }
-
-    public boolean removeByIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (isEmpty()) {
             return false;
         }
 
-        size--;
-        Object[] newElements = new Object[size];
-        for (int i = 0; i < size; i++) {
-            if (i < index) {
-                newElements[i] = elements[i];
-            }
-
-            if (i > index) {
-                newElements[i - 1] = elements[i];
-            }
+        if (o.equals(top)) {
+            top = top.previous;
+            size--;
+            return true;
         }
-        elements = newElements;
-        return true;
-    }
 
-    public int getIndex(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (o.equals(elements[i])) {
-                return i;
+        Element<E> el = top;
+        int i = 1;
+        while (i < size) {
+            if (o.equals(el.previous.value)) {
+                el.previous = el.previous.previous;
+                size--;
+                return true;
             }
+            el = el.previous;
+            i++;
         }
-        return -1;
+        return false;
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        Object[] objects = c.toArray();
-        int addLength = objects.length;
-        if (addLength == 0) {
+        if (c.isEmpty()) {
             return false;
         }
 
-        size += addLength;
-        Object[] newElements = new Object[size];
-        int indexOb = 0;
-        for (int i = 0; i < size; i++) {
-            if (i < elements.length) {
-                newElements[i] = elements[i];
-            } else {
-                newElements[i] = objects[indexOb];
-                indexOb++;
-            }
+        for (E e : c) {
+            add(e);
         }
-        elements = newElements;
         return true;
     }
 
     @Override
     public void clear() {
         size = 0;
-        elements = new Object[0];
+        top = null;
     }
 
     @Override
-    public boolean retainAll(Collection c) {
-        return false;
+    public boolean retainAll(Collection<?> c) {
+        if (c.isEmpty()) {
+            return false;
+        }
+
+        while (!c.contains(top.value)) {
+            top = top.previous;
+            size--;
+        }
+
+        Element<E> el = top;
+        while (el != null) {
+            if (!c.contains(el.previous.value)) {
+                el.previous = el.previous.previous;
+                size--;
+            }
+            el = el.previous;
+        }
+
+        return size > 0;
     }
 
     @Override
-    public boolean removeAll(Collection c) {
-        return false;
+    public boolean removeAll(Collection<?> c) {
+        if (c.isEmpty()) {
+            return false;
+        }
+
+        boolean isRemoved = false;
+        for (Object e : c) {
+            if (remove(e)) {
+                isRemoved = true;
+            }
+        }
+        return isRemoved;
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        for (Object o : c) {
+            if(!contains(o)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public Object[] toArray(Object[] a) {
         return a;
+    }
+
+    private static class Element<E> {
+        private final E value;
+        private Element<E> previous;
+
+        private Element(E top) {
+            this.value = top;
+        }
+
+        private Element(Element<E> previous, E top) {
+            this.value = top;
+            this.previous = previous;
+        }
     }
 }
