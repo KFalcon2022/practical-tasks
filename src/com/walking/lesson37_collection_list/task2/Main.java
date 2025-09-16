@@ -2,7 +2,9 @@ package com.walking.lesson37_collection_list.task2;
 
 import com.walking.lesson37_collection_list.task2.collection.MyCollection;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Попробуйте реализовать собственную коллекцию, наследуясь от Collection.
@@ -22,8 +24,11 @@ public class Main {
 
         System.out.println(Arrays.toString(strings.toArray()));
 
-        MyCollection<String> col2 = new MyCollection<>("lol");
-        System.out.println(strings.retainAll(col2));
+        ArrayList<String> arrayList = new ArrayList<>(List.of("I", "know", "why"));
+        strings.addAll(arrayList);
         System.out.println(Arrays.toString(strings.toArray()));
+        System.out.println(strings.containsAll(arrayList));
+        System.out.println(Arrays.toString(strings.toArray()));
+        System.out.println(strings.size());
     }
 }

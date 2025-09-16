@@ -52,9 +52,8 @@ public class MyCollection<E> implements Collection<E> {
 
     @Override
     public boolean add(E el) {
-        Element<E> newTop = new Element<>(top, el);
+        top = new Element<>(top, el);
         size++;
-        top = newTop;
         return true;
     }
 
@@ -64,7 +63,7 @@ public class MyCollection<E> implements Collection<E> {
             return false;
         }
 
-        if (o.equals(top)) {
+        if (o.equals(top.value)) {
             top = top.previous;
             size--;
             return true;
@@ -114,12 +113,13 @@ public class MyCollection<E> implements Collection<E> {
         }
 
         Element<E> el = top;
-        while (el != null) {
+        while (el.previous != null) {
             if (!c.contains(el.previous.value)) {
                 el.previous = el.previous.previous;
                 size--;
+            } else {
+                el = el.previous;
             }
-            el = el.previous;
         }
 
         return size > 0;
