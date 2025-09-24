@@ -19,9 +19,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Car> cars = new ArrayList<>(createList());
         sortByIdentifier(cars);
-        for (Car car : cars) {
-            System.out.println(car.toString());
-        }
+        printList(cars);
     }
 
     public static void sortByOwner(List<Car> cars) {
@@ -75,5 +73,11 @@ public class Main {
                 new Car("Audi", "Васильев П.Д.", "кв865а"),
                 new Car("BMW", "Лебедев А.Ю.", "ау000ш"),
                 new Car("Москвич", "Алексеев Л.Б.", "гн123г"));
+    }
+
+    public static void printList(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car);
+        }
     }
 }
