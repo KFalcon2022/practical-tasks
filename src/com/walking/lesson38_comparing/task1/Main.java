@@ -23,43 +23,59 @@ public class Main {
     }
 
     public static void sortByOwner(List<Car> cars) {
-        cars.sort(new Comparator<Car>() {
+        Comparator<Car> comparator = new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
                 return o1.getOwner().compareTo(o2.getOwner());
             }
-        });
+        };
+
+        cars.sort(comparator);
     }
 
     public static void sortByNumber(List<Car> cars) {
-        cars.sort(new Comparator<Car>() {
+        Comparator<Car> comparator = new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
-                return o1.getIdentifier().getNumber().compareTo(o2.getIdentifier().getNumber());
+                return o1.getIdentifier()
+                        .getNumber()
+                        .compareTo(o2.getIdentifier().getNumber());
             }
-        });
+        };
+
+        cars.sort(comparator);
     }
 
     public static void sortByBrand(List<Car> cars) {
-        cars.sort(new Comparator<Car>() {
+        Comparator<Car> comparator = new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
-                return o1.getIdentifier().getBrand().compareTo(o2.getIdentifier().getBrand());
+                return o1.getIdentifier()
+                        .getBrand()
+                        .compareTo(o2.getIdentifier().getBrand());
             }
-        });
+        };
+
+        cars.sort(comparator);
     }
 
     public static void sortByIdentifier(List<Car> cars) {
-        cars.sort(new Comparator<Car>() {
+        Comparator<Car> comparator = new Comparator<Car>() {
             @Override
             public int compare(Car o1, Car o2) {
-                int result = o1.getIdentifier().getBrand().compareTo(o2.getIdentifier().getBrand());
+                int result = o1.getIdentifier()
+                        .getBrand()
+                        .compareTo(o2.getIdentifier().getBrand());
                 if (result == 0) {
-                    return o1.getIdentifier().getNumber().compareTo(o2.getIdentifier().getNumber());
+                    return o1.getIdentifier()
+                            .getNumber()
+                            .compareTo(o2.getIdentifier().getNumber());
                 }
                 return result;
             }
-        });
+        };
+
+        cars.sort(comparator);
     }
 
     public static List<Car> createList() {

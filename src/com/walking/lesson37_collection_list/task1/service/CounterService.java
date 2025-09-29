@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CounterService {
-    private final ArrayList<Counter> counters;
+    private final List<Counter> counters;
 
     public CounterService(Counter... counters) {
         this.counters = new ArrayList<>(List.of(counters));
@@ -35,26 +35,19 @@ public class CounterService {
             System.out.printf("Счётчик с названием '%s' уже существует.\n", counter.getNAME());
             return;
         }
+        counters.add(counter);
+        System.out.printf("Счётчик '%s' добавлен.\n", counter.getNAME());
 
-        if (counters.add(counter)) {
-            System.out.printf("Счётчик '%s' добавлен.\n", counter.getNAME());
-            counters.trimToSize();
-        } else {
-            System.out.println("Добавить счётчик не удалось.");
-        }
     }
 
     public void delete(Counter counter) {
-        if (counters.remove(counter)) {
-            System.out.printf("Счётчик '%s' удалён.\n", counter.getNAME());
-            counters.trimToSize();
-        } else {
-            System.out.println("Удалить счётчик не удалось.");
-        }
+        counters.remove(counter);
+        System.out.printf("Счётчик '%s' удалён.\n", counter.getNAME());
+
     }
 
     public void increaseValue(Counter counter, int value) {
-        if(counter == null) {
+        if (isNull(counter)) {
             System.out.println("Обновить данные счётчика не удалось.");
             return;
         }
@@ -84,8 +77,8 @@ public class CounterService {
         resetValue(getByName(name));
     }
 
-    public ArrayList<Counter> getCounters() {
-        return new ArrayList<>(counters);
+    public List<Counter> getCounters() {
+        return List.copyOf(counters);
     }
 
     private boolean isContains(Counter counter) {

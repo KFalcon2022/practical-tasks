@@ -70,15 +70,13 @@ public class MyCollection<E> implements Collection<E> {
         }
 
         Element<E> el = top;
-        int i = 1;
-        while (i < size) {
+        while (el.previous != null) {
             if (o.equals(el.previous.value)) {
                 el.previous = el.previous.previous;
                 size--;
                 return true;
             }
             el = el.previous;
-            i++;
         }
         return false;
     }
@@ -164,12 +162,12 @@ public class MyCollection<E> implements Collection<E> {
         private final E value;
         private Element<E> previous;
 
-        private Element(E top) {
-            this.value = top;
+        private Element(E value) {
+            this.value = value;
         }
 
-        private Element(Element<E> previous, E top) {
-            this.value = top;
+        private Element(Element<E> previous, E value) {
+            this.value = value;
             this.previous = previous;
         }
     }

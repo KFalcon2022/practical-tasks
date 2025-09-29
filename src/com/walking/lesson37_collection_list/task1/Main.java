@@ -41,7 +41,7 @@ public class Main {
 
     public static void printCounterValues(CounterService counterService) {
         for(Counter counter : counterService.getCounters()) {
-            counter.getInfo();
+            System.out.println(counter.getInfo());
         }
     }
 }

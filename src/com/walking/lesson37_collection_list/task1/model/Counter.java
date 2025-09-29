@@ -1,8 +1,8 @@
 package com.walking.lesson37_collection_list.task1.model;
 
 public class Counter {
-    private final String NAME;
-    private final String UNIT;
+    private final String name;
+    private final String unit;
 
     private int value;
 
@@ -11,17 +11,17 @@ public class Counter {
     }
 
     public Counter(String NAME, String UNIT, int value) {
-        this.NAME = NAME;
-        this.UNIT = UNIT;
+        this.name = NAME;
+        this.unit = UNIT;
         this.value = value;
     }
 
     public String getNAME() {
-        return NAME;
+        return name;
     }
 
-    public String getUNIT() {
-        return UNIT;
+    public String getUnit() {
+        return unit;
     }
 
     public int getValue() {
@@ -32,7 +32,7 @@ public class Counter {
         this.value = value;
     }
 
-    public void getInfo() {
-        System.out.printf("%s: %d %s%n", NAME, value, UNIT);
+    public String getInfo() {
+        return "%s: %d %s%n".formatted(name, value, unit);
     }
 }

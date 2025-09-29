@@ -28,6 +28,7 @@ public class Main {
         strings.addAll(arrayList);
         System.out.println(Arrays.toString(strings.toArray()));
         System.out.println(strings.containsAll(arrayList));
+        strings.remove("hello");
         System.out.println(Arrays.toString(strings.toArray()));
         System.out.println(strings.size());
     }

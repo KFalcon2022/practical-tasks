@@ -35,7 +35,7 @@ public class CarRepository {
         this.carsArr = arr;
     }
 
-    public Car[] deleteCar(int index) {
+    public void deleteCar(int index) {
         int length = carsArr.length;
         Car[] updatedCars = new Car[length - 1];
         for (int i = 0; i < length; i++) {
@@ -47,25 +47,21 @@ public class CarRepository {
                 updatedCars[i - 1] = carsArr[i];
             }
         }
-        return updatedCars;
+        this.carsArr = updatedCars;
     }
 
     /** ты только про удаление написал, но я подумала, будет логично по аналогии сделать метод и с добавлением машины.
      * если, конечно, я правильно поняла, какую логику сюда перенести надо было ахаха
      */
-    public Car[] addCar(Car car) {
+    public void addCar(Car car) {
         int length = carsArr.length;
         Car[] updatedCars = Arrays.copyOf(carsArr, length + 1);
         updatedCars[length] = car;
-        return updatedCars;
+        this.carsArr = updatedCars;
     }
 
     public Car[] getCarsArr() {
         return Arrays.copyOf(carsArr, carsArr.length);
-    }
-
-    public void setCarsArr(Car[] carsArr) {
-        this.carsArr = carsArr;
     }
 
     private String readFile() throws IOException {
