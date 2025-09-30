@@ -8,7 +8,7 @@ public class ValidationAnimals {
         for (int i = 0; i < animals.length; i++) {
             Animal animal = animals[i];
             if (animal == null) {
-                throw new ArrayValidationException("Нулевое значение в элементе: ", i);
+                throw new ArrayValidationException("Нулевое значение в элементе: " + i);
             }
         }
     }
