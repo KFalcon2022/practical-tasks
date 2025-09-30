@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Предка исключения определите самостоятельно.
  */
 public class Main {
-    public static void main(String[] args) throws InputValidationException {
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -35,7 +35,7 @@ public class Main {
         System.out.println(shapeString);
     }
 
-    private static String createShapeString(int length, int type) throws InputValidationException {
+    private static String createShapeString(int length, int type) {
         EquilateralShape shape;
 
         switch (type) {
