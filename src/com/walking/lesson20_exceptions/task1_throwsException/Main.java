@@ -43,7 +43,7 @@ public class Main {
                 return file;
             }
         }
-        throw new FileNotFoundException();
+        throw new FileNotFoundException("Искомый файл не существует");
     }
 
     private static File[] createFiles() {

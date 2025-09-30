@@ -25,6 +25,7 @@ public class Main {
         File[] files = createFiles();
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter file`s name: ");
         String name = scanner.nextLine();
 
@@ -44,7 +45,7 @@ public class Main {
                 return file;
             }
         }
-        throw new FileNotFoundException();
+        throw new FileNotFoundException("Искомый файл не существует");
     }
 
     private static File[] createFiles() {
