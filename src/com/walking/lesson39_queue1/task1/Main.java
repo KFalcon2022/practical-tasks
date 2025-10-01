@@ -1,5 +1,7 @@
 package com.walking.lesson39_queue1.task1;
 
+import com.walking.lesson39_queue1.task1.list.MyList;
+
 /**
  * Реализуйте односвязный список (можно использовать реализацию в рамках
  * <a href="https://github.com/KFalcon2022/practical-tasks/blob/master/src/com/walking/lesson28_generics1/task4/structure/Stack.java">...</a>).
@@ -11,5 +13,16 @@ package com.walking.lesson39_queue1.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        MyList<String> newList = new MyList<>("1");
+        newList.add("2");
+        newList.add("3");
+        newList.add("4");
+
+        System.out.println(newList);
+        newList.reverse();
+        System.out.println(newList);
+        newList.removeEvenHashCodes();
+        System.out.println(newList.getSize());
+        System.out.println(newList);
     }
 }
