@@ -110,6 +110,10 @@ public class MyList<E> {
         }
     }
 
+    public Object getTailValue() {
+        return tail.value;
+    }
+
     private static class Element<E> {
         private final E value;
         private Element<E> previous;
