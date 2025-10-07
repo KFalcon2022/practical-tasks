@@ -13,7 +13,7 @@ import com.walking.lesson39_queue1.task1.list.MyList;
  */
 public class Main {
     public static void main(String[] args) {
-        MyList<String> newList = new MyList<>("1");
+        MyList<String> newList = new MyList<>();
         newList.add("2");
         newList.add("3");
         newList.add("4");
