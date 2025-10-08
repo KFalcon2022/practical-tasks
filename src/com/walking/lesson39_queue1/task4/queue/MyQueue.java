@@ -11,12 +11,12 @@ public class MyQueue<E> {
 
     public Object pop() {
         Object value = list.getHeadValue();
-        list.removeHead();
+        list.removeFirst();
         return value;
     }
 
     public void push(E el) {
-        list.addTail(el);
+        list.addLast(el);
     }
 
     public Object peek() {

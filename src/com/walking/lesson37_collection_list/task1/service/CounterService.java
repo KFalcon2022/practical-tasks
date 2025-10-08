@@ -54,7 +54,7 @@ public class CounterService {
 
         int newValue = counter.getValue() + value;
         counter.setValue(newValue);
-        System.out.printf("Данные счётчика '%s' обновлены.\n", counter.getNAME());
+        System.out.printf("Показания счётчика '%s' обновлены.\n", counter.getNAME());
     }
 
     public void incrementValue(Counter counter) {

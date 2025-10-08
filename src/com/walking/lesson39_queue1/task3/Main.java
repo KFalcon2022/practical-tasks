@@ -10,13 +10,13 @@ import com.walking.lesson39_queue1.task3.list.MyDoublyLinkedList;
 public class Main {
     public static void main(String[] args) {
         MyDoublyLinkedList<Integer> numbs = new MyDoublyLinkedList<>();
-        numbs.addHead(24);
-        numbs.addHead(47);
-        numbs.addHead(22);
-        numbs.addHead(56);
-        numbs.addHead(90);
-        numbs.addHead(1);
-        numbs.addTail(109);
+        numbs.addFirst(24);
+        numbs.addFirst(47);
+        numbs.addFirst(22);
+        numbs.addFirst(56);
+        numbs.addFirst(90);
+        numbs.addFirst(1);
+        numbs.addLast(109);
 
         System.out.println(numbs);
         numbs.reverse();

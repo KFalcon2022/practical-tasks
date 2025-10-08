@@ -1,6 +1,5 @@
 package com.walking.lesson39_queue1.task3.list;
 
-import com.walking.lesson39_queue1.task1.list.MyList;
 import com.walking.lesson39_queue1.task3.exception.ListIsEmptyException;
 
 public class MyDoublyLinkedList<E> {
@@ -25,7 +24,7 @@ public class MyDoublyLinkedList<E> {
         return size == 0;
     }
 
-    public void addHead(E el) {
+    public void addFirst(E el) {
         if (isEmpty()) {
             this.head = new Node<>(el);
             this.tail = head;
@@ -37,7 +36,7 @@ public class MyDoublyLinkedList<E> {
         size++;
     }
 
-    public void addTail(E el) {
+    public void addLast(E el) {
         if (isEmpty()) {
             this.head = new Node<>(el);
             this.tail = head;
@@ -49,7 +48,7 @@ public class MyDoublyLinkedList<E> {
         size++;
     }
 
-    public void removeHead() {
+    public void removeFirst() {
         if (isEmpty()) {
             throw new ListIsEmptyException("Список пуст.");
         }
@@ -63,7 +62,7 @@ public class MyDoublyLinkedList<E> {
         size--;
     }
 
-    public void removeTail() {
+    public void removeLast() {
         if (isEmpty()) {
             throw new ListIsEmptyException("Список пуст.");
         }
@@ -83,11 +82,11 @@ public class MyDoublyLinkedList<E> {
         }
 
         while (!isEmpty() && tail.value.equals(el)) {
-            removeTail();
+            removeLast();
         }
 
         while (!isEmpty() && head.value.equals(el)) {
-            removeHead();
+            removeFirst();
         }
 
         Node<E> current = tail;
@@ -145,11 +144,11 @@ public class MyDoublyLinkedList<E> {
         }
 
         while (!isEmpty() && tail.hashCode() % 2 == 0) {
-            removeTail();
+            removeLast();
         }
 
         while (!isEmpty() && head.hashCode() % 2 == 0) {
-            removeHead();
+            removeFirst();
         }
 
         Node<E> current = tail;
