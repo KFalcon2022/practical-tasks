@@ -1,5 +1,7 @@
 package com.walking.lesson29_generics2.task1;
 
+import com.walking.lesson29_generics2.task1.generics.Generic1;
+
 /**
  * Реализуйте обобщенный тип, хранящий параметризованное поле.
  * Также в классе Main реализуйте параметризованый метод,
@@ -10,5 +12,11 @@ package com.walking.lesson29_generics2.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Generic1<Double> generic1 = new Generic1<>(3.4);
+        System.out.println(method(generic1, 8.0));
+    }
+
+    public static <T> T method(Generic1<T> generic1, T param) {
+        return generic1.getField() != null ? generic1.getField() : param;
     }
 }

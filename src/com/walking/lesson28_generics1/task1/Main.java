@@ -7,5 +7,9 @@ package com.walking.lesson28_generics1.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        PowOfNumber<Integer> d1 = new PowOfNumber<>(4);
+        Double result = d1.sqr(3.0);
+
+        System.out.println(result);
     }
 }
