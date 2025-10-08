@@ -1,5 +1,7 @@
 package com.walking.lesson37_collection_list.task1.service;
 
+import com.walking.lesson37_collection_list.task1.exception.CounterAlreadyExistException;
+import com.walking.lesson37_collection_list.task1.exception.CounterIsNullException;
 import com.walking.lesson37_collection_list.task1.model.Counter;
 
 import java.util.ArrayList;
@@ -25,16 +27,15 @@ public class CounterService {
         return null;
     }
 
-    public void add(Counter counter) {
+    public void add(Counter counter) throws CounterAlreadyExistException, CounterIsNullException {
         if (isNull(counter)) {
-            System.out.println("Добавить счётчик не удалось.");
-            return;
+            throw new CounterIsNullException("Невозможно добавить счётчик равный null.");
         }
 
         if (isContains(counter)) {
-            System.out.printf("Счётчик с названием '%s' уже существует.\n", counter.getNAME());
-            return;
+            throw new CounterAlreadyExistException(counter.getNAME());
         }
+
         counters.add(counter);
         System.out.printf("Счётчик '%s' добавлен.\n", counter.getNAME());
 
@@ -46,10 +47,9 @@ public class CounterService {
 
     }
 
-    public void increaseValue(Counter counter, int value) {
+    public void increaseValue(Counter counter, int value) throws CounterIsNullException {
         if (isNull(counter)) {
-            System.out.println("Обновить данные счётчика не удалось.");
-            return;
+            throw new CounterIsNullException("Изменить показания счётчика, равного null, невозможно.");
         }
 
         int newValue = counter.getValue() + value;

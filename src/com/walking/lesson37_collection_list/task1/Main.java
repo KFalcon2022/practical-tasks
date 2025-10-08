@@ -1,5 +1,6 @@
 package com.walking.lesson37_collection_list.task1;
 
+import com.walking.lesson37_collection_list.task1.exception.CounterAlreadyExistException;
 import com.walking.lesson37_collection_list.task1.model.Counter;
 import com.walking.lesson37_collection_list.task1.service.CounterService;
 
@@ -31,17 +32,20 @@ public class Main {
         counterService.add(hotWaterCounter);
         counterService.increaseValue(hotWaterCounter, 23);
 
-        counterService.add(new Counter(HOT_WATER_COUNTER_NAME, M_3_UNIT, 45));
+        try {
+            counterService.add(new Counter(HOT_WATER_COUNTER_NAME, M_3_UNIT, 45));
+        } catch (CounterAlreadyExistException e) {
+            System.out.println(e.getMessage());
+        }
         counterService.incrementValue(electricCounter);
         counterService.delete(coldWaterCounter);
-        counterService.add(null);
 
         printCounterValues(counterService);
     }
 
     public static void printCounterValues(CounterService counterService) {
         for(Counter counter : counterService.getCounters()) {
-            System.out.println(counter.getInfo());
+            System.out.print(counter.getInfo());
         }
     }
 }
