@@ -27,7 +27,7 @@ public class CounterService {
         return null;
     }
 
-    public void add(Counter counter) throws CounterAlreadyExistException, CounterIsNullException {
+    public Counter add(Counter counter) throws CounterAlreadyExistException, CounterIsNullException {
         if (isNull(counter)) {
             throw new CounterIsNullException("Невозможно добавить счётчик равный null.");
         }
@@ -38,16 +38,16 @@ public class CounterService {
 
         counters.add(counter);
         System.out.printf("Счётчик '%s' добавлен.\n", counter.getNAME());
-
+        return counter;
     }
 
-    public void delete(Counter counter) {
+    public Counter delete(Counter counter) {
         counters.remove(counter);
         System.out.printf("Счётчик '%s' удалён.\n", counter.getNAME());
-
+        return counter;
     }
 
-    public void increaseValue(Counter counter, int value) throws CounterIsNullException {
+    public Counter increaseValue(Counter counter, int value) throws CounterIsNullException {
         if (isNull(counter)) {
             throw new CounterIsNullException("Изменить показания счётчика, равного null, невозможно.");
         }
@@ -55,26 +55,28 @@ public class CounterService {
         int newValue = counter.getValue() + value;
         counter.setValue(newValue);
         System.out.printf("Показания счётчика '%s' обновлены.\n", counter.getNAME());
+        return counter;
     }
 
-    public void incrementValue(Counter counter) {
-        increaseValue(counter, 1);
+    public Counter incrementValue(Counter counter) {
+        return increaseValue(counter, 1);
     }
 
-    public void increaseValue(String name, int value) {
-        increaseValue(getByName(name), value);
+    public Counter increaseValue(String name, int value) {
+        return increaseValue(getByName(name), value);
     }
 
-    public void incrementValue(String name) {
-        incrementValue(getByName(name));
+    public Counter incrementValue(String name) {
+        return incrementValue(getByName(name));
     }
 
-    public void resetValue(Counter counter) {
+    public Counter resetValue(Counter counter) {
         counter.setValue(0);
+        return counter;
     }
 
-    public void resetValue(String name) {
-        resetValue(getByName(name));
+    public Counter resetValue(String name) {
+        return resetValue(getByName(name));
     }
 
     public List<Counter> getCounters() {
