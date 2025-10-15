@@ -1,7 +1,5 @@
 package com.walking.lesson39_queue1.task1.list;
 
-import com.walking.lesson39_queue1.task1.exception.ListIsEmptyException;
-
 public class MyList<E> {
     private Node<E> tail;
     int size;
@@ -22,7 +20,7 @@ public class MyList<E> {
         return size == 0;
     }
 
-    public boolean find(Object o) {
+    public boolean contains(Object o) {
         Node<E> el = tail;
 
         while (el != null) {
@@ -39,23 +37,30 @@ public class MyList<E> {
         size++;
     }
 
-    public void remove(Object o) {
+    public void removeTail() {
         if (isEmpty()) {
-            throw new ListIsEmptyException("Список пуст.");
+            return;
         }
 
-        if (o.equals(tail.value)) {
-            tail = tail.previous;
-            size--;
+        tail = tail.previous;
+        size--;
+    }
+
+    public void remove(Object o) {
+        while (!isEmpty() && o.equals(tail.value)) {
+            removeTail();
         }
 
-        Node<E> el = tail;
-        while (el.previous != null) {
-            if (o.equals(el.previous.value)) {
-                el.previous = el.previous.previous;
-                size--;
+        if (!isEmpty()) {
+            Node<E> el = tail;
+            while (el.previous != null) {
+                if (o.equals(el.previous.value)) {
+                    el.previous = el.previous.previous;
+                    size--;
+                } else {
+                    el = el.previous;
+                }
             }
-            el = el.previous;
         }
     }
 

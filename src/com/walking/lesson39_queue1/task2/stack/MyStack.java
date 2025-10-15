@@ -23,7 +23,7 @@ public class MyStack<E> {
 
     public Object pop() {
         Object del = list.getTailValue();
-        list.remove(del);
+        list.removeTail();
         return del;
     }
 }

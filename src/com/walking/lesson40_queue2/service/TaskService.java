@@ -4,9 +4,10 @@ import com.walking.lesson40_queue2.model.Task;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TaskService {
-    private final Deque<Task> tasks;
+    private final Queue<Task> tasks;
     private int amount;
 
     public TaskService() {
@@ -24,7 +25,7 @@ public class TaskService {
         if (completedTask == null) {
             System.out.println("Все задания выполнены.");
         } else if (completedTask.getAnswer() == answer) {
-            tasks.removeFirst();
+            tasks.remove();
             amount--;
             System.out.printf("Задание '%s' выполнено.%n", completedTask.getName());
         } else {

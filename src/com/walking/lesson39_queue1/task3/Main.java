@@ -11,15 +11,15 @@ public class Main {
     public static void main(String[] args) {
         MyDoublyLinkedList<Integer> numbs = new MyDoublyLinkedList<>();
         numbs.addFirst(24);
-        numbs.addFirst(47);
-        numbs.addFirst(22);
-        numbs.addFirst(56);
-        numbs.addFirst(90);
-        numbs.addFirst(1);
-        numbs.addLast(109);
+        numbs.addFirst(24);
+        numbs.addFirst(24);
+        numbs.addFirst(24);
+        numbs.addFirst(24);
+        numbs.addFirst(24);
+        numbs.addFirst(3);
 
         System.out.println(numbs);
-        numbs.reverse();
+        numbs.removeAll(24);
         System.out.println(numbs);
     }
 }

@@ -1,7 +1,5 @@
 package com.walking.lesson39_queue1.task3.list;
 
-import com.walking.lesson39_queue1.task3.exception.ListIsEmptyException;
-
 public class MyDoublyLinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
@@ -50,7 +48,7 @@ public class MyDoublyLinkedList<E> {
 
     public void removeFirst() {
         if (isEmpty()) {
-            throw new ListIsEmptyException("Список пуст.");
+            return;
         }
 
         head = head.next;
@@ -64,7 +62,7 @@ public class MyDoublyLinkedList<E> {
 
     public void removeLast() {
         if (isEmpty()) {
-            throw new ListIsEmptyException("Список пуст.");
+            return;
         }
 
         tail = tail.prev;
@@ -77,10 +75,6 @@ public class MyDoublyLinkedList<E> {
     }
 
     public void removeAll(E el) {
-        if (isEmpty()) {
-            throw new ListIsEmptyException("Список пуст.");
-        }
-
         while (!isEmpty() && tail.value.equals(el)) {
             removeLast();
         }
@@ -89,18 +83,22 @@ public class MyDoublyLinkedList<E> {
             removeFirst();
         }
 
-        Node<E> current = tail;
-        while (current.prev != null) {
-            if (current.prev.value.equals(el)) {
-                current.prev = current.prev.prev;
-                current.prev.next = current;
-                size--;
+        if (!isEmpty()) {
+            Node<E> current = tail;
+            Node<E> previous = tail.prev;
+            while (previous != null) {
+                if (previous.value.equals(el)) {
+                    current.prev = previous.prev;
+                    current.prev.next = current;
+                    size--;
+                }
+                current = current.prev;
+                previous = current.prev;
             }
-            current = current.prev;
         }
     }
 
-    public boolean find(Object o) {
+    public boolean contains(Object o) {
         Node<E> el = tail;
 
         while (el != null) {
@@ -112,7 +110,7 @@ public class MyDoublyLinkedList<E> {
         return false;
     }
 
-    public int findAll(E el) {
+    public int numberOfOccurrences(E el) {
         Node<E> current = tail;
         int amount = 0;
         while (current != null) {
@@ -140,7 +138,7 @@ public class MyDoublyLinkedList<E> {
 
     public void removeEvenHashCodes() {
         if (isEmpty()) {
-            throw new ListIsEmptyException("Список пуст.");
+            return;
         }
 
         while (!isEmpty() && tail.hashCode() % 2 == 0) {
