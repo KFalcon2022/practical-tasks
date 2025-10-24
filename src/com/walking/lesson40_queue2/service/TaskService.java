@@ -2,7 +2,6 @@ package com.walking.lesson40_queue2.service;
 
 import com.walking.lesson40_queue2.model.Task;
 
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
