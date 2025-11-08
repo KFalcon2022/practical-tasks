@@ -1,8 +1,6 @@
 package com.walking.lesson42_tree.task1.tree;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class BinaryTree<E> {
     private Node<E> root;
@@ -43,8 +41,38 @@ public class BinaryTree<E> {
         }
     }
 
+    public List<E> searchPreorder() {
+        List<E> list = new ArrayList<>();
+        searchPreorder(root, list);
+        return list;
+    }
+
+    public List<E> searchBreadthFirst() {
+        List<E> list = new ArrayList<>();
+        Queue<Node<E>> queue = new ArrayDeque<>();
+        queue.add(root);
+        searchBreadthFirst(list, queue);
+
+        return list;
+    }
+
+    private void searchBreadthFirst(List<E> list, Queue<Node<E>> queue) {
+        while (!queue.isEmpty()) {
+            for (Node<E> node : queue) {
+                list.add(node.value);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                queue.remove();
+            }
+        }
+    }
+
     public void balance() {
-        List<E> list = traversePreorder();
+        List<E> list = searchPreorder();
         list.sort(comparator == null ? (Comparator<? super E>) Comparator.naturalOrder() : comparator);
 
         int middle = list.size() / 2;
@@ -65,19 +93,13 @@ public class BinaryTree<E> {
         }
     }
 
-    public List<E> traversePreorder() {
-        List<E> list = new ArrayList<>();
-        traversePreorder(root, list);
-        return list;
-    }
-
-    private void traversePreorder(Node<E> node, List<E> list) {
+    private void searchPreorder(Node<E> node, List<E> list) {
         list.add(node.value);
         if (node.left != null) {
-            traversePreorder(node.left, list);
+            searchPreorder(node.left, list);
         }
         if (node.right != null) {
-            traversePreorder(node.right, list);
+            searchPreorder(node.right, list);
         }
     }
 

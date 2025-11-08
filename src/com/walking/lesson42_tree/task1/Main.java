@@ -34,10 +34,11 @@ public class Main {
         numbs.delete(56);
         numbs.add(87);
 
-        System.out.println(numbs.traversePreorder());
+        System.out.println(numbs.searchPreorder());
 
         numbs.balance();
 
-        System.out.println(numbs.traversePreorder());
+        System.out.println(numbs.searchPreorder());
+        System.out.println(numbs.searchBreadthFirst());
     }
 }
