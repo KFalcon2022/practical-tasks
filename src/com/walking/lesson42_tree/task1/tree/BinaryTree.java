@@ -51,12 +51,7 @@ public class BinaryTree<E> {
         List<E> list = new ArrayList<>();
         Queue<Node<E>> queue = new ArrayDeque<>();
         queue.add(root);
-        searchBreadthFirst(list, queue);
 
-        return list;
-    }
-
-    private void searchBreadthFirst(List<E> list, Queue<Node<E>> queue) {
         while (!queue.isEmpty()) {
             for (Node<E> node : queue) {
                 list.add(node.value);
@@ -69,6 +64,7 @@ public class BinaryTree<E> {
                 queue.remove();
             }
         }
+        return list;
     }
 
     public void balance() {
