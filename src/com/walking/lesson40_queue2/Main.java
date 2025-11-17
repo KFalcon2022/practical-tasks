@@ -1,5 +1,10 @@
 package com.walking.lesson40_queue2;
 
+import com.walking.lesson40_queue2.model.Task;
+import com.walking.lesson40_queue2.service.TaskService;
+
+import java.util.Scanner;
+
 /**
  * Реализуйте класс Задание. Он должен содержать поле Название,
  * состав остальных полей - на ваше усмотрение.
@@ -15,5 +20,18 @@ package com.walking.lesson40_queue2;
  */
 public class Main {
     public static void main(String[] args) {
+        TaskService taskService = addTasks();
+
+        taskService.answerTask();
+    }
+
+    private static TaskService addTasks() {
+        TaskService taskService = new TaskService();
+        Task task1 = new Task("Task1", "1+1", 2);
+        Task task2 = new Task("Task2", "2*2", 4);
+        taskService.addTask(task1);
+        taskService.addTask(task2);
+
+        return taskService;
     }
 }
