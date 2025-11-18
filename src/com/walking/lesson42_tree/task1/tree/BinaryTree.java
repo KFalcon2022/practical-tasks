@@ -33,21 +33,17 @@ public class BinaryTree<E> {
     }
 
     public E delete(E el) {
-        if (isEmpty()) {
-            return null;
-        } else {
-            delete(el, root);
-            return el;
-        }
+        return (isEmpty()) ? null : delete(el, root).value;
+
     }
 
-    public List<E> searchPreorder() {
+    public List<E> bypassPreorder() {
         List<E> list = new ArrayList<>();
-        searchPreorder(root, list);
+        bypassPreorder(root, list);
         return list;
     }
 
-    public List<E> searchBreadthFirst() {
+    public List<E> bypassBreadthFirst() {
         List<E> list = new ArrayList<>();
         Queue<Node<E>> queue = new ArrayDeque<>();
         queue.add(root);
@@ -68,8 +64,12 @@ public class BinaryTree<E> {
     }
 
     public void balance() {
-        List<E> list = searchPreorder();
-        list.sort(comparator == null ? (Comparator<? super E>) Comparator.naturalOrder() : comparator);
+        List<E> list = bypassPreorder();
+
+        Comparator<? super E> comparator1 = (comparator != null)
+                ? comparator
+                : (Comparator<? super E>) Comparator.naturalOrder();
+        list.sort(comparator1);
 
         int middle = list.size() / 2;
         root = new Node<>(list.get(middle));
@@ -89,13 +89,13 @@ public class BinaryTree<E> {
         }
     }
 
-    private void searchPreorder(Node<E> node, List<E> list) {
+    private void bypassPreorder(Node<E> node, List<E> list) {
         list.add(node.value);
         if (node.left != null) {
-            searchPreorder(node.left, list);
+            bypassPreorder(node.left, list);
         }
         if (node.right != null) {
-            searchPreorder(node.right, list);
+            bypassPreorder(node.right, list);
         }
     }
 
@@ -103,10 +103,17 @@ public class BinaryTree<E> {
         int compareResult = compare(el, node.value);
 
         if (compareResult > 0) {
-            return node.right == null ? node.right = new Node<>(el, node) : add(el, node.right);
-        } else {
-            return node.left == null ? node.left = new Node<>(el, node) : add(el, node.left);
+            if (node.right == null) {
+                return node.right = new Node<>(el, node);
+            }
+            return add(el, node.right);
         }
+
+        if (node.left == null) {
+            return node.left = new Node<>(el, node);
+        }
+        return add(el, node.left);
+
     }
 
     private Node<E> delete(E el, Node<E> node) {
@@ -117,28 +124,23 @@ public class BinaryTree<E> {
             node.right = delete(el, node.right);
         } else if (compareResult < 0) {
             node.left = delete(el, node.left);
+        } else if (node.right != null && node.left != null) {
+            Node<E> max = findMax(node.left);
+            node.value = max.value;
+            delete(max.value, max.parent);
+        } else if (node.left != null) {
+            result = node.left.parent = node.parent;
+        } else if (node.right != null) {
+            result = node.right.parent = node.parent;
         } else {
-            if (node.right != null && node.left != null) {
-                Node<E> max = findMax(node.left);
-                node.value = max.value;
-                delete(max.value, max.parent);
-            } else if (node.left != null) {
-                result = node.left.parent = node.parent;
-            } else if (node.right != null) {
-                result = node.right.parent = node.parent;
-            } else {
-                result = null;
-            }
+            result = null;
         }
+
         return result;
     }
 
     private Node<E> findMax(Node<E> node) {
-        if (node.right == null) {
-            return node;
-        } else {
-            return findMax(node.right);
-        }
+        return (node.right == null) ? node : findMax(node.right);
     }
 
     private int compare(E el1, E el2) {

@@ -110,7 +110,7 @@ public class MyDoublyLinkedList<E> {
         return false;
     }
 
-    public int numberOfOccurrences(E el) {
+    public int countOccurrences(E el) {
         Node<E> current = tail;
         int amount = 0;
         while (current != null) {

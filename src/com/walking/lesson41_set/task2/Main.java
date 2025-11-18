@@ -3,6 +3,7 @@ package com.walking.lesson41_set.task2;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Реализуйте задачу
@@ -15,11 +16,11 @@ public class Main {
         System.out.print("Введите фразу: ");
         String phrase = in.nextLine();
 
-        HashSet<String> uniqueWords = getSetOfUniqueWords(phrase);
+        Set<String> uniqueWords = getUniqueWords(phrase);
         System.out.printf("Найдено уникальных слов: %d", uniqueWords.size());
     }
 
-    public static HashSet<String> getSetOfUniqueWords(String phrase) {
+    public static Set<String> getUniqueWords(String phrase) {
         String[] words = phrase.trim()
                 .toLowerCase()
                 .split(" ");
