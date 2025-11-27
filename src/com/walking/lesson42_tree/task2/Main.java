@@ -24,11 +24,7 @@ public class Main {
 
         System.out.println(numbs.bypassPreorder());
 
-        numbs.delete(56);
-        System.out.println(numbs.bypassPreorder());
-        numbs.delete(47);
-        System.out.println(numbs.bypassPreorder());
-        numbs.delete(12);
+        numbs.delete(54);
         System.out.println(numbs.bypassPreorder());
     }
 }

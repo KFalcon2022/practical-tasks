@@ -30,7 +30,10 @@ public class AVLTree<E> {
 
     public void delete(E el) {
         if (!isEmpty()) {
-            delete(el, root);
+            Node<E> n = delete(el, root);
+            if (el == root.value) {
+                root = n;
+            }
             System.out.printf("Элемент %s был удалён\n", el);
         }
     }
