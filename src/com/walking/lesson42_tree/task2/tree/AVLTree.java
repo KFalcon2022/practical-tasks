@@ -25,11 +25,13 @@ public class AVLTree<E> {
         } else {
             root = add(el, root);
         }
+        System.out.printf("Элемент %s был добавлен\n", el);
     }
 
     public void delete(E el) {
         if (!isEmpty()) {
             delete(el, root);
+            System.out.printf("Элемент %s был удалён\n", el);
         }
     }
 
