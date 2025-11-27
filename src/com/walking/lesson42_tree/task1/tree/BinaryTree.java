@@ -113,7 +113,6 @@ public class BinaryTree<E> {
             return node.left = new Node<>(el, node);
         }
         return add(el, node.left);
-
     }
 
     private Node<E> delete(E el, Node<E> node) {
