@@ -152,7 +152,7 @@ public class AVLTree<E> {
     }
 
     private static class Node<E> {
-        private E value;
+        private final E value;
         private int height;
         Node<E> left;
         Node<E> right;
