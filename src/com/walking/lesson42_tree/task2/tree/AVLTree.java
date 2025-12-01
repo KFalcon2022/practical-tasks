@@ -1,5 +1,6 @@
 package com.walking.lesson42_tree.task2.tree;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -21,17 +22,19 @@ public class AVLTree<E> {
 
     public void add(E el) {
         if (isEmpty()) {
+            compare(el, el);
             root = new Node<>(el);
         } else {
             root = add(el, root);
         }
-        System.out.printf("Элемент %s был добавлен\n", el);
+        System.out.printf("Элемент %s был добавлен.\n", el);
     }
 
     public void delete(E el) {
         if (!isEmpty()) {
             root = delete(el, root);
-            System.out.printf("Элемент %s был удалён\n", el);
+        } else {
+            System.out.println("В дереве отсутствуют элементы.");
         }
     }
 
@@ -53,6 +56,7 @@ public class AVLTree<E> {
 
     private Node<E> delete(E el, Node<E> node) {
         if (node == null) {
+            System.out.printf("Элемент %s не найден.\n", el);
             return null;
         }
 
@@ -65,21 +69,30 @@ public class AVLTree<E> {
         } else {
             Node<E> l = node.left;
             Node<E> r = node.right;
+            System.out.printf("Элемент был %s удалён.\n", el);
             if (l == null) {
                 return r;
             } else if (r == null) {
                 return l;
             }
             Node<E> max = findMax(node.left);
-            max.left = delete(max.value, node.left);
+            max.left = removeMax(node.left);
             max.right = r;
             return balance(max);
         }
         return balance(node);
     }
 
+    private Node<E> removeMax(Node<E> node) {
+        if (node.right == null) {
+            return node.left;
+        }
+        node.right = removeMax(node.right);
+        return balance(node);
+    }
+
     private Node<E> findMax(Node<E> node) {
-        return (node.right == null) ? node : findMax(node.right);
+        return node.right == null ? node : findMax(node.right);
     }
 
     private Node<E> add(E el, Node<E> node) {
@@ -138,7 +151,7 @@ public class AVLTree<E> {
     private void fixHeight(Node<E> node) {
         int leftHeight = getHeight(node.left);
         int rightHeight = getHeight(node.right);
-        node.height = (leftHeight > rightHeight) ? leftHeight + 1 : rightHeight + 1;
+        node.height = Math.max(leftHeight, rightHeight) + 1;
     }
 
     private int getHeight(Node<E> node) {

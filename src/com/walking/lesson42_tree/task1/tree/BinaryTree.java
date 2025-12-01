@@ -139,7 +139,7 @@ public class BinaryTree<E> {
     }
 
     private Node<E> findMax(Node<E> node) {
-        return (node.right == null) ? node : findMax(node.right);
+        return node.right == null ? node : findMax(node.right);
     }
 
     private int compare(E el1, E el2) {
