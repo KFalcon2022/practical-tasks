@@ -1,22 +1,20 @@
-package com.walking.lesson40_queue2.service;
+package com.walking.lesson41_set.task1.service;
 
-import com.walking.lesson40_queue2.model.Task;
+import com.walking.lesson41_set.task1.model.Task;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class TaskService {
-    private final Queue<Task> taskQueue = new ArrayDeque<>();
+    private final TreeSet<Task> taskQueue = new TreeSet<>();
 
     public void addTask(Task task) {
-        taskQueue.offer(task);
-        System.out.println("Задание добавлено");
+        taskQueue.add(task);
+        System.out.printf("Задание %S добавлено\n", task.getName());
     }
 
     public boolean getTaskQuestion(){
-        if (taskQueue.peek() != null) {
-            System.out.printf("Сколько будет: %s\n", taskQueue.peek().getQuestion());
+        if (!taskQueue.isEmpty()) {
+            System.out.printf("Сколько будет: %s\n", taskQueue.first().getQuestion());
             return true;
         } else {
             System.out.println("Задание отсутствует");
@@ -25,13 +23,13 @@ public class TaskService {
     }
 
     private void completeTask (int answer) {
-        Task task = taskQueue.poll();
+        Task task = taskQueue.pollFirst();
 
 
             if (task.getAnswer() == (answer)) {
                 System.out.printf("Задание %s выполнено\n", task.getName());
             } else {
-                taskQueue.offer(task);
+                taskQueue.add(new Task(task));
                 System.out.printf("Задание %s возвращено на доработку\n", task.getName());
             }
 

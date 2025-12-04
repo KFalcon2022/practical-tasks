@@ -1,5 +1,7 @@
 package com.walking.lesson42_tree.task1;
 
+import com.walking.lesson42_tree.task1.structure.Tree;
+
 /**
  * Реализуйте бинарное дерево поиска. Учтите возможность использования дерева как для Comparable-сущностей,
  * так и для сортировки на основе компаратора.
@@ -15,5 +17,14 @@ package com.walking.lesson42_tree.task1;
  */
 public class Main {
     public static void main(String[] args) {
+        Tree<Integer> integerTree = new Tree<>();
+        integerTree.add(1);
+        integerTree.add(2);
+        integerTree.add(3);
+        integerTree.add(4);
+        integerTree.add(5);
+        integerTree.add(-3);
+        integerTree.add(-2);
+        integerTree.remove(2);
     }
 }
