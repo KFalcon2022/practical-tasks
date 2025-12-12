@@ -19,14 +19,12 @@ public class CarService {
     public List<Car> findCar(Predicate<Car> func) {
         List<Car> findCars = new ArrayList<>();
 
-
-        for (Car c : cars) {
-//            Нет особого смысла реализовывать и использовать equals() для Car, по крайне мере,
-//            для операции поиска
-            if (func.test(c)) {
-                findCars.add(c);
+        cars.forEach(car -> {
+            if (func.test(car)) {
+                findCars.add(car);
             }
-        }
+        });
+
 
 //        По желанию можно выбросить исключение
         return findCars;
