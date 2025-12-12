@@ -51,6 +51,7 @@ public class Main {
 
 
             int filterNumber = -1;
+
             if (stringFilterNumber.matches("\\d+")) {
                 filterNumber = Integer.parseInt(stringFilterNumber);
             }
