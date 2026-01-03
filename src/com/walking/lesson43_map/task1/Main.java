@@ -3,6 +3,7 @@ package com.walking.lesson43_map.task1;
 import com.walking.lesson30_regex.task3.exception.InvalidWordException;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -27,7 +28,7 @@ public class Main {
 
     }
 
-    private static HashMap<String, Integer> getWordsMap(String phrase) {
+    private static Map<String, Integer> getWordsMap(String phrase) {
         String[] words = splitPhrase(phrase);
         validateWords(words);
 
@@ -40,10 +41,8 @@ public class Main {
     }
 
     private static void putElement(HashMap<String, Integer> map, String key) {
-        Integer amount = map.put(key, 1);
-        if (amount != null) {
-            map.replace(key, amount + 1);
-        }
+        Integer amount = map.getOrDefault(key, 0);
+        map.put(key, amount + 1);
     }
 
     private static void validateWords(String[] words) {

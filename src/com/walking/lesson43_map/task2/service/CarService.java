@@ -4,16 +4,17 @@ import com.walking.lesson43_map.task2.model.Car;
 import com.walking.lesson43_map.task2.model.CarIdentifier;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CarService {
-    private final HashMap<CarIdentifier, Car> carMap;
+    private final Map<CarIdentifier, Car> carMap;
 
     public CarService() {
         this.carMap = new HashMap<>();
     }
 
-    public CarService(HashMap<CarIdentifier, Car> carMap) {
-        this.carMap = carMap;
+    public CarService(Map<CarIdentifier, Car> carMap) {
+        this.carMap = Map.copyOf(carMap);
     }
 
     public Car put(Car car) {
@@ -28,7 +29,7 @@ public class CarService {
         return carMap.get(identifier);
     }
 
-    public HashMap<CarIdentifier, Car> getCarMap() {
-        return carMap;
+    public Map<CarIdentifier, Car> getCarMap() {
+        return Map.copyOf(carMap);
     }
 }
