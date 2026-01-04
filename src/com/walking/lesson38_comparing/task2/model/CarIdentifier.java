@@ -48,24 +48,20 @@ public final class CarIdentifier implements Comparable<CarIdentifier> {
 
     @Override
     public int compareTo(@NotNull CarIdentifier o) {
-        if (number.compareTo(o.getNumber()) > 0) {
+        int result = number.compareTo(o.getNumber());
+        if (result > 0) {
             return 1;
-        }
-
-        if (number.compareTo(o.getNumber()) < 0) {
+        } else if (result < 0) {
             return -1;
-        }
-
-        if (number.compareTo(o.getNumber()) == 0) {
-            if (Integer.compare(year, o.getYear()) > 0) {
+        } else {
+            if (year > o.getYear()) {
                 return 1;
             }
 
-            if (Integer.compare(year, o.getYear()) < 0) {
+            if (year < o.getYear()) {
                 return -1;
             }
         }
-
-        return 0;
+        throw new RuntimeException("Cars are identical!");
     }
 }

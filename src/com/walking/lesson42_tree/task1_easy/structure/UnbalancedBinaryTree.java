@@ -6,7 +6,6 @@ import java.util.*;
 
 public class UnbalancedBinaryTree<E> {
     private Node<E> root;
-
     private int level;
 
 
@@ -50,7 +49,7 @@ public class UnbalancedBinaryTree<E> {
         return getMaxLeaf(root);
     }
 
-    public E getMaxLeaf(Node<E> current) {
+    private E getMaxLeaf(Node<E> current) {
         if (current == null) {
             System.out.println("Current root is null!");
             return null;
@@ -72,7 +71,7 @@ public class UnbalancedBinaryTree<E> {
         return getMinLeaf(root);
     }
 
-    public E getMinLeaf(Node<E> currentRoot) {
+    private E getMinLeaf(Node<E> currentRoot) {
         if (currentRoot == null) {
             System.out.println("Current Root is null! ");
             return null;
@@ -128,7 +127,7 @@ public class UnbalancedBinaryTree<E> {
                 : findParentNode(current.left, required);
     }
 
-    public Node<E> delete(E e) { //Удаление по значению
+    private Node<E> delete(E e) { //Удаление по значению
         Node<E> required = new Node<>(e);
         Node<E> parentNode = findParentNode(required); //находим родительский узел, один из потомков которого является удаляемым узлом
         if (parentNode == null) {
@@ -176,7 +175,7 @@ public class UnbalancedBinaryTree<E> {
         return removed;
     }
 
-    public void straightBypass() {
+    public void bypassStraight() {
         if (root == null) {
             System.out.println("Root is empty");
             return;
@@ -185,11 +184,11 @@ public class UnbalancedBinaryTree<E> {
         list.add(root.value);
 
         if (isHasLeftChild(root)) {
-            straightBypass(root.left, list);
+            bypassStraight(root.left, list);
         }
 
         if (isHasRightChild(root)) {
-            straightBypass(root.right, list);
+            bypassStraight(root.right, list);
         }
 
         for (Object o : list) {
@@ -197,7 +196,7 @@ public class UnbalancedBinaryTree<E> {
         }
     }
 
-    private void straightBypass(Node<E> current, Collection<E> list) {
+    private void bypassStraight(Node<E> current, Collection<E> list) {
         if (current == null) {
             return;
         }
@@ -205,15 +204,15 @@ public class UnbalancedBinaryTree<E> {
         list.add(current.value);
 
         if (isHasLeftChild(current)) {
-            straightBypass(current.left, list);
+            bypassStraight(current.left, list);
         }
 
         if (isHasRightChild(current)) {
-            straightBypass(current.right, list);
+            bypassStraight(current.right, list);
         }
     }
 
-    public void middleBypass() {
+    public void bypassMiddle() {
         if (root == null) {
             System.out.println("Root is empty!");
             return;
@@ -222,13 +221,13 @@ public class UnbalancedBinaryTree<E> {
         List<E> list = new LinkedList<>();
 
         if (isHasLeftChild(root)) {
-            middleBypass(root.left, list);
+            bypassMiddle(root.left, list);
         }
 
         list.add(root.value);
 
         if (isHasRightChild(root)) {
-            middleBypass(root.right, list);
+            bypassMiddle(root.right, list);
         }
 
         for (Object o : list) {
@@ -236,23 +235,23 @@ public class UnbalancedBinaryTree<E> {
         }
     }
 
-    private void middleBypass(Node<E> current, Collection<E> list) {
+    private void bypassMiddle(Node<E> current, Collection<E> list) {
         if (current == null) {
             return;
         }
 
         if (isHasLeftChild(current)) {
-            middleBypass(current.left, list);
+            bypassMiddle(current.left, list);
         }
 
         list.add(current.value);
 
         if (isHasRightChild(current)) {
-            middleBypass(current.right, list);
+            bypassMiddle(current.right, list);
         }
     }
 
-    public void reverseBypass() {
+    public void bypassReverse() {
         if (root == null) {
             System.out.println("Root is empty");
             return;
@@ -260,11 +259,11 @@ public class UnbalancedBinaryTree<E> {
         List<E> list = new LinkedList<>();
 
         if (isHasLeftChild(root)) {
-            reverseBypass(root.left, list);
+            bypassReverse(root.left, list);
         }
 
         if (isHasRightChild(root)) {
-            reverseBypass(root.right, list);
+            bypassReverse(root.right, list);
         }
 
         list.add(root.value);
@@ -274,23 +273,23 @@ public class UnbalancedBinaryTree<E> {
         }
     }
 
-    private void reverseBypass(Node<E> current, Collection<E> list) {
+    private void bypassReverse(Node<E> current, Collection<E> list) {
         if (current == null) {
             return;
         }
 
         if (isHasLeftChild(current)) {
-            reverseBypass(current.left, list);
+            bypassReverse(current.left, list);
         }
 
         if (isHasRightChild(current)) {
-            reverseBypass(current.right, list);
+            bypassReverse(current.right, list);
         }
 
         list.add(current.value);
     }
 
-    public void widthBypass() {
+    public void bypassWidth() {
         if (root == null) {
             System.out.println("Root is empty!");
             return;
@@ -309,14 +308,14 @@ public class UnbalancedBinaryTree<E> {
             nodeQueue.add(root.right);
         }
 
-        widthBypass(valueQueue, nodeQueue);
+        bypassWidth(valueQueue, nodeQueue);
 
         for (E e : valueQueue) {
             System.out.println(e);
         }
     }
 
-    private void widthBypass(Collection<E> collection, Queue<Node<E>> nodeQueue) {
+    private void bypassWidth(Collection<E> collection, Queue<Node<E>> nodeQueue) {
         if (nodeQueue.isEmpty()) {
             return;
         }
@@ -334,10 +333,10 @@ public class UnbalancedBinaryTree<E> {
             }
         }
 
-        widthBypass(collection, newNodeQueue);
+        bypassWidth(collection, newNodeQueue);
     }
 
-    public class Node<E> implements Comparable<Node<E>> {
+    private static class Node<E> implements Comparable<Node<E>> {
         private final E value;
 
         private Node<E> left;
@@ -377,15 +376,8 @@ public class UnbalancedBinaryTree<E> {
 
         @Override
         public int compareTo(@NotNull Node<E> o) {
-            if (hashCode() < o.hashCode()) {
-                return -1;
-            }
+            return Integer.compare(hashCode(), o.hashCode());
 
-            if (hashCode() > o.hashCode()) {
-                return 1;
-            }
-
-            return 0;
         }
 
         @Override

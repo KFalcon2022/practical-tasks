@@ -41,6 +41,6 @@ public class Main {
 
 //        tree.middlePrintTree();
 
-        tree.widthBypass();
+        tree.bypassWidth();
     }
 }

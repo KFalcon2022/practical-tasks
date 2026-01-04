@@ -31,7 +31,7 @@ public class CounterService {
     }
 
     public List<Counter> getCounters() {
-        return new ArrayList<>(counters);
+        return new ArrayList<>(List.copyOf(counters));
     }
 
     public boolean addCounter(Counter newCounter) {
