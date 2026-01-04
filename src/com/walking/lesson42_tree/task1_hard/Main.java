@@ -2,9 +2,6 @@ package com.walking.lesson42_tree.task1_hard;
 
 import com.walking.lesson42_tree.task1_hard.structure.BinarySearchTree;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Main {
     static void main(String[] args) {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
