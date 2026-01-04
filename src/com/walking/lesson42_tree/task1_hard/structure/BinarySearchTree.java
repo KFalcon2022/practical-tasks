@@ -370,14 +370,6 @@ public class BinarySearchTree<E> {
             this(null, value, null);
         }
 
-        public Node(Node<E> left, E value) {
-            this(left, value, null);
-        }
-
-        public Node(E value, Node<E> right) {
-            this(null, value, right);
-        }
-
         public E getValue() {
             return value;
         }
