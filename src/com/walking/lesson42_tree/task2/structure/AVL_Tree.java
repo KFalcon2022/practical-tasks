@@ -11,7 +11,7 @@ public class AVL_Tree<E> {
     }
 
     public AVL_Tree(Comparator<E> comparator) {
-
+        this.comparator = comparator;
     }
 
     public void clear() {
@@ -204,10 +204,6 @@ public class AVL_Tree<E> {
         }
 
         public Node(E value, Node<E> parent) {
-            this(value, null, null, parent);
-        }
-
-        public Node(E value, Node<E> parent, int lvl) {
             this(value, null, null, parent);
         }
 
