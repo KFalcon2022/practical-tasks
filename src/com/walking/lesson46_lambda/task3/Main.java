@@ -2,6 +2,7 @@ package com.walking.lesson46_lambda.task3;
 
 import com.walking.lesson46_lambda.task3.model.Car;
 import com.walking.lesson46_lambda.task3.service.CarService;
+import com.walking.lesson46_lambda.task3.service.FilterService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -37,61 +38,36 @@ public class Main {
                 case 1:
                     System.out.print("Введите номер машины или его часть: ");
                     String num = in.nextLine();
-                    List<Car> foundCars = filterByNumber(cars, num);
+                    List<Car> foundCars = FilterService.filterByNumber(cars, num);
                     if (foundCars.isEmpty()) {
-                        foundCars = filterByNumberSubstring(cars, num);
+                        foundCars = FilterService.filterByNumberSubstring(cars, num);
                     }
                     print(foundCars);
                     break;
                 case 2:
                     System.out.print("Введите имя владельца: ");
                     String owner = in.nextLine();
-                    print(filterByOwner(cars, owner));
+                    print(FilterService.filterByOwner(cars, owner));
                     break;
                 case 3:
                     System.out.print("Введите марку: ");
-                    print(filterByBrand(cars, in.nextLine()));
+                    print(FilterService.filterByBrand(cars, in.nextLine()));
                     break;
                 case 4:
                     System.out.print("Введите начало диапозона: ");
                     int start = in.nextInt();
                     System.out.print("Введите конец диапозона: ");
                     int end = in.nextInt();
-                    print(filterByYear(cars, start, end));
+                    print(FilterService.filterByYear(cars, start, end));
                     break;
                 case 5:
                     System.out.print("Введите цвет: ");
-                    print(filterByColor(cars, in.nextLine()));
+                    print(FilterService.filterByColor(cars, in.nextLine()));
                     break;
             }
             System.out.print("Введите номер действия: ");
             number = in.nextInt();
         }
-    }
-
-    public static List<Car> filterByNumber(List<Car> cars, String number) {
-        return CarService.find(cars, car -> car.getIdentifier().getNumber().equals(number));
-    }
-
-    public static List<Car> filterByNumberSubstring(List<Car> cars, String substring) {
-        String regex = "^.*" + substring + ".*$";
-        return CarService.find(cars, car -> car.getIdentifier().getNumber().matches(regex));
-    }
-
-    public static List<Car> filterByColor(List<Car> cars, String color) {
-        return CarService.find(cars, car -> car.getColor().equals(color));
-    }
-
-    public static List<Car> filterByOwner(List<Car> cars, String owner) {
-        return CarService.find(cars, car -> car.getOwner().equals(owner));
-    }
-
-    public static List<Car> filterByBrand(List<Car> cars, String brand) {
-        return CarService.find(cars, car -> car.getIdentifier().getBrand().equals(brand));
-    }
-
-    public static List<Car> filterByYear(List<Car> cars, int start, int end) {
-        return CarService.find(cars, car -> car.getReleaseYear() >= start && car.getReleaseYear() <= end);
     }
 
     public static List<Car> createList() {
