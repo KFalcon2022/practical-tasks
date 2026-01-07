@@ -1,7 +1,6 @@
 package com.walking.lesson46_lambda.task3;
 
 import com.walking.lesson46_lambda.task3.model.Car;
-import com.walking.lesson46_lambda.task3.service.CarService;
 import com.walking.lesson46_lambda.task3.service.FilterService;
 
 import java.util.List;
