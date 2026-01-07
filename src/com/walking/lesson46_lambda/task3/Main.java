@@ -70,28 +70,28 @@ public class Main {
     }
 
     public static List<Car> filterByNumber(List<Car> cars, String number) {
-        return new CarService().find(cars, car -> car.getIdentifier().getNumber().equals(number));
+        return CarService.find(cars, car -> car.getIdentifier().getNumber().equals(number));
     }
 
     public static List<Car> filterByNumberSubstring(List<Car> cars, String substring) {
         String regex = "^.*" + substring + ".*$";
-        return new CarService().find(cars, car -> car.getIdentifier().getNumber().matches(regex));
+        return CarService.find(cars, car -> car.getIdentifier().getNumber().matches(regex));
     }
 
     public static List<Car> filterByColor(List<Car> cars, String color) {
-        return new CarService().find(cars, car -> car.getColor().equals(color));
+        return CarService.find(cars, car -> car.getColor().equals(color));
     }
 
     public static List<Car> filterByOwner(List<Car> cars, String owner) {
-        return new CarService().find(cars, car -> car.getOwner().equals(owner));
+        return CarService.find(cars, car -> car.getOwner().equals(owner));
     }
 
     public static List<Car> filterByBrand(List<Car> cars, String brand) {
-        return new CarService().find(cars, car -> car.getIdentifier().getBrand().equals(brand));
+        return CarService.find(cars, car -> car.getIdentifier().getBrand().equals(brand));
     }
 
     public static List<Car> filterByYear(List<Car> cars, int start, int end) {
-        return new CarService().find(cars, car -> car.getReleaseYear() >= start && car.getReleaseYear() <= end);
+        return CarService.find(cars, car -> car.getReleaseYear() >= start && car.getReleaseYear() <= end);
     }
 
     public static List<Car> createList() {
