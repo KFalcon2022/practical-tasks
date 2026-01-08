@@ -1,5 +1,6 @@
 package com.walking.lesson46_lambda.task3;
 
+import com.walking.lesson46_lambda.task3.menu.Messages;
 import com.walking.lesson46_lambda.task3.model.Car;
 import com.walking.lesson46_lambda.task3.service.FilterService;
 
@@ -27,15 +28,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         List<Car> cars = createList();
-        System.out.println("Введите номер действия: 1 - поиск по номеру, 2 - поиск по владельцу, 3 - поиск по марке, " +
-                "4 - поиск по году выпуска, 5 - поиск по цвету, 6 - завершить программу");
+        System.out.println(Messages.MAIN_MENU_MESSAGE);
         Scanner in = new Scanner(System.in);
         int number = in.nextInt();
         while (number != 6) {
             in = new Scanner(System.in);
             switch (number) {
                 case 1:
-                    System.out.print("Введите номер машины или его часть: ");
+                    System.out.print(Messages.NUMBER_MESSAGE);
                     String num = in.nextLine();
                     List<Car> foundCars = FilterService.filterByNumber(cars, num);
                     if (foundCars.isEmpty()) {
@@ -44,27 +44,27 @@ public class Main {
                     print(foundCars);
                     break;
                 case 2:
-                    System.out.print("Введите имя владельца: ");
+                    System.out.print(Messages.OWNER_MESSAGE);
                     String owner = in.nextLine();
                     print(FilterService.filterByOwner(cars, owner));
                     break;
                 case 3:
-                    System.out.print("Введите марку: ");
+                    System.out.print(Messages.BRAND_MESSAGE);
                     print(FilterService.filterByBrand(cars, in.nextLine()));
                     break;
                 case 4:
-                    System.out.print("Введите начало диапозона: ");
+                    System.out.print(Messages.YEAR_FIRST_MESSAGE);
                     int start = in.nextInt();
-                    System.out.print("Введите конец диапозона: ");
+                    System.out.print(Messages.YEAR_SECOND_MESSAGE);
                     int end = in.nextInt();
                     print(FilterService.filterByYear(cars, start, end));
                     break;
                 case 5:
-                    System.out.print("Введите цвет: ");
+                    System.out.print(Messages.COLOR_MESSAGE);
                     print(FilterService.filterByColor(cars, in.nextLine()));
                     break;
             }
-            System.out.print("Введите номер действия: ");
+            System.out.print(Messages.PROCEED_MESSAGE);
             number = in.nextInt();
         }
     }
@@ -84,7 +84,7 @@ public class Main {
 
     public static void print(List<Car> cars) {
         if (cars.isEmpty()) {
-            System.out.println("Машины, соответствующие условию поиска, не найдены.");
+            System.out.println(Messages.CARS_NOT_FOUND_MESSAGE);
         } else {
             cars.forEach(car -> System.out.println(car.toString()));
         }
