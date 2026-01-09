@@ -10,11 +10,11 @@ public class CarService {
 
     public static List<Car> find(List<Car> cars, Predicate<Car> condition) {
         List<Car> matchingCars = new ArrayList<>();
-        for (Car c : cars) {
-            if (condition.test(c)) {
-                matchingCars.add(c);
+        cars.forEach(car -> {
+            if (condition.test(car)) {
+                matchingCars.add(car);
             }
-        }
+        });
         return matchingCars;
     }
 }

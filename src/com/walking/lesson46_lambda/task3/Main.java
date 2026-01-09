@@ -1,8 +1,9 @@
 package com.walking.lesson46_lambda.task3;
 
+import com.walking.lesson46_lambda.task3.filter.*;
 import com.walking.lesson46_lambda.task3.menu.Messages;
 import com.walking.lesson46_lambda.task3.model.Car;
-import com.walking.lesson46_lambda.task3.service.FilterService;
+import com.walking.lesson46_lambda.task3.service.CarService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -37,32 +38,36 @@ public class Main {
                 case 1:
                     System.out.print(Messages.NUMBER_MESSAGE);
                     String num = in.nextLine();
-                    List<Car> foundCars = FilterService.filterByNumber(cars, num);
+                    List<Car> foundCars = CarService.find(cars, car -> new FilterByNumber(num).filter(car));
                     if (foundCars.isEmpty()) {
-                        foundCars = FilterService.filterByNumberSubstring(cars, num);
+                        foundCars = CarService.find(cars, car -> new FilterByNumberSubstring(num).filter(car));
                     }
                     print(foundCars);
                     break;
                 case 2:
                     System.out.print(Messages.OWNER_MESSAGE);
                     String owner = in.nextLine();
-                    print(FilterService.filterByOwner(cars, owner));
+                    print(CarService.find(cars, car -> new FilterByOwner(owner).filter(car)));
                     break;
                 case 3:
                     System.out.print(Messages.BRAND_MESSAGE);
-                    print(FilterService.filterByBrand(cars, in.nextLine()));
+                    String brand = in.nextLine();
+                    print(CarService.find(cars, car -> new FilterByBrand(brand).filter(car)));
                     break;
                 case 4:
                     System.out.print(Messages.YEAR_FIRST_MESSAGE);
                     int start = in.nextInt();
                     System.out.print(Messages.YEAR_SECOND_MESSAGE);
                     int end = in.nextInt();
-                    print(FilterService.filterByYear(cars, start, end));
+                    print(CarService.find(cars, car -> new FilterByYear(start, end).filter(car)));
                     break;
                 case 5:
                     System.out.print(Messages.COLOR_MESSAGE);
-                    print(FilterService.filterByColor(cars, in.nextLine()));
+                    String color = in.nextLine();
+                    print(CarService.find(cars, car -> new FilterByColor(color).filter(car)));
                     break;
+                default:
+                    System.out.println(Messages.WRONG_INPUT);
             }
             System.out.print(Messages.PROCEED_MESSAGE);
             number = in.nextInt();
