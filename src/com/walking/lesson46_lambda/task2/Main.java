@@ -5,9 +5,7 @@ import com.walking.lesson46_lambda.task2.model.Cat;
 import com.walking.lesson46_lambda.task2.model.Cow;
 import com.walking.lesson46_lambda.task2.model.Dog;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Знакомимся с функциональным интерфейсом Consumer.
