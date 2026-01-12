@@ -1,5 +1,11 @@
 package com.walking.lesson37_collection_list.task2;
 
+import com.walking.lesson37_collection_list.task2.collection.MyCollection;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Попробуйте реализовать собственную коллекцию, наследуясь от Collection.
  * За основу можно взять
@@ -10,5 +16,20 @@ package com.walking.lesson37_collection_list.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        MyCollection<String> strings = new MyCollection<>();
+        strings.add("hello");
+        strings.add("how");
+        strings.add("are");
+        strings.add("you");
+
+        System.out.println(Arrays.toString(strings.toArray()));
+
+        ArrayList<String> arrayList = new ArrayList<>(List.of("I", "know", "why"));
+        strings.addAll(arrayList);
+        System.out.println(Arrays.toString(strings.toArray()));
+        System.out.println(strings.containsAll(arrayList));
+        strings.remove("hello");
+        System.out.println(Arrays.toString(strings.toArray()));
+        System.out.println(strings.size());
     }
 }

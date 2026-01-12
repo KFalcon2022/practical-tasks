@@ -1,5 +1,9 @@
 package com.walking.lesson30_regex.task3;
 
+import com.walking.lesson30_regex.task3.exception.InvalidWordException;
+
+import java.util.Scanner;
+
 /**
  * Реализуйте задачу
  * <a href="https://github.com/KFalcon2022/practical-tasks/blob/master/src/com/walking/lesson26_string_types/task2/Main.java">...</a>
@@ -12,6 +16,69 @@ package com.walking.lesson30_regex.task3;
  * должно быть выброшено исключение.
  */
 public class Main {
+    private static final String WORD = "[а-яa-z]+";
+    private static final String WORD_WITH_HYPHENS = "[а-яa-z][а-яa-z-]+[а-яa-z]";
+
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите фразу: ");
+        String phrase = in.nextLine()
+                .trim()
+                .toLowerCase();
+
+        String[] words = splitPhrase(phrase);
+        validateWords(words);
+        System.out.printf("Найдено уникальных слов: %d", countWords(words));
+
+    }
+
+    public static int countWords(String[] phrase) {
+        int counter = 0;
+        boolean isEqual;
+        for (int i = 0; i < phrase.length; i++) {
+            isEqual = isUnique(phrase, i);
+
+            if (!isEqual) {
+                counter--;
+            }
+
+            counter++;
+        }
+
+        return counter;
+    }
+
+    public static void validateWords(String[] words) {
+        for (String word : words) {
+            if (!isWordValid(word)) {
+                throw new InvalidWordException("Некорректное слово: " + word);
+            }
+        }
+    }
+
+    public static boolean isWordValid(String word) {
+        if (!word.contains("-")) {
+            return word.matches(WORD);
+        }
+
+        if (word.matches("^.*--+.*$")) {
+            return false;
+        }
+
+        return word.matches(WORD_WITH_HYPHENS);
+    }
+
+    public static boolean isUnique(String[] phrase, int num) {
+        for (int i = num + 1; i < phrase.length; i++) {
+            if (phrase[num].equals(phrase[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static String[] splitPhrase(String phrase) {
+        return phrase.split("\\s+");
     }
 }
