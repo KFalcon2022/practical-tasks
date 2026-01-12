@@ -14,35 +14,36 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Car> cars = new ArrayList<>(createList());
-        sortByNumber(cars);
+        sortByIdentifier(cars);
         printList(cars);
     }
 
     public static void sortByOwner(List<Car> cars) {
-        cars.sort(Comparator.comparing(o -> o.getOwner()));
+        cars.sort(getOwnerComparator());
     }
 
     public static void sortByNumber(List<Car> cars) {
-        cars.sort(Comparator.comparing(o -> o.getIdentifier().getNumber()));
+        cars.sort(getNumberComparator());
     }
 
     public static void sortByBrand(List<Car> cars) {
-        cars.sort(Comparator.comparing(o -> o.getIdentifier().getBrand()));
+        cars.sort(getBrandComparator());
     }
 
     public static void sortByIdentifier(List<Car> cars) {
-        Comparator<Car> comparator = (o1, o2) -> {
-            int result = o1.getIdentifier()
-                    .getBrand()
-                    .compareTo(o2.getIdentifier().getBrand());
-            if (result == 0) {
-                return o1.getIdentifier()
-                        .getNumber()
-                        .compareTo(o2.getIdentifier().getNumber());
-            }
-            return result;
-        };
-        cars.sort(comparator);
+        cars.sort(getBrandComparator().thenComparing(getNumberComparator()));
+    }
+
+    private static Comparator<Car> getNumberComparator() {
+        return Comparator.comparing(o -> o.getIdentifier().getNumber());
+    }
+
+    private static Comparator<Car> getBrandComparator() {
+        return Comparator.comparing(o -> o.getIdentifier().getBrand());
+    }
+
+    private static Comparator<Car> getOwnerComparator() {
+        return Comparator.comparing(o -> o.getOwner());
     }
 
     public static List<Car> createList() {

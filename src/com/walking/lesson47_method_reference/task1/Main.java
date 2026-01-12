@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        List<Integer> numbers = List.of(7, 6, 23, 45, 32, 8, 7, 94, 5, 17);
-        numbers.forEach(System.out::println);
+        List.of(7, 6, 23, 45, 32, 8, 7, 94, 5, 17)
+                .forEach(System.out::println);
     }
 }

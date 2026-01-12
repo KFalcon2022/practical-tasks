@@ -27,8 +27,10 @@ import java.util.Scanner;
  * Предусмотрите возможность завершения программы с помощью пользовательского ввода.
  */
 public class Main {
+    public static List<Car> cars;
+
     public static void main(String[] args) {
-        List<Car> cars = createList();
+        cars = createList();
         System.out.println(Messages.MAIN_MENU_MESSAGE);
         Scanner in = new Scanner(System.in);
         int number = in.nextInt();
@@ -38,33 +40,30 @@ public class Main {
                 case 1:
                     System.out.print(Messages.NUMBER_MESSAGE);
                     String num = in.nextLine();
-                    List<Car> foundCars = CarService.find(cars, car -> new FilterByNumber(num).filter(car));
-                    if (foundCars.isEmpty()) {
-                        foundCars = CarService.find(cars, car -> new FilterByNumberSubstring(num).filter(car));
+                    if (num.length() == 6) {
+                        filter(new FilterByNumber(num));
+                    } else {
+                        filter(new FilterByNumberSubstring(num));
                     }
-                    print(foundCars);
                     break;
                 case 2:
                     System.out.print(Messages.OWNER_MESSAGE);
-                    String owner = in.nextLine();
-                    print(CarService.find(cars, car -> new FilterByOwner(owner).filter(car)));
+                    filter(new FilterByOwner(in.nextLine()));
                     break;
                 case 3:
                     System.out.print(Messages.BRAND_MESSAGE);
-                    String brand = in.nextLine();
-                    print(CarService.find(cars, car -> new FilterByBrand(brand).filter(car)));
+                    filter(new FilterByBrand(in.nextLine()));
                     break;
                 case 4:
                     System.out.print(Messages.YEAR_FIRST_MESSAGE);
                     int start = in.nextInt();
                     System.out.print(Messages.YEAR_SECOND_MESSAGE);
                     int end = in.nextInt();
-                    print(CarService.find(cars, car -> new FilterByYear(start, end).filter(car)));
+                    filter(new FilterByYear(start, end));
                     break;
                 case 5:
                     System.out.print(Messages.COLOR_MESSAGE);
-                    String color = in.nextLine();
-                    print(CarService.find(cars, car -> new FilterByColor(color).filter(car)));
+                    filter(new FilterByColor(in.nextLine()));
                     break;
                 default:
                     System.out.println(Messages.WRONG_INPUT);
@@ -87,7 +86,11 @@ public class Main {
                 new Car("Москвич", "Алексеев Л.Б.", "гн123г", "жёлтый", 1973));
     }
 
-    public static void print(List<Car> cars) {
+    public static void filter(Filter f) {
+        print(CarService.find(cars, car -> f.filter(car)));
+    }
+
+    private static void print(List<Car> cars) {
         if (cars.isEmpty()) {
             System.out.println(Messages.CARS_NOT_FOUND_MESSAGE);
         } else {

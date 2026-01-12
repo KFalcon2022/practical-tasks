@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        List.of(new Cat(), new Dog(), new Cow()).forEach(animal -> animal.sound());
+        List.of(new Cat(), new Dog(), new Cow())
+                .forEach(animal -> animal.sound());
     }
 }

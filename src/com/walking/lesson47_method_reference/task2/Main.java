@@ -8,7 +8,8 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        List.of(2, 34, 5, 7, 13, 18, 9, 27).forEach(Main::printer);
+        List.of(2, 34, 5, 7, 13, 18, 9, 27)
+                .forEach(Main::printer);
     }
 
     public static void printer(Object o) {
