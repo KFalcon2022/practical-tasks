@@ -34,8 +34,8 @@ public class CounterService {
         return List.copyOf(counters);
     }
 
-    public boolean addCounter(Counter newCounter) {
-        return counters.add(newCounter);
+    public void addCounter(Counter newCounter) {
+        counters.add(newCounter);
     }
 
     public void reset(String name) {
