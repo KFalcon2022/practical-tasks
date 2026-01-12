@@ -14,7 +14,7 @@ public class CarService {
     }
 
     public CarService(Map<CarIdentifier, Car> carMap) {
-        this.carMap = Map.copyOf(carMap);
+        this.carMap = new HashMap<>(carMap);
     }
 
     public Car put(Car car) {

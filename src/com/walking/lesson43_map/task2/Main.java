@@ -16,6 +16,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         CarService service = createCarsMap();
+        CarService service2 = new CarService(service.getCarMap());
+        service2.put(new Car("Audi", "кр333о", "Савельев П.Б.", "синий"));
 
         Scanner in = new Scanner(System.in);
         System.out.print("Марка машины: ");
@@ -24,7 +26,7 @@ public class Main {
         String number = in.nextLine();
 
         CarIdentifier identifier = new CarIdentifier(number, brand);
-        Car car = service.get(identifier);
+        Car car = service2.get(identifier);
         if (car == null) {
             System.out.println("Машина не найдена!");
         } else {
