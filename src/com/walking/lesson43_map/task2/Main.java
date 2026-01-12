@@ -21,10 +21,13 @@ public class Main {
         }
 
         Car desiredCar = createCar();
-
-        if (cars.containsKey(desiredCar.getNumber())) {
-            System.out.println(cars.get(desiredCar.getNumber()));
+        Car requiredCar = cars.get(desiredCar.getNumber());
+        if (requiredCar == null) {
+            System.out.printf("Car with '%s' not found\n", desiredCar.getNumber());
+        } else {
+            System.out.println(requiredCar);
         }
+        //Это всё,До чего я смог додуматься)
     }
 
     private static Car createCar() {

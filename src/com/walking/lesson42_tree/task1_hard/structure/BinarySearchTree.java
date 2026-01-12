@@ -22,7 +22,7 @@ public class BinarySearchTree<E> {
 //    }
     //Эти два метода у тебя увидел, по этому их в комментарии занёс.
 
-//    public void doBalance() {
+//    public void balance() {
 //        if (root == null) {
 //            System.out.println("Root is empty");
 //            return;

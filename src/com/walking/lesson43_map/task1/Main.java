@@ -32,18 +32,18 @@ public class Main {
         String[] wordArray = words.split("\\s+");
         // black green white black green white black green white blue
 
-        Map<String, Integer> uniqueWords = new HashMap<>(countWords(wordArray));
+        Map<String, Integer> uniqueWords = countUniqueWordsUsages(wordArray);
 
         for (Map.Entry<String, Integer> word : uniqueWords.entrySet()) {
             System.out.printf("Word '%s' used %d times\n", word.getKey(), word.getValue());
         }
     }
 
-    private static Map<String, Integer> countWords(String[] words) {
+    private static Map<String, Integer> countUniqueWordsUsages(String[] words) {
         Map<String, Integer> uniqueWords = new HashMap<>();
 
         for (String word : words) {
-            int count = uniqueWords.get(word) == null ? 1 : uniqueWords.get(word) + 1;
+            int count = uniqueWords.getOrDefault(word, 0) + 1;
             uniqueWords.put(word, count);
         }
 
