@@ -35,45 +35,17 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int number = in.nextInt();
         while (number != 6) {
-            in = new Scanner(System.in);
-            switch (number) {
-                case 1:
-                    System.out.print(Messages.NUMBER_MESSAGE);
-                    String num = in.nextLine();
-                    if (num.length() == 6) {
-                        filter(new FilterByNumber(num));
-                    } else {
-                        filter(new FilterByNumberSubstring(num));
-                    }
-                    break;
-                case 2:
-                    System.out.print(Messages.OWNER_MESSAGE);
-                    filter(new FilterByOwner(in.nextLine()));
-                    break;
-                case 3:
-                    System.out.print(Messages.BRAND_MESSAGE);
-                    filter(new FilterByBrand(in.nextLine()));
-                    break;
-                case 4:
-                    System.out.print(Messages.YEAR_FIRST_MESSAGE);
-                    int start = in.nextInt();
-                    System.out.print(Messages.YEAR_SECOND_MESSAGE);
-                    int end = in.nextInt();
-                    filter(new FilterByYear(start, end));
-                    break;
-                case 5:
-                    System.out.print(Messages.COLOR_MESSAGE);
-                    filter(new FilterByColor(in.nextLine()));
-                    break;
-                default:
-                    System.out.println(Messages.WRONG_INPUT);
+            try {
+                filter(processingInput(number));
+                System.out.print(Messages.PROCEED_MESSAGE);
+            } catch (RuntimeException e) {
+                System.out.print(e.getMessage());
             }
-            System.out.print(Messages.PROCEED_MESSAGE);
             number = in.nextInt();
         }
     }
 
-    public static List<Car> createList() {
+    private static List<Car> createList() {
         return List.of(
                 new Car("Audi", "Печкин Ф.Б.", "уе777к", "красный", 1995),
                 new Car("BMW", "Борисов Ю.А.", "ос025р", "чёрный", 2003),
@@ -86,7 +58,38 @@ public class Main {
                 new Car("Москвич", "Алексеев Л.Б.", "гн123г", "жёлтый", 1973));
     }
 
-    public static void filter(Filter f) {
+    private static Filter processingInput(int num) {
+        Scanner in = new Scanner(System.in);
+        switch (num) {
+            case 1:
+                System.out.print(Messages.NUMBER_MESSAGE);
+                String number = in.nextLine();
+                if (number.length() == 6) {
+                    return new FilterByNumber(number);
+                } else {
+                    return new FilterByNumberSubstring(number);
+                }
+            case 2:
+                System.out.print(Messages.OWNER_MESSAGE);
+                return new FilterByOwner(in.nextLine());
+            case 3:
+                System.out.print(Messages.BRAND_MESSAGE);
+                return new FilterByBrand(in.nextLine());
+            case 4:
+                System.out.print(Messages.YEAR_FIRST_MESSAGE);
+                int start = in.nextInt();
+                System.out.print(Messages.YEAR_SECOND_MESSAGE);
+                int end = in.nextInt();
+                return new FilterByYear(start, end);
+            case 5:
+                System.out.print(Messages.COLOR_MESSAGE);
+                return new FilterByColor(in.nextLine());
+            default:
+                throw new RuntimeException("Неверный ввод. Пожалуйста, введите цифру от 1 до 6: ");
+        }
+    }
+
+    private static void filter(Filter f) {
         print(CarService.find(cars, car -> f.filter(car)));
     }
 
