@@ -4,6 +4,7 @@ import com.walking.lesson46_lambda.task3.filter.*;
 import com.walking.lesson46_lambda.task3.menu.Messages;
 import com.walking.lesson46_lambda.task3.model.Car;
 import com.walking.lesson46_lambda.task3.service.CarService;
+import com.walking.lesson46_lambda.task3.service.FilterService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -36,7 +37,7 @@ public class Main {
         int number = in.nextInt();
         while (number != 6) {
             try {
-                filter(processingInput(number));
+                filter(FilterService.get(number));
                 System.out.print(Messages.PROCEED_MESSAGE);
             } catch (RuntimeException e) {
                 System.out.print(e.getMessage());
@@ -56,37 +57,6 @@ public class Main {
                 new Car("Audi", "Васильев П.Д.", "кв865а", "белый", 1980),
                 new Car("BMW", "Лебедев А.Ю.", "ау000ш", "синий", 2010),
                 new Car("Москвич", "Алексеев Л.Б.", "гн123г", "жёлтый", 1973));
-    }
-
-    private static Filter processingInput(int num) {
-        Scanner in = new Scanner(System.in);
-        switch (num) {
-            case 1:
-                System.out.print(Messages.NUMBER_MESSAGE);
-                String number = in.nextLine();
-                if (number.length() == 6) {
-                    return new FilterByNumber(number);
-                } else {
-                    return new FilterByNumberSubstring(number);
-                }
-            case 2:
-                System.out.print(Messages.OWNER_MESSAGE);
-                return new FilterByOwner(in.nextLine());
-            case 3:
-                System.out.print(Messages.BRAND_MESSAGE);
-                return new FilterByBrand(in.nextLine());
-            case 4:
-                System.out.print(Messages.YEAR_FIRST_MESSAGE);
-                int start = in.nextInt();
-                System.out.print(Messages.YEAR_SECOND_MESSAGE);
-                int end = in.nextInt();
-                return new FilterByYear(start, end);
-            case 5:
-                System.out.print(Messages.COLOR_MESSAGE);
-                return new FilterByColor(in.nextLine());
-            default:
-                throw new RuntimeException("Неверный ввод. Пожалуйста, введите цифру от 1 до 6: ");
-        }
     }
 
     private static void filter(Filter f) {

@@ -6,6 +6,8 @@ import com.walking.lesson49_optional.task2.model.Human;
 import com.walking.lesson49_optional.task2.service.CarService;
 import com.walking.lesson49_optional.task2.service.HousingSearchService;
 
+import java.util.Scanner;
+
 /**
  * Реализуйте рад классов:
  * 1. Жилье, должен иметь поле «адрес»;
@@ -25,11 +27,17 @@ public class Main {
     public static void main(String[] args) {
         HousingSearchService service = new HousingSearchService(createCarMap());
 
-        CarIdentifier id = new CarIdentifier("zx222i", 2002);
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите номер машины: ");
+        String number = in.nextLine();
+        System.out.print("Введите год выпуска: ");
+        int year = in.nextInt();
 
-        service.getService().get(id)
+        service.getService()
+                .get(new CarIdentifier(number, year))
                 .flatMap(service::get)
-                .ifPresent(Housing::print);
+                .ifPresentOrElse(h -> System.out.println(h.getAddress()),
+                        () -> System.out.println("Адрес не найден."));
     }
 
     private static CarService createCarMap() {

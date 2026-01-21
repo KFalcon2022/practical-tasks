@@ -22,8 +22,7 @@ public class Main {
         System.out.print("Номер машины: ");
         String number = in.nextLine();
 
-        CarIdentifier identifier = new CarIdentifier(number, brand);
-        service.get(identifier)
+        service.get(new CarIdentifier(number, brand))
                 .ifPresentOrElse(Car::printInfo, service::printNotFoundMessage);
     }
 

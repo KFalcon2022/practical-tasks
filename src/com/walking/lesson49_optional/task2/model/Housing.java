@@ -10,8 +10,4 @@ public class Housing {
     public String getAddress() {
         return address;
     }
-
-    public void print() {
-        System.out.println(address);
-    }
 }
