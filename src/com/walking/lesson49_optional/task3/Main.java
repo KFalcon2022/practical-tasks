@@ -22,6 +22,14 @@ import java.util.Optional;
  */
 public class Main {
     static void main(String[] args) {
+        /*
+        Это твое решение, можешь не смотреть)
+        я сначала подумал, что нужно мапу использовать, только не знал,
+        что можно создавать отдельную Entry в впринципе
+
+        Крч сложна, я всё так же не понимаю, как я должен был до этого додуматься
+        или хоть как-то приблизиться к своему какому-либо решению
+         */
         getAnimalInfo(new Cat());
         getAnimalInfo(new Dog());
         getAnimalInfo(new Cow());
