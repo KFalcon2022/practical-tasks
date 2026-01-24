@@ -6,7 +6,6 @@ import com.walking.lesson49_optional.task2.model.car.CarIdentifier;
 import com.walking.lesson49_optional.task2.service.CarService;
 import com.walking.lesson49_optional.task2.service.FirstChildCarOwnerAddressService;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 /**
