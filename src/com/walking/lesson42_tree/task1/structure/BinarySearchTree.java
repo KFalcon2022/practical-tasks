@@ -146,7 +146,7 @@ public class BinarySearchTree<T> {
     private Node<T> findMax(Node<T> node) {
         if (node == null) {
             return null;
-        } else if (node.left == null) {
+        } else if (node.right == null) {
             return node;
         }
         return findMax(node.right);
