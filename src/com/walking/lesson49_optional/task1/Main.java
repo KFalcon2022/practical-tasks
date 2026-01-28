@@ -23,7 +23,8 @@ public class Main {
         String number = in.nextLine();
 
         service.get(new CarIdentifier(number, brand))
-                .ifPresentOrElse(Car::printInfo, service::printNotFoundMessage);
+                .ifPresentOrElse(c -> System.out.println(c.getInfo()),
+                        () -> System.out.println("Машина не найдена."));
     }
 
     public static CarService createCarsMap() {

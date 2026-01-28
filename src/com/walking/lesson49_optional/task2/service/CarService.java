@@ -41,8 +41,4 @@ public class CarService {
     public Map<CarIdentifier, Car> getCarMap() {
         return Map.copyOf(carMap);
     }
-
-    public void printNotFoundMessage() {
-        System.out.println("Машина не найдена.");
-    }
 }

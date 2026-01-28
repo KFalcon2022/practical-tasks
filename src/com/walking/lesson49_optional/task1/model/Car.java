@@ -29,10 +29,6 @@ public class Car {
                         owner);
     }
 
-    public void printInfo() {
-        System.out.println(getInfo());
-    }
-
     public CarIdentifier getIdentifier() {
         return identifier;
     }

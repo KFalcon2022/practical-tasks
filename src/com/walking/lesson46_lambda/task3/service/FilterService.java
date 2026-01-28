@@ -13,11 +13,7 @@ public class FilterService {
             case 1:
                 System.out.print(Messages.NUMBER_MESSAGE);
                 String number = in.nextLine();
-                if (number.length() == 6) {
-                    return new FilterByNumber(number);
-                } else {
-                    return new FilterByNumberSubstring(number);
-                }
+                return (number.length() == 6) ? new FilterByNumber(number) : new FilterByNumberSubstring(number);
             case 2:
                 System.out.print(Messages.OWNER_MESSAGE);
                 return new FilterByOwner(in.nextLine());
