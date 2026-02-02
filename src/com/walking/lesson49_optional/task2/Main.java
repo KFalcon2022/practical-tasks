@@ -4,7 +4,7 @@ import com.walking.lesson49_optional.task2.model.Human;
 import com.walking.lesson49_optional.task2.model.car.Car;
 import com.walking.lesson49_optional.task2.model.car.CarIdentifier;
 import com.walking.lesson49_optional.task2.service.CarService;
-import com.walking.lesson49_optional.task2.service.FirstChildCarOwnerAddressService;
+import com.walking.lesson49_optional.task2.service.AddressService;
 
 import java.util.Scanner;
 
@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         CarService carService = new CarService(initCars());
         CarIdentifier desiredCarIdentifier = createCar();
-        FirstChildCarOwnerAddressService addressService = new FirstChildCarOwnerAddressService(carService);
+        AddressService addressService = new AddressService(carService);
 
         System.out.println(addressService.getAddress(desiredCarIdentifier));
     }

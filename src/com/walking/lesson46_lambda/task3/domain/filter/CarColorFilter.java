@@ -2,7 +2,7 @@ package com.walking.lesson46_lambda.task3.domain.filter;
 
 import com.walking.lesson46_lambda.task3.model.Car;
 
-public class CarColorFilter implements CarFilter{
+public class CarColorFilter implements CarFilter {
     private final String color;
 
     public CarColorFilter(String color) {

@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        print(List.of(new Cat(), new Dog(), new Cow()));
+        List.of(new Cat(), new Dog(), new Cow()).forEach(Main::print);
     }
 
-    private static void print(List<Animal> animals) {
-        animals.forEach(System.out::println);
+    private static void print(Animal animal) {
+        animal.sound();
     }
 }

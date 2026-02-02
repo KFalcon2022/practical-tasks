@@ -5,21 +5,40 @@ import com.walking.lesson49_optional.task2.model.Human;
 import com.walking.lesson49_optional.task2.model.car.Car;
 import com.walking.lesson49_optional.task2.model.car.CarIdentifier;
 
-public class FirstChildCarOwnerAddressService {
+import java.util.List;
+
+public class AddressService {
     private final CarService carService;
 
-    public FirstChildCarOwnerAddressService(CarService carService) {
+    public AddressService(CarService carService) {
         this.carService = carService;
     }
 
     public String getAddress(CarIdentifier identifier) {
+//        return carService.findCars(identifier)
+//                .filter(car -> car.getIdentifier().getYear() < 2021)
+//                .map(Car::getOwner)
+//                .filter(owner -> !owner.getProfession().equals("policeman")
+//                        && !owner.getChild().getFirst().getProfession().equals("policeman"))
+//                .map(Human::getHouse)
+//                .filter(house -> !house.getAddress().contains("Ruble highway"))
+//                .map(House::getAddress)
+//                .orElseThrow(() -> new RuntimeException("Stop searching"));
+
         return carService.findCars(identifier)
                 .filter(car -> car.getIdentifier().getYear() < 2021)
                 .map(Car::getOwner)
-                .filter(owner -> !owner.getProfession().equals("policeman")
-                        && !owner.getChild().getFirst().getProfession().equals("policeman"))
+                .filter(owner -> !owner.getProfession()
+                        .equalsIgnoreCase("policeman"))
+                .map(Human::getChild)
+                .filter(children -> !children.isEmpty())
+                .map(List::getFirst)
+                .filter(child -> !child.getProfession()
+                        .equalsIgnoreCase("policeman"))
                 .map(Human::getHouse)
-                .filter(house -> !house.getAddress().contains("Ruble highway"))
+                .filter(house -> !house.getAddress()
+                        .toLowerCase()
+                        .contains("ruble highway"))
                 .map(House::getAddress)
                 .orElseThrow(() -> new RuntimeException("Stop searching"));
     }

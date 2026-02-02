@@ -3,7 +3,7 @@ package com.walking.lesson49_optional.task2.model;
 import com.walking.lesson49_optional.task2.model.car.Car;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Human {
@@ -13,7 +13,7 @@ public class Human {
     private Car car;
     private String profession;
     private House house;
-    private final List<Human> child = new ArrayList<>();
+    private final List<Human> child = new LinkedList<>();
 
     public List<Human> getChild() {
         return child;

@@ -13,6 +13,6 @@ public class Main {
     public static void main(String[] args) {
         List<Animal> animals = List.of(new Cat(), new Dog(), new Cow());
 
-        animals.forEach(System.out::println);
+        animals.forEach(Animal::sound);
     }
 }
