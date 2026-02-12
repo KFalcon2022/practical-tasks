@@ -11,6 +11,10 @@ import java.util.List;
 public class Task4 implements StatisticTask<LinkedList<Department>> {
     @Override
     public LinkedList<Department> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .sorted(Comparator.comparing(Department::getName))
+                .collect(LinkedList::new,
+                        LinkedList::add,
+                        LinkedList::addAll);
     }
 }
