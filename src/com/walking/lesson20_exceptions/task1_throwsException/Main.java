@@ -1,5 +1,11 @@
 package com.walking.lesson20_exceptions.task1_throwsException;
 
+import com.walking.lesson20_exceptions.task1_catchException.files.File;
+import com.walking.lesson20_exceptions.task1_catchException.files.types.Type;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
  * <p>
@@ -16,6 +22,33 @@ package com.walking.lesson20_exceptions.task1_throwsException;
  * Подсказка: throws можно использовать в том числе в main().
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        File[] files = createFiles();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter file`s name: ");
+        String name = scanner.nextLine();
+
+        scanner.close();
+
+
+            File searchFile = searchFile(files, name);
+            System.out.println(searchFile);
+
+    }
+
+    private static File searchFile(File[] files, String name) throws FileNotFoundException {
+        for (File file: files) {
+            if (file.getName().equals(name)) {
+                return file;
+            }
+        }
+        throw new FileNotFoundException("Искомый файл не существует");
+    }
+
+    private static File[] createFiles() {
+        return new File[]{
+                new File("File1", 1024, Type.Audio), new File("File2", 2048, Type.Video)
+        };
     }
 }
