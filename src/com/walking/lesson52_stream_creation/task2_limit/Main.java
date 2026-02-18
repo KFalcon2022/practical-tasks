@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) {
         LocalDate date = LocalDate.now().withDayOfMonth(1);
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MM yyyy");
+        boolean leap = date.isLeapYear();
 
         Stream.iterate(date, d -> d.plusDays(1))
-                .limit(date.getMonth().maxLength())
-                .filter(d -> d.getMonthValue() == date.getMonthValue())
+                .limit(date.getMonth().length(leap))
                 .forEach(d -> System.out.println(f.format(d)));
     }
 }
