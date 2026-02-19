@@ -1,7 +1,5 @@
 package com.walking.lesson57_stream_collect_collector.model;
 
-import java.util.Objects;
-
 public class Employee {
     private String name;
     private boolean isMale;
@@ -15,18 +13,6 @@ public class Employee {
                 ", position='" + position + '\'' +
                 ", age=" + age +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return isMale() == employee.isMale() && getAge() == employee.getAge() && Objects.equals(getName(), employee.getName()) && Objects.equals(getPosition(), employee.getPosition());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), isMale(), getPosition(), getAge());
     }
 
     public String getName() {

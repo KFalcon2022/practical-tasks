@@ -17,10 +17,9 @@ public class Main {
 
     private static Map<String, Integer> getSumAges(List<Employee> employees) {
         Map<String, Integer> sumAges = new HashMap<>();
-        employees.forEach(employee -> {
-            sumAges.putIfAbsent(employee.getName(), 0);
-            sumAges.computeIfPresent(employee.getName(), (key, age) -> age + employee.getAge());
-        });
+        employees.forEach(employee ->
+                sumAges.compute(employee.getName(), (k,v) ->
+                        v == null ? employee.getAge() : v + employee.getAge()));
 
         return sumAges;
     }

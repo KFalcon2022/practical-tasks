@@ -15,7 +15,7 @@ public class Task6 implements StatisticTask<Map<String, Double>> {
     public Map<String, Double> calculate(List<Department> departments) {
         return departments.stream()
                 .collect(Collectors.toMap(Department::getName,
-                        department -> ((double) department.getEmployees()
-                                .size() / department.getVacancyAmount()) * 100));
+                        department -> (
+                                department.getVacancyAmount() / (double) department.getEmployees().size()) * 100));
     }
 }

@@ -16,10 +16,10 @@ public class Task23 implements StatisticTask<Boolean> {
                 .flatMap(department -> department.getEmployees().stream())
                 .collect(Collectors.teeing(
                         Collectors.filtering(Employee::isMale,
-                                Collectors.toList()),
+                                Collectors.counting()),
                         Collectors.filtering(employee -> !employee.isMale(),
-                                Collectors.toList()),
-                        (male, female) -> male.size() > female.size()
+                                Collectors.counting()),
+                        (male, female) -> male > female
                 ));
 
         /* Я другие варианты как выполнить это задание не нашел.

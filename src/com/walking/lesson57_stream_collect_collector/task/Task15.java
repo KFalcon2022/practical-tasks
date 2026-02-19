@@ -19,11 +19,11 @@ public class Task15 implements StatisticTask<Map<String, Double>> {
                                         .stream(),
                                 Collectors.teeing(
                                         Collectors.filtering(Employee::isMale,
-                                                Collectors.toList()),
+                                                Collectors.counting()),
                                         Collectors.filtering(employee -> !employee.isMale(),
-                                                Collectors.toList()),
+                                                Collectors.counting()),
                                         (men, women) ->
-                                                (double) (men.size() / women.size())))));
+                                                (double) men - women))));
 
         /*Я так и не нашел способ, как задействовать Collectors.partitioningBy
          * Если не сложно, намекни (и да, я только прямые намёки понимаю ахахахаххаха),

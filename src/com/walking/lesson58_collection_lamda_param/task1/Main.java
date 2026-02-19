@@ -21,11 +21,9 @@ public class Main {
         departments.forEach(department ->
                 department.getEmployees()
                         .forEach(employee ->
-                                oldestEmployees.merge(
-                                        employee.getName(),
-                                        employee,
-                                        (oldEmpl, newEmpl) ->
-                                                oldEmpl.getAge() > newEmpl.getAge() ? oldEmpl : newEmpl)));
+                                oldestEmployees.compute(employee.getName(),
+                                        (k, v) ->
+                                                v == null || employee.getAge() > v.getAge() ? employee : v)));
 
         return oldestEmployees;
     }

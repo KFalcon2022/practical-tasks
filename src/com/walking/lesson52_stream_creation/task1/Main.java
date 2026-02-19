@@ -15,6 +15,7 @@ public class Main {
                 .takeWhile(num -> num != 1)
                 .forEach(_ -> System.out.println("Not guess!"));
 
+        System.out.println("Guess!");
         scanner.close();
     }
 }
