@@ -1,5 +1,12 @@
 package com.walking.lesson20_exceptions.task1_throwsException;
 
+import com.walking.lesson20_exceptions.task1_throwsException.model.File;
+import com.walking.lesson20_exceptions.task1_throwsException.model.InformationType;
+import com.walking.lesson20_exceptions.task1_throwsException.service.FileService;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Создайте массив, имитирующий простейшую файловую систему и содержащий объекты файлов.
  * <p>
@@ -16,6 +23,31 @@ package com.walking.lesson20_exceptions.task1_throwsException;
  * Подсказка: throws можно использовать в том числе в main().
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner scanner = new Scanner(System.in);
+
+        FileService fileService = new FileService(initFiles());
+
+        System.out.println("Enter a file's name: ");
+        String name = scanner.nextLine();
+
+        System.out.println(fileService.findFile(name).toString());
+
+
+        // Очень сильно прошу объяснить разницу между обычной "Всплывающей" ошибкой
+        // если код написан неправильно, но его удалось запустить,
+        // и этой итеррацией задачи, а именно всплывающем сообщении,
+        // ибо процесс завершается с ОДНИМ выходным кодом,
+        // а не НУЛЁМ, как это обычно бывает при верном решении задач.
+        // при том, что я запускал
+    }
+
+    private static File[] initFiles() {
+        File file1 = new File("text", 140, InformationType.TXT);
+        File file2 = new File("image", 140, InformationType.JPG);
+        File file3 = new File("audio", 140, InformationType.MP3);
+        File file4 = new File("video", 140, InformationType.MP4);
+
+        return new File[]{file1, file2, file3, file4};
     }
 }

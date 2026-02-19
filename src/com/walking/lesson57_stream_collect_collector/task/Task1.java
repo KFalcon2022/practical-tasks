@@ -11,6 +11,8 @@ import java.util.List;
 public class Task1 implements StatisticTask<List<Employee>> {
     @Override
     public List<Employee> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .flatMap(dep -> dep.getEmployees().stream())
+                .toList();
     }
 }

@@ -18,3 +18,5 @@ public class Main {
     public static void main(String[] args) {
     }
 }
+
+//\\.(\\w*) поиск значений всех до пробела.
