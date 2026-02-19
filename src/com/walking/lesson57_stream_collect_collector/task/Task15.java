@@ -13,20 +13,23 @@ import java.util.stream.Collectors;
 public class Task15 implements StatisticTask<Map<String, Double>> {
     @Override
     public Map<String, Double> calculate(List<Department> departments) {
+//        return departments.stream()
+//                .collect(Collectors.groupingBy(Department::getName,
+//                        Collectors.flatMapping(department -> department.getEmployees()
+//                                        .stream(),
+//                                Collectors.teeing(
+//                                        Collectors.filtering(Employee::isMale,
+//                                                Collectors.counting()),
+//                                        Collectors.filtering(employee -> !employee.isMale(),
+//                                                Collectors.counting()),
+//                                        (men, women) ->
+//                                                (double) men - women))));
+
         return departments.stream()
                 .collect(Collectors.groupingBy(Department::getName,
-                        Collectors.flatMapping(department -> department.getEmployees()
-                                        .stream(),
-                                Collectors.teeing(
-                                        Collectors.filtering(Employee::isMale,
-                                                Collectors.counting()),
-                                        Collectors.filtering(employee -> !employee.isMale(),
-                                                Collectors.counting()),
-                                        (men, women) ->
-                                                (double) men - women))));
-
-        /*Я так и не нашел способ, как задействовать Collectors.partitioningBy
-         * Если не сложно, намекни (и да, я только прямые намёки понимаю ахахахаххаха),
-         * пожалуйста)*/
+                        Collectors.flatMapping(department -> department.getEmployees().stream(),
+                                Collectors.collectingAndThen(
+                                        Collectors.partitioningBy(Employee::isMale, Collectors.counting()),
+                                        map -> (double) map.get(true) / map.get(false)))));
     }
 }
