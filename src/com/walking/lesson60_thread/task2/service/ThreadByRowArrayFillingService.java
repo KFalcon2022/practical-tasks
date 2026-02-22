@@ -11,11 +11,13 @@ public class ThreadByRowArrayFillingService implements ArrayFillingService {
 
     @Override
     public int[][] fill(int[][] array) {
-        Arrays.stream(array)
+        var threads = Arrays.stream(array)
                 .map(this::getFillingTask)
                 .map(Thread::new)
                 .peek(Thread::start)
-                .forEach(this::joinThreadNoEx);
+                .toList();
+
+        threads.forEach(this::joinThreadNoEx);
 
         return array;
     }
