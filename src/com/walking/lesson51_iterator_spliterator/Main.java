@@ -19,7 +19,7 @@ public class Main {
         StreamSupport.stream(spliterator, false)
                 .limit(10)
                 .map(Integer::parseInt)
-                .map(n -> (n % 2 == 0) ? "чётное" : "нечётное")
+                .map(n -> n % 2 == 0 ? "чётное" : "нечётное")
                 .forEach(System.out::println);
     }
 }

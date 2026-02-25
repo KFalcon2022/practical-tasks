@@ -16,9 +16,7 @@ import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) {
         Stream.iterate(1, n -> n <= 12, n -> n + 1)
-                .map(Main::getDateStream)
-                .map(s -> s.collect(Collectors.toList()))
-                .flatMap(List::stream)
+                .flatMap(Main::getDateStream)
                 .forEach(System.out::println);
     }
 

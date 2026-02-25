@@ -38,6 +38,7 @@ public class Main {
                 .map(LocalDate::toString);
     }
 
+    @SafeVarargs
     public static Stream<String> concatStreams(Stream<String>... streams) {
         Stream<String> str = Stream.empty();
         for (Stream<String> s : streams) {

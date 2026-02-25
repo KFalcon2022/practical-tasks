@@ -16,5 +16,6 @@ public class Main {
                 .takeWhile(n -> !n.equals("1"))
                 .forEach(n -> System.out.println("Не угадал!"));
 
+        System.out.println("Угадал!");
     }
 }
