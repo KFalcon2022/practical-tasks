@@ -2,8 +2,6 @@ package com.walking.lesson52_stream_creation.task3_flatMap;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**

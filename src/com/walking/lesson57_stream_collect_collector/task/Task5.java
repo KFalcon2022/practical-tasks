@@ -3,8 +3,10 @@ package com.walking.lesson57_stream_collect_collector.task;
 import com.walking.lesson57_stream_collect_collector.model.Department;
 import com.walking.lesson57_stream_collect_collector.model.Employee;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Предоставьте самого старшего обладателя каждого из имен.
@@ -13,6 +15,12 @@ import java.util.Map;
 public class Task5 implements StatisticTask<Map<String, Employee>> {
     @Override
     public Map<String, Employee> calculate(List<Department> departments) {
-        return null;
+        return departments.stream()
+                .flatMap(d -> d.getEmployees().stream())
+                .collect(Collectors.toMap(Employee::getName,
+                        e -> e,
+                        (e1, e2) -> {
+                            return e1.getAge() > e2.getAge() ? e1 : e2;
+                        }));
     }
 }
