@@ -22,7 +22,7 @@ public class Main {
 //        Map<String, Double> employees = task.calculate(getDepartments());
 //        System.out.println(employees);
 
-        Task12 task = new Task12();
+        Task20 task = new Task20();
         System.out.println(task.calculate(getDepartments()));
     }
 
