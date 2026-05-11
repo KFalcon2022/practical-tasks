@@ -18,8 +18,10 @@ public class Task16 implements StatisticTask<Map<String, List<String>>> {
         return departments.stream()
                 .map(Department::getEmployees)
                 .flatMap(Collection::stream)
-                .collect(Collectors.groupingBy(Employee::getPosition,
-                        Collectors.mapping(Employee::getName,
+                .collect(Collectors.groupingBy(
+                        Employee::getPosition,
+                        Collectors.mapping(
+                                Employee::getName,
                                 Collectors.toList())));
     }
 }

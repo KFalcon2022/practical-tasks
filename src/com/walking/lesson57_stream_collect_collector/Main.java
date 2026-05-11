@@ -18,11 +18,7 @@ import java.util.*;
  */
 public class Main {
     public static void main(String[] args) {
-//        Task6 task = new Task6();
-//        Map<String, Double> employees = task.calculate(getDepartments());
-//        System.out.println(employees);
-
-        Task20 task = new Task20();
+        Task24 task = new Task24();
         System.out.println(task.calculate(getDepartments()));
     }
 

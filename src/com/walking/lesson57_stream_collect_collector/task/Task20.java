@@ -15,13 +15,17 @@ public class Task20 implements StatisticTask<Map<String, Integer>> {
     @Override
     public Map<String, Integer> calculate(List<Department> departments) {
         return departments.stream()
-                .collect(Collectors.groupingBy(Department::getName,
-                        Collectors.flatMapping(d -> d.getEmployees()
+                .collect(Collectors.groupingBy(
+                        Department::getName,
+                        Collectors.flatMapping(
+                                d -> d.getEmployees()
                                         .stream(),
                                 Collectors.teeing(
-                                        Collectors.mapping(Employee::getAge,
+                                        Collectors.mapping(
+                                                Employee::getAge,
                                                 Collectors.maxBy(Integer::compareTo)),
-                                        Collectors.mapping(Employee::getAge,
+                                        Collectors.mapping(
+                                                Employee::getAge,
                                                 Collectors.minBy(Integer::compareTo)),
                                         (maxAge, minAge) -> {
                                             int maxAge1 = maxAge.orElse(0);

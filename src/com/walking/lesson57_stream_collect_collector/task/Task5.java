@@ -19,7 +19,8 @@ public class Task5 implements StatisticTask<Map<String, Employee>> {
         return departments.stream()
                 .map(Department::getEmployees)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toMap(Employee::getName,
+                .collect(Collectors.toMap(
+                        Employee::getName,
                         e -> e,
                         (e1, e2) -> {
                             return e1.getAge() > e2.getAge() ? e1 : e2;

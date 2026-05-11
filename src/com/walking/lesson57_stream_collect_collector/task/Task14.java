@@ -14,8 +14,10 @@ public class Task14 implements StatisticTask<Map<String, Double>> {
     @Override
     public Map<String, Double> calculate(List<Department> departments) {
         return departments.stream()
-                .collect(Collectors.groupingBy(Department::getName,
-                        Collectors.flatMapping(d -> d.getEmployees()
+                .collect(Collectors.groupingBy(
+                        Department::getName,
+                        Collectors.flatMapping(
+                                d -> d.getEmployees()
                                         .stream(),
                                 Collectors.averagingInt(Employee::getAge))));
     }

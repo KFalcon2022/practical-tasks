@@ -15,9 +15,11 @@ public class Task3 implements StatisticTask<Map<String, Set<String>>> {
     @Override
     public Map<String, Set<String>> calculate(List<Department> departments) {
         return departments.stream()
-                .collect(Collectors.toMap(Department::getName, d -> d.getEmployees()
-                        .stream()
-                        .map(Employee::getName)
-                        .collect(Collectors.toSet())));
+                .collect(Collectors.toMap(
+                        Department::getName,
+                        d -> d.getEmployees()
+                                .stream()
+                                .map(Employee::getName)
+                                .collect(Collectors.toSet())));
     }
 }

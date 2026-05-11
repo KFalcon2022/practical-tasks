@@ -14,7 +14,8 @@ public class Task12 implements StatisticTask<Map<String, Long>> {
     public Map<String, Long> calculate(List<Department> departments) {
         return departments.stream()
                 .collect(Collectors.groupingBy(Department::getName,
-                        Collectors.flatMapping(d -> d.getEmployees()
+                        Collectors.flatMapping(
+                                d -> d.getEmployees()
                                         .stream()
                                         .filter(e -> e.getAge() > 50),
                                 Collectors.counting())));

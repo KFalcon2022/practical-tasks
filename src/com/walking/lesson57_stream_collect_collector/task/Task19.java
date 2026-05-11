@@ -14,9 +14,11 @@ public class Task19 implements StatisticTask<Map<String, Map<Boolean, List<Emplo
     @Override
     public Map<String, Map<Boolean, List<Employee>>> calculate(List<Department> departments) {
         return departments.stream()
-                .collect(Collectors.groupingBy(Department::getName,
-                        Collectors.flatMapping(d -> d.getEmployees()
-                                .stream(),
+                .collect(Collectors.groupingBy(
+                        Department::getName,
+                        Collectors.flatMapping(
+                                d -> d.getEmployees()
+                                        .stream(),
                                 Collectors.partitioningBy(Employee::isMale))));
     }
 }

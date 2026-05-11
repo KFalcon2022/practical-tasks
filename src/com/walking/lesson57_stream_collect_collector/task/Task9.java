@@ -13,7 +13,8 @@ public class Task9 implements StatisticTask<Map<String, Long>> {
     @Override
     public Map<String, Long> calculate(List<Department> departments) {
         return departments.stream()
-                .collect(Collectors.groupingBy(Department::getName,
+                .collect(Collectors.groupingBy(
+                        Department::getName,
                         Collectors.flatMapping(d -> d.getEmployees()
                                         .stream()
                                         .filter(e -> !e.isMale()),
