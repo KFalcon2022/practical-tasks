@@ -18,8 +18,9 @@ import java.util.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Task24 task = new Task24();
-        System.out.println(task.calculate(getDepartments()));
+        Task4 task = new Task4();
+        var employees = task.calculate(getDepartments());
+        employees.forEach(d -> System.out.println(d.getName()));
     }
 
     public static List<Department> getDepartments() {

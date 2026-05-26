@@ -3,7 +3,9 @@ package com.walking.lesson57_stream_collect_collector.task;
 import com.walking.lesson57_stream_collect_collector.model.Department;
 import com.walking.lesson57_stream_collect_collector.model.Employee;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -17,16 +19,9 @@ public class Task22 implements StatisticTask<List<Employee>> {
                 .flatMap(
                         d -> d.getEmployees()
                                 .stream())
-                .collect(Collectors.teeing(
-                        Collectors.filtering(
-                                Employee::isMale,
-                                Collectors.toList()),
-                        Collectors.filtering(
-                                e -> !e.isMale(),
-                                Collectors.toList()),
-                        (maleEmployees, femaleEmployees) -> {
-                            return femaleEmployees.size() > 30 ? femaleEmployees : maleEmployees;
-                        }
-                ));
+                .collect(Collectors.collectingAndThen(
+                        Collectors.partitioningBy(Employee::isMale), Optional::of))
+                .map(m -> m.get(false).size() > 30 ? m.get(false) : m.get(true))
+                .orElseThrow();
     }
 }

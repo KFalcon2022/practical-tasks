@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -21,9 +22,7 @@ public class Task5 implements StatisticTask<Map<String, Employee>> {
                 .flatMap(Collection::stream)
                 .collect(Collectors.toMap(
                         Employee::getName,
-                        e -> e,
-                        (e1, e2) -> {
-                            return e1.getAge() > e2.getAge() ? e1 : e2;
-                        }));
+                        Function.identity(),
+                        (e1, e2) -> e1.getAge() > e2.getAge() ? e1 : e2));
     }
 }
