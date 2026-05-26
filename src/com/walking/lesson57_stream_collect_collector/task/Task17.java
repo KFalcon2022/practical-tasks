@@ -24,6 +24,6 @@ public class Task17 implements StatisticTask<Map<String, Integer>> {
                                         .map(Employee::getAge),
                                 Collectors.collectingAndThen(
                                         Collectors.maxBy(Integer::compareTo),
-                                        maxAge -> maxAge.orElse(-1)))));
+                                        maxAge -> maxAge.orElse(0)))));
     }
 }
