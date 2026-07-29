@@ -11,7 +11,7 @@ import com.walking.lesson16_abstract_class_interface.task3.model.Dog;
  * Выбирайте инструмент с умом.
  * <p>
  * В качестве задачи выбрано задание про животных
- * https://github.com/KFalcon2022/lessons/blob/master/lessons/java-core/013/Inheritance.%20Keywords%20extends%20and%20super.%20Access%20modifier%20protected.md>
+ * <a href="https://github.com/KFalcon2022/lessons/blob/master/lessons/java-core/013/Inheritance.%20Keywords%20extends%20and%20super.%20Access%20modifier%20protected.md">...</a>>
  */
 public class Main {
 
